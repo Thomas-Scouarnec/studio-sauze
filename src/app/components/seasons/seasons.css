@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  background: var(--bark);
+  color: var(--cream);
+  padding: 6rem 5vw;
+}
+
+.section-title {
+  color: var(--cream);
+}
+
+.seasons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 3rem;
+}
+
+.season-card {
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.season-card.winter {
+  background: #1a2e22;
+}
+
+.season-card.summer {
+  background: #2d1e14;
+}
+
+.season-marker {
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.season-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--cream);
+}
+
+.season-desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(213, 200, 185, 0.68);
+  max-width: 340px;
+}
+
+.season-bg-symbol {
+  position: absolute;
+  bottom: -1rem;
+  right: 1.5rem;
+  font-size: 8rem;
+  line-height: 1;
+  opacity: 0.06;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tag {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid rgba(200, 133, 74, 0.35);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(213, 200, 185, 0.65);
+}
+
+@media (max-width: 768px) {
+  .seasons-grid {
+    grid-template-columns: 1fr;
+  }
+}

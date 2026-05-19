@@ -1,0 +1,35 @@
+:host {
+  display: contents;
+}
+
+footer {
+  background: var(--text);
+  padding: 3rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--cream);
+}
+
+.footer-logo span {
+  color: var(--amber);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(197, 180, 160, 0.4);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

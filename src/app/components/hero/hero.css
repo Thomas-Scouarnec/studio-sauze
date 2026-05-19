@@ -1,0 +1,115 @@
+:host {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  background: var(--bark);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 5vw;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 60% 30%, #1a2e22 0%, transparent 60%),
+    linear-gradient(170deg, #0d1a10 0%, #2E4A35 35%, #3D2B1F 65%, #1a0f08 100%);
+  opacity: 0.92;
+}
+
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px);
+}
+
+.mountain-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  opacity: 0.13;
+}
+
+.hero-eyebrow {
+  position: relative;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1.2rem;
+}
+
+.hero-title {
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #d4a97a;
+}
+
+.hero-subtitle {
+  position: relative;
+  font-size: 1rem;
+  color: rgba(213, 200, 185, 0.72);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  max-width: 380px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.85rem 2.2rem;
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  background: var(--amber);
+  color: var(--bark);
+  outline: none;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 5vw;
+  writing-mode: vertical-rl;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(197, 180, 160, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-scroll::before {
+  content: '';
+  width: 1px;
+  height: 48px;
+  background: rgba(197, 180, 160, 0.3);
+}

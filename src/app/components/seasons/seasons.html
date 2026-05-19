@@ -1,0 +1,18 @@
+<span class="section-label">Toute l'année</span>
+<h2 id="seasons-heading" class="section-title">Deux saisons,<br>mille plaisirs</h2>
+
+<div class="seasons-grid">
+  @for (season of seasons; track season.id) {
+    <article [class]="'season-card ' + season.modifier">
+      <span class="season-marker">{{ season.marker }}</span>
+      <h3 class="season-title">{{ season.title }}</h3>
+      <p class="season-desc">{{ season.description }}</p>
+      <ul class="tag-list" aria-label="Activités">
+        @for (tag of season.tags; track tag) {
+          <li class="tag">{{ tag }}</li>
+        }
+      </ul>
+      <span class="season-bg-symbol" aria-hidden="true">{{ season.bgSymbol }}</span>
+    </article>
+  }
+</div>
