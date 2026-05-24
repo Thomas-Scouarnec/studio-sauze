@@ -5,6 +5,16 @@ Showcase website for a mountain studio rental located at Le Sauze, in the Alpes 
 ## Production url
 https://thomas-scouarnec.github.io/studio-sauze/
 
+## TO DO
+- Localization (EN, ES, ...)
+- Add unit tests
+- Proper DNS/hosting
+- Update content
+    - Photos
+    - Description
+
+# Development
+
 ## Development server
 
 To start a local development server, run:
