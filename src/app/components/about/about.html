@@ -6,11 +6,11 @@
 
   <div class="stat-grid" role="list" aria-label="Caractéristiques de l'appartement">
     <div class="stat" role="listitem">
-      <div class="stat-number">32</div>
+      <div class="stat-number">{{ flatInfo.info().surface }}</div>
       <div class="stat-label">m² loi Carrez</div>
     </div>
     <div class="stat" role="listitem">
-      <div class="stat-number">2–4</div>
+      <div class="stat-number">{{ flatInfo.guestRange() }}</div>
       <div class="stat-label">personnes</div>
     </div>
     <div class="stat" role="listitem">

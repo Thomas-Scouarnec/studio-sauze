@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FlatInfoService } from '../../services/flat-info.service';
 
 @Component({
   selector: 'app-about',
@@ -11,4 +12,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     'aria-labelledby': 'about-heading'
   }
 })
-export class AboutComponent {}
+export class AboutComponent {
+  protected readonly flatInfo = inject(FlatInfoService);
+}

@@ -2,8 +2,11 @@ import { Injectable, signal, computed } from '@angular/core';
 
 export interface FlatInfo {
   name: string;
-  location: string;
+  station: string;
+  city: string;
   region: string;
+  surface: number;
+  minGuests: number;
   maxGuests: number;
   description: string;
 }
@@ -12,8 +15,11 @@ export interface FlatInfo {
 export class FlatInfoService {
   private readonly _info = signal<FlatInfo>({
     name: 'Studio Sauze',
-    location: 'Barcelonnette',
-    region: 'Alpes de Haute Provence',
+    station: 'Station du Sauze',
+    city: 'Barcelonnette',
+    region: 'Alpes de Haute-Provence',
+    surface: 32,
+    minGuests: 2,
     maxGuests: 4,
     description: 'A cosy studio flat in the heart of the Southern Alps.',
   });
@@ -21,7 +27,11 @@ export class FlatInfoService {
   readonly info = this._info.asReadonly();
 
   readonly fullLocation = computed(
-    () => `${this._info().location}, ${this._info().region}`
+    () => `${this._info().station} · ${this._info().region}`
+  );
+
+  readonly guestRange = computed(
+    () => `${this._info().minGuests}–${this._info().maxGuests}`
   );
 
   readonly isAvailableForRental = computed(() => this._info().maxGuests > 0);
