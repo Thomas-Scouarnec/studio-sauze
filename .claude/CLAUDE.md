@@ -1,4 +1,20 @@
 
+## Project Context
+
+This is a personal website to showcase a holiday flat located in the **Alpes de Haute Provence**, near **Barcelonnette** (France). The owner is Thomas Scouarnec.
+
+**Purpose:**
+- Share the flat with family
+- Advertise the flat for occasional rental
+
+**Tech choices:**
+- Built with **Angular** (the owner is learning Angular)
+- Published on **GitHub Pages**
+
+**Audience:** Family members and potential renters.
+
+---
+
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## TypeScript Best Practices
