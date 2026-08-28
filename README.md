@@ -11,6 +11,7 @@ https://thomas-scouarnec.github.io/studio-sauze/
 ## TO DO
 - Localization (EN, ES, ...)
 - Add unit tests
+- Add automated accessibility testing (Axe). Options: `axe-core` in the existing Vitest/jsdom setup (structural/ARIA checks only), or Playwright + `@axe-core/playwright` for a full browser run covering color contrast and focus-visible.
 - Proper DNS/hosting
 - Update content
     - Photos
