@@ -42,7 +42,7 @@ export class FeaturesComponent {
     {
       icon: '🎿',
       title: 'Rangements',
-      description: "Deux placards dans l'entrée pour ranger skis, équipements et bagages."
+      description: "Plusieurs espaces de rangement pour ranger skis, équipements et bagages."
     },
     {
       icon: '🏡',

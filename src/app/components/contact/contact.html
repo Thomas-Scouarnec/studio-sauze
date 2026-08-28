@@ -84,10 +84,9 @@
       <div class="form-group">
         <label for="numberOfPeople">Nombre de personnes</label>
         <select id="numberOfPeople" formControlName="numberOfPeople">
-          <option value="1">1 personne</option>
-          <option value="2">2 personnes</option>
-          <option value="3">3 personnes</option>
-          <option value="4">4 personnes</option>
+          @for (count of flatInfo.guestCountOptions(); track count) {
+            <option [value]="count">{{ count }} personne{{ count > 1 ? 's' : '' }}</option>
+          }
         </select>
       </div>
 

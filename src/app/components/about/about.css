@@ -83,7 +83,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   color: var(--bark);
-  line-height: 1;
+  line-height: 1.05;
   margin-bottom: 0.3rem;
 }
 
@@ -92,6 +92,39 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--stone);
+}
+
+.about-location {
+  margin-top: 1.5rem;
+}
+
+.about-maps-link {
+  color: var(--bark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-maps-link:hover,
+.about-maps-link:focus-visible {
+  color: var(--amber);
+}
+
+.about-maps-link:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 768px) {

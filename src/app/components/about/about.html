@@ -1,23 +1,35 @@
 <div class="about-text">
   <span class="section-label">L'appartement</span>
   <h2 id="about-heading" class="section-title">32 m² de<br>confort alpin</h2>
-  <p>Situé dans une résidence arrivée et départ skis aux pieds à la station du Sauze, cet appartement studio lumineux offre tout ce qu'il faut pour un séjour en montagne réussi.</p>
-  <p>Le grand coin montagne peut accueillir un lit double, complété par un espace séjour avec coin cuisine équipé, une salle de bain, et des WC séparés. Deux placards dans l'entrée offrent un rangement pratique pour les équipements de ski.</p>
+  <p>Situé dans la résidence <strong>{{ flatInfo.info().residenceName }}</strong> (bâtiment <strong>{{ flatInfo.info().buildingName }}</strong>) à la station du Sauze - à environ 10 minutes en voiture de Barcelonnette, cet appartement studio profite d'un accès direct aux pistes et itinéraires raquettes l'hiver, et aux sentiers de randonnée l'été.</p>
+  <p>Le coin montagne, avec son lit superposé complété d'un tiroir-lit, accueille jusqu'à 3 personnes ; un confortable canapé-lit (160 cm) dans le séjour permet d'en loger 2 de plus, pour une capacité totale de 5 personnes. L'espace séjour dispose d'un coin cuisine bien équipé, d'une salle de bain complète et de WC séparés, ainsi que de plusieurs espaces de rangement pour équipements et bagages.</p>
 
   <div class="stat-grid" role="list" aria-label="Caractéristiques de l'appartement">
     <div class="stat" role="listitem">
       <div class="stat-number">{{ flatInfo.info().surface }}</div>
-      <div class="stat-label">m² loi Carrez</div>
+      <div class="stat-label">m²</div>
     </div>
     <div class="stat" role="listitem">
       <div class="stat-number">{{ flatInfo.guestRange() }}</div>
       <div class="stat-label">personnes</div>
     </div>
     <div class="stat" role="listitem">
-      <div class="stat-number">0</div>
-      <div class="stat-label">marche jusqu'aux pistes</div>
+      <div class="stat-number">Sur place</div>
+      <div class="stat-label">pistes, sentiers &amp; raquettes</div>
     </div>
   </div>
+
+  <p class="about-location">
+    <a
+      class="about-maps-link"
+      [href]="flatInfo.info().mapsUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Voir la résidence sur Google Maps
+      <span class="visually-hidden">(nouvel onglet)</span>
+    </a>
+  </p>
 </div>
 
 <div class="about-visual" aria-hidden="true">

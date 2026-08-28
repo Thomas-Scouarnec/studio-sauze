@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FlatInfoService } from '../../services/flat-info.service';
 
 @Component({
   selector: 'app-contact',
@@ -15,6 +16,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class ContactComponent {
   private readonly fb = inject(FormBuilder);
+  protected readonly flatInfo = inject(FlatInfoService);
   protected readonly submitted = signal(false);
 
   protected readonly form = this.fb.group({
