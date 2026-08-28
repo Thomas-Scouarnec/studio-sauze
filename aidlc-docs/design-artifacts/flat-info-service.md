@@ -16,6 +16,7 @@ Provides read-only flat metadata to any component that needs it. Single source o
 | `fullLocation` | `ComputedSignal<string>` | `station + region` concatenated |
 | `guestRange` | `ComputedSignal<string>` | `minGuests–maxGuests` |
 | `isAvailableForRental` | `ComputedSignal<boolean>` | `true` when `maxGuests > 0` |
+| `guestCountOptions` | `ComputedSignal<number[]>` | `[1..maxGuests]` — lets the Contact form derive its people selector instead of hardcoding an upper bound |
 
 ### FlatInfo interface
 | Field | Type |
@@ -38,3 +39,4 @@ Provides read-only flat metadata to any component that needs it. Single source o
 - `maxGuests` corrected to 5 (bunk bed + drawer sleeps 3, sofa bed sleeps 2)
 - `residenceName` (e.g. "Le Roi Soleil") and `buildingName` (e.g. "Crépuscule") are two distinct pieces of information — a residence can have several buildings — and both are added along with `mapsUrl` so the About section can link to the residence on a map without hardcoding it in the template
 - `description` field **removed** — it was unused by any template; free-form descriptive copy lives directly in `about.html` instead
+- `guestCountOptions` added specifically to enforce BR-1 (capacity consistency) from the functional spec: the Contact form must derive its options from `maxGuests`, not hardcode them

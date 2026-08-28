@@ -42,3 +42,10 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Apartment Description Accuracy"), 5 stories, 1 Bolt (5 steps) — pending Thomas's approval to implement.
 
 **Workflow addition:** Introduced `aidlc-docs/functional-specs/` — persistent, per-domain functional specs (unlike session-scoped story-artifacts) capturing durable facts and cross-cutting business rules, to catch drift like the Contact form guest-count bug. First spec: [functional-specs/flat-info.md](functional-specs/flat-info.md), pending Thomas's validation before the bolt starts.
+
+**Artifact review before implementation — decisions from Thomas:**
+- Contact form's guest selector must be derived from `FlatInfoService` (not hardcoded) — added `guestCountOptions` computed signal to enforce BR-1 going forward
+- "Bunk bed + a drawer" = "lit superposé + tiroir-lit" (confirmed wording for French copy)
+- Building name keeps the accent: "Crépuscule" (Thomas just can't type it on his keyboard)
+
+**Plan approved by Thomas — ready to implement Bolt 2.**

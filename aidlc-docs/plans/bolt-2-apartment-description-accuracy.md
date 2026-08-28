@@ -11,10 +11,11 @@
   - `maxGuests`: 4 → 5
   - Remove the unused `description` field from the `FlatInfo` interface and the signal
   - Add `residenceName: 'Le Roi Soleil'`, `buildingName: 'Crépuscule'` (two distinct fields — a residence can have several buildings), and `mapsUrl: 'https://maps.app.goo.gl/AYnuYPqsfuqbwnkR6'`
-  - Update `flat-info.service.spec.ts`: `guestRange()` expectation `2–4` → `2–5`, add coverage for `residenceName`/`buildingName`/`mapsUrl`, drop any reference to `description`
+  - Add a `guestCountOptions` computed signal: `[1..maxGuests]`, so consumers derive the upper bound instead of hardcoding it (enforces BR-1)
+  - Update `flat-info.service.spec.ts`: `guestRange()` expectation `2–4` → `2–5`, add coverage for `residenceName`/`buildingName`/`mapsUrl`/`guestCountOptions`, drop any reference to `description`
 
 - [ ] **Step 2 — Rewrite About section copy (`about.html`)**
-  - Sleeping arrangement: mention bunk bed + drawer (coin montagne, 3 people) and the 160cm sofa bed (2 people)
+  - Sleeping arrangement: mention lit superposé + tiroir-lit (coin montagne, 3 people) and the 160cm sofa bed (2 people)
   - Remove "studio lumineux" claim
   - Add summer/hiking appeal alongside the existing winter/ski framing
   - Highlight the kitchen as well-equipped
@@ -22,13 +23,14 @@
   - Replace the "0 marche jusqu'aux pistes" stat with wording reflecting a couple of meters to slopes/hiking/snowshoe trails
   - Add "~10 min en voiture de Barcelonnette"
   - Add residence name **and** building name (distinct fields — "Le Roi Soleil" / "Crépuscule") + Google Maps link (building-level only, no door/apartment number)
+  - Update `about.css` as needed: style the new Maps link (incl. `:focus-visible`), and check the proximity stat tile still fits/wraps cleanly now that its content is no longer a single digit
 
 - [ ] **Step 3 — Fix duplicated storage wording in Features section (`features.ts`)**
   - Update the "Rangements" card description to match the non-specific plural wording from Step 2
 
-- [ ] **Step 4 — Fix guest count cap in Contact form (`contact.html`)**
-  - Newly noticed while designing this bolt: the "Nombre de personnes" `<select>` only goes up to 4, which is now inconsistent with the corrected `maxGuests` of 5
-  - Add a "5 personnes" option
+- [ ] **Step 4 — Derive guest count options in Contact form (`contact.html` / `contact.ts`)**
+  - Newly noticed while designing this bolt: the "Nombre de personnes" `<select>` hardcodes options 1–4, inconsistent with the corrected `maxGuests` of 5
+  - Inject `FlatInfoService` into `ContactComponent`; replace the hardcoded `<option>` list with an `@for` over `flatInfo.guestCountOptions()`, so the bound can never drift from the service again (enforces BR-1)
 
 - [ ] **Step 5 — Verify**
   - `npm test` passes
