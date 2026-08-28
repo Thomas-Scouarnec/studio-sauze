@@ -2,6 +2,9 @@
 
 Showcase website for a mountain studio rental located at Le Sauze, in the Alpes de Haute-Provence (French Alps). Built with Angular, it presents the property, seasonal activities (skiing in winter, hiking and MTB in summer), and contact information.
 
+## GitHub repository
+https://github.com/Thomas-Scouarnec/studio-sauze
+
 ## Production url
 https://thomas-scouarnec.github.io/studio-sauze/
 
