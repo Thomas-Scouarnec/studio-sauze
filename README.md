@@ -70,6 +70,20 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+# Deployment
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The site is published to [GitHub Pages](https://thomas-scouarnec.github.io/studio-sauze/) using [`angular-cli-ghpages`](https://github.com/angular-schule/angular-cli-ghpages), wired into `angular.json` as the `deploy` builder target. It builds the app and pushes the output to the `gh-pages` branch, which GitHub Pages serves from.
+
+There is no CI workflow that deploys automatically on push to `main` — deployment is a manual step.
+
+## Trigger a deployment
+
+```bash
+ng deploy
+```
+
+## Monitor deployment status on GitHub
+
+- **Actions tab** — pushing to `gh-pages` automatically triggers a built-in "pages build and deployment" run; check its status there.
+- **Environments** (repo homepage sidebar, or `Settings → Environments`) — shows the `github-pages` environment with deployment history and a link to the live site.
+- **Settings → Pages** — shows "Your site is live at [URL]" with the timestamp of the last successful deployment.
