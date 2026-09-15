@@ -72,7 +72,8 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/studio-sauze/"
+            "baseHref": "/",
+            "cname": "refugedusauze.com"
           }
         }
       }
