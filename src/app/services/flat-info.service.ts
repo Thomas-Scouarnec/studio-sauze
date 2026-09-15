@@ -22,7 +22,7 @@ export class FlatInfoService {
     region: 'Alpes de Haute-Provence',
     residenceName: 'Le Roi Soleil',
     buildingName: 'Crépuscule',
-    mapsUrl: 'https://maps.app.goo.gl/AYnuYPqsfuqbwnkR6',
+    mapsUrl: 'https://maps.app.goo.gl/ujDrvDNVL2vmLQ488',
     surface: 32,
     minGuests: 2,
     maxGuests: 5,

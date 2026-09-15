@@ -36,7 +36,7 @@ describe('FlatInfoService', () => {
   });
 
   it('should expose a maps URL', () => {
-    expect(service.info().mapsUrl).toBe('https://maps.app.goo.gl/AYnuYPqsfuqbwnkR6');
+    expect(service.info().mapsUrl).toBe('https://maps.app.goo.gl/ujDrvDNVL2vmLQ488');
   });
 
   it('should compute the guest count options from 1 to maxGuests', () => {
