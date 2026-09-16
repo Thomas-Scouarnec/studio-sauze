@@ -15,6 +15,9 @@ https://refugedusauze.com/
 - Update content
     - Photos
     - Description
+- add altitude (1450m) in main description
+- should we support pets?
+
 
 # Development
 
