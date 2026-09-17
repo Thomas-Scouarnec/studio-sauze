@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <ul class="nav-links">
         <li><a href="#about">L'appartement</a></li>
         <li><a href="#equipment">Équipements</a></li>
-        <li><a href="#seasons">Activités</a></li>
+        <li><a href="#activities">Activités</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>

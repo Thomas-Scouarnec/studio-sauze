@@ -94,3 +94,32 @@ All prompts in session order.
 **Copy refinement after review:** the closing sentence of the `arrival` block, "Pas un escalier, jamais.", was removed — too absolute, since guests can take the stairs if they prefer. The block now states the mechanism (drop the gear downstairs, take the lift up) without the absolute claim.
 
 **Noticed while verifying — candidate for a future bolt:** `var(--stone)` on `var(--snow)` measures 3.63:1, below the WCAG AA 4.5:1 minimum. Bolt 3 removed the last usage from the Équipements section, but 10 elements still use it elsewhere — the three About stat labels and all seven Contact form labels. Form labels failing contrast is the more serious case. Not fixed here to avoid widening the bolt's scope.
+
+---
+
+## Session 4 — 2026-09-17
+
+**Intent:** Rework the "Toute l'année" (Seasons) section to highlight what there is to do in winter and in summer, reworked the same way as the Équipements section. The existing two-card structure is a good basis and is kept.
+
+**Clarifications provided by Thomas:**
+- **Ski de fond removed** — Thomas is not sure it is accurate, so it does not ship (BR-5)
+- **Winter additions:** Luge only. Ski de randonnée explicitly rejected. Chiens de traîneau, patinoire and Espace Lumière were proposed but not confirmed, so they are not added
+- **Summer additions:** Trail, Parapente (moved from the winter candidates), the Mexican festival, and the Lac de Serre-Ponçon
+- **Festival:** official name is "Fêtes Latino-Mexicaines de Barcelonnette", running ten days mid-August. Exact dates change every year, so no specific dates are published — the Ubaye tourist office link carries them instead
+- **Lac de Serre-Ponçon:** 45 minutes by car
+- **Photos:** agreed, but Thomas does not have them yet — placeholder labels describing the intended subject are used for now (e.g. "Photo — Barcelonnette pendant les Fêtes Latino-Mexicaines"). One photo per card, not one per highlight, to limit sourcing to two licensed images
+- **Background symbol (❄ / ☀) removed** — it would compete with the photo once images land
+- **Links (provided by Thomas):** https://www.sauze.com/ for winter, https://www.ubaye.com/votre-sejour/offices-de-tourisme/ for summer. Limited to two: the tourist office is what keeps the festival's shifting dates accurate without yearly maintenance
+- **Season descriptions kept** — Thomas likes the two scene-setting sentences and wants them retained. To remove the overlap I had flagged, the winter first highlight's line changed to "du débutant au skieur confirmé" instead of repeating "ambiance authentique"
+
+**Format decision — validated after a visual mockup:** the two-card structure stays, but each card's content is split into a photo, a scene-setting sentence, three named highlights with a line of text each, activity tags, and one external link.
+
+**Plan drafted:** 1 Unit ("Seasons Section"), 6 stories, 1 Bolt (6 steps). Thomas asked to proceed directly to implementation.
+
+**Bolt 4 implemented on 2026-09-17.** All 6 steps done, 37 tests passing, verified in the browser. Lowest contrast on the dark cards is 4.74:1, above the AA minimum.
+
+**Workflow addition:** introduced `functional-specs/seasons.md` — a second per-domain spec covering the valley and its activities, sibling to `flat-info.md` which owns the flat itself. The split keeps "facts about the property" and "facts about the place" from bleeding into each other.
+
+**Change requested after implementation:** the section anchor moves from `#seasons` to `#activities`, matching the navbar's "Activités" label — the same reasoning as `#equipment` in Bolt 3. The heading id follows (`activities-heading`). The component itself keeps the `Seasons` name, since the domain is still the two seasons.
+
+**Noticed while verifying — candidate for a future bolt:** the hero tagline still reads "skis aux pieds", which may be the same overclaim Bolt 2 removed as "0 marche jusqu'aux pistes" (FR-7). Not changed here.

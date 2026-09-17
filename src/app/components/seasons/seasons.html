@@ -1,18 +1,38 @@
 <span class="section-label">Toute l'année</span>
-<h2 id="seasons-heading" class="section-title">Deux saisons,<br>mille plaisirs</h2>
+<h2 id="activities-heading" class="section-title">Deux saisons,<br>mille plaisirs</h2>
 
 <div class="seasons-grid">
-  @for (season of seasons; track season.id) {
-    <article [class]="'season-card ' + season.modifier">
+  @for (season of seasonsService.seasons(); track season.id) {
+    <article [class]="'season-card ' + season.id">
       <span class="season-marker">{{ season.marker }}</span>
       <h3 class="season-title">{{ season.title }}</h3>
+      <div class="season-photo" aria-hidden="true">{{ season.photoLabel }}</div>
       <p class="season-desc">{{ season.description }}</p>
+
+      <div class="season-highlights">
+        @for (highlight of season.highlights; track highlight.title) {
+          <div class="season-highlight">
+            <h4 class="season-highlight-title">{{ highlight.title }}</h4>
+            <p class="season-highlight-text">{{ highlight.text }}</p>
+          </div>
+        }
+      </div>
+
       <ul class="tag-list" aria-label="Activités">
         @for (tag of season.tags; track tag) {
           <li class="tag">{{ tag }}</li>
         }
       </ul>
-      <span class="season-bg-symbol" aria-hidden="true">{{ season.bgSymbol }}</span>
+
+      <a
+        class="season-link"
+        [href]="season.link.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ season.link.label }}
+        <span class="visually-hidden">(nouvel onglet)</span>
+      </a>
     </article>
   }
 </div>
