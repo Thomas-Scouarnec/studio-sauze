@@ -79,4 +79,18 @@ All prompts in session order.
 
 **Noted for a future bolt:** photos (likely a carousel, possibly opened by clicking a block) and a restricted guest-only section. Photo placeholders are kept in the layout now so images can slot in without a rewrite.
 
-**Plan status:** story artifact and spec update written — design artifact and Bolt 3 plan pending, then Thomas's approval to implement.
+**Design decision approved by Thomas:** equipment content moves into `FlatInfoService` as structured data, so the component stays presentational and the published copy cannot drift from the spec (BR-3).
+
+**Noticed while designing:** the current `.feature-desc` body copy uses `var(--stone)` on `var(--snow)`, measuring ≈3.6:1 — below the WCAG AA 4.5:1 minimum. Fixed as part of the rewrite rather than carried over.
+
+**Plan drafted:** 1 Unit ("Equipment Section"), 7 stories, 1 Bolt (6 steps).
+
+**Artifact review before implementation — decisions from Thomas:**
+- URL fragment may change from `#features` to `#equipment` — approved, it is the better name
+- **Convention:** technical identifiers (HTML ids, block ids, CSS classes, TS symbols) are written in English even though localization only supports French for now. Only user-visible copy is French. Block ids corrected accordingly: `arrivee`/`couchages`/`cuisine` → `arrival`/`sleeping`/`kitchen`
+
+**Plan approved by Thomas — Bolt 3 implemented on 2026-09-17.** All 6 steps done, 22 tests passing, verified in the browser at desktop and mobile widths.
+
+**Copy refinement after review:** the closing sentence of the `arrival` block, "Pas un escalier, jamais.", was removed — too absolute, since guests can take the stairs if they prefer. The block now states the mechanism (drop the gear downstairs, take the lift up) without the absolute claim.
+
+**Noticed while verifying — candidate for a future bolt:** `var(--stone)` on `var(--snow)` measures 3.63:1, below the WCAG AA 4.5:1 minimum. Bolt 3 removed the last usage from the Équipements section, but 10 elements still use it elsewhere — the three About stat labels and all seven Contact form labels. Form labels failing contrast is the more serious case. Not fixed here to avoid widening the bolt's scope.

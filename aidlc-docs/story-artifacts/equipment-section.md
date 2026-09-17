@@ -27,7 +27,8 @@
 **Acceptance criteria:**
 - Headline is "Vos skis restent en bas"
 - Mentions free parking at the foot of the building, the secured ski locker on the ground floor, and the lift to the 1st floor
-- Makes clear the gear is dropped downstairs and never carried up stairs
+- Makes clear the gear is dropped downstairs, then you take the lift up
+- Does NOT claim the stairs are never used — guests can take them if they prefer
 - Does NOT claim the skis take the lift
 - Does NOT state a ski locker capacity (not yet verified)
 - Parking wording is "parking gratuit au pied du bâtiment"

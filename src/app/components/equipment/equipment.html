@@ -1,0 +1,28 @@
+<div class="equipment-header">
+  <span class="section-label">Équipements</span>
+  <h2 id="equipment-heading" class="section-title">Ce qui vous attend</h2>
+</div>
+
+<div class="equipment-blocks">
+  @for (block of flatInfo.equipmentBlocks(); track block.id) {
+    <article class="equipment-block">
+      <div class="equipment-photo" aria-hidden="true"></div>
+      <div class="equipment-block-text">
+        <h3 class="equipment-block-title">{{ block.title }}</h3>
+        <p class="equipment-block-body">{{ block.body }}</p>
+      </div>
+    </article>
+  }
+</div>
+
+<div class="equipment-extras">
+  <h3 id="equipment-extras-heading" class="section-label">Et aussi</h3>
+  <ul class="equipment-list" aria-labelledby="equipment-extras-heading">
+    @for (item of flatInfo.equipmentItems(); track item.label) {
+      <li class="equipment-item">
+        <span class="equipment-item-icon" aria-hidden="true">{{ item.icon }}</span>
+        {{ item.label }}
+      </li>
+    }
+  </ul>
+</div>

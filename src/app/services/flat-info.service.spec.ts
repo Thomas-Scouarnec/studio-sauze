@@ -50,4 +50,45 @@ describe('FlatInfoService', () => {
   it('should indicate the flat is available for rental', () => {
     expect(service.isAvailableForRental()).toBe(true);
   });
+
+  it('should expose the three equipment blocks in display order', () => {
+    expect(service.equipmentBlocks().map((block) => block.id)).toEqual([
+      'arrival',
+      'sleeping',
+      'kitchen',
+    ]);
+  });
+
+  it('should give every equipment block a title and a body', () => {
+    for (const block of service.equipmentBlocks()) {
+      expect(block.title.trim().length).toBeGreaterThan(0);
+      expect(block.body.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('should expose the eight secondary equipment items', () => {
+    expect(service.equipmentItems()).toHaveLength(8);
+    for (const item of service.equipmentItems()) {
+      expect(item.icon.trim().length).toBeGreaterThan(0);
+      expect(item.label.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('should never publish an appliance brand name (FR-12)', () => {
+    const copy = equipmentCopy(service).toLowerCase();
+    for (const brand of ['beko', 'bosch', 'moulinex']) {
+      expect(copy).not.toContain(brand);
+    }
+  });
+
+  it('should not describe the drying spot as a sèche-chaussures (FR-16)', () => {
+    expect(equipmentCopy(service).toLowerCase()).not.toContain('sèche-chaussures');
+  });
 });
+
+function equipmentCopy(service: FlatInfoService): string {
+  return [
+    ...service.equipmentBlocks().flatMap((block) => [block.title, block.body]),
+    ...service.equipmentItems().map((item) => item.label),
+  ].join(' ');
+}
