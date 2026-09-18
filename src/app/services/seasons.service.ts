@@ -10,12 +10,19 @@ export interface SeasonLink {
   url: string;
 }
 
+/** A photo stored as `public/images/<src>-<width>w.webp`, in each width listed in `srcset`. */
+export interface SeasonPhoto {
+  src: string;
+  srcset: string;
+  alt: string;
+}
+
 export interface Season {
   id: string;
   marker: string;
   title: string;
   description: string;
-  photoLabel: string;
+  photo: SeasonPhoto;
   highlights: SeasonHighlight[];
   tags: string[];
   link: SeasonLink;
@@ -30,7 +37,11 @@ export class SeasonsService {
       title: "L'hiver",
       description:
         "De décembre à avril, la station vit au rythme de la neige, loin de l'agitation des grandes stations.",
-      photoLabel: 'Photo — les pistes du Sauze',
+      photo: {
+        src: 'seasons/sauze-winter',
+        srcset: '800w, 1600w',
+        alt: 'Le front de neige du Sauze, au pied des chalets, face aux sommets enneigés',
+      },
       highlights: [
         {
           title: 'Le domaine Sauze – Super-Sauze',
@@ -54,7 +65,11 @@ export class SeasonsService {
       title: "L'été",
       description:
         "L'été, la vallée de l'Ubaye change de visage : sentiers, rivières et grands espaces à portée de main.",
-      photoLabel: 'Photo — Barcelonnette pendant les Fêtes Latino-Mexicaines',
+      photo: {
+        src: 'seasons/barcelonnette-summer',
+        srcset: '800w, 1260w',
+        alt: 'Danseuses en robes colorées dans une rue de Barcelonnette pendant les Fêtes Latino-Mexicaines',
+      },
       highlights: [
         {
           title: 'Les Fêtes Latino-Mexicaines de Barcelonnette',

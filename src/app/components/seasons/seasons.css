@@ -46,19 +46,21 @@
 }
 
 .season-photo {
+  position: relative;
+  overflow: hidden;
   aspect-ratio: 16 / 9;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(200, 133, 74, 0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(213, 200, 185, 0.85);
   margin-bottom: 1.8rem;
+}
+
+.season-photo img {
+  object-fit: cover;
+}
+
+/* The summer photo is 3:2: trim the rooftops at the top, keep the dancers. */
+.season-card.summer .season-photo img {
+  object-position: center bottom;
 }
 
 .season-desc {

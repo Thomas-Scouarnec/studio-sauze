@@ -18,14 +18,14 @@ Covers the Seasons ("Toute l'année") section: seasonal framing, activities, nam
 
 | Component | Consumes |
 |---|---|
-| Seasons section | the full seasonal content: markers, titles, descriptions, highlights, tags, photo labels and links |
+| Seasons section | the full seasonal content: markers, titles, descriptions, photos, highlights, tags and links |
 
 ## 4. Functional Requirements
 
 | ID | Requirement | Rationale |
 |---|---|---|
 | FR-1 | The section presents exactly two seasons: winter (Décembre – Avril) and summer (Juin – Septembre) | The existing framing works and is deliberately kept |
-| FR-2 | Each season card carries, in order: a period marker, a title, a photo slot, one scene-setting sentence, three named highlights, activity tags, and one external link | Named highlights carry what tags cannot; the sentence keeps the section's voice |
+| FR-2 | Each season card carries, in order: a period marker, a title, a photo, one scene-setting sentence, three named highlights, activity tags, and one external link | Named highlights carry what tags cannot; the sentence keeps the section's voice |
 | FR-3 | Each highlight has a title and exactly one line of explanatory text | Three short highlights is the ceiling before the card stops being scannable |
 | FR-4 | Tags contain only single words or short phrases, for activities that need no explanation | Anything needing a sentence is a highlight, not a tag |
 | FR-5 | "Ski de fond" is not listed, and neither are ski de randonnée, chiens de traîneau, patinoire or Espace Lumière | Either rejected by the owner or never confirmed — see BR-1 |
@@ -34,9 +34,12 @@ Covers the Seasons ("Toute l'année") section: seasonal framing, activities, nam
 | FR-8 | The Lac de Serre-Ponçon is stated as 45 minutes by car | Owner-confirmed distance |
 | FR-9 | Exactly two external links are published: the Sauze resort (winter card) and the Ubaye tourist offices (summer card) | The tourist office is the authority for shifting event dates; more links means more future dead links |
 | FR-10 | External links open in a new tab and carry a visually hidden new-tab warning | Matches the existing Maps link pattern in About |
-| FR-11 | Each card reserves one photo slot carrying a label that names the intended subject | One image per card limits sourcing to two licensed photos; the label tells the owner what to source |
+| FR-11 | Each card shows one photo: the Sauze snow front in winter, the Fêtes Latino-Mexicaines in Barcelonnette in summer | One image per card limits sourcing to two photos |
 | FR-12 | The decorative background symbol (❄ / ☀) is not displayed | It would compete with the photo once images land |
 | FR-13 | The section's anchor is `#activities` | Matches the navbar's "Activités" label, as `#equipment` matches "Équipements" |
+| FR-14 | Each photo carries French alt text describing what it shows | The photos add content the card text does not, so they are informative, not decorative |
+| FR-15 | Photos are framed at 16:9 without distortion; the summer photo is trimmed from the top so the dancers are not cut off | The frame is fixed; the provided photos are 5:3 and 3:2 |
+| FR-16 | Each photo is offered in at least two widths, including 800px, and is lazy-loaded | Phones download the small file; both photos sit below the fold |
 
 ## 5. Business Rules / Constraints
 
@@ -44,6 +47,7 @@ Covers the Seasons ("Toute l'année") section: seasonal framing, activities, nam
 - **BR-2 (No perishable facts):** Information that changes yearly — event dates above all — is never published as a literal value. Link to the authoritative source instead.
 - **BR-3 (Single source of truth):** All published seasonal copy lives in `SeasonsService`, not in the template, so content is separated from presentation and can be asserted against in tests.
 - **BR-4 (Link discipline):** Outbound links are limited to official sources (resort, tourist office). Every link added is a link someone must check again later.
+- **BR-5 (Photo files follow one convention):** Every photo is stored as `public/images/<name>-<width>w.webp`, and its data (name, widths, alt text) lives in `SeasonsService`. A declared width with no file on disk is a defect caught by tests.
 
 ## 6. Non-Functional Requirements
 
@@ -53,7 +57,8 @@ Covers the Seasons ("Toute l'année") section: seasonal framing, activities, nam
 
 ## 7. Out of Scope
 
-- Actual photography — the layout reserves slots, images are a separate bolt
+- Photo credits and licensing — set aside by the owner
+- Carousel or click-to-enlarge
 - Pricing, availability and booking
 - A dedicated location section for the flat's own distances (still pending from Session 3)
 
@@ -66,3 +71,4 @@ Covers the Seasons ("Toute l'année") section: seasonal framing, activities, nam
 | Date | Change | Session |
 |---|---|---|
 | 2026-09-17 | Initial version — created with the Seasons section rework | Session 4 |
+| 2026-09-18 | Photos replace the placeholders: FR-2 and FR-11 reworded, FR-14 to FR-16 and BR-5 added | Session 6 |

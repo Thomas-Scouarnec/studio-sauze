@@ -33,15 +33,38 @@ describe('SeasonsComponent', () => {
     }
   });
 
-  it('should render a labelled photo placeholder hidden from assistive technology', async () => {
+  it('should render one described, lazy-loaded photo per card', async () => {
     const fixture = TestBed.createComponent(SeasonsComponent);
     await fixture.whenStable();
-    const photos = fixture.nativeElement.querySelectorAll('.season-photo');
+    const photos: NodeListOf<HTMLImageElement> =
+      fixture.nativeElement.querySelectorAll('.season-photo img');
     expect(photos.length).toBe(2);
-    photos.forEach((el: HTMLElement) => {
-      expect(el.getAttribute('aria-hidden')).toBe('true');
-      expect(el.textContent?.trim().length).toBeGreaterThan(0);
+    photos.forEach((img) => {
+      expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
+      expect(img.getAttribute('loading')).toBe('lazy');
+      expect(img.getAttribute('sizes')).toBeTruthy();
     });
+  });
+
+  it('should offer each photo in its two widths through the image loader', async () => {
+    const fixture = TestBed.createComponent(SeasonsComponent);
+    await fixture.whenStable();
+    const [winter, summer]: HTMLImageElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.season-photo img'),
+    );
+    expect(winter.getAttribute('src')).toBe('images/seasons/sauze-winter-800w.webp');
+    expect(winter.getAttribute('srcset')).toBe(
+      'images/seasons/sauze-winter-800w.webp 800w, images/seasons/sauze-winter-1600w.webp 1600w',
+    );
+    expect(summer.getAttribute('srcset')).toBe(
+      'images/seasons/barcelonnette-summer-800w.webp 800w, images/seasons/barcelonnette-summer-1260w.webp 1260w',
+    );
+  });
+
+  it('should not hide anything from assistive technology', async () => {
+    const fixture = TestBed.createComponent(SeasonsComponent);
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelector('[aria-hidden="true"]')).toBeNull();
   });
 
   it('should render one safe external link per card, warning about the new tab', async () => {

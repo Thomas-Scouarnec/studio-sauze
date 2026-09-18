@@ -6,7 +6,15 @@
     <article [class]="'season-card ' + season.id">
       <span class="season-marker">{{ season.marker }}</span>
       <h3 class="season-title">{{ season.title }}</h3>
-      <div class="season-photo" aria-hidden="true">{{ season.photoLabel }}</div>
+      <div class="season-photo">
+        <img
+          [ngSrc]="season.photo.src"
+          [ngSrcset]="season.photo.srcset"
+          sizes="(max-width: 768px) calc(90vw - 80px), calc(45vw - 80px)"
+          [alt]="season.photo.alt"
+          fill
+        />
+      </div>
       <p class="season-desc">{{ season.description }}</p>
 
       <div class="season-highlights">

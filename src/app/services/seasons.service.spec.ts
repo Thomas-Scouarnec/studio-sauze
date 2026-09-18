@@ -1,4 +1,6 @@
+import { existsSync } from 'node:fs';
 import { TestBed } from '@angular/core/testing';
+import { FALLBACK_IMAGE_WIDTH } from '../loaders/responsive-image-loader';
 import { SeasonsService } from './seasons.service';
 
 describe('SeasonsService', () => {
@@ -17,12 +19,35 @@ describe('SeasonsService', () => {
     expect(service.seasons().map((season) => season.id)).toEqual(['winter', 'summer']);
   });
 
-  it('should give every season a marker, title, description and photo label', () => {
+  it('should give every season a marker, title and description', () => {
     for (const season of service.seasons()) {
       expect(season.marker.trim().length).toBeGreaterThan(0);
       expect(season.title.trim().length).toBeGreaterThan(0);
       expect(season.description.trim().length).toBeGreaterThan(0);
-      expect(season.photoLabel.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('should describe every photo in French alt text (FR-14)', () => {
+    for (const season of service.seasons()) {
+      expect(season.photo.alt.trim().length).toBeGreaterThan(0);
+      expect(season.photo.alt.toLowerCase()).not.toMatch(/^(photo|image)/);
+    }
+  });
+
+  it('should offer every photo in the fallback width and at least one larger (FR-16)', () => {
+    for (const season of service.seasons()) {
+      const widths = photoWidths(season.photo.srcset);
+      expect(widths).toContain(FALLBACK_IMAGE_WIDTH);
+      expect(Math.max(...widths)).toBeGreaterThan(FALLBACK_IMAGE_WIDTH);
+    }
+  });
+
+  it('should have a file on disk for every declared photo width (BR-5)', () => {
+    for (const season of service.seasons()) {
+      for (const width of photoWidths(season.photo.srcset)) {
+        const file = `public/images/${season.photo.src}-${width}w.webp`;
+        expect(existsSync(file), file).toBe(true);
+      }
     }
   });
 
@@ -83,10 +108,14 @@ function seasonsCopy(service: SeasonsService): string {
       season.marker,
       season.title,
       season.description,
-      season.photoLabel,
+      season.photo.alt,
       ...season.highlights.flatMap((highlight) => [highlight.title, highlight.text]),
       ...season.tags,
       season.link.label,
     ])
     .join(' ');
+}
+
+function photoWidths(srcset: string): number[] {
+  return srcset.split(',').map((descriptor) => parseInt(descriptor, 10));
 }

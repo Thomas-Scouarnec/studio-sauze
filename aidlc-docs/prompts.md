@@ -166,3 +166,32 @@ All prompts in session order.
 **Email confirmed by Thomas:** `refugedusauze@gmail.com` is created and live — no longer blocking.
 
 **Accessibility bolt accepted for later:** Thomas agreed to address `.section-label` (amber, 2.68:1) and the remaining `--stone` usages in a dedicated future bolt.
+
+---
+
+## Session 6 — 2026-09-18
+
+**Intent:** Add the two photos to the Seasons section: Le Sauze in winter and Barcelonnette in summer. They replace the placeholders reserved in Bolt 4.
+
+**Format and size agreed before sourcing:**
+- WebP, 16:9 landscape, two widths per photo (1600px and 800px), quality around 75–80%
+- The widths are derived from the rendered slot: about 780px on a 1920px screen, about 260px on a 375px phone, doubled for high-density screens
+- Files live in `public/images/seasons/`, named `<name>-<width>w.webp`, with English identifiers
+
+**Files provided by Thomas, checked on arrival:**
+- All four are genuine WebP with no embedded metadata, and their weights are within target (80–251 KB)
+- The summer "1600w" file was really 1260×839. The source is smaller than 1600px, so Thomas renamed it `barcelonnette-summer-1260w.webp` to match its real width
+- Neither photo is 16:9: winter is 5:3, summer 3:2
+
+**Clarifications provided by Thomas:**
+- **Summer framing:** anchored in CSS (trim from the top, keep the dancers) rather than re-cropping the files
+- **Alt text:** the photos are informative and get French descriptions, validated as proposed:
+  - Winter: « Le front de neige du Sauze, au pied des chalets, face aux sommets enneigés »
+  - Summer: « Danseuses en robes colorées dans une rue de Barcelonnette pendant les Fêtes Latino-Mexicaines »
+- **Licensing and credits:** set aside by Thomas, not part of this bolt
+
+**Design decision:** `NgOptimizedImage` needs an image loader to produce a `srcset`. A small custom loader encodes the file naming convention, and it is provided on `SeasonsComponent` only, not app-wide. Angular calls the loader without a width for the plain `src`, so 800w is the fallback and a required variant of every photo.
+
+**Plan drafted:** 1 Unit ("Seasons Photos"), 4 stories, 1 Bolt (6 steps). `functional-specs/seasons.md` updated (FR-2 and FR-11 reworded, FR-14 to FR-16 and BR-5 added) — pending Thomas's approval to implement.
+
+**Plan approved by Thomas — Bolt 6 implemented on 2026-09-18.** All 6 steps done, 59 tests passing, verified in the browser at 375px, 1280px and 1920px: phones download only the 800w files, wide screens the large ones. `@types/node` was added as a dev dependency so the file-existence test can read the disk.
