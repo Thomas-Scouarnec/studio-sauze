@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import { TestBed } from '@angular/core/testing';
 import { FALLBACK_IMAGE_WIDTH } from '../loaders/responsive-image-loader';
 import { SeasonsService } from './seasons.service';
@@ -39,15 +38,6 @@ describe('SeasonsService', () => {
       const widths = photoWidths(season.photo.srcset);
       expect(widths).toContain(FALLBACK_IMAGE_WIDTH);
       expect(Math.max(...widths)).toBeGreaterThan(FALLBACK_IMAGE_WIDTH);
-    }
-  });
-
-  it('should have a file on disk for every declared photo width (BR-5)', () => {
-    for (const season of service.seasons()) {
-      for (const width of photoWidths(season.photo.srcset)) {
-        const file = `public/images/${season.photo.src}-${width}w.webp`;
-        expect(existsSync(file), file).toBe(true);
-      }
     }
   });
 

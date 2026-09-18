@@ -80,6 +80,13 @@ describe('FlatInfoService', () => {
   it('should not describe the drying spot as a sèche-chaussures (FR-16)', () => {
     expect(equipmentCopy(service).toLowerCase()).not.toContain('sèche-chaussures');
   });
+
+  it('should describe every About photo in French alt text (FR-20)', () => {
+    const { livingRoom, forestView, mountain } = service.aboutPhotos();
+    expect(livingRoom.alt).toBe('Le séjour, avec son canapé-lit et sa commode en pin');
+    expect(forestView.alt).toBe('La fenêtre du séjour, ouverte sur la forêt');
+    expect(mountain.alt).toBe('Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu');
+  });
 });
 
 function equipmentCopy(service: FlatInfoService): string {

@@ -18,7 +18,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 
 | Component | Consumes |
 |---|---|
-| `about.html` (About section) | name, capacity, sleeping arrangement, location, amenities, seasonal appeal, proximity |
+| `about.html` (About section) | name, capacity, sleeping arrangement, location, amenities, seasonal appeal, proximity, and the `aboutPhotos` (séjour, forest view) |
 | Contact section (via `ContactService`) | `maxGuests` (the maximum stated in the request checklist) |
 | `hero.html` (Hero) | `fullLocation` (station + region) |
 | Équipements section | the flat's equipment and amenities (see FR-11 to FR-18) — must stay consistent with About's wording |
@@ -45,6 +45,9 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | FR-16 | The boot/glove drying area is described as a dedicated drying spot, never as a "sèche-chaussures" | It is a spot next to a heater, not a drying appliance — same accuracy principle as FR-3 and FR-7 |
 | FR-17 | Connectivity is stated positive-first: very good 4G/5G coverage, no Wi-Fi. The TV is stated as TNT (broadcast) | Absence of Wi-Fi is a primary filter criterion; stating it prevents disappointment, and TNT-only follows from having no internet |
 | FR-18 | The Équipements section contains no location facts, distances, or travel times | Location is owned by the About section; duplicating it invites drift (BR-3, BR-4) |
+| FR-19 | The About section shows three photos: the séjour, the window view onto the forest, and the Chapeau du Gendarme | Visitors judge the space from the photos as much as from the text |
+| FR-20 | Each About photo carries French alt text: « Le séjour, avec son canapé-lit et sa commode en pin », « La fenêtre du séjour, ouverte sur la forêt » and « Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu » | The photos are informative, as in the Seasons section |
+| FR-21 | On phones (≤768px) only the séjour photo is shown, full width under the text | Most visitors are on phones; a shrunken collage would be unreadable |
 
 ## 5. Business Rules / Constraints
 
@@ -54,6 +57,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 - **BR-4 (Wording consistency):** When the same amenity/fact is described in more than one section (e.g. storage in both About and Équipements), the wording must not contradict across sections.
 - **BR-5 (Verifiable claims only):** No claim is published unless it is verified. Where a fact is not yet confirmed (e.g. ski locker capacity), it is stated without the unverified detail rather than estimated. Amenities are described by what they actually are, not by the appliance they resemble.
 - **BR-6 (Honest omissions):** Absences that a renter would reasonably filter on (no Wi-Fi, no balcony) are stated explicitly rather than left unsaid, phrased positive-first where a genuine upside exists.
+- **BR-7 (Nothing identifying in photos):** No published photo shows a readable licence plate, a door or unit number, or another resident's identifying details. A photo that fails this rule is not placed in `public/`, since everything there is deployed. Extends BR-2.
 
 ## 6. Non-Functional Requirements
 
@@ -64,7 +68,8 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 
 - Pricing, availability, and booking/reservation flow
 - English (or other) localization of this content
-- Photos/visual assets — the Équipements layout reserves photo slots, but images and any carousel interaction are a separate bolt
+- Équipements photos and any carousel interaction — the layout reserves slots; images are a separate bolt
+- A residence exterior photo — the one provided shows readable licence plates (BR-7)
 - Linen, towels and end-of-stay cleaning — destined for a future restricted, guest-only section
 - A dedicated location section (would take ownership of distances and travel times from About)
 
@@ -80,3 +85,4 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | 2026-08-28 | Initial version — backfilled from apartment description accuracy work | Session 2 |
 | 2026-09-16 | Added FR-11 to FR-18 (equipment presentation, honest claims, no location facts) and BR-5/BR-6; updated consuming components for the reworked Équipements section | Session 3 |
 | 2026-09-18 | Contact form removed: `maxGuests` now reaches the Contact section through `ContactService`'s request checklist; `guestCountOptions` deleted. Contact facts moved to their own spec, [contact.md](contact.md) | Session 5 |
+| 2026-09-18 | About photos: FR-19 to FR-21 and BR-7 added; consuming components and out-of-scope updated | Session 7 |

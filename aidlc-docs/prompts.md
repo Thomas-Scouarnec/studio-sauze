@@ -195,3 +195,42 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Seasons Photos"), 4 stories, 1 Bolt (6 steps). `functional-specs/seasons.md` updated (FR-2 and FR-11 reworded, FR-14 to FR-16 and BR-5 added) — pending Thomas's approval to implement.
 
 **Plan approved by Thomas — Bolt 6 implemented on 2026-09-18.** All 6 steps done, 59 tests passing, verified in the browser at 375px, 1280px and 1920px: phones download only the 800w files, wide screens the large ones. `@types/node` was added as a dev dependency so the file-existence test can read the disk.
+
+---
+
+## Session 7 — 2026-09-18
+
+**Intent:** Replace the decorative collage in the "L'appartement" section (three coloured blocks with ⛷️ and 🏔️ emoji) with real photos of the flat.
+
+**Clarified first:** Thomas meant the About collage, not the Équipements photo slots — those remain empty and are a separate bolt.
+
+**Photos recommended before sourcing:** the séjour (main block), the residence in its setting (medium block), the view onto the forest (small block). Noted at the same time: the collage has a fixed 420px height and a percentage width, so its boxes change shape with the screen width — it must get a fixed proportion before any photo can be framed reliably.
+
+**Files provided by Thomas, checked on arrival:**
+- All WebP, no embedded metadata, 50–111 KB
+- Names lack the `w` suffix the loader expects (`living-room-800.webp`) — renamed as part of the bolt
+- Shapes differ from the recommendation: séjour 4:3 (800 and 1200), residence 16:9, forest view **portrait 3:4**
+- The residence photo shows other residents' cars with **readable licence plates**, strong backlight and half the frame in asphalt
+- The forest view shows a child from behind, face not visible
+
+**Clarifications provided by Thomas:**
+- **Layout:** two photos — séjour 4:3 large top left, forest view 3:4 tall bottom right, overlapping; the amber block stays as a colour accent. The collage is reshaped around the photos rather than the photos cropped to the old boxes
+- **Residence photo:** left out (licence plates). It is also removed from `public/`, because everything in that folder is deployed even when unused
+- **Phones:** only the séjour photo, full width under the text (the collage was hidden on phones until now)
+- **Child in the forest photo:** fine to publish
+- **Alt text, validated as proposed:**
+  - Séjour: « Le séjour, avec son canapé-lit et sa commode en pin »
+  - Forest view: « La fenêtre du séjour, ouverte sur la forêt »
+
+**Design decisions:**
+- `SeasonPhoto` becomes a shared `ResponsivePhoto` type next to the loader, now that two sections declare photos
+- The file-existence check moves from `seasons.service.spec.ts` to one `photo-files.spec.ts` covering every photo on the site
+- New rule BR-7 in `flat-info.md`: no published photo shows licence plates, door or unit numbers, or residents' identifying details
+
+**Plan drafted:** 1 Unit ("About Photos"), 5 stories, 1 Bolt (8 steps). `functional-specs/flat-info.md` updated (FR-19 to FR-21, BR-7) — pending Thomas's approval to implement.
+
+**Plan approved by Thomas — Bolt 7 implemented on 2026-09-18.** All 8 steps done, 68 tests passing, verified in the browser at 375px, 1280px and 1920px. The residence photo was sent to the Windows Recycle Bin rather than deleted, since Thomas had not confirmed keeping an original. A line-ending mismatch in `about.css` briefly left the collage hidden on phones; caught during browser verification and fixed.
+
+**Change requested after implementation:** Thomas read the amber accent block as a photo placeholder left empty. Options offered: remove it, shrink it to a thin bar, or fill it with a third photo. Thomas chose to **remove it** — the collage is now only the two photos. 69 tests passing, re-verified in the browser.
+
+**Third photo added after review:** Thomas asked whether a third, horizontal image should fill the space left by the amber block. Recommended subject: something the section claims that no other photo shows. Thomas supplied `mountain-800.webp`, a 4:3 photo of the **Chapeau du Gendarme**, renamed `mountain-800w.webp`. It sits bottom left in a 16:9 frame (the scree is trimmed, the summit kept) and is hidden on phones. Alt text: « Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu » — the peak named as Thomas gave it; maps usually spell it « Chapeau de Gendarme », flagged for Thomas to confirm. 70 tests passing, re-verified in the browser.

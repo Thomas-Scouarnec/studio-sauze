@@ -14,49 +14,52 @@
   margin-bottom: 1.2rem;
 }
 
+/* Fixed 5:4 proportion, so each photo keeps the same framing at every width. */
 .about-visual {
   position: relative;
-  height: 420px;
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
+  aspect-ratio: 5 / 4;
 }
 
-.about-box {
+.about-photo {
   position: absolute;
+  overflow: hidden;
   border-radius: 2px;
+  background: var(--mist);
 }
 
-.about-box-1 {
+.about-photo img {
+  object-fit: cover;
+}
+
+.about-photo-main {
   top: 0;
-  left: 8%;
-  width: 68%;
-  height: 72%;
-  background: linear-gradient(135deg, #2E4A35, #1a2e22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-box-2 {
-  bottom: 0;
-  right: 0;
-  width: 52%;
-  height: 50%;
-  background: var(--bark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-box-3 {
-  bottom: 12%;
   left: 0;
-  width: 36%;
-  height: 26%;
-  background: var(--amber);
+  width: 72%;
+  aspect-ratio: 4 / 3;
 }
 
-.box-icon {
-  font-size: 3rem;
-  opacity: 0.35;
+.about-photo-side {
+  right: 0;
+  bottom: 0;
+  width: 34%;
+  aspect-ratio: 3 / 4;
+  border: 6px solid var(--cream);
+}
+
+.about-photo-wide {
+  left: 6%;
+  bottom: 0;
+  width: 53%;
+  aspect-ratio: 16 / 9;
+  border: 6px solid var(--cream);
+}
+
+/* The mountain photo is 4:3: trim the scree at the bottom, keep the summit. */
+.about-photo-wide img {
+  object-position: 50% 10%;
 }
 
 .stat-grid {
@@ -121,6 +124,18 @@
   }
 
   .about-visual {
+    max-width: none;
+    aspect-ratio: auto;
+  }
+
+  .about-photo-main {
+    position: relative;
+    left: auto;
+    width: 100%;
+  }
+
+  .about-photo-side,
+  .about-photo-wide {
     display: none;
   }
 

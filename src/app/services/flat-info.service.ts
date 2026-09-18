@@ -1,4 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
+import { ResponsivePhoto } from '../loaders/responsive-image-loader';
 
 export interface EquipmentBlock {
   id: string;
@@ -9,6 +10,12 @@ export interface EquipmentBlock {
 export interface EquipmentItem {
   icon: string;
   label: string;
+}
+
+export interface AboutPhotos {
+  livingRoom: ResponsivePhoto;
+  forestView: ResponsivePhoto;
+  mountain: ResponsivePhoto;
 }
 
 export interface FlatInfo {
@@ -68,7 +75,27 @@ export class FlatInfoService {
     { icon: '🌲', label: 'Vue sur la forêt' },
   ]);
 
+  private readonly _aboutPhotos = signal<AboutPhotos>({
+    livingRoom: {
+      src: 'about/living-room',
+      srcset: '800w, 1200w',
+      alt: 'Le séjour, avec son canapé-lit et sa commode en pin',
+    },
+    forestView: {
+      src: 'about/forest-view',
+      srcset: '800w',
+      alt: 'La fenêtre du séjour, ouverte sur la forêt',
+    },
+    mountain: {
+      src: 'about/mountain',
+      srcset: '800w',
+      alt: 'Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu',
+    },
+  });
+
   readonly info = this._info.asReadonly();
+
+  readonly aboutPhotos = this._aboutPhotos.asReadonly();
 
   readonly equipmentBlocks = this._equipmentBlocks.asReadonly();
 

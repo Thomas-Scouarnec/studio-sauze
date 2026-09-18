@@ -32,12 +32,33 @@
   </p>
 </div>
 
-<div class="about-visual" aria-hidden="true">
-  <div class="about-box about-box-1">
-    <span class="box-icon">⛷️</span>
+@let photos = flatInfo.aboutPhotos();
+<div class="about-visual">
+  <div class="about-photo about-photo-main">
+    <img
+      [ngSrc]="photos.livingRoom.src"
+      [ngSrcset]="photos.livingRoom.srcset"
+      sizes="(max-width: 768px) 90vw, (max-width: 1411px) 31vw, 432px"
+      [alt]="photos.livingRoom.alt"
+      fill
+    />
   </div>
-  <div class="about-box about-box-2">
-    <span class="box-icon">🏔️</span>
+  <div class="about-photo about-photo-wide">
+    <img
+      [ngSrc]="photos.mountain.src"
+      [ngSrcset]="photos.mountain.srcset"
+      sizes="(max-width: 1411px) 23vw, 318px"
+      [alt]="photos.mountain.alt"
+      fill
+    />
   </div>
-  <div class="about-box about-box-3"></div>
+  <div class="about-photo about-photo-side">
+    <img
+      [ngSrc]="photos.forestView.src"
+      [ngSrcset]="photos.forestView.srcset"
+      sizes="(max-width: 1411px) 15vw, 204px"
+      [alt]="photos.forestView.alt"
+      fill
+    />
+  </div>
 </div>

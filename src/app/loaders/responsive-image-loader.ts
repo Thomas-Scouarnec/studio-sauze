@@ -6,6 +6,13 @@ import { ImageLoaderConfig } from '@angular/common';
  */
 export const FALLBACK_IMAGE_WIDTH = 800;
 
+/** A photo stored as `public/images/<src>-<width>w.webp`, in each width listed in `srcset`. */
+export interface ResponsivePhoto {
+  src: string;
+  srcset: string;
+  alt: string;
+}
+
 /**
  * Maps an `NgOptimizedImage` request to a file under `public/images/`,
  * following the convention `<name>-<width>w.webp`.

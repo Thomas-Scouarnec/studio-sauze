@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { ResponsivePhoto } from '../loaders/responsive-image-loader';
 
 export interface SeasonHighlight {
   title: string;
@@ -10,19 +11,12 @@ export interface SeasonLink {
   url: string;
 }
 
-/** A photo stored as `public/images/<src>-<width>w.webp`, in each width listed in `srcset`. */
-export interface SeasonPhoto {
-  src: string;
-  srcset: string;
-  alt: string;
-}
-
 export interface Season {
   id: string;
   marker: string;
   title: string;
   description: string;
-  photo: SeasonPhoto;
+  photo: ResponsivePhoto;
   highlights: SeasonHighlight[];
   tags: string[];
   link: SeasonLink;
