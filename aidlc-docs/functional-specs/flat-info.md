@@ -19,7 +19,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | Component | Consumes |
 |---|---|
 | `about.html` (About section) | name, capacity, sleeping arrangement, location, amenities, seasonal appeal, proximity |
-| `contact.html` (Contact form) | `maxGuests` (bounds the "Nombre de personnes" selector) |
+| Contact section (via `ContactService`) | `maxGuests` (the maximum stated in the request checklist) |
 | `hero.html` (Hero) | `fullLocation` (station + region) |
 | Équipements section | the flat's equipment and amenities (see FR-11 to FR-18) — must stay consistent with About's wording |
 
@@ -48,7 +48,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 
 ## 5. Business Rules / Constraints
 
-- **BR-1 (Capacity consistency):** Any UI surface that reflects guest capacity (About stats, Contact form's people selector, and any future booking UI) MUST stay in sync with `FlatInfoService.info().maxGuests`. Do not hardcode a capacity number/bound in a template independently of the service.
+- **BR-1 (Capacity consistency):** Any UI surface that reflects guest capacity (About stats, the Contact section's request checklist, and any future booking UI) MUST stay in sync with `FlatInfoService.info().maxGuests`. Do not hardcode a capacity number/bound in a template independently of the service.
 - **BR-2 (No exact address):** The exact door/apartment number is never published on the public site. Only the residence name, building name, and a Google Maps link (building-level) are shown. Rationale: avoids exposing precisely which unit is vacant, for the owner's security.
 - **BR-3 (Single source of truth):** Flat metadata (name, capacity, location, residence/building name, maps URL) lives only in `FlatInfoService`; components must read it via the service, not duplicate literal values in templates.
 - **BR-4 (Wording consistency):** When the same amenity/fact is described in more than one section (e.g. storage in both About and Équipements), the wording must not contradict across sections.
@@ -79,3 +79,4 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 |---|---|---|
 | 2026-08-28 | Initial version — backfilled from apartment description accuracy work | Session 2 |
 | 2026-09-16 | Added FR-11 to FR-18 (equipment presentation, honest claims, no location facts) and BR-5/BR-6; updated consuming components for the reworked Équipements section | Session 3 |
+| 2026-09-18 | Contact form removed: `maxGuests` now reaches the Contact section through `ContactService`'s request checklist; `guestCountOptions` deleted. Contact facts moved to their own spec, [contact.md](contact.md) | Session 5 |

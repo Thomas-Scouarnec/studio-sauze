@@ -82,9 +82,5 @@ export class FlatInfoService {
     () => `${this._info().minGuests}–${this._info().maxGuests}`
   );
 
-  readonly guestCountOptions = computed(() =>
-    Array.from({ length: this._info().maxGuests }, (_, i) => i + 1)
-  );
-
   readonly isAvailableForRental = computed(() => this._info().maxGuests > 0);
 }

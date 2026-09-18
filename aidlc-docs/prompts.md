@@ -123,3 +123,46 @@ All prompts in session order.
 **Change requested after implementation:** the section anchor moves from `#seasons` to `#activities`, matching the navbar's "Activités" label — the same reasoning as `#equipment` in Bolt 3. The heading id follows (`activities-heading`). The component itself keeps the `Seasons` name, since the domain is still the two seasons.
 
 **Noticed while verifying — candidate for a future bolt:** the hero tagline still reads "skis aux pieds", which may be the same overclaim Bolt 2 removed as "0 marche jusqu'aux pistes" (FR-7). Not changed here.
+
+---
+
+## Session 5 — 2026-09-18
+
+**Intent:** Redesign the last section, "Nous rejoindre" (Contact).
+
+**Defects found in the current section before designing:**
+- The form sends nothing: `onSubmit()` only flips a `submitted` signal, yet the page thanks the visitor and promises a reply. GitHub Pages has no backend, so every request was silently lost
+- The published email is a placeholder (`test@gmail.com`)
+- "Réponse sous 24–48h" is an unverified commitment
+- The location block ("Station du Sauze, Alpes de Haute-Provence, 04400") is hardcoded in the template (BR-3) and duplicates the hero and About
+- The seven form labels use `--stone`, the contrast defect logged in Session 3
+- One section, three names: "Nous rejoindre" (label), "Réservez votre séjour" (heading), "Contact" (navbar)
+
+**Clarifications provided by Thomas:**
+- **No form for now.** A browser cannot send email on its own and the site has no backend. mailto, a third-party form service and a serverless function were weighed; Thomas chose the simplest option — contact details only
+- **Scope: contact only.** The section is for asking questions or requesting a stay; no booking happens on the site yet. Getting to Le Sauze stays out of scope
+- **Channels: email only** — no phone, no rental-platform link
+- **Dedicated address** agreed, to keep spam off a personal inbox and keep the owner's name off the page. Proposed: `refugedusauze@gmail.com`, matching the visible "Notre Refuge" brand. Thomas is creating it — not yet confirmed
+- **Reply time softened:** "we will reply quickly", with no timeline commitment
+- **Request checklist added** (dates, number of people, questions), so the first email carries what the owner needs
+- **Location block removed** — it is not a contact channel, and its facts are already owned by the hero and About (same principle as FR-18 in `flat-info.md`)
+- **No pre-filled subject** on the mailto link (proposed, declined)
+
+**Format decision — validated by Thomas after a visual mockup:** two columns. Left: label "Contact", heading "Écrivez-nous", one intro sentence, the email address as a prominent link. Right: a checklist card "Pour une demande de séjour, précisez :" followed by a note that a stay is confirmed by the owner's reply, not by the site.
+
+**Decisions inside the mockup, accepted by Thomas:**
+- Label renamed to "Contact" to match the navbar; heading "Écrivez-nous" replaces "Réservez votre séjour", since nothing can be booked on the site
+- "5 au maximum" is derived from `maxGuests`, so BR-1 survives the removal of the guest-count dropdown. `guestCountOptions` loses its only consumer and is deleted
+- Pets are not mentioned in the checklist — whether pets are accepted is still an open question in the README
+
+**Plan drafted:** 1 Unit ("Contact Section"), 5 stories, 1 Bolt (6 steps). Thomas asked to proceed directly to implementation.
+
+**Bolt 5 implemented on 2026-09-18.** All 6 steps done, 52 tests passing, verified in the browser at desktop and mobile widths. The form, `ReactiveFormsModule` and `guestCountOptions` are gone; a new `ContactService` holds the email and derives the checklist maximum from `FlatInfoService`.
+
+**Workflow addition:** introduced `functional-specs/contact.md`, a third per-domain spec alongside `flat-info.md` (the property) and `seasons.md` (the valley).
+
+**Noticed while verifying — candidate for a future bolt:** the global `.section-label` style (`--amber` on `--cream`) measures 2.68:1 on every section, below the AA minimum. It belongs with the `--stone` defect from Session 3 in a dedicated accessibility bolt. Removing the form cuts the `--stone` usages from 10 to 3.
+
+**Email confirmed by Thomas:** `refugedusauze@gmail.com` is created and live — no longer blocking.
+
+**Accessibility bolt accepted for later:** Thomas agreed to address `.section-label` (amber, 2.68:1) and the remaining `--stone` usages in a dedicated future bolt.

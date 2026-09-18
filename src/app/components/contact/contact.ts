@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FlatInfoService } from '../../services/flat-info.service';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './contact.html',
   styleUrl: './contact.css',
@@ -15,25 +13,5 @@ import { FlatInfoService } from '../../services/flat-info.service';
   }
 })
 export class ContactComponent {
-  private readonly fb = inject(FormBuilder);
-  protected readonly flatInfo = inject(FlatInfoService);
-  protected readonly submitted = signal(false);
-
-  protected readonly form = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    arrivalDate: [''],
-    departureDate: [''],
-    numberOfPeople: ['2'],
-    message: ['']
-  });
-
-  protected onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.submitted.set(true);
-  }
+  protected readonly contact = inject(ContactService);
 }
