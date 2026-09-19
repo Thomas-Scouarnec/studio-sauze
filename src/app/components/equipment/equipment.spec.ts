@@ -1,5 +1,7 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EquipmentComponent } from './equipment';
+import { EquipmentBlock, FlatInfoService } from '../../services/flat-info.service';
 
 describe('EquipmentComponent', () => {
   beforeEach(async () => {
@@ -47,13 +49,69 @@ describe('EquipmentComponent', () => {
     expect(list.getAttribute('aria-labelledby')).toBe(heading.id);
   });
 
-  it('should hide decorative elements from assistive technology', async () => {
+  it('should hide the decorative list icons from assistive technology', async () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
-    const decorative = fixture.nativeElement.querySelectorAll(
-      '.equipment-photo, .equipment-item-icon'
-    );
-    expect(decorative.length).toBeGreaterThan(0);
-    decorative.forEach((el: HTMLElement) => expect(el.getAttribute('aria-hidden')).toBe('true'));
+    const icons = fixture.nativeElement.querySelectorAll('.equipment-item-icon');
+    expect(icons.length).toBe(8);
+    icons.forEach((el: HTMLElement) => expect(el.getAttribute('aria-hidden')).toBe('true'));
+  });
+
+  it('should render a described, lazy-loaded photo in every block (FR-23, FR-24)', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+    const expected: Record<string, string> = {
+      arrival: 'images/equipment/arrival-800w.webp 800w',
+      sleeping: 'images/equipment/sleeping-800w.webp 800w',
+      kitchen: 'images/equipment/kitchen-800w.webp 800w',
+    };
+    for (const [id, srcset] of Object.entries(expected)) {
+      const frame: HTMLElement = fixture.nativeElement.querySelector(`.equipment-block.${id} .equipment-photo`);
+      const img = frame.querySelector('img')!;
+      expect(frame.getAttribute('aria-hidden')).toBeNull();
+      expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
+      expect(img.getAttribute('srcset')).toBe(srcset);
+      expect(img.getAttribute('loading')).toBe('lazy');
+    }
+  });
+
+  it('should give every block the same text-and-photo layout', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelectorAll('.equipment-photo').length).toBe(3);
+    expect(fixture.nativeElement.querySelector('.equipment-block.text-only')).toBeNull();
+  });
+});
+
+describe('EquipmentComponent with a block that has no photo yet (FR-22)', () => {
+  const blocks: EquipmentBlock[] = [
+    { id: 'arrival', title: 'Titre', body: 'Texte' },
+    {
+      id: 'sleeping',
+      title: 'Titre',
+      body: 'Texte',
+      photo: { src: 'equipment/sleeping', srcset: '800w', alt: 'Description' },
+    },
+  ];
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [EquipmentComponent],
+      providers: [
+        {
+          provide: FlatInfoService,
+          useValue: { equipmentBlocks: signal(blocks), equipmentItems: signal([]) },
+        },
+      ],
+    }).compileComponents();
+  });
+
+  it('should render that block as text only, with no empty frame', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+    const arrival: HTMLElement = fixture.nativeElement.querySelector('.equipment-block.arrival');
+    expect(arrival.classList).toContain('text-only');
+    expect(arrival.querySelector('.equipment-photo')).toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('.equipment-photo').length).toBe(1);
   });
 });

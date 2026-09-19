@@ -234,3 +234,36 @@ All prompts in session order.
 **Change requested after implementation:** Thomas read the amber accent block as a photo placeholder left empty. Options offered: remove it, shrink it to a thin bar, or fill it with a third photo. Thomas chose to **remove it** — the collage is now only the two photos. 69 tests passing, re-verified in the browser.
 
 **Third photo added after review:** Thomas asked whether a third, horizontal image should fill the space left by the amber block. Recommended subject: something the section claims that no other photo shows. Thomas supplied `mountain-800.webp`, a 4:3 photo of the **Chapeau du Gendarme**, renamed `mountain-800w.webp`. It sits bottom left in a 16:9 frame (the scree is trimmed, the summit kept) and is hidden on phones. Alt text: « Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu » — the peak named as Thomas gave it; maps usually spell it « Chapeau de Gendarme », flagged for Thomas to confirm. 70 tests passing, re-verified in the browser.
+
+---
+
+## Session 8 — 2026-09-19
+
+**Intent:** Put photos in the three Équipements blocks. Thomas describes the photos provided as temporary; better shots will follow.
+
+**Recommended before sourcing:** ski locker with skis in it (`arrival`), coin montagne with the pull-out bed drawn out (`sleeping`), the wooden table set for five with the kitchen behind it (`kitchen`, tablecloth removed so the wood shows). 4:3, 1200w and 800w, named after the block ids.
+
+**Files provided by Thomas, checked on arrival:**
+- A folder named `equipement` (French) containing three WebP files and **three iPhone 16 JPEG originals (3.9–6.6 MB) carrying EXIF GPS coordinates** — publishing them would reveal the flat's exact location (BR-2). Nothing had been committed or deployed
+- `ski-box-800w.webp` (796×1061, portrait): red locker doors with **the numbers « 04 » and « 10 » readable** (BR-7); no skis visible
+- `coin-montagne-800w.webp` (800×600, 4:3): two beds made up, **two children's faces clearly visible**
+- `kitchen-800w.webp` (800×1067, portrait): TV unit and microwave — already visible in the About séjour photo — plus a handbag, a hand, sunglasses and a phone; the table, fridge and oven the block describes are not in frame
+- 800w only; no 1200w versions
+
+**Clarifications provided by Thomas:**
+- **Filename fix included in the bolt:** folder `equipement` → `equipment`, files named after their block (`sleeping-800w.webp`, `kitchen-800w.webp`)
+- **JPEG originals:** sent to the Recycle Bin — done immediately, before the bolt, so no deploy could publish them. The ski locker WebP went with them
+- **Photos published:** coin montagne and kitchen (the kitchen as a stopgap); the ski locker stays out (BR-7), so `arrival` is text-only for now
+- **Children's faces:** fine to publish
+
+**Design decisions:**
+- `EquipmentBlock` gets an optional `photo`; a block without one renders no frame at all — the lesson of the amber block in Bolt 7
+- BR-7 extended to locker numbers and to location metadata in any file placed in `public/`
+
+**Proposed alt text, pending validation with the plan:** sleeping « Deux enfants blottis dans les couchages du coin montagne »; kitchen « Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision ».
+
+**Plan drafted:** 1 Unit ("Équipements Photos"), 5 stories, 1 Bolt (7 steps). `functional-specs/flat-info.md` updated (FR-22 to FR-24, BR-7 extended) — pending Thomas's approval to implement.
+
+**Plan approved by Thomas (alt texts included) — Bolt 8 implemented on 2026-09-19.** All 7 steps done, 73 tests passing, verified at 1280px and 375px. The `arrival` block renders text-only, aligned with the other blocks' text. The kitchen crop is not visually confirmed (lazy images do not load in the hidden Browser pane) — left for Thomas to check.
+
+**Change requested after implementation:** Thomas re-added the ski locker photo and asked for it to be used **even though it shows locker numbers**. Published as `equipment/arrival-800w.webp` with alt text « Les casiers à skis sécurisés du rez-de-chaussée » (proposed, open to rewording), and recorded as an explicit, photo-specific exception to BR-7. All three blocks now have photos; the text-only layout stays for future use, tested with a stub service. 74 tests passing.

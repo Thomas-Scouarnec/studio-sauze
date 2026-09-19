@@ -5,6 +5,8 @@ export interface EquipmentBlock {
   id: string;
   title: string;
   body: string;
+  /** Absent until a photo that meets BR-7 exists: the block then renders text only. */
+  photo?: ResponsivePhoto;
 }
 
 export interface EquipmentItem {
@@ -51,16 +53,32 @@ export class FlatInfoService {
       id: 'arrival',
       title: 'Vos skis restent en bas',
       body: "Parking gratuit au pied du bâtiment et casier à skis sécurisé au rez-de-chaussée : vous y déposez le matériel en arrivant, puis vous montez au 1er étage en ascenseur.",
+      // Shows locker numbers: published at the owner's explicit request, an exception to BR-7.
+      photo: {
+        src: 'equipment/arrival',
+        srcset: '800w',
+        alt: 'Les casiers à skis sécurisés du rez-de-chaussée',
+      },
     },
     {
       id: 'sleeping',
       title: "Cinq vrais couchages, et de l'intimité",
       body: "Le coin montagne accueille 3 personnes sur de véritables couchages de 80 cm adaptés aux adultes, isolables par un rideau. Dans le séjour, un canapé-lit 160 cm de très bonne qualité pour deux personnes de plus.",
+      photo: {
+        src: 'equipment/sleeping',
+        srcset: '800w',
+        alt: 'Deux enfants blottis dans les couchages du coin montagne',
+      },
     },
     {
       id: 'kitchen',
       title: "Une cuisine où l'on cuisine vraiment",
       body: "Grand réfrigérateur de 140 cm, four, lave-vaisselle, plaques, micro-ondes, bouilloire et cafetière filtre — sans oublier l'appareil à raclette. Autour de la grande table en bois, vous tenez à cinq : trois chaises et un banc.",
+      photo: {
+        src: 'equipment/kitchen',
+        srcset: '800w',
+        alt: 'Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision',
+      },
     },
   ]);
 

@@ -87,6 +87,17 @@ describe('FlatInfoService', () => {
     expect(forestView.alt).toBe('La fenêtre du séjour, ouverte sur la forêt');
     expect(mountain.alt).toBe('Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu');
   });
+
+  it('should give every equipment block its described photo (FR-23, FR-24)', () => {
+    const photos = Object.fromEntries(
+      service.equipmentBlocks().map((block) => [block.id, block.photo]),
+    );
+    expect(photos['arrival']?.alt).toBe('Les casiers à skis sécurisés du rez-de-chaussée');
+    expect(photos['sleeping']?.alt).toBe('Deux enfants blottis dans les couchages du coin montagne');
+    expect(photos['kitchen']?.alt).toBe(
+      'Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision',
+    );
+  });
 });
 
 function equipmentCopy(service: FlatInfoService): string {

@@ -6,11 +6,15 @@ import { SeasonsService } from '../services/seasons.service';
 
 /** Every photo declared anywhere on the site. Add new sources here. */
 function allPhotos(): ResponsivePhoto[] {
-  const { livingRoom, forestView, mountain } = TestBed.inject(FlatInfoService).aboutPhotos();
+  const flatInfo = TestBed.inject(FlatInfoService);
+  const { livingRoom, forestView, mountain } = flatInfo.aboutPhotos();
   return [
     livingRoom,
     forestView,
     mountain,
+    ...flatInfo
+      .equipmentBlocks()
+      .flatMap((block) => (block.photo ? [block.photo] : [])),
     ...TestBed.inject(SeasonsService)
       .seasons()
       .map((season) => season.photo),

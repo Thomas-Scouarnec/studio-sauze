@@ -5,8 +5,18 @@
 
 <div class="equipment-blocks">
   @for (block of flatInfo.equipmentBlocks(); track block.id) {
-    <article class="equipment-block">
-      <div class="equipment-photo" aria-hidden="true"></div>
+    <article class="equipment-block" [class]="block.id" [class.text-only]="!block.photo">
+      @if (block.photo; as photo) {
+        <div class="equipment-photo">
+          <img
+            [ngSrc]="photo.src"
+            [ngSrcset]="photo.srcset"
+            sizes="(max-width: 768px) 90vw, 280px"
+            [alt]="photo.alt"
+            fill
+          />
+        </div>
+      }
       <div class="equipment-block-text">
         <h3 class="equipment-block-title">{{ block.title }}</h3>
         <p class="equipment-block-body">{{ block.body }}</p>

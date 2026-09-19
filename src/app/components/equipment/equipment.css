@@ -21,10 +21,26 @@
 }
 
 .equipment-photo {
+  position: relative;
+  overflow: hidden;
   flex: 0 0 280px;
   aspect-ratio: 4 / 3;
   background: var(--cream);
   border: 1px solid var(--mist);
+}
+
+.equipment-photo img {
+  object-fit: cover;
+}
+
+/* The kitchen photo is portrait: keep the microwave and worktop in the 4:3 frame. */
+.equipment-block.kitchen .equipment-photo img {
+  object-position: 50% 35%;
+}
+
+/* No photo yet: align the text with the other blocks' text column. */
+.equipment-block.text-only .equipment-block-text {
+  margin-left: calc(280px + 2.5rem);
 }
 
 .equipment-block-title {
@@ -80,6 +96,10 @@
   .equipment-photo {
     flex: none;
     width: 100%;
+  }
+
+  .equipment-block.text-only .equipment-block-text {
+    margin-left: 0;
   }
 
   .equipment-list {

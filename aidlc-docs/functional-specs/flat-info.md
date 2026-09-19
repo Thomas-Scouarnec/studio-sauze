@@ -21,7 +21,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | `about.html` (About section) | name, capacity, sleeping arrangement, location, amenities, seasonal appeal, proximity, and the `aboutPhotos` (séjour, forest view) |
 | Contact section (via `ContactService`) | `maxGuests` (the maximum stated in the request checklist) |
 | `hero.html` (Hero) | `fullLocation` (station + region) |
-| Équipements section | the flat's equipment and amenities (see FR-11 to FR-18) — must stay consistent with About's wording |
+| Équipements section | the flat's equipment and amenities (see FR-11 to FR-18), and the block photos (FR-22 to FR-24) — must stay consistent with About's wording |
 
 ## 4. Functional Requirements
 
@@ -48,6 +48,9 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | FR-19 | The About section shows three photos: the séjour, the window view onto the forest, and the Chapeau du Gendarme | Visitors judge the space from the photos as much as from the text |
 | FR-20 | Each About photo carries French alt text: « Le séjour, avec son canapé-lit et sa commode en pin », « La fenêtre du séjour, ouverte sur la forêt » and « Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu » | The photos are informative, as in the Seasons section |
 | FR-21 | On phones (≤768px) only the séjour photo is shown, full width under the text | Most visitors are on phones; a shrunken collage would be unreadable |
+| FR-22 | Each Équipements block shows a photo only when a compliant one exists; a block without a photo shows no empty frame | An empty, photo-shaped frame reads as a missing photo |
+| FR-23 | Photos in this version, all temporary: ski lockers (`arrival`), coin montagne (`sleeping`) and kitchen (`kitchen`) | Every block has a photo; FR-22 keeps a future block without one from showing an empty frame |
+| FR-24 | Équipements photo alt text: « Les casiers à skis sécurisés du rez-de-chaussée », « Deux enfants blottis dans les couchages du coin montagne » and « Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision » | Informative images, as elsewhere on the site |
 
 ## 5. Business Rules / Constraints
 
@@ -57,7 +60,8 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 - **BR-4 (Wording consistency):** When the same amenity/fact is described in more than one section (e.g. storage in both About and Équipements), the wording must not contradict across sections.
 - **BR-5 (Verifiable claims only):** No claim is published unless it is verified. Where a fact is not yet confirmed (e.g. ski locker capacity), it is stated without the unverified detail rather than estimated. Amenities are described by what they actually are, not by the appliance they resemble.
 - **BR-6 (Honest omissions):** Absences that a renter would reasonably filter on (no Wi-Fi, no balcony) are stated explicitly rather than left unsaid, phrased positive-first where a genuine upside exists.
-- **BR-7 (Nothing identifying in photos):** No published photo shows a readable licence plate, a door or unit number, or another resident's identifying details. A photo that fails this rule is not placed in `public/`, since everything there is deployed. Extends BR-2.
+- **BR-7 (Nothing identifying in photos):** No published photo shows a readable licence plate, a door, unit or locker number, or another resident's identifying details, and no published file carries location metadata (EXIF GPS). A file that fails this rule is not placed in `public/`, since everything there is deployed — originals included. Extends BR-2.
+  - **Exception (owner's decision, 2026-09-19):** the ski locker photo (`equipment/arrival-800w.webp`) shows locker numbers « 04 » and « 10 ». Thomas asked for it to be published regardless. The exception covers this photo only; any replacement is held to the rule again.
 
 ## 6. Non-Functional Requirements
 
@@ -68,7 +72,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 
 - Pricing, availability, and booking/reservation flow
 - English (or other) localization of this content
-- Équipements photos and any carousel interaction — the layout reserves slots; images are a separate bolt
+- Carousel or click-to-enlarge on the Équipements photos
 - A residence exterior photo — the one provided shows readable licence plates (BR-7)
 - Linen, towels and end-of-stay cleaning — destined for a future restricted, guest-only section
 - A dedicated location section (would take ownership of distances and travel times from About)
@@ -86,3 +90,5 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | 2026-09-16 | Added FR-11 to FR-18 (equipment presentation, honest claims, no location facts) and BR-5/BR-6; updated consuming components for the reworked Équipements section | Session 3 |
 | 2026-09-18 | Contact form removed: `maxGuests` now reaches the Contact section through `ContactService`'s request checklist; `guestCountOptions` deleted. Contact facts moved to their own spec, [contact.md](contact.md) | Session 5 |
 | 2026-09-18 | About photos: FR-19 to FR-21 and BR-7 added; consuming components and out-of-scope updated | Session 7 |
+| 2026-09-19 | Équipements photos: FR-22 to FR-24 added; BR-7 extended to locker numbers and EXIF GPS | Session 8 |
+| 2026-09-19 | FR-23/FR-24: ski locker photo added to `arrival`; BR-7 exception recorded for it at the owner's request | Session 8 |
