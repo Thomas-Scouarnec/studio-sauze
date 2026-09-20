@@ -6,9 +6,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <footer>
       <div class="footer-logo">Notre <span>Refuge</span> · Le Sauze</div>
-      <p class="footer-copy">© 2025 · Tous droits réservés</p>
+      <p class="footer-copy">© {{ year }} · Tous droits réservés</p>
     </footer>
   `,
   styleUrl: './footer.css'
 })
-export class FooterComponent {}
+export class FooterComponent {
+  protected readonly year = new Date().getFullYear();
+}
