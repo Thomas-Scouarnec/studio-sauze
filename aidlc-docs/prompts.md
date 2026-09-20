@@ -267,3 +267,39 @@ All prompts in session order.
 **Plan approved by Thomas (alt texts included) — Bolt 8 implemented on 2026-09-19.** All 7 steps done, 73 tests passing, verified at 1280px and 375px. The `arrival` block renders text-only, aligned with the other blocks' text. The kitchen crop is not visually confirmed (lazy images do not load in the hidden Browser pane) — left for Thomas to check.
 
 **Change requested after implementation:** Thomas re-added the ski locker photo and asked for it to be used **even though it shows locker numbers**. Published as `equipment/arrival-800w.webp` with alt text « Les casiers à skis sécurisés du rez-de-chaussée » (proposed, open to rewording), and recorded as an explicit, photo-specific exception to BR-7. All three blocks now have photos; the text-only layout stays for future use, tested with a stub service. 74 tests passing.
+
+---
+
+## Session 9 — 2026-09-20
+
+**Intent:** Thomas proposed a carousel for the Équipements photos: clicking one of the three would open a modal showing all the photos. He asked for an opinion on the idea itself and on the technical approach before any code.
+
+**Functional assessment:** worth building — photos are the main decision driver for a rental, and the site currently shows only five interior photos with no way to see them larger. Two cautions raised: the value depends on Thomas shooting more photos (the mechanism is cheap, the photos are the work), and a photo that opens something has to look like it does.
+
+**Design decisions taken with Thomas:**
+- **One flat-wide gallery, opening at the clicked photo** (the Airbnb model), rather than three per-block carousels — chosen over the per-block alternative because the visitor's real question is "show me the flat", and it lets the About photos feed the same gallery
+- **Flat photos only.** `about/mountain` and the Seasons photos are landscapes and stay out (FR-26)
+- **Entry point: the three Équipements thumbnails only.** A « Voir toutes les photos » button was offered and declined; the discoverability load therefore sits entirely on the thumbnails' badge and focus/hover affordance
+- **No visible captions** — a « Photo N sur M » counter only
+
+**Correction to an earlier recommendation.** The first reply advised generating 1600w variants for full-screen display. Checking the files showed this is not possible: every flat photo exists only at 800w (`arrival` 796×1061, `kitchen` 800×1067, `sleeping` 800×600, `living-room` 800×600 and 1200×900, `forest-view` 800×1067), and the JPEG originals went to the Recycle Bin in Bolt 8 under BR-7. The gallery therefore caps the stage at 800px CSS width and letterboxes, which is pixel-accurate on a phone and a centred panel on a desktop (FR-30). Lifting the cap is a one-line change once better photos exist.
+
+**Technical decisions:**
+- Native `<dialog>` + `showModal()` rather than a hand-rolled `role="dialog"` — the platform supplies the focus trap, inert background, Esc, `::backdrop` and focus return, which is where this kind of component usually fails AXE
+- No carousel library: ~80 lines of signals, no bundle cost, and a better exercise for learning Angular
+- `GalleryService.photos` is a `computed()` over `FlatInfoService`, not a hand-written list — new rule BR-8, so a photo's `src` and alt text are never stated twice
+- `ResponsivePhoto.src` serves as the photo's identity; no new `id` field
+- Gallery mounted once in `AppComponent`, not once per section
+- Closed `<dialog>` is `display: none`, so its lazy images cost nothing on page load; neighbours preloaded with `new Image()`
+- Scroll lock as pure CSS via `html:has(dialog[open])`, so no component reaches into `document.body`
+- Thumbnails become `<button>` with the alt text kept on the `<img>` and a `visually-hidden` « — ouvrir la galerie », so the accessible name carries both the description and the action
+
+**Noted for Thomas:** the gallery ships with five photos, three of which are already visible in Équipements. Flagged before implementation; building now is not wasted work, since adding photos later is a data-only change.
+
+**Plan drafted:** 1 Unit ("Photo Gallery"), 5 stories, 1 Bolt (7 steps). `functional-specs/flat-info.md` updated (FR-25 to FR-30, BR-8) — pending Thomas's approval to implement.
+
+**Plan approved by Thomas — Bolt 9 implemented on 2026-09-20.** All 7 steps done, 106 tests passing, AXE clean with the gallery open. Three defects were found and fixed during verification, each invisible to the unit tests that existed at the time: NG02953 (NgOptimizedImage ignores `ngSrc` changes after init, so the gallery would have shown its first photo forever), focus never entering the dialog (so Esc and the arrow keys did nothing), and the browser native image drag swallowing the swipe. Details in [bolt-9-photo-gallery.md](plans/bolt-9-photo-gallery.md).
+
+**Change requested after implementation:** Thomas found « 5 photos » repeated on all three thumbnails confusing. The badge was conflating two jobs — the affordance (per photo) and the collection size (per gallery) — and on a block-specific photo the total read as a claim about that block. The badge now carries an expand icon; the count stays in the gallery counter and in each button’s screen-reader text. FR-28 rewritten, 106 tests passing, AXE still clean.
+
+**Correction recorded:** the claim that adding photos later is "a data-only change with no code" holds for replacing a photo, not for adding one — the derived list has exactly five slots (one per Équipements block, plus two named About photos), so a photo no section displays cannot reach the gallery. A declared list of gallery-only photos, concatenated with the derived ones, is the next bolt and is best done before the photo session.

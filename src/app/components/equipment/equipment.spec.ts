@@ -2,6 +2,7 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EquipmentComponent } from './equipment';
 import { EquipmentBlock, FlatInfoService } from '../../services/flat-info.service';
+import { GalleryService } from '../../services/gallery.service';
 
 describe('EquipmentComponent', () => {
   beforeEach(async () => {
@@ -75,6 +76,46 @@ describe('EquipmentComponent', () => {
     }
   });
 
+  it('should make every photo a button that opens the gallery (FR-27)', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+    const gallery = TestBed.inject(GalleryService);
+
+    const frames = [...fixture.nativeElement.querySelectorAll('.equipment-photo')] as HTMLElement[];
+    expect(frames.length).toBe(3);
+    frames.forEach((frame) => expect(frame.tagName).toBe('BUTTON'));
+
+    (frames[2] as HTMLButtonElement).click();
+    await fixture.whenStable();
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+  });
+
+  it('should name the photo and the action in the button (FR-24, FR-28)', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+
+    const frame: HTMLElement = fixture.nativeElement.querySelector('.equipment-block.kitchen .equipment-photo');
+    const alt = frame.querySelector('img')!.getAttribute('alt')!;
+    const name = [alt, frame.textContent].join(' ').replace(/\s+/g, ' ').trim();
+
+    expect(name).toContain('Le coin cuisine');
+    expect(name).toContain('ouvrir la galerie (5 photos)');
+  });
+
+  it('should mark every thumbnail with a decorative expand icon (FR-28)', async () => {
+    const fixture = TestBed.createComponent(EquipmentComponent);
+    await fixture.whenStable();
+
+    const badges = [...fixture.nativeElement.querySelectorAll('.equipment-photo-badge')] as HTMLElement[];
+    expect(badges.length).toBe(3);
+    badges.forEach((badge) => {
+      expect(badge.querySelector('svg')).not.toBeNull();
+      expect(badge.getAttribute('aria-hidden')).toBe('true');
+      // The count describes the gallery, not this block's photo.
+      expect(badge.textContent?.trim()).toBe('');
+    });
+  });
+
   it('should give every block the same text-and-photo layout', async () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
@@ -100,7 +141,16 @@ describe('EquipmentComponent with a block that has no photo yet (FR-22)', () => 
       providers: [
         {
           provide: FlatInfoService,
-          useValue: { equipmentBlocks: signal(blocks), equipmentItems: signal([]) },
+          useValue: {
+            equipmentBlocks: signal(blocks),
+            equipmentItems: signal([]),
+            // `GalleryService` derives its list from these too (BR-8).
+            aboutPhotos: signal({
+              livingRoom: { src: 'about/living-room', srcset: '800w', alt: 'Description' },
+              forestView: { src: 'about/forest-view', srcset: '800w', alt: 'Description' },
+              mountain: { src: 'about/mountain', srcset: '800w', alt: 'Description' },
+            }),
+          },
         },
       ],
     }).compileComponents();

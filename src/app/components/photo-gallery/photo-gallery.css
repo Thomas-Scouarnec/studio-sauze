@@ -1,0 +1,131 @@
+/*
+ * The dialog fills the viewport and carries the dark surface itself, so the
+ * photo sits on a predictable background whatever is behind it. `::backdrop`
+ * gets the same colour, in case the element is ever smaller than the viewport.
+ */
+.gallery {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgb(42 31 24 / 0.95);
+}
+
+.gallery::backdrop {
+  background: rgb(42 31 24 / 0.95);
+}
+
+.gallery-surface {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.25rem;
+}
+
+.gallery-stage {
+  /* `position: relative` is what NgOptimizedImage's `fill` mode needs. */
+  position: relative;
+  /*
+   * FR-30: the flat photos exist only at 800w, so the stage never grows past
+   * their real pixel width. The photo is letterboxed rather than upscaled.
+   */
+  width: min(90vw, 800px);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 80vh;
+  /* Leaves vertical scrolling to the browser, horizontal drags to the swipe. */
+  touch-action: pan-y;
+  /* A drag across the photo is a swipe, never a text or image selection. */
+  user-select: none;
+}
+
+/* One stage holds both the 4:3 and the 3:4 photos, with no crop. */
+.gallery-stage img {
+  object-fit: contain;
+}
+
+.gallery-bar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gallery-control {
+  display: grid;
+  place-items: center;
+  /* WCAG AA target size. */
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--mist);
+  border-radius: 50%;
+  /* Opaque, so the controls' contrast never depends on the photo behind. */
+  background: var(--snow);
+  color: var(--bark);
+  font-family: 'Jost', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.gallery-control:hover {
+  background: var(--cream);
+}
+
+/*
+ * The offset puts the ring on the dark surface rather than against the light
+ * button, which is what carries it past the 3:1 minimum for a focus indicator.
+ */
+.gallery-control:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 1.1rem;
+}
+
+.gallery-counter {
+  min-width: 13ch;
+  color: var(--snow);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gallery[open] {
+    animation: gallery-fade-in 160ms ease-out;
+  }
+
+  @keyframes gallery-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-surface {
+    padding: 1rem;
+  }
+
+  .gallery-close {
+    top: 1rem;
+    right: 1rem;
+  }
+}

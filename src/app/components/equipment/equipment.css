@@ -27,10 +27,71 @@
   aspect-ratio: 4 / 3;
   background: var(--cream);
   border: 1px solid var(--mist);
+  /* Button reset: the frame keeps the look it had as a plain container. */
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .equipment-photo img {
   object-fit: cover;
+}
+
+/*
+ * The photo has to look like it opens something — including on a phone, where
+ * there is no hover at all. The badge is therefore always visible, and the
+ * scrim is the extra that hover and keyboard focus add.
+ *
+ * It carries an expand icon rather than the photo count: the count belongs to
+ * the gallery as a whole, and printing it on one block's photo reads as a
+ * claim about that block. The counter inside the gallery states it instead.
+ */
+.equipment-photo-badge {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  background: var(--bark);
+  color: var(--cream);
+  pointer-events: none;
+}
+
+.equipment-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--bark);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.equipment-photo:hover::after,
+.equipment-photo:focus-visible::after {
+  opacity: 0.2;
+}
+
+/*
+ * `--rust` rather than the site's usual `--amber`: on the `--snow` section
+ * background amber reaches only 2.9:1, below the 3:1 a focus indicator needs.
+ */
+.equipment-photo:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .equipment-photo::after {
+    transition: none;
+  }
 }
 
 /* The kitchen photo is portrait: keep the microwave and worktop in the 4:3 frame. */

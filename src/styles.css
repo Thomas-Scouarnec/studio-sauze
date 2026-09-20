@@ -24,6 +24,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * `showModal()` makes the page behind inert but does not stop it scrolling.
+ * Doing this here keeps the gallery component out of `document.body`.
+ */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
 body {
   font-family: 'Jost', sans-serif;
   background: var(--snow);

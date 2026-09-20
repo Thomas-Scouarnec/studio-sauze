@@ -7,7 +7,7 @@
   @for (block of flatInfo.equipmentBlocks(); track block.id) {
     <article class="equipment-block" [class]="block.id" [class.text-only]="!block.photo">
       @if (block.photo; as photo) {
-        <div class="equipment-photo">
+        <button type="button" class="equipment-photo" (click)="gallery.openAt(photo.src)">
           <img
             [ngSrc]="photo.src"
             [ngSrcset]="photo.srcset"
@@ -15,7 +15,33 @@
             [alt]="photo.alt"
             fill
           />
-        </div>
+          <!--
+            Signals that the photo opens, and nothing more. A count here would
+            describe the whole gallery while sitting on one block's photo,
+            which reads as "this block has N photos".
+          -->
+          <span class="equipment-photo-badge" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+          </span>
+          <!--
+            Names the action after the photo's own description, so the button
+            announces both. An aria-label here would replace the description.
+          -->
+          <span class="visually-hidden">
+            — ouvrir la galerie ({{ gallery.count() }} photos)
+          </span>
+        </button>
       }
       <div class="equipment-block-text">
         <h3 class="equipment-block-title">{{ block.title }}</h3>

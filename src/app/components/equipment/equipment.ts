@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { IMAGE_LOADER, NgOptimizedImage } from '@angular/common';
 import { FlatInfoService } from '../../services/flat-info.service';
+import { GalleryService } from '../../services/gallery.service';
 import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
 
 @Component({
@@ -19,4 +20,5 @@ import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
 })
 export class EquipmentComponent {
   protected readonly flatInfo = inject(FlatInfoService);
+  protected readonly gallery = inject(GalleryService);
 }

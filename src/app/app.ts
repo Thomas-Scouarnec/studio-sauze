@@ -5,10 +5,11 @@ import { EquipmentComponent } from './components/equipment/equipment';
 import { SeasonsComponent } from './components/seasons/seasons';
 import { ContactComponent } from './components/contact/contact';
 import { FooterComponent } from './components/footer/footer';
+import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery';
 
 @Component({
   selector: 'app-root',
-  imports: [HeroComponent, AboutComponent, EquipmentComponent, SeasonsComponent, ContactComponent, FooterComponent],
+  imports: [HeroComponent, AboutComponent, EquipmentComponent, SeasonsComponent, ContactComponent, FooterComponent, PhotoGalleryComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a class="skip-link" href="#main-content">Aller au contenu principal</a>
@@ -20,6 +21,8 @@ import { FooterComponent } from './components/footer/footer';
       <app-contact />
     </main>
     <app-footer />
+    <!-- Mounted once for the whole page: one dialog, one focus trap. -->
+    <app-photo-gallery />
   `,
   styles: [':host { display: block; }']
 })

@@ -22,6 +22,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | Contact section (via `ContactService`) | `maxGuests` (the maximum stated in the request checklist) |
 | `hero.html` (Hero) | `fullLocation` (station + region) |
 | Équipements section | the flat's equipment and amenities (see FR-11 to FR-18), and the block photos (FR-22 to FR-24) — must stay consistent with About's wording |
+| Photo gallery (via `GalleryService`) | the flat photos published by the Équipements blocks and the About section, derived rather than redeclared (FR-25 to FR-30, BR-8) |
 
 ## 4. Functional Requirements
 
@@ -51,6 +52,12 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | FR-22 | Each Équipements block shows a photo only when a compliant one exists; a block without a photo shows no empty frame | An empty, photo-shaped frame reads as a missing photo |
 | FR-23 | Photos in this version, all temporary: ski lockers (`arrival`), coin montagne (`sleeping`) and kitchen (`kitchen`) | Every block has a photo; FR-22 keeps a future block without one from showing an empty frame |
 | FR-24 | Équipements photo alt text: « Les casiers à skis sécurisés du rez-de-chaussée », « Deux enfants blottis dans les couchages du coin montagne » and « Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision » | Informative images, as elsewhere on the site |
+| FR-25 | A single site-wide photo gallery shows **the flat's photos only**, in one ordered list: `arrival`, `sleeping`, `kitchen`, `living-room`, `forest-view` | Visitors judge a rental on its photos; one gallery answers "show me the flat" better than per-section carousels |
+| FR-26 | Landscape and surroundings photos (`about/mountain`, the Seasons photos) are **not** in the gallery | The gallery makes one promise — the flat itself. Padding it with scenery weakens that promise |
+| FR-27 | Each Équipements photo opens the gallery **at that photo**. It is the only entry point in this version | Matches what the visitor clicked; the About photos appear in the gallery without opening it |
+| FR-28 | Each Équipements photo carries a permanently visible badge showing an expand icon — an affordance only, with no photo count | A photo that opens something must look like it does, including on touch devices where there is no hover. The count belongs to the gallery, so printing it on one block's photo reads as a claim about that block |
+| FR-29 | The gallery shows a position counter (« Photo N sur M ») and no caption | Position is what a visitor needs; alt text already describes each photo to screen reader users |
+| FR-30 | The gallery displays a photo at no more than its real pixel width, letterboxed rather than upscaled | The flat photos exist only at 800w and their originals are gone (BR-7, Bolt 8); stretching them would show visible softening |
 
 ## 5. Business Rules / Constraints
 
@@ -62,6 +69,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 - **BR-6 (Honest omissions):** Absences that a renter would reasonably filter on (no Wi-Fi, no balcony) are stated explicitly rather than left unsaid, phrased positive-first where a genuine upside exists.
 - **BR-7 (Nothing identifying in photos):** No published photo shows a readable licence plate, a door, unit or locker number, or another resident's identifying details, and no published file carries location metadata (EXIF GPS). A file that fails this rule is not placed in `public/`, since everything there is deployed — originals included. Extends BR-2.
   - **Exception (owner's decision, 2026-09-19):** the ski locker photo (`equipment/arrival-800w.webp`) shows locker numbers « 04 » and « 10 ». Thomas asked for it to be published regardless. The exception covers this photo only; any replacement is held to the rule again.
+- **BR-8 (Photos are declared once):** The gallery derives its list from the photos already published by the sections; it does not restate any `src`, `srcset` or alt text. A photo added to or removed from a section reaches the gallery with no second edit. Extends BR-3 to photo data.
 
 ## 6. Non-Functional Requirements
 
@@ -72,7 +80,9 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 
 - Pricing, availability, and booking/reservation flow
 - English (or other) localization of this content
-- Carousel or click-to-enlarge on the Équipements photos
+- A « Voir toutes les photos » button, the About photos as gallery entry points, and visible captions in the gallery — each offered in Session 9 and declined for now
+- Deep-linking the open gallery photo into the URL, a thumbnail strip, and zoom/pan on a photo
+- Photo widths above 800w for the flat photos — no original survives to re-encode from (BR-7, Bolt 8)
 - A residence exterior photo — the one provided shows readable licence plates (BR-7)
 - Linen, towels and end-of-stay cleaning — destined for a future restricted, guest-only section
 - A dedicated location section (would take ownership of distances and travel times from About)
@@ -92,3 +102,5 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | 2026-09-18 | About photos: FR-19 to FR-21 and BR-7 added; consuming components and out-of-scope updated | Session 7 |
 | 2026-09-19 | Équipements photos: FR-22 to FR-24 added; BR-7 extended to locker numbers and EXIF GPS | Session 8 |
 | 2026-09-19 | FR-23/FR-24: ski locker photo added to `arrival`; BR-7 exception recorded for it at the owner's request | Session 8 |
+| 2026-09-20 | Photo gallery: FR-25 to FR-30 and BR-8 added; `GalleryService` added to consuming components; carousel/click-to-enlarge moved out of "Out of Scope" | Session 9 |
+| 2026-09-20 | FR-28: the thumbnail badge carries an expand icon instead of the photo count, at the owner's request | Session 9 |
