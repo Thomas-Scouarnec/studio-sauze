@@ -1,0 +1,57 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Same dark ground as the hero, so the shared navbar keeps its light-on-dark look. */
+.stay-banner {
+  position: relative;
+  background: var(--bark);
+  padding: 9rem 5vw 3.5rem;
+  overflow: hidden;
+}
+
+.stay-banner-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 60% 30%, #1a2e22 0%, transparent 60%),
+    linear-gradient(170deg, #0d1a10 0%, #2E4A35 35%, #3D2B1F 65%, #1a0f08 100%);
+  opacity: 0.92;
+}
+
+.stay-title {
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1;
+  color: var(--cream);
+}
+
+.stay-title:focus {
+  outline: none;
+}
+
+.stay-content {
+  background: var(--snow);
+  padding: 4rem 5vw 6rem;
+  flex: 1;
+}
+
+.stay-content:focus {
+  outline: none;
+}
+
+.stay-placeholder {
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .stay-banner {
+    padding-top: 7rem;
+  }
+}

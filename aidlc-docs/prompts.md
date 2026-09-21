@@ -303,3 +303,44 @@ All prompts in session order.
 **Change requested after implementation:** Thomas found « 5 photos » repeated on all three thumbnails confusing. The badge was conflating two jobs — the affordance (per photo) and the collection size (per gallery) — and on a block-specific photo the total read as a claim about that block. The badge now carries an expand icon; the count stays in the gallery counter and in each button’s screen-reader text. FR-28 rewritten, 106 tests passing, AXE still clean.
 
 **Correction recorded:** the claim that adding photos later is "a data-only change with no code" holds for replacing a photo, not for adding one — the derived list has exactly five slots (one per Équipements block, plus two named About photos), so a photo no section displays cannot reach the gallery. A declared list of gallery-only photos, concatenated with the derived ones, is the next bolt and is best done before the photo session.
+
+---
+
+## Session 10 — 2026-09-21
+
+**Intent:** Give guests with a confirmed booking a section of the site with trip-specific information (arrival, detailed inventory, hike and trail tracks, nearest supermarket and boulangerie, where to take the rubbish). Thomas first wanted access to end after the stay, without a complex authentication mechanism.
+
+**How the approach narrowed, in order:**
+1. **First recommendation:** split public from sensitive content, and encrypt the sensitive part in the browser (AES-GCM, key derived from a per-booking code), since GitHub Pages is static and the repo is public — a password check in Angular protects nothing
+2. **Thomas:** nothing in it is sensitive — no door code, no Wi-Fi code; the inventory is not secret; the flat and ski locker numbers are not really sensitive. Encryption dropped. A soft gate (code and stay dates in a config, checked by a route guard) was offered
+3. **Thomas chose the simpler option:** an unlisted page, shared by link, with **no code and no expiry**. The wish for access to end after the trip is dropped with it
+
+**Clarifications provided by Thomas:**
+- **Route path in English:** `/stay`, not `/sejour` — route paths follow the English-identifier rule; only visible copy is French (« Mon séjour », « Votre séjour »)
+- **Coming back to the page:** accepted — once a guest has opened `/stay`, their browser remembers it (`localStorage`) and the navbar shows a « Mon séjour » link, in that browser only
+- **A separate page**, not mixed with the home page content — the router swaps the whole page
+- **Keep both** the navbar and the footer on the stay page
+- **Content empty for now** — Thomas still has to decide what to list. This bolt builds the page, the routing and the navigation only
+
+**Findings from reading the code:**
+- The site has no routing yet: `app.routes.ts` is empty and `App` renders the sections directly
+- The navbar links are plain `href="#…"` anchors, which work only on the home page. With `<base href="/">`, a plain `#main-content` link on `/stay` would even load the home page, so the skip link needs attention too
+- Below 768px the navbar links are `display: none`, with no burger menu — a guest on a phone would never see « Mon séjour »
+- The navbar lives inside the hero, as light text over the dark photo
+- `404.html` is already on the `gh-pages` branch — `angular-cli-ghpages` writes it by default — so a direct link to `/stay` already reaches the Angular app
+
+**Design decisions:**
+- `/` → `HomeComponent` (eager, the landing page); `/stay` → `StayComponent` (lazy-loaded); `**` → redirect to `/`. Both pages live in a new `src/app/pages/` folder, to separate full pages from the sections in `components/`
+- The 4 navbar links become `routerLink="/"` with a `fragment`; anchor scrolling enabled in the router
+- « Mon séjour » sits after Contact, in light amber, visible only with `@if (isGuest())`, and **stays visible on mobile** while the 4 section links remain hidden there. A mobile menu for those 4 is a separate topic
+- The logo becomes a link to `/`
+- The stay page opens with a small dark banner holding the navbar and the page title, so the navbar keeps its light-on-dark look
+- Page titles through the routes' `title` property; `noindex` on `/stay` only; no `robots.txt` or sitemap entry, which would advertise the path
+
+**Noted for Thomas:** the path is in the public repo and the JS bundle, so the page is unlisted, not private. That is acceptable only because its content is not sensitive. BR-2 of `flat-info.md` (no unit number on the public site) is not engaged by this bolt, since the page is empty; it will need a decision when the content bolt adds the flat number.
+
+**Plan drafted:** 1 Unit ("Stay Page"), 5 stories, 1 Bolt (7 steps). New `functional-specs/stay.md` — pending Thomas's approval to implement.
+
+**Placeholder validated by Thomas:** « Les informations pratiques pour votre séjour arrivent bientôt. », shown only on `/stay`, in the content area under the banner, until the content bolt replaces it.
+
+**Plan approved by Thomas — Bolt 10 implemented on 2026-09-21.** All 7 steps done, 125 tests passing, verified at 1024px and 375px, AXE shows nothing new. Two defects were found and fixed in the browser: a white strip below the footer on the short stay page, and « Mon séjour » at 3.2:1 in `--amber` on the pine part of the gradient, now `#d4a97a` (4.54:1 at worst). The live check of `/stay` after `ng deploy` is left to Thomas. Details in [bolt-10-stay-page.md](plans/bolt-10-stay-page.md).

@@ -19,10 +19,16 @@ nav {
   font-size: 1.1rem;
   color: var(--cream);
   letter-spacing: 0.06em;
+  text-decoration: none;
 }
 
 .nav-logo span {
   color: var(--amber);
+}
+
+.nav-logo:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
 }
 
 .nav-links {
@@ -46,8 +52,34 @@ nav {
   outline: none;
 }
 
+/* The guest's own space, in the hero title's light amber rather than a fifth
+   section. --amber itself drops to 3.2:1 on the pine part of the gradient;
+   this tone keeps 4.5:1 across it. */
+.nav-guest a {
+  color: #d4a97a;
+}
+
+.nav-guest a:hover,
+.nav-guest a:focus-visible,
+.nav-guest a.is-active {
+  color: var(--cream);
+}
+
+.nav-guest a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+}
+
 @media (max-width: 768px) {
-  .nav-links {
+  /* The section links stay hidden on phones, but a guest must still find
+     their page (FR-5). Without the flag the list is empty, as before. */
+  .nav-links li:not(.nav-guest) {
     display: none;
+  }
+
+  .nav-guest a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
