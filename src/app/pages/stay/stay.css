@@ -35,7 +35,7 @@
 
 .stay-content {
   background: var(--snow);
-  padding: 4rem 5vw 6rem;
+  padding: 3rem 5vw 6rem;
   flex: 1;
 }
 
@@ -43,15 +43,104 @@
   outline: none;
 }
 
-.stay-placeholder {
-  max-width: 60ch;
-  font-size: 1rem;
+/* Sommaire */
+.stay-toc ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.6rem 2rem;
+  max-width: 900px;
+  margin-bottom: 4rem;
+  padding: 1.6rem 1.8rem;
+  border: 1px solid var(--mist);
+  border-radius: 4px;
+}
+
+.stay-toc a {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--mist);
+  padding-bottom: 2px;
+}
+
+.stay-toc a:hover,
+.stay-toc a:focus-visible {
+  color: var(--rust);
+  border-bottom-color: var(--rust);
+}
+
+/* Sections */
+.stay-section {
+  max-width: 70ch;
+  margin-bottom: 4rem;
+}
+
+.stay-section:focus {
+  outline: none;
+}
+
+.stay-section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin-bottom: 1.6rem;
+}
+
+.stay-group-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 2rem 0 0.8rem;
+}
+
+.stay-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.stay-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   line-height: 1.7;
   color: var(--text);
+}
+
+.stay-item-title {
+  font-weight: 600;
+}
+
+/* A gap Thomas has not filled yet. --stone would only reach 3.6:1 on --snow. */
+.stay-pending {
+  font-style: italic;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.stay-item-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  color: var(--rust);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.stay-item-link:focus-visible,
+.stay-toc a:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
   .stay-banner {
     padding-top: 7rem;
+  }
+
+  .stay-toc ul {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
   }
 }

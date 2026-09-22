@@ -5,5 +5,44 @@
 </header>
 
 <main id="main-content" class="stay-content" tabindex="-1">
-  <p class="stay-placeholder">Les informations pratiques pour votre séjour arrivent bientôt.</p>
+  <nav class="stay-toc" aria-label="Sommaire">
+    <ul>
+      @for (section of stay.sections(); track section.id) {
+        <li><a routerLink="/stay" [fragment]="section.id">{{ section.title }}</a></li>
+      }
+    </ul>
+  </nav>
+
+  @for (section of stay.sections(); track section.id) {
+    <section class="stay-section" [id]="section.id" [attr.aria-labelledby]="section.id + '-heading'">
+      <h2 [id]="section.id + '-heading'" class="section-title stay-section-title">{{ section.title }}</h2>
+
+      @for (group of section.groups; track $index) {
+        @if (group.title) {
+          <h3 class="stay-group-title">{{ group.title }}</h3>
+        }
+        <ul class="stay-items">
+          @for (item of group.items; track $index) {
+            <li class="stay-item">
+              @if (item.title) {
+                <strong class="stay-item-title">{{ item.title }}</strong>
+              }
+              @if (item.pending) {
+                <span class="stay-pending">Information à venir</span>
+              } @else {
+                @if (item.text) {
+                  <span class="stay-item-text">{{ item.text }}</span>
+                }
+                @if (item.link) {
+                  <a class="stay-item-link" [href]="item.link.url" target="_blank" rel="noopener">
+                    {{ item.link.label }}<span class="visually-hidden"> (nouvel onglet)</span>
+                  </a>
+                }
+              }
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  }
 </main>

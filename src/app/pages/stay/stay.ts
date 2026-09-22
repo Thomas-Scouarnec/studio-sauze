@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { GuestAccessService } from '../../services/guest-access.service';
+import { StayService } from '../../services/stay.service';
 
 /**
  * The unlisted page for guests, shown at `/stay` (FR-1). It is reached only
@@ -10,12 +12,14 @@ import { GuestAccessService } from '../../services/guest-access.service';
  */
 @Component({
   selector: 'app-stay',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './stay.html',
   styleUrl: './stay.css'
 })
 export class StayComponent {
+  protected readonly stay = inject(StayService);
+
   constructor() {
     inject(GuestAccessService).markAsGuest();
 

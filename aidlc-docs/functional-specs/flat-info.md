@@ -62,7 +62,7 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 ## 5. Business Rules / Constraints
 
 - **BR-1 (Capacity consistency):** Any UI surface that reflects guest capacity (About stats, the Contact section's request checklist, and any future booking UI) MUST stay in sync with `FlatInfoService.info().maxGuests`. Do not hardcode a capacity number/bound in a template independently of the service.
-- **BR-2 (No exact address):** The exact door/apartment number is never published on the public site. Only the residence name, building name, and a Google Maps link (building-level) are shown. Rationale: avoids exposing precisely which unit is vacant, for the owner's security.
+- **BR-2 (No exact address):** The exact door/apartment number is never published on the public site. Only the residence name, building name, and a Google Maps link (building-level) are shown. Rationale: avoids exposing precisely which unit is vacant, for the owner's security. **Exception (Session 11):** the unlisted guest page `/stay` shows the flat number, at the owner's decision (`stay.md` FR-20).
 - **BR-3 (Single source of truth):** Flat metadata (name, capacity, location, residence/building name, maps URL) lives only in `FlatInfoService`; components must read it via the service, not duplicate literal values in templates.
 - **BR-4 (Wording consistency):** When the same amenity/fact is described in more than one section (e.g. storage in both About and Équipements), the wording must not contradict across sections.
 - **BR-5 (Verifiable claims only):** No claim is published unless it is verified. Where a fact is not yet confirmed (e.g. ski locker capacity), it is stated without the unverified detail rather than estimated. Amenities are described by what they actually are, not by the appliance they resemble.
@@ -104,3 +104,4 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | 2026-09-19 | FR-23/FR-24: ski locker photo added to `arrival`; BR-7 exception recorded for it at the owner's request | Session 8 |
 | 2026-09-20 | Photo gallery: FR-25 to FR-30 and BR-8 added; `GalleryService` added to consuming components; carousel/click-to-enlarge moved out of "Out of Scope" | Session 9 |
 | 2026-09-20 | FR-28: the thumbnail badge carries an expand icon instead of the photo count, at the owner's request | Session 9 |
+| 2026-09-22 | BR-2: exception recorded for the flat number on `/stay` | Session 11 |

@@ -344,3 +344,33 @@ All prompts in session order.
 **Placeholder validated by Thomas:** « Les informations pratiques pour votre séjour arrivent bientôt. », shown only on `/stay`, in the content area under the banner, until the content bolt replaces it.
 
 **Plan approved by Thomas — Bolt 10 implemented on 2026-09-21.** All 7 steps done, 125 tests passing, verified at 1024px and 375px, AXE shows nothing new. Two defects were found and fixed in the browser: a white strip below the footer on the short stay page, and « Mon séjour » at 3.2:1 in `--amber` on the pine part of the gradient, now `#d4a97a` (4.54:1 at worst). The live check of `/stay` after `ng deploy` is left to Thomas. Details in [bolt-10-stay-page.md](plans/bolt-10-stay-page.md).
+
+---
+
+## Session 11 — 2026-09-22
+
+**Intent:** Fill the `/stay` page with its structure and the content already known, using visible placeholders for what Thomas cannot supply yet. Working notes in [ideas/stay-content.md](ideas/stay-content.md), started after Session 10.
+
+**Answers provided by Thomas (to the Session 10 follow-up questions):**
+- **Key handover:** a local person hands over the keys, **at the residence**, at the arrival time. **Late arrival:** guests warn the owners and it is discussed. **Key return:** to the same local person
+- **Bed linen and towels:** not provided; guests bring their own. The laundry question falls away with it
+- **Wi-Fi:** none, but good 4G/5G coverage — already stated on the public site, which Claude should have checked before asking
+- **Flat number:** « n° 10, 1er étage, à gauche en sortant de l'ascenseur » — fine to display on `/stay`
+- **Times:** arrival from 4 pm, departure before 11 am
+- **Kept:** welcome message, winter driving (loi Montagne), groceries at the Intermarché of Barcelonnette with a Google Maps link, kitchen basics provided, « contact us by phone or email » if something breaks, shops and services (supermarket, boulangerie, pharmacy, doctor, nearest hospital), restaurants, board games for rainy days, winter/summer split, residence rules (no skis upstairs, no ski boots in the residence), checkout checklist, closing thanks with a word-of-mouth line
+- **Parked:** road and weather, ski passes and hire, heating and hot water, baby equipment, emergency numbers, tourist tax, avalanche and mountain safety — kept in the ideas file
+
+**Checked by Claude:** Enchastrayes (the commune of Le Sauze) is on the loi Montagne list for Alpes-de-Haute-Provence; winter equipment is compulsory from 1 November to 31 March. The page links to the Sécurité Routière page rather than restating the list.
+
+**Design decisions (proposed):**
+- **Phone numbers stay off the page:** the owners' phone and the local key holder's contact go in the booking email. `contact.md` FR-1 publishes email only, and the key holder is a third party. Recommended in the review; Thomas asked to proceed with what was suggested
+- **Flat number on `/stay`:** recorded as a scoped exception to BR-2 of `flat-info.md`
+- **Visible placeholders** « Information à venir » for missing facts, so the structure is complete and each gap is easy to find. The link is not meant to be sent to guests until they are filled
+- **Content as data** in a new `StayService`, so filling a placeholder later is a data-only change. Residence, building, Maps link and email are read from `FlatInfoService` and `ContactService`, not restated
+- **A section menu** at the top of the page, reusing the router's anchor scrolling from Bolt 10
+
+**Plan drafted:** 1 Unit ("Stay Content"), 5 stories, 1 Bolt (6 steps). `functional-specs/stay.md` extended (FR-13 to FR-20, BR-4, BR-5); BR-2 of `flat-info.md` annotated with the `/stay` exception — pending Thomas's approval of the plan and the French copy.
+
+**Last answers from Thomas:** pillows and blankets stay in the flat (only linen and towels are brought); coffee and filters are provided; the welcome signature « Thomas et sa famille » is kept; the hikes and trails part is something he wants to do himself, so its placeholder stays.
+
+**Plan approved by Thomas — Bolt 11 implemented on 2026-09-22.** All 6 steps done, 138 tests passing, verified at 1280px and 375px, AXE unchanged. The page ships 9 sections, a « Sommaire » menu, 4 external links and 16 « Information à venir » placeholders. Details in [bolt-11-stay-content.md](plans/bolt-11-stay-content.md).
