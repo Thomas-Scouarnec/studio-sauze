@@ -106,7 +106,7 @@ A `computed()` rather than a plain `signal()`, because four pieces of text embed
 - **Horaires** — « Arrivée à partir de 16 h, départ avant 11 h. »
 - **Remise des clés** — « Une personne sur place vous accueille directement à la résidence et vous remet les clés. Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution. »
 - **En voiture l'hiver** — « Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ou chaînes / chaussettes à neige dans le coffre. » Link: « Les règles sur le site de la Sécurité Routière » → `https://www.securite-routiere.gouv.fr/equipements-hivernaux-departements-et-communes`
-- **Les courses** — « Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Barcelonnette. » Link: « Intermarché de Barcelonnette sur Google Maps » → `https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Barcelonnette`
+- **Les courses** — « Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Saint-Pons, juste à côté de Barcelonnette. » Link: « Intermarché de Saint-Pons sur Google Maps » → `https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Saint-Pons+04400` (corrected on 2026-09-22: the shop is in Saint-Pons, not Barcelonnette)
 
 ### 3. À l'arrivée — `arrival`
 - **Accéder au parking** ⏳ (the tricky climb, the similar residence next door)
@@ -132,11 +132,11 @@ A `computed()` rather than a plain `signal()`, because four pieces of text embed
 > **Change requested 2026-09-22, after implementation:** Restaurants moved from « Activités » to « Commerces et services ».
 
 ### 6. Commerces et services — `shops`
-- **Supermarché** — « Intermarché de Barcelonnette. » + the same Maps link
+- **Supermarché** — « Intermarché de Saint-Pons, juste à côté de Barcelonnette. » + the same Maps link
 - **Boulangerie** ⏳ · **Restaurants** ⏳ · **Pharmacie** ⏳ · **Médecin** ⏳ · **Hôpital le plus proche** ⏳
 
 ### 7. Infos pratiques — `practical`
-- **Les poubelles** ⏳
+- **Les poubelles** — « Tous les conteneurs sont au même endroit : ordures ménagères et tri sélectif (plastique, verre…). » Link: « Le point de collecte sur Google Maps » → `https://maps.app.goo.gl/k2WmAZeY1MsF18go9` (supplied 2026-09-22; resolves to Av. du Sauze, 04400 Enchastrayes)
 - **Règles de la résidence** — « Les skis restent au casier : ils ne montent pas dans les étages. On ne circule pas en chaussures de ski dans la résidence. »
 
 ### 8. Avant de partir — `before-leaving`

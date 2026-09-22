@@ -22,7 +22,7 @@
 - It gives arrival from 16 h and departure before 11 h
 - It explains the key handover by a local person at the residence, that their contact is in the confirmation email, and what to do if arriving late
 - It reminds guests of the loi Montagne rule, with a link to the Sécurité Routière page
-- It recommends the Intermarché of Barcelonnette, with a Google Maps link
+- It recommends the Intermarché of Saint-Pons, next to Barcelonnette, with a Google Maps link
 
 ---
 

@@ -91,7 +91,9 @@
 
 ## Noted during verification
 
-**The Google Maps link is a search URL** (`…/maps/search/?api=1&query=Intermarché+Barcelonnette`) rather than a place link, since no place id was to hand. It should land on the right shop, but Thomas should click it once and say if a proper place link is needed.
+**The Google Maps link is a search URL** (`…/maps/search/?api=1&query=Intermarché+Saint-Pons+04400`) rather than a place link, since no place id was to hand. Thomas should click it once and say if a proper place link is needed.
+
+**Correction after implementation (2026-09-22):** the supermarket is the Intermarché of **Saint-Pons**, next to Barcelonnette, not one in Barcelonnette itself. Copy and Maps query fixed in both places that name it.
 
 **16 placeholders remain.** They are listed in [ideas/stay-content.md](../ideas/stay-content.md). The most useful ones to fill before sending the link to a guest are the parking access, the rubbish, the sofa bed and the appliances.
 

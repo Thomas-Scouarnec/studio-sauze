@@ -31,8 +31,8 @@ const WINTER_TYRES_URL =
   'https://www.securite-routiere.gouv.fr/equipements-hivernaux-departements-et-communes';
 
 const GROCERIES_LINK: StayLink = {
-  label: 'Intermarché de Barcelonnette sur Google Maps',
-  url: 'https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Barcelonnette',
+  label: 'Intermarché de Saint-Pons sur Google Maps',
+  url: 'https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Saint-Pons+04400',
 };
 
 /**
@@ -104,7 +104,9 @@ export class StayService {
               },
               {
                 title: 'Les courses',
-                text: "Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Barcelonnette.",
+                text:
+                  'Faites vos courses avant de monter : nous vous recommandons ' +
+                  "l'Intermarché de Saint-Pons, juste à côté de Barcelonnette.",
                 link: GROCERIES_LINK,
               },
             ],
@@ -187,7 +189,7 @@ export class StayService {
             items: [
               {
                 title: 'Supermarché',
-                text: 'Intermarché de Barcelonnette.',
+                text: "Intermarché de Saint-Pons, juste à côté de Barcelonnette.",
                 link: GROCERIES_LINK,
               },
               { title: 'Boulangerie', pending: true },
@@ -205,7 +207,16 @@ export class StayService {
         groups: [
           {
             items: [
-              { title: 'Les poubelles', pending: true },
+              {
+                title: 'Les poubelles',
+                text:
+                  'Tous les conteneurs sont au même endroit : ordures ménagères et tri sélectif ' +
+                  '(plastique, verre…).',
+                link: {
+                  label: 'Le point de collecte sur Google Maps',
+                  url: 'https://maps.app.goo.gl/k2WmAZeY1MsF18go9',
+                },
+              },
               {
                 title: 'Règles de la résidence',
                 text:

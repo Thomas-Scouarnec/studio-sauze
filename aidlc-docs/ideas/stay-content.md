@@ -18,7 +18,7 @@
 - **Arrival from 4 pm**, departure **before 11 am**
 - **Key handover:** a local person hands over the keys at arrival time
 - **Winter driving:** loi Montagne reminder — winter tyres, or chains/socks carried in the car, compulsory from 1 November to 31 March
-- **Groceries:** recommend doing the shopping at the **Intermarché in Barcelonnette** on the way up, with a Google Maps link
+- **Groceries:** recommend doing the shopping at the **Intermarché in Saint-Pons**, next to Barcelonnette, on the way up, with a Google Maps link
 
 ### 3. Arrival
 - Address and precise access to the public parking (you need to go up; a residence with a similar name is next to it)
@@ -86,7 +86,7 @@
 | L'appartement | Inventory; hot plates and oven; opening the sofa bed; washing machine |
 | Activités | Snowshoe routes; summer hikes; trails; activities with kids |
 | Commerces | Boulangerie; restaurants; pharmacy; doctor; nearest hospital |
-| Infos pratiques | Where the rubbish goes |
+| ~~Infos pratiques~~ | ~~Where the rubbish goes~~ — supplied 2026-09-22: one collection point, household waste and sorting together |
 
 ## Settled on 2026-09-22 (second round)
 
