@@ -82,10 +82,10 @@
 
 | Section | Missing |
 |---|---|
-| À l'arrivée | Access to the public parking; fallback parking |
+| ~~À l'arrivée~~ | ~~Parking access and fallback~~ — both supplied 2026-09-22; two photos still to take: the left turn, the car park |
 | L'appartement | Inventory; hot plates and oven; opening the sofa bed; washing machine |
-| Activités | Snowshoe routes; summer hikes; trails; activities with kids |
-| Commerces | Boulangerie; restaurants; pharmacy; doctor; nearest hospital |
+| Activités | Snowshoe routes; summer hikes; trails; activities with kids (added 2026-09-22: tourism office, ski domain, Pra-Loup rink, Jausiers water base, Barcelonnette cinema, books) |
+| Commerces | Restaurants; doctor; nearest hospital (supplied 2026-09-22: Pharmacie Damery, Boulangerie Reynet) |
 | ~~Infos pratiques~~ | ~~Where the rubbish goes~~ — supplied 2026-09-22: one collection point, household waste and sorting together |
 
 ## Settled on 2026-09-22 (second round)
@@ -97,7 +97,7 @@
 ## Still to settle
 
 1. **Hike and trail "tracks":** Thomas wants to handle this part himself — form still to be decided (links, GPX, a map). The placeholder stays meanwhile
-2. **Photos on the stay page:** parking access, the sofa bed, the appliances?
+2. **Photos on the stay page:** the two parking photos are declared as slots; the sofa bed and the appliances could get the same treatment when their text is written
 
 ---
 

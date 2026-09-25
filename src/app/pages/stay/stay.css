@@ -120,6 +120,33 @@
   opacity: 0.75;
 }
 
+.stay-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.stay-photo {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* A photo Thomas has still to take: same honesty as the text placeholders. */
+.stay-photo-pending {
+  flex: 1 1 260px;
+  max-width: 320px;
+  padding: 1rem;
+  border: 1px dashed var(--stone);
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0.75;
+}
+
 .stay-item-link {
   align-self: flex-start;
   font-size: 0.85rem;

@@ -19,7 +19,7 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | Component | Consumes |
 |---|---|
 | Stay page | `GuestAccessService.markAsGuest()` on arrival; `StayService.sections` for the content |
-| `StayService` | residence, building and Maps link from `FlatInfoService`; email from `ContactService` |
+| `StayService` | residence, building, address and Maps link from `FlatInfoService`; email from `ContactService`; ski domain and tourism office links from `SeasonsService` |
 | Navbar | `GuestAccessService.isGuest` to show « Mon séjour » |
 
 ## 4. Functional Requirements
@@ -40,12 +40,13 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | FR-12 | An unknown path redirects to the home page | No dead end |
 | FR-13 | The page presents nine sections, in trip order: Bienvenue, Avant d'arriver, À l'arrivée, L'appartement, Activités, Commerces et services, Infos pratiques, Avant de partir, Après votre séjour | A guest reads it in the order they live it |
 | FR-14 | A section menu at the top links to each section | The page is long, and read on a phone |
-| FR-15 | Activities are grouped by season (Hiver, Été), then En famille and Par temps de pluie. Restaurants sit in Commerces et services | The page is read in both seasons; a restaurant is an address, like a shop (moved at Thomas's request) |
-| FR-16 | A fact not yet supplied shows its title with « Information à venir » | The structure is complete, and every gap is visible and easy to find |
-| FR-17 | The page gives arrival from 16 h, departure before 11 h, the key handover by a local person at the residence, and key return to the same person | Session 11 answers |
+| FR-15 | Activities open with an untitled lead item (the valley's tourism office), then three groups: Hiver, Été, Toute l'année. Restaurants sit in Commerces et services | The page is read in both seasons; a restaurant is an address, like a shop (moved at Thomas's request) |
+| FR-16 | A fact not yet supplied shows its title with « Information à venir ». An item may carry an introduction as well, which is shown before the placeholder | The structure is complete, every gap is visible, and an item can explain its purpose before its content exists |
+| FR-17 | Arrival from 16 h and the key handover by a local person at the residence sit in « À l'arrivée », as one entry; departure before 11 h and the key return sit in the « Avant de partir » checklist | Session 11 answers; each fact sits where it is used, stated once |
 | FR-18 | The page states that bed linen and towels are not provided | Guests must know before packing |
 | FR-19 | The page reminds guests of the loi Montagne winter equipment rule, with a link to the official page | Compulsory in Enchastrayes from 1 November to 31 March |
-| FR-20 | The page shows the flat number (n° 10), floor and way from the lift | Thomas's decision; exception to BR-2 of `flat-info.md`, scoped to `/stay` |
+| FR-20 | The page shows the full postal address (residence, building, street, postal code, commune), then the flat number (n° 10), floor and way from the lift | Thomas's decision; exception to BR-2 of `flat-info.md`, scoped to `/stay`. A guest types the address into a GPS |
+| FR-21 | An item may carry photo slots. A slot with no file yet renders « Photo à venir : <what it must show> »; the description becomes the alt text once the photo exists | Some directions are clearer in a picture; the slot states what to shoot |
 
 ## 5. Business Rules / Constraints
 
@@ -53,7 +54,7 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 - **BR-2 (No expiry):** Access does not end after the stay. Thomas chose this over a code-and-dates guard, since the content is not sensitive.
 - **BR-3 (Local memory only):** The guest flag lives in the visitor's own browser. If storage is unavailable (private browsing, blocked site data), the page still works and « Mon séjour » simply does not appear.
 - **BR-4 (No phone numbers on the page):** The owners' phone and the local key holder's contact are given in the booking email, never on the page. The page says where to find them. Extends BR-1 and `contact.md` FR-1.
-- **BR-5 (Single source):** A fact already held elsewhere — residence and building names, the Maps link, the contact email — is read from its service, not restated in the stay content.
+- **BR-5 (Single source):** A fact already held elsewhere — residence and building names, the Maps link, the contact email, the ski domain and tourism office links — is read from its service, not restated in the stay content.
 
 ## 6. Non-Functional Requirements
 
@@ -65,7 +66,7 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 
 - The missing facts themselves — added as data when Thomas supplies them
 - The parked topics: road and weather, ski passes and hire, heating and hot water, baby equipment, emergency numbers, tourist tax, avalanche safety
-- Photos on the stay page
+- The photo files themselves — the slots exist (FR-21); the photos are Thomas's to take
 - Access codes, stay dates, expiry, encryption
 - A mobile menu for the four section links
 
@@ -80,3 +81,4 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 |---|---|---|
 | 2026-09-21 | Initial version | Session 10 |
 | 2026-09-22 | Content structure: FR-13 to FR-20, BR-4, BR-5; flat number question resolved | Session 11 |
+| 2026-09-22 | FR-17 reworked (arrival time and keys moved to « À l'arrivée »); FR-20 extended to the postal address; FR-21 added for photo slots | Session 11 |

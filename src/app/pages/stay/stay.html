@@ -27,16 +27,34 @@
               @if (item.title) {
                 <strong class="stay-item-title">{{ item.title }}</strong>
               }
+              @if (item.text) {
+                <span class="stay-item-text">{{ item.text }}</span>
+              }
               @if (item.pending) {
                 <span class="stay-pending">Information à venir</span>
               } @else {
-                @if (item.text) {
-                  <span class="stay-item-text">{{ item.text }}</span>
-                }
                 @if (item.link) {
                   <a class="stay-item-link" [href]="item.link.url" target="_blank" rel="noopener">
                     {{ item.link.label }}<span class="visually-hidden"> (nouvel onglet)</span>
                   </a>
+                }
+                @if (item.photos) {
+                  <div class="stay-photos">
+                    @for (slot of item.photos; track slot.description) {
+                      @if (slot.photo; as photo) {
+                        <img
+                          class="stay-photo"
+                          [ngSrc]="photo.src"
+                          [ngSrcset]="photo.srcset"
+                          [alt]="photo.alt"
+                          width="800"
+                          height="600"
+                        />
+                      } @else {
+                        <p class="stay-photo-pending">Photo à venir : {{ slot.description }}</p>
+                      }
+                    }
+                  </div>
                 }
               }
             </li>

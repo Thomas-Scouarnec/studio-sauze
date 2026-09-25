@@ -89,7 +89,16 @@ describe('StayComponent', () => {
   it('should render the activity group titles as h3 (FR-15)', async () => {
     const host = await render();
     const titles = Array.from(host.querySelectorAll('#activities h3')).map((h) => h.textContent?.trim());
-    expect(titles).toEqual(['Hiver', 'Été', 'En famille', 'Par temps de pluie']);
+    expect(titles).toEqual(['Hiver', 'Été', "Toute l'année"]);
+  });
+
+  it('should show an introduction before the placeholder when the item has one (FR-16)', async () => {
+    const host = await render();
+    const item = Array.from(host.querySelectorAll('#flat .stay-item')).find((li) =>
+      li.textContent?.includes('Inventaire'),
+    );
+    expect(item?.querySelector('.stay-item-text')?.textContent).toContain('Rien à recompter');
+    expect(item?.querySelector('.stay-pending')?.textContent?.trim()).toBe('Information à venir');
   });
 
   it('should show « Information à venir » for a fact not supplied yet (FR-16)', async () => {
@@ -102,6 +111,19 @@ describe('StayComponent', () => {
     const rendered = host.querySelectorAll('.stay-pending');
     expect(rendered.length).toBe(pendingCount);
     expect(rendered[0].textContent?.trim()).toBe('Information à venir');
+  });
+
+  it('should announce a photo still to take, naming what it must show (FR-21)', async () => {
+    const host = await render();
+    const slots = TestBed.inject(StayService)
+      .sections()
+      .flatMap((s) => s.groups.flatMap((g) => g.items))
+      .flatMap((item) => item.photos ?? []);
+
+    const rendered = host.querySelectorAll('.stay-photo-pending');
+    expect(rendered.length).toBe(slots.filter((slot) => !slot.photo).length);
+    expect(rendered[0].textContent).toContain('Photo à venir');
+    expect(rendered[0].textContent).toContain(slots[0].description);
   });
 
   it('should open external links in a new tab, and say so to screen readers', async () => {

@@ -1,17 +1,33 @@
 import { Injectable, computed, inject } from '@angular/core';
+import { ResponsivePhoto } from '../loaders/responsive-image-loader';
 import { ContactService } from './contact.service';
 import { FlatInfoService } from './flat-info.service';
+import { SeasonsService } from './seasons.service';
 
 export interface StayLink {
   label: string;
   url: string;
 }
 
+/**
+ * An illustration for an item. `description` states what the photo must show;
+ * it becomes the alt text once `photo` exists, and meanwhile it is what the
+ * « Photo à venir » slot announces (FR-21).
+ */
+export interface StayPhoto {
+  description: string;
+  photo?: ResponsivePhoto;
+}
+
 export interface StayItem {
   title?: string;
   text?: string;
   link?: StayLink;
-  /** A fact Thomas has not supplied yet: renders « Information à venir » (FR-16). */
+  photos?: StayPhoto[];
+  /**
+   * A fact Thomas has not supplied yet: renders « Information à venir » (FR-16),
+   * after `text` when the item already carries an introduction.
+   */
   pending?: true;
 }
 
@@ -50,10 +66,19 @@ const GROCERIES_LINK: StayLink = {
 export class StayService {
   private readonly flatInfo = inject(FlatInfoService);
   private readonly contact = inject(ContactService);
+  private readonly seasons = inject(SeasonsService);
+
+  /** The Seasons section already publishes these links; they are reused, not restated (BR-5). */
+  private seasonLink(id: string): StayLink | undefined {
+    return this.seasons.seasons().find((season) => season.id === id)?.link;
+  }
 
   readonly sections = computed<StaySection[]>(() => {
-    const { residenceName, buildingName, mapsUrl } = this.flatInfo.info();
+    const { residenceName, buildingName, street, postalCode, commune, mapsUrl } =
+      this.flatInfo.info();
     const email = this.contact.email;
+    const skiDomainLink = this.seasonLink('winter');
+    const tourismOfficeLink = this.seasonLink('summer');
 
     return [
       {
@@ -85,17 +110,6 @@ export class StayService {
                   "pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l'appartement.",
               },
               {
-                title: 'Horaires',
-                text: 'Arrivée à partir de 16 h, départ avant 11 h.',
-              },
-              {
-                title: 'Remise des clés',
-                text:
-                  'Une personne sur place vous accueille directement à la résidence et vous remet les clés. ' +
-                  'Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? ' +
-                  'Prévenez-nous, nous trouverons une solution.',
-              },
-              {
                 title: "En voiture l'hiver",
                 text:
                   'Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ' +
@@ -119,14 +133,44 @@ export class StayService {
         groups: [
           {
             items: [
-              { title: 'Accéder au parking', pending: true },
-              { title: 'Si le parking est complet', pending: true },
+              {
+                title: 'Arrivée et remise des clés',
+                text:
+                  'Arrivée à partir de 16 h. Une personne sur place vous accueille directement à la résidence ' +
+                  'et vous remet les clés ; ses coordonnées figurent dans votre email de confirmation. ' +
+                  'Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution.',
+              },
+              {
+                title: "L'adresse",
+                text: `Résidence ${residenceName}, bâtiment ${buildingName} — ${street}, ${postalCode} ${commune}.`,
+                link: { label: 'Voir sur Google Maps', url: mapsUrl },
+              },
+              {
+                title: 'Accéder au parking',
+                text:
+                  `Attention : vous passez d'abord devant la résidence Le Soleil du Sauze — ce n'est pas la bonne. ` +
+                  `La nôtre est la résidence ${residenceName}. Prenez la route à gauche, qui monte : ` +
+                  `allez jusqu'en haut, vous arrivez au parking du bâtiment ${buildingName}.`,
+                photos: [
+                  { description: 'La route à gauche à prendre pour monter à la résidence' },
+                  { description: `Le parking du bâtiment ${buildingName}` },
+                ],
+              },
+              {
+                title: 'Si le parking est complet',
+                text:
+                  'Vous pouvez vous garer sur les autres parkings que vous croisez en montant : ' +
+                  "c'est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : " +
+                  "la montée à pied, c'est l'échauffement avant les pistes 😉",
+                link: {
+                  label: 'Le stationnement route de la Grande Ourse sur Google Maps',
+                  url: 'https://maps.app.goo.gl/WXZBYDgAtsWy799L8',
+                },
+              },
               {
                 title: "Jusqu'à l'appartement",
                 text:
-                  `Résidence ${residenceName}, bâtiment ${buildingName}. Prenez l'ascenseur jusqu'au 1er étage : ` +
-                  `l'appartement n° 10 est à gauche en sortant.`,
-                link: { label: 'Voir sur Google Maps', url: mapsUrl },
+                  "Prenez l'ascenseur jusqu'au 1er étage : l'appartement n° 10 est à gauche en sortant.",
               },
               {
                 title: 'Le casier à skis',
@@ -146,10 +190,22 @@ export class StayService {
         groups: [
           {
             items: [
-              { title: 'Inventaire', pending: true },
+              {
+                title: 'Inventaire',
+                text:
+                  "Cette liste est là pour que vous sachiez ce qui vous attend et ce qu'il reste à prévoir. " +
+                  "Rien à recompter au départ : prenez simplement soin des lieux, comme chez vous.",
+                pending: true,
+              },
               { title: 'Plaques et four', pending: true },
               { title: 'Ouvrir le canapé-lit', pending: true },
               { title: 'Lave-linge', pending: true },
+              {
+                title: 'Jeux et livres',
+                text:
+                  'Des jeux de société et des livres, pour les grands comme pour les enfants, ' +
+                  'vous attendent sur place.',
+              },
               {
                 title: 'Déjà sur place',
                 text: 'Café et filtres, sel, huile, tablettes pour le lave-vaisselle et produits d\'entretien.',
@@ -166,18 +222,70 @@ export class StayService {
         id: 'activities',
         title: 'Activités',
         groups: [
-          { title: 'Hiver', items: [{ title: 'Randonnées en raquettes', pending: true }] },
+          {
+            // Untitled, so it reads as the section's opening line: the valley's own site covers
+            // both seasons and stays up to date (BR-2 of seasons.md — no perishable fact copied).
+            items: [
+              {
+                title: "Office de tourisme de l'Ubaye",
+                text: 'Horaires, événements et idées de sorties, tenus à jour par la vallée.',
+                ...(tourismOfficeLink ? { link: tourismOfficeLink } : {}),
+              },
+            ],
+          },
+          {
+            title: 'Hiver',
+            items: [
+              {
+                title: 'Le domaine skiable',
+                text:
+                  'Les pistes du Sauze – Super-Sauze, pour tous les niveaux. ' +
+                  'Skiez à votre rythme et gardez un œil sur les autres : ' +
+                  "on vous préfère au bar des pistes qu'au cabinet du médecin 🙂",
+                ...(skiDomainLink ? { link: skiDomainLink } : {}),
+              },
+              { title: 'Randonnées en raquettes', pending: true },
+              {
+                title: 'Patinoire de Pra-Loup',
+                text: 'Patinoire en plein air au cœur de Pra-Loup 1600, patins à louer sur place.',
+                link: {
+                  label: "La patinoire sur le site de l'Ubaye",
+                  url: 'https://www.ubaye.com/activites/activites-hiver/patinoire/',
+                },
+              },
+            ],
+          },
           {
             title: 'Été',
             items: [
-              { title: 'Randonnées', pending: true },
-              { title: 'Sentiers et trails', pending: true },
+              { title: 'Randonnées, sentiers et trails', pending: true },
+              {
+                title: 'La base nautique de Jausiers',
+                text:
+                  "Baignade, paddle, tennis et coin pique-nique autour du plan d'eau, " +
+                  'à environ 15 minutes en voiture par Barcelonnette.',
+                link: {
+                  label: 'La base nautique de Jausiers sur Google Maps',
+                  url: 'https://www.google.com/maps/search/?api=1&query=Base+nautique+Jausiers',
+                },
+              },
             ],
           },
-          { title: 'En famille', items: [{ title: 'Activités avec les enfants', pending: true }] },
           {
-            title: 'Par temps de pluie',
-            items: [{ text: "Des jeux de société vous attendent dans l'appartement." }],
+            // One catch-all rather than a group per occasion: family and rainy-day ideas are the
+            // same handful of things, and they do not depend on the season.
+            title: "Toute l'année",
+            items: [
+              { title: 'Activités avec les enfants', pending: true },
+              {
+                title: 'Cinéma',
+                text: 'Le cinéma de Barcelonnette programme les sorties du moment.',
+                link: {
+                  label: 'Le cinéma de Barcelonnette sur Google Maps',
+                  url: 'https://www.google.com/maps/search/?api=1&query=Cin%C3%A9ma+Barcelonnette',
+                },
+              },
+            ],
           },
         ],
       },
@@ -192,9 +300,23 @@ export class StayService {
                 text: "Intermarché de Saint-Pons, juste à côté de Barcelonnette.",
                 link: GROCERIES_LINK,
               },
-              { title: 'Boulangerie', pending: true },
+              {
+                title: 'Boulangerie',
+                text: 'Boulangerie Reynet, au Sauze.',
+                link: {
+                  label: 'Boulangerie Reynet sur Google Maps',
+                  url: 'https://maps.app.goo.gl/dgTDuVboWhTcPjUq8',
+                },
+              },
               { title: 'Restaurants', pending: true },
-              { title: 'Pharmacie', pending: true },
+              {
+                title: 'Pharmacie',
+                text: 'Pharmacie Damery.',
+                link: {
+                  label: 'Pharmacie Damery sur Google Maps',
+                  url: 'https://maps.app.goo.gl/YTtH7UnrXWrw8qur7',
+                },
+              },
               { title: 'Médecin', pending: true },
               { title: 'Hôpital le plus proche', pending: true },
             ],

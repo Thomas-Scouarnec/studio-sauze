@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { IMAGE_LOADER, NgOptimizedImage } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { GuestAccessService } from '../../services/guest-access.service';
 import { StayService } from '../../services/stay.service';
@@ -12,7 +14,9 @@ import { StayService } from '../../services/stay.service';
  */
 @Component({
   selector: 'app-stay',
-  imports: [NavbarComponent, RouterLink],
+  imports: [NavbarComponent, RouterLink, NgOptimizedImage],
+  // Scoped to this page: only its images follow the `<name>-<width>w.webp` convention.
+  providers: [{ provide: IMAGE_LOADER, useValue: responsiveImageLoader }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './stay.html',
   styleUrl: './stay.css'
