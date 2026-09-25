@@ -130,6 +130,10 @@
         <source>Mon séjour</source>
         <target>My stay</target>
       </trans-unit>
+      <trans-unit id="lang.current" datatype="html">
+        <source> (langue actuelle)</source>
+        <target> (current language)</target>
+      </trans-unit>
       <trans-unit id="lang.label" datatype="html">
         <source>Langue</source>
         <target>Language</target>

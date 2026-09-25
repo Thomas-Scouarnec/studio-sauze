@@ -398,3 +398,7 @@ All prompts in session order.
 **Design decisions (proposed, D1 to D7 in the plan):** brand kept in French; British flag and British English; a saved « English » redirects French URLs, while `/en/` URLs always show English; « (in French) » on French-only external links; JSON translation file; absolute image URLs; `npm run deploy` replaces `ng deploy`.
 
 **Plan drafted:** 1 Unit ("Localization"), 6 stories, 1 Bolt (9 steps). New `functional-specs/localization.md` (FR-1 to FR-14, BR-1 to BR-7); the full French → English copy is in the design artifact — pending Thomas's approval of the plan and the copy.
+
+**Review by Thomas:** « When I say nothing it means it is validated » — the plan, D1 to D4, D6, D7 and the English copy are approved as written. **D5 changed:** XLIFF files instead of JSON, the format Thomas uses at work.
+
+**Plan approved by Thomas — Bolt 12 implemented on 2026-09-25.** All 9 steps done, 161 tests passing, 165 translation units, verified in Chromium against a static server mimicking GitHub Pages, at 1280px, 375px and 320px; AXE unchanged in both languages. Four defects were found and fixed in the browser: the current flag not announced as current (`aria-current` on a `<span>` is dropped), the navbar wrapping at 320px, a faint current-language underline, and a lost space in « Français (langue actuelle) ». The live check of `/en/` and `/en/stay` after `npm run deploy` is left to Thomas. Details in [bolt-12-localization.md](plans/bolt-12-localization.md).

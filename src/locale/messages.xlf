@@ -195,6 +195,13 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="lang.current" datatype="html">
+        <source> (langue actuelle)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/language-switcher/language-switcher.ts</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="nav.label" datatype="html">
         <source>Navigation principale</source>
         <context-group purpose="location">

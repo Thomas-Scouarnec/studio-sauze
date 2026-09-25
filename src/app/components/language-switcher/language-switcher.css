@@ -38,8 +38,29 @@ a.lang-flag:focus-visible {
 }
 
 /* The current language: full colour, underlined in cream. */
-.is-current .flag {
-  box-shadow:
-    0 0 0 1px rgba(245, 240, 232, 0.35),
-    0 5px 0 -3px var(--cream);
+.is-current {
+  position: relative;
+}
+
+.is-current::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 24px;
+  height: 2px;
+  margin-left: -12px;
+  background: var(--cream);
+}
+
+/* On the narrowest phones the logo, « Mon séjour » and both flags must share
+   one line: the targets narrow to 32px, still above WCAG AA's 24px minimum. */
+@media (max-width: 400px) {
+  .lang-flag {
+    min-width: 32px;
+  }
+
+  .lang-switcher {
+    gap: 0;
+  }
 }

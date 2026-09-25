@@ -1,6 +1,6 @@
 # Functional Specification — Localization
 
-**Status:** Draft — pending Thomas's approval (Session 12)
+**Status:** Active
 **Owner domain:** The languages the site is offered in, how a visitor picks one, and how the choice is remembered
 **Created:** 2026-09-25 (Session 12)
 
@@ -44,7 +44,7 @@ Changing the language loads the other app: it is a page load, not an in-page swa
 | FR-4 | Every visible text, alternative text, `aria-label`, visually hidden text and page title is translated | A half-translated page is worse than none; alt texts and labels are content too |
 | FR-5 | `<html lang>` is `fr` on French pages and `en` on English pages | WCAG 3.1.1; screen readers pick the right voice |
 | FR-6 | The navbar shows a small flag for each language — French flag and British flag — on every page and at every screen width | Thomas's request; visitors on a phone must find it too |
-| FR-7 | The current language's flag is marked as current and is not a link; the other flag links to the same page in the other language, keeping the section (`#fragment`) | The visitor stays where they were |
+| FR-7 | The current language's flag is announced as current (« (langue actuelle) » / « (current language) ») and is not a link; the other flag links to the same page in the other language, keeping the section (`#fragment`) | The visitor stays where they were |
 | FR-8 | Choosing a language by its flag saves it in the browser (`localStorage`) | Thomas's request: no need to choose again |
 | FR-9 | A visitor whose saved language is English and who opens a French URL is sent to the same page under `/en/`, before the app renders | The saved choice replaces the default |
 | FR-10 | An `/en/` URL always shows English, whatever the saved choice; it does not change the saved choice | A shared English link shows what the sender meant; only a flag click saves a choice |

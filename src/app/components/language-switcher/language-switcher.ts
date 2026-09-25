@@ -19,9 +19,17 @@ import { LanguageService } from '../../services/language.service';
       @for (link of language.links(); track link.code) {
         <li>
           @if (link.isCurrent) {
-            <span class="lang-flag is-current" aria-current="true" [attr.lang]="link.code">
+            <!--
+              A span has no role, so browsers drop aria-current on it: the
+              state is spoken as text instead, in the page's language.
+            -->
+            <span class="lang-flag is-current">
               <ng-container *ngTemplateOutlet="flag; context: { $implicit: link.code }" />
-              <span class="visually-hidden">{{ link.name }}</span>
+              <!-- The leading space is in the translated text: Angular drops whitespace-only nodes. -->
+              <span class="visually-hidden"
+                ><span [attr.lang]="link.code">{{ link.name }}</span
+                ><ng-container i18n="@@lang.current"> (langue actuelle)</ng-container></span
+              >
             </span>
           } @else {
             <a

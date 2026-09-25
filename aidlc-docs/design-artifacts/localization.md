@@ -13,8 +13,8 @@ Compile the site in French (source) and English with Angular's built-in i18n, ad
 1. French text stays in the templates and services, **marked** for translation:
    - templates: `i18n="@@hero.subtitle"` on elements, `i18n-alt`, `i18n-aria-label` on attributes
    - TypeScript: `` $localize`:@@equipment.arrival.title:Vos skis restent en bas` ``
-2. `ng extract-i18n` collects every marked text into `src/locale/messages.json` (the French source, generated).
-3. `src/locale/messages.en.json` holds the English for each id (hand-written).
+2. `ng extract-i18n` collects every marked text into `src/locale/messages.xlf` (the French source, generated).
+3. `src/locale/messages.en.xlf` holds the English for each id, as a `<target>` next to each `<source>`.
 4. `ng build` compiles the app once, then **inlines** each language into a copy: `browser/` (fr) and `browser/en/`. No translation lookup happens at runtime; each app contains one language only.
 
 Checked in a throwaway build before planning: an empty `subPath` is accepted for the source locale, and the build sets `<html lang>` and `<base href>` for each copy (`lang="fr"`, `/` and `lang="en"`, `/en/`).
@@ -25,7 +25,7 @@ Checked in a throwaway build before planning: an empty `subPath` is accepted for
 "projects": { "studio-sauze": {
   "i18n": {
     "sourceLocale": { "code": "fr", "subPath": "" },
-    "locales": { "en": { "translation": "src/locale/messages.en.json", "subPath": "en" } }
+    "locales": { "en": { "translation": "src/locale/messages.en.xlf", "subPath": "en" } }
   },
   "architect": {
     "build": {
@@ -43,12 +43,12 @@ Checked in a throwaway build before planning: an empty `subPath` is accepted for
       "development-en": { "buildTarget": "studio-sauze:build:development,en" }
     } },
     "extract-i18n": { "builder": "@angular/build:extract-i18n",
-                      "options": { "format": "json", "outputPath": "src/locale" } }
+                      "options": { "outputPath": "src/locale" } }   // default format: XLIFF 1.2
   }
 } }
 ```
 
-JSON rather than XLIFF: one line per text, easy to read and diff. The trade-off is no translator notes. Nobody but Thomas and Claude translates here, so they are not needed.
+**XLIFF 1.2** (Angular's default `xlf`), at Thomas's request: it is the format he uses at work (D5, changed from the JSON first proposed). The English file keeps only `<source>` and `<target>` per unit, without the extracted file's `<context-group>` line numbers, so it does not churn when code moves.
 
 ### IDs
 
@@ -60,8 +60,11 @@ JSON rather than XLIFF: one line per text, easy to read and diff. The trade-off 
 // A value inside a translated sentence becomes a named placeholder.
 text: $localize`:@@stay.flat.problem.text:Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à ${email}:email:.`
 ```
-```json
-"stay.flat.problem.text": "Call us (number in your confirmation email) or email us at {$email}."
+```xml
+<trans-unit id="stay.flat.problem.text" datatype="html">
+  <source>Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à <x id="email" equiv-text="email"/>.</source>
+  <target>Call us (number in your confirmation email) or email us at <x id="email" equiv-text="email"/>.</target>
+</trans-unit>
 ```
 
 ## New code
@@ -123,8 +126,9 @@ Rendered at the end of the navbar, outside the section-link list, so it stays vi
   @for (lang of language.links(); track lang.code) {
     <li>
       @if (lang.code === language.current) {
-        <span class="lang-flag is-current" aria-current="true" [attr.lang]="lang.code">
-          <!-- flag svg, aria-hidden --><span class="visually-hidden">{{ lang.name }}</span>
+        <span class="lang-flag is-current">
+          <!-- flag svg, aria-hidden -->
+          <span class="visually-hidden"><span [attr.lang]="lang.code">{{ lang.name }}</span> (langue actuelle)</span>
         </span>
       } @else {
         <a class="lang-flag" [href]="lang.href" [attr.hreflang]="lang.code" [attr.lang]="lang.code"
@@ -140,8 +144,9 @@ Rendered at the end of the navbar, outside the section-link list, so it stays vi
 - **Language names are not translated:** « Français » and « English » are each written in their own language, with `lang` for pronunciation (US-5)
 - **A plain `href`, not `routerLink`:** the other language is a different app, so a page load is needed
 - **Flags are inline SVG, 24 × 16, `aria-hidden`.** Emoji flags do not render on Windows, which shows the letters « FR » / « GB » instead
-- **Current language:** full opacity with a 2 px `--cream` underline. The other flag is at 70 % opacity and goes to 100 % on hover or focus. The focus ring is the navbar's `2px solid var(--amber)`
-- **Touch target:** 44 × 44 px (the flag is centred in its padding), the same as « Mon séjour »
+- **Current language, announced as text:** `aria-current` on a `<span>` is dropped by Chrome (a generic element), so the state is a visually hidden « (langue actuelle) » / « (current language) » — found in the accessibility tree during verification
+- **Current language, shown:** full opacity with a 2 px `--cream` bar under the flag. The other flag is at 70 % opacity and goes to 100 % on hover or focus. The focus ring is the navbar's `2px solid var(--amber)`
+- **Touch target:** 44 × 44 px (the flag is centred in its padding), the same as « Mon séjour »; 32 × 44 below 400px, so that the logo, « Mon séjour » and both flags share one line at 320px (WCAG AA asks for 24px)
 
 ## GitHub Pages
 
@@ -178,7 +183,7 @@ These are only right for the home page. The stay page carries them too, but it i
 - `src/test-setup.ts` imports `@angular/localize/init`. Specs run on the French source text, so the existing assertions stay as they are
 - `language-redirect.spec.ts`: every row of the table above
 - `language.service.spec.ts`: `links()` for `/`, `/stay`, `/#contact`, `/stay#arrival`, in both languages (`LOCALE_ID` provided); `choose()` writes the key; `choose()` with a throwing `localStorage` does not throw
-- `language-switcher.spec.ts`: two items; current is a `span` with `aria-current`; the other is an `a` with `href`, `hreflang`, `lang`; a click saves the choice
+- `language-switcher.spec.ts`: two items; current is a `span` announced « Français (langue actuelle) »; the other is an `a` with `href`, `hreflang`, `lang`; a click saves the choice
 - `navbar.spec.ts`: the switcher renders, also without the guest flag
 
 The English strings themselves are checked by the build (BR-4) and in the browser, not in unit tests.

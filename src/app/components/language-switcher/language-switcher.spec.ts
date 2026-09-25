@@ -30,12 +30,13 @@ describe('LanguageSwitcherComponent', () => {
     expect(list?.querySelectorAll('li').length).toBe(2);
   });
 
-  it('should mark the current language as current, not as a link (FR-7)', async () => {
+  it('should announce the current language as current, without a link (FR-7)', async () => {
     const host = await renderAt('/stay', 'fr');
-    const current = host.querySelector('[aria-current="true"]');
+    const current = host.querySelector('.lang-flag.is-current');
     expect(current?.tagName).toBe('SPAN');
-    expect(current?.getAttribute('lang')).toBe('fr');
-    expect(current?.textContent?.trim()).toBe('Français');
+    expect(current?.querySelector('a')).toBeNull();
+    expect(current?.querySelector('[lang="fr"]')?.textContent).toBe('Français');
+    expect(current?.textContent?.replace(/\s+/g, ' ').trim()).toBe('Français (langue actuelle)');
   });
 
   it('should link the other language to the same page and section (FR-7)', async () => {

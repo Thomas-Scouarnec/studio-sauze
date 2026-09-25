@@ -86,7 +86,7 @@
 **So that** I can change a text in French and know the English needs updating.
 
 **Acceptance criteria:**
-- The English text is in one file, `src/locale/messages.en.json`
+- The English text is in one file, `src/locale/messages.en.xlf` (XLIFF 1.2, the format Thomas uses at work)
 - `npm run extract-i18n` lists every translatable text
 - A French text without its English translation fails the production build with its id
 - `npm start` runs the French site; `npm run start:en` runs the English one
