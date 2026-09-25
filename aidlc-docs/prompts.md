@@ -374,3 +374,27 @@ All prompts in session order.
 **Last answers from Thomas:** pillows and blankets stay in the flat (only linen and towels are brought); coffee and filters are provided; the welcome signature « Thomas et sa famille » is kept; the hikes and trails part is something he wants to do himself, so its placeholder stays.
 
 **Plan approved by Thomas — Bolt 11 implemented on 2026-09-22.** All 6 steps done, 138 tests passing, verified at 1280px and 375px, AXE unchanged. The page ships 9 sections, a « Sommaire » menu, 4 external links and 16 « Information à venir » placeholders. Details in [bolt-11-stay-content.md](plans/bolt-11-stay-content.md).
+
+---
+
+## Session 12 — 2026-09-25
+
+**Intent:** Localize the site in French and English. French is the default; small flags switch the language; a changed choice is remembered on the client, so the visitor does not have to pick it again.
+
+**Clarifications provided by Thomas:**
+- **Mechanism:** Angular's built-in i18n (`@angular/localize`), chosen over the recommended runtime signal service and over Transloco
+- **Scope:** the whole site, `/stay` included
+- **English copy:** Claude drafts it, Thomas reviews it before implementation
+- **URL:** first answered « no language in the URL, `localStorage` only ». Built-in i18n compiles one app per language, each in its own folder, so the language has to be in the URL. Thomas then chose **French at `/` (unchanged), English at `/en/`**, over switching to the runtime service
+
+**Checked by Claude (throwaway build in the scratchpad):** the source locale accepts an empty `subPath`, so French stays at the root; the build writes `browser/` (`lang="fr"`, `<base href="/">`) and `browser/en/` (`lang="en"`, `<base href="/en/">`) and copies the assets into each. `@angular/localize` has to be pinned to the installed Angular version.
+
+**Findings from reading the code:**
+- About 160 French texts: templates in 10 components, plus the content held as data in `FlatInfoService`, `SeasonsService`, `ContactService`, `StayService` and the route titles
+- Image URLs are relative to `<base href>`, so English pages would download every photo again from `/en/images/`
+- GitHub Pages has one `404.html`, the French app: `/en/stay` needs a file of its own
+- The navbar hides its section links under 768px, so the flags go outside that list, next to « Mon séjour »
+
+**Design decisions (proposed, D1 to D7 in the plan):** brand kept in French; British flag and British English; a saved « English » redirects French URLs, while `/en/` URLs always show English; « (in French) » on French-only external links; JSON translation file; absolute image URLs; `npm run deploy` replaces `ng deploy`.
+
+**Plan drafted:** 1 Unit ("Localization"), 6 stories, 1 Bolt (9 steps). New `functional-specs/localization.md` (FR-1 to FR-14, BR-1 to BR-7); the full French → English copy is in the design artifact — pending Thomas's approval of the plan and the copy.
