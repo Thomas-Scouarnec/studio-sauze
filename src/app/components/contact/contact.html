@@ -1,7 +1,7 @@
 <div class="contact-intro">
-  <span class="section-label">Contact</span>
-  <h2 id="contact-heading" class="section-title">Écrivez-nous</h2>
-  <p>Une question sur l'appartement, une envie de séjour&nbsp;? Écrivez-nous par email, nous vous répondrons rapidement.</p>
+  <span class="section-label" i18n="@@contact.label">Contact</span>
+  <h2 id="contact-heading" class="section-title" i18n="@@contact.title">Écrivez-nous</h2>
+  <p i18n="@@contact.intro">Une question sur l'appartement, une envie de séjour&nbsp;? Écrivez-nous par email, nous vous répondrons rapidement.</p>
 
   <a class="contact-email" [href]="contact.mailtoUrl">
     <span class="contact-email-icon" aria-hidden="true">✉️</span>
@@ -10,7 +10,7 @@
 </div>
 
 <div class="contact-request">
-  <h3 id="contact-request-heading" class="contact-request-title">Pour une demande de séjour, précisez&nbsp;:</h3>
+  <h3 id="contact-request-heading" class="contact-request-title" i18n="@@contact.request.title">Pour une demande de séjour, précisez&nbsp;:</h3>
   <ul class="contact-checklist" aria-labelledby="contact-request-heading">
     @for (item of contact.requestChecklist(); track item.label) {
       <li class="contact-checklist-item">
@@ -19,5 +19,5 @@
       </li>
     }
   </ul>
-  <p class="contact-request-note">Votre séjour est confirmé par notre réponse&nbsp;: aucune réservation n'est enregistrée sur ce site.</p>
+  <p class="contact-request-note" i18n="@@contact.request.note">Votre séjour est confirmé par notre réponse&nbsp;: aucune réservation n'est enregistrée sur ce site.</p>
 </div>

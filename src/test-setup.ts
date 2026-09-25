@@ -1,3 +1,5 @@
+import '@angular/localize/init';
+
 /**
  * jsdom 28 renders `<dialog>` markup and reflects its `open` attribute, but
  * implements none of the modal behaviour: `showModal()` and `close()` simply

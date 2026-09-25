@@ -10,7 +10,7 @@ import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery'
   imports: [RouterOutlet, FooterComponent, PhotoGalleryComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a class="skip-link" href="#main-content" (click)="skipToMain($event)">Aller au contenu principal</a>
+    <a class="skip-link" href="#main-content" (click)="skipToMain($event)" i18n="@@app.skipLink">Aller au contenu principal</a>
     <router-outlet />
     <app-footer />
     <!-- Mounted once for the whole site: one dialog, one focus trap. -->

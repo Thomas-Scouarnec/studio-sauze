@@ -15,11 +15,11 @@ export class ContactService {
   readonly mailtoUrl = `mailto:${this.email}`;
 
   readonly requestChecklist = computed<ContactChecklistItem[]>(() => [
-    { icon: '📅', label: "Vos dates d'arrivée et de départ" },
+    { icon: '📅', label: $localize`:@@contact.checklist.dates:Vos dates d'arrivée et de départ` },
     {
       icon: '👥',
-      label: `Le nombre de personnes (${this.flatInfo.info().maxGuests} au maximum)`,
+      label: $localize`:@@contact.checklist.guests:Le nombre de personnes (${this.flatInfo.info().maxGuests}:maxGuests: au maximum)`,
     },
-    { icon: '💬', label: 'Vos questions éventuelles' },
+    { icon: '💬', label: $localize`:@@contact.checklist.questions:Vos questions éventuelles` },
   ]);
 }

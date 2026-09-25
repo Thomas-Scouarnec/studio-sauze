@@ -3,6 +3,7 @@
   class="gallery"
   tabindex="-1"
   aria-label="Galerie photos du studio"
+  i18n-aria-label="@@gallery.label"
   (close)="gallery.close()"
   (click)="onSurfaceClick($event)"
   (keydown.arrowleft)="gallery.previous()"
@@ -13,7 +14,7 @@
     <div class="gallery-surface">
       <button type="button" class="gallery-control gallery-close" (click)="gallery.close()">
         <span aria-hidden="true">&#10005;</span>
-        <span class="visually-hidden">Fermer la galerie</span>
+        <span class="visually-hidden" i18n="@@gallery.close">Fermer la galerie</span>
       </button>
 
       <div
@@ -37,16 +38,16 @@
       <div class="gallery-bar">
         <button type="button" class="gallery-control" (click)="gallery.previous()">
           <span aria-hidden="true">&#8249;</span>
-          <span class="visually-hidden">Photo précédente</span>
+          <span class="visually-hidden" i18n="@@gallery.previous">Photo précédente</span>
         </button>
 
-        <p class="gallery-counter" aria-live="polite">
+        <p class="gallery-counter" aria-live="polite" i18n="@@gallery.counter">
           Photo {{ gallery.position() }} sur {{ gallery.count() }}
         </p>
 
         <button type="button" class="gallery-control" (click)="gallery.next()">
           <span aria-hidden="true">&#8250;</span>
-          <span class="visually-hidden">Photo suivante</span>
+          <span class="visually-hidden" i18n="@@gallery.next">Photo suivante</span>
         </button>
       </div>
     </div>

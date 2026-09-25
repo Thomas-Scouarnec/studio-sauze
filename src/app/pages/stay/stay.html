@@ -1,11 +1,11 @@
 <header class="stay-banner">
   <div class="stay-banner-bg" aria-hidden="true"></div>
   <app-navbar />
-  <h1 class="stay-title" tabindex="-1">Votre séjour</h1>
+  <h1 class="stay-title" tabindex="-1" i18n="@@stay.title">Votre séjour</h1>
 </header>
 
 <main id="main-content" class="stay-content" tabindex="-1">
-  <nav class="stay-toc" aria-label="Sommaire">
+  <nav class="stay-toc" aria-label="Sommaire" i18n-aria-label="@@stay.toc.label">
     <ul>
       @for (section of stay.sections(); track section.id) {
         <li><a routerLink="/stay" [fragment]="section.id">{{ section.title }}</a></li>
@@ -28,14 +28,14 @@
                 <strong class="stay-item-title">{{ item.title }}</strong>
               }
               @if (item.pending) {
-                <span class="stay-pending">Information à venir</span>
+                <span class="stay-pending" i18n="@@stay.pending">Information à venir</span>
               } @else {
                 @if (item.text) {
                   <span class="stay-item-text">{{ item.text }}</span>
                 }
                 @if (item.link) {
                   <a class="stay-item-link" [href]="item.link.url" target="_blank" rel="noopener">
-                    {{ item.link.label }}<span class="visually-hidden"> (nouvel onglet)</span>
+                    {{ item.link.label }}<span class="visually-hidden" i18n="@@stay.newTab"> (nouvel onglet)</span>
                   </a>
                 }
               }

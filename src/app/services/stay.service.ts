@@ -30,10 +30,8 @@ export interface StaySection {
 const WINTER_TYRES_URL =
   'https://www.securite-routiere.gouv.fr/equipements-hivernaux-departements-et-communes';
 
-const GROCERIES_LINK: StayLink = {
-  label: 'Intermarché de Barcelonnette sur Google Maps',
-  url: 'https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Barcelonnette',
-};
+const GROCERIES_URL =
+  'https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Barcelonnette';
 
 /**
  * The guest guide shown on `/stay` (FR-13 to FR-20).
@@ -54,19 +52,20 @@ export class StayService {
   readonly sections = computed<StaySection[]>(() => {
     const { residenceName, buildingName, mapsUrl } = this.flatInfo.info();
     const email = this.contact.email;
+    const groceriesLink: StayLink = {
+      label: $localize`:@@stay.groceries.link:Intermarché de Barcelonnette sur Google Maps`,
+      url: GROCERIES_URL,
+    };
 
     return [
       {
         id: 'welcome',
-        title: 'Bienvenue',
+        title: $localize`:@@stay.welcome.title:Bienvenue`,
         groups: [
           {
             items: [
               {
-                text:
-                  `Bienvenue au Refuge ! Nous sommes heureux de vous accueillir au Sauze. ` +
-                  `Vous trouverez ici tout ce qu'il faut savoir pour votre séjour, de l'arrivée au départ. ` +
-                  `Une question ? Écrivez-nous à ${email}. — Thomas et sa famille`,
+                text: $localize`:@@stay.welcome.message.text:Bienvenue au Refuge ! Nous sommes heureux de vous accueillir au Sauze. Vous trouverez ici tout ce qu'il faut savoir pour votre séjour, de l'arrivée au départ. Une question ? Écrivez-nous à ${email}:email:. — Thomas et sa famille`,
               },
             ],
           },
@@ -74,38 +73,34 @@ export class StayService {
       },
       {
         id: 'before-arrival',
-        title: "Avant d'arriver",
+        title: $localize`:@@stay.beforeArrival.title:Avant d'arriver`,
         groups: [
           {
             items: [
               {
-                title: 'Linge de maison',
-                text:
-                  "Draps, housses de couette, taies d'oreiller et serviettes ne sont pas fournis : " +
-                  "pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l'appartement.",
+                title: $localize`:@@stay.beforeArrival.linen.title:Linge de maison`,
+                text: $localize`:@@stay.beforeArrival.linen.text:Draps, housses de couette, taies d'oreiller et serviettes ne sont pas fournis : pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l'appartement.`,
               },
               {
-                title: 'Horaires',
-                text: 'Arrivée à partir de 16 h, départ avant 11 h.',
+                title: $localize`:@@stay.beforeArrival.times.title:Horaires`,
+                text: $localize`:@@stay.beforeArrival.times.text:Arrivée à partir de 16 h, départ avant 11 h.`,
               },
               {
-                title: 'Remise des clés',
-                text:
-                  'Une personne sur place vous accueille directement à la résidence et vous remet les clés. ' +
-                  'Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? ' +
-                  'Prévenez-nous, nous trouverons une solution.',
+                title: $localize`:@@stay.beforeArrival.keys.title:Remise des clés`,
+                text: $localize`:@@stay.beforeArrival.keys.text:Une personne sur place vous accueille directement à la résidence et vous remet les clés. Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution.`,
               },
               {
-                title: "En voiture l'hiver",
-                text:
-                  'Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ' +
-                  'ou chaînes / chaussettes à neige dans le coffre.',
-                link: { label: 'Les règles sur le site de la Sécurité Routière', url: WINTER_TYRES_URL },
+                title: $localize`:@@stay.beforeArrival.winterDriving.title:En voiture l'hiver`,
+                text: $localize`:@@stay.beforeArrival.winterDriving.text:Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ou chaînes / chaussettes à neige dans le coffre.`,
+                link: {
+                  label: $localize`:@@stay.beforeArrival.winterDriving.link:Les règles sur le site de la Sécurité Routière`,
+                  url: WINTER_TYRES_URL,
+                },
               },
               {
-                title: 'Les courses',
-                text: "Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Barcelonnette.",
-                link: GROCERIES_LINK,
+                title: $localize`:@@stay.beforeArrival.groceries.title:Les courses`,
+                text: $localize`:@@stay.beforeArrival.groceries.text:Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Barcelonnette.`,
+                link: groceriesLink,
               },
             ],
           },
@@ -113,26 +108,30 @@ export class StayService {
       },
       {
         id: 'arrival',
-        title: "À l'arrivée",
+        title: $localize`:@@stay.arrival.title:À l'arrivée`,
         groups: [
           {
             items: [
-              { title: 'Accéder au parking', pending: true },
-              { title: 'Si le parking est complet', pending: true },
+              { title: $localize`:@@stay.arrival.parking.title:Accéder au parking`, pending: true },
               {
-                title: "Jusqu'à l'appartement",
-                text:
-                  `Résidence ${residenceName}, bâtiment ${buildingName}. Prenez l'ascenseur jusqu'au 1er étage : ` +
-                  `l'appartement n° 10 est à gauche en sortant.`,
-                link: { label: 'Voir sur Google Maps', url: mapsUrl },
+                title: $localize`:@@stay.arrival.parkingFull.title:Si le parking est complet`,
+                pending: true,
               },
               {
-                title: 'Le casier à skis',
-                text: "Au rez-de-chaussée, il s'ouvre avec la même clé que la porte d'entrée.",
+                title: $localize`:@@stay.arrival.flat.title:Jusqu'à l'appartement`,
+                text: $localize`:@@stay.arrival.flat.text:Résidence ${residenceName}:residence:, bâtiment ${buildingName}:building:. Prenez l'ascenseur jusqu'au 1er étage : l'appartement n° 10 est à gauche en sortant.`,
+                link: {
+                  label: $localize`:@@stay.arrival.flat.link:Voir sur Google Maps`,
+                  url: mapsUrl,
+                },
               },
               {
-                title: 'Connexion',
-                text: 'Pas de Wi-Fi, mais un très bon réseau 4G/5G.',
+                title: $localize`:@@stay.arrival.skiLocker.title:Le casier à skis`,
+                text: $localize`:@@stay.arrival.skiLocker.text:Au rez-de-chaussée, il s'ouvre avec la même clé que la porte d'entrée.`,
+              },
+              {
+                title: $localize`:@@stay.arrival.network.title:Connexion`,
+                text: $localize`:@@stay.arrival.network.text:Pas de Wi-Fi, mais un très bon réseau 4G/5G.`,
               },
             ],
           },
@@ -140,21 +139,21 @@ export class StayService {
       },
       {
         id: 'flat',
-        title: "L'appartement",
+        title: $localize`:@@stay.flat.title:L'appartement`,
         groups: [
           {
             items: [
-              { title: 'Inventaire', pending: true },
-              { title: 'Plaques et four', pending: true },
-              { title: 'Ouvrir le canapé-lit', pending: true },
-              { title: 'Lave-linge', pending: true },
+              { title: $localize`:@@stay.flat.inventory.title:Inventaire`, pending: true },
+              { title: $localize`:@@stay.flat.cooking.title:Plaques et four`, pending: true },
+              { title: $localize`:@@stay.flat.sofaBed.title:Ouvrir le canapé-lit`, pending: true },
+              { title: $localize`:@@stay.flat.washingMachine.title:Lave-linge`, pending: true },
               {
-                title: 'Déjà sur place',
-                text: 'Café et filtres, sel, huile, tablettes pour le lave-vaisselle et produits d\'entretien.',
+                title: $localize`:@@stay.flat.provided.title:Déjà sur place`,
+                text: $localize`:@@stay.flat.provided.text:Café et filtres, sel, huile, tablettes pour le lave-vaisselle et produits d'entretien.`,
               },
               {
-                title: 'Un souci ?',
-                text: `Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à ${email}.`,
+                title: $localize`:@@stay.flat.problem.title:Un souci ?`,
+                text: $localize`:@@stay.flat.problem.text:Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à ${email}:email:.`,
               },
             ],
           },
@@ -162,55 +161,79 @@ export class StayService {
       },
       {
         id: 'activities',
-        title: 'Activités',
+        title: $localize`:@@stay.activities.title:Activités`,
         groups: [
-          { title: 'Hiver', items: [{ title: 'Randonnées en raquettes', pending: true }] },
           {
-            title: 'Été',
+            title: $localize`:@@stay.activities.winter.title:Hiver`,
             items: [
-              { title: 'Randonnées', pending: true },
-              { title: 'Sentiers et trails', pending: true },
+              {
+                title: $localize`:@@stay.activities.snowshoes.title:Randonnées en raquettes`,
+                pending: true,
+              },
             ],
           },
-          { title: 'En famille', items: [{ title: 'Activités avec les enfants', pending: true }] },
           {
-            title: 'Par temps de pluie',
-            items: [{ text: "Des jeux de société vous attendent dans l'appartement." }],
+            title: $localize`:@@stay.activities.summer.title:Été`,
+            items: [
+              { title: $localize`:@@stay.activities.hikes.title:Randonnées`, pending: true },
+              {
+                title: $localize`:@@stay.activities.trails.title:Sentiers et trails`,
+                pending: true,
+              },
+            ],
+          },
+          {
+            title: $localize`:@@stay.activities.family.title:En famille`,
+            items: [
+              {
+                title: $localize`:@@stay.activities.children.title:Activités avec les enfants`,
+                pending: true,
+              },
+            ],
+          },
+          {
+            title: $localize`:@@stay.activities.rain.title:Par temps de pluie`,
+            items: [
+              {
+                text: $localize`:@@stay.activities.rain.text:Des jeux de société vous attendent dans l'appartement.`,
+              },
+            ],
           },
         ],
       },
       {
         id: 'shops',
-        title: 'Commerces et services',
+        title: $localize`:@@stay.shops.title:Commerces et services`,
         groups: [
           {
             items: [
               {
-                title: 'Supermarché',
-                text: 'Intermarché de Barcelonnette.',
-                link: GROCERIES_LINK,
+                title: $localize`:@@stay.shops.supermarket.title:Supermarché`,
+                text: $localize`:@@stay.shops.supermarket.text:Intermarché de Barcelonnette.`,
+                link: groceriesLink,
               },
-              { title: 'Boulangerie', pending: true },
-              { title: 'Restaurants', pending: true },
-              { title: 'Pharmacie', pending: true },
-              { title: 'Médecin', pending: true },
-              { title: 'Hôpital le plus proche', pending: true },
+              { title: $localize`:@@stay.shops.bakery.title:Boulangerie`, pending: true },
+              { title: $localize`:@@stay.shops.restaurants.title:Restaurants`, pending: true },
+              { title: $localize`:@@stay.shops.pharmacy.title:Pharmacie`, pending: true },
+              { title: $localize`:@@stay.shops.doctor.title:Médecin`, pending: true },
+              {
+                title: $localize`:@@stay.shops.hospital.title:Hôpital le plus proche`,
+                pending: true,
+              },
             ],
           },
         ],
       },
       {
         id: 'practical',
-        title: 'Infos pratiques',
+        title: $localize`:@@stay.practical.title:Infos pratiques`,
         groups: [
           {
             items: [
-              { title: 'Les poubelles', pending: true },
+              { title: $localize`:@@stay.practical.rubbish.title:Les poubelles`, pending: true },
               {
-                title: 'Règles de la résidence',
-                text:
-                  'Les skis restent au casier : ils ne montent pas dans les étages. ' +
-                  'On ne circule pas en chaussures de ski dans la résidence.',
+                title: $localize`:@@stay.practical.rules.title:Règles de la résidence`,
+                text: $localize`:@@stay.practical.rules.text:Les skis restent au casier : ils ne montent pas dans les étages. On ne circule pas en chaussures de ski dans la résidence.`,
               },
             ],
           },
@@ -218,31 +241,33 @@ export class StayService {
       },
       {
         id: 'before-leaving',
-        title: 'Avant de partir',
+        title: $localize`:@@stay.beforeLeaving.title:Avant de partir`,
         groups: [
           {
             items: [
-              { text: 'Départ avant 11 h.' },
-              { text: 'Vaisselle faite et rangée.' },
-              { text: 'Réfrigérateur vidé.' },
-              { text: 'Poubelles descendues.' },
-              { text: 'Fenêtres fermées, lumières éteintes.' },
-              { text: 'Casier à skis vidé.' },
-              { text: 'Clés remises à la personne qui vous a accueillis.' },
+              { text: $localize`:@@stay.beforeLeaving.time.text:Départ avant 11 h.` },
+              { text: $localize`:@@stay.beforeLeaving.dishes.text:Vaisselle faite et rangée.` },
+              { text: $localize`:@@stay.beforeLeaving.fridge.text:Réfrigérateur vidé.` },
+              { text: $localize`:@@stay.beforeLeaving.rubbish.text:Poubelles descendues.` },
+              {
+                text: $localize`:@@stay.beforeLeaving.windows.text:Fenêtres fermées, lumières éteintes.`,
+              },
+              { text: $localize`:@@stay.beforeLeaving.skiLocker.text:Casier à skis vidé.` },
+              {
+                text: $localize`:@@stay.beforeLeaving.keys.text:Clés remises à la personne qui vous a accueillis.`,
+              },
             ],
           },
         ],
       },
       {
         id: 'after-leaving',
-        title: 'Après votre séjour',
+        title: $localize`:@@stay.afterLeaving.title:Après votre séjour`,
         groups: [
           {
             items: [
               {
-                text:
-                  `Merci d'avoir séjourné au Refuge ! Un avis, une suggestion ? Écrivez-nous à ${email}. ` +
-                  `Et si vous avez aimé, parlez-en autour de vous : le bouche-à-oreille est notre meilleure publicité.`,
+                text: $localize`:@@stay.afterLeaving.message.text:Merci d'avoir séjourné au Refuge ! Un avis, une suggestion ? Écrivez-nous à ${email}:email:. Et si vous avez aimé, parlez-en autour de vous : le bouche-à-oreille est notre meilleure publicité.`,
               },
             ],
           },

@@ -1,6 +1,6 @@
 <div class="equipment-header">
-  <span class="section-label">Équipements</span>
-  <h2 id="equipment-heading" class="section-title">Ce qui vous attend</h2>
+  <span class="section-label" i18n="@@equipment.label">Équipements</span>
+  <h2 id="equipment-heading" class="section-title" i18n="@@equipment.title">Ce qui vous attend</h2>
 </div>
 
 <div class="equipment-blocks">
@@ -38,7 +38,7 @@
             Names the action after the photo's own description, so the button
             announces both. An aria-label here would replace the description.
           -->
-          <span class="visually-hidden">
+          <span class="visually-hidden" i18n="@@equipment.openGallery">
             — ouvrir la galerie ({{ gallery.count() }} photos)
           </span>
         </button>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="equipment-extras">
-  <h3 id="equipment-extras-heading" class="section-label">Et aussi</h3>
+  <h3 id="equipment-extras-heading" class="section-label" i18n="@@equipment.extras">Et aussi</h3>
   <ul class="equipment-list" aria-labelledby="equipment-extras-heading">
     @for (item of flatInfo.equipmentItems(); track item.label) {
       <li class="equipment-item">
