@@ -17,9 +17,13 @@ export interface ResponsivePhoto {
  * Maps an `NgOptimizedImage` request to a file under `public/images/`,
  * following the convention `<name>-<width>w.webp`.
  *
+ * The path is absolute, not relative to `<base href>`: the English site is
+ * served under `/en/`, and both languages must share one cached copy of each
+ * photo rather than download it again after a language switch.
+ *
  * Example: `{ src: 'seasons/sauze-winter', width: 1600 }`
- * → `images/seasons/sauze-winter-1600w.webp`
+ * → `/images/seasons/sauze-winter-1600w.webp`
  */
 export function responsiveImageLoader(config: ImageLoaderConfig): string {
-  return `images/${config.src}-${config.width ?? FALLBACK_IMAGE_WIDTH}w.webp`;
+  return `/images/${config.src}-${config.width ?? FALLBACK_IMAGE_WIDTH}w.webp`;
 }

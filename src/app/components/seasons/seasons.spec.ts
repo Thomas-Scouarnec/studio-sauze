@@ -52,12 +52,12 @@ describe('SeasonsComponent', () => {
     const [winter, summer]: HTMLImageElement[] = Array.from(
       fixture.nativeElement.querySelectorAll('.season-photo img'),
     );
-    expect(winter.getAttribute('src')).toBe('images/seasons/sauze-winter-800w.webp');
+    expect(winter.getAttribute('src')).toBe('/images/seasons/sauze-winter-800w.webp');
     expect(winter.getAttribute('srcset')).toBe(
-      'images/seasons/sauze-winter-800w.webp 800w, images/seasons/sauze-winter-1600w.webp 1600w',
+      '/images/seasons/sauze-winter-800w.webp 800w, /images/seasons/sauze-winter-1600w.webp 1600w',
     );
     expect(summer.getAttribute('srcset')).toBe(
-      'images/seasons/barcelonnette-summer-800w.webp 800w, images/seasons/barcelonnette-summer-1260w.webp 1260w',
+      '/images/seasons/barcelonnette-summer-800w.webp 800w, /images/seasons/barcelonnette-summer-1260w.webp 1260w',
     );
   });
 

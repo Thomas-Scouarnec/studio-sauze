@@ -62,9 +62,9 @@ describe('EquipmentComponent', () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
     const expected: Record<string, string> = {
-      arrival: 'images/equipment/arrival-800w.webp 800w',
-      sleeping: 'images/equipment/sleeping-800w.webp 800w',
-      kitchen: 'images/equipment/kitchen-800w.webp 800w',
+      arrival: '/images/equipment/arrival-800w.webp 800w',
+      sleeping: '/images/equipment/sleeping-800w.webp 800w',
+      kitchen: '/images/equipment/kitchen-800w.webp 800w',
     };
     for (const [id, srcset] of Object.entries(expected)) {
       const frame: HTMLElement = fixture.nativeElement.querySelector(`.equipment-block.${id} .equipment-photo`);

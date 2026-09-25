@@ -1,0 +1,45 @@
+.lang-switcher {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+/* 44 × 44 targets around a 24 × 16 flag, like « Mon séjour » on phones. */
+.lang-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.flag {
+  display: block;
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  /* Keeps the flag's white parts from melting into a light photo. */
+  box-shadow: 0 0 0 1px rgba(245, 240, 232, 0.35);
+}
+
+a.lang-flag .flag {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+a.lang-flag:hover .flag,
+a.lang-flag:focus-visible .flag {
+  opacity: 1;
+}
+
+a.lang-flag:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: -2px;
+}
+
+/* The current language: full colour, underlined in cream. */
+.is-current .flag {
+  box-shadow:
+    0 0 0 1px rgba(245, 240, 232, 0.35),
+    0 5px 0 -3px var(--cream);
+}

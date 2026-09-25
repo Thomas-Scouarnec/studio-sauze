@@ -31,6 +31,12 @@ nav {
   outline-offset: 4px;
 }
 
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .nav-links {
   display: flex;
   gap: 2.5rem;
@@ -71,6 +77,10 @@ nav {
 }
 
 @media (max-width: 768px) {
+  .nav-end {
+    gap: 0.5rem;
+  }
+
   /* The section links stay hidden on phones, but a guest must still find
      their page (FR-5). Without the flag the list is empty, as before. */
   .nav-links li:not(.nav-guest) {

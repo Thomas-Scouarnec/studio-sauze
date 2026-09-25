@@ -130,6 +130,10 @@
         <source>Mon séjour</source>
         <target>My stay</target>
       </trans-unit>
+      <trans-unit id="lang.label" datatype="html">
+        <source>Langue</source>
+        <target>Language</target>
+      </trans-unit>
       <trans-unit id="gallery.label" datatype="html">
         <source>Galerie photos du studio</source>
         <target>Photo gallery of the studio</target>

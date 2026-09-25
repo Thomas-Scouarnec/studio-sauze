@@ -59,4 +59,12 @@ describe('NavbarComponent', () => {
     expect(link?.textContent?.trim()).toBe('Mon séjour');
     expect(link?.getAttribute('href')).toBe('/stay');
   });
+
+  it('should show the language flags without the guest flag, outside the section links (FR-6)', async () => {
+    const host = await render();
+    const switcher = host.querySelector('app-language-switcher');
+    expect(switcher).not.toBeNull();
+    expect(switcher?.closest('.nav-links')).toBeNull();
+    expect(switcher?.querySelectorAll('.lang-flag').length).toBe(2);
+  });
 });

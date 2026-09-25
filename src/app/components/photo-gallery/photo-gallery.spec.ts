@@ -39,7 +39,7 @@ describe('PhotoGalleryComponent', () => {
     const dialog: HTMLDialogElement = fixture.nativeElement.querySelector('dialog');
     const img: HTMLImageElement = fixture.nativeElement.querySelector('.gallery-stage img');
     expect(dialog.open).toBe(true);
-    expect(img.getAttribute('srcset')).toBe('images/equipment/kitchen-800w.webp 800w');
+    expect(img.getAttribute('srcset')).toBe('/images/equipment/kitchen-800w.webp 800w');
     expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
   });
 
@@ -98,12 +98,12 @@ describe('PhotoGalleryComponent', () => {
       (fixture.nativeElement.querySelector('.gallery-stage img') as HTMLImageElement).getAttribute(
         'srcset'
       );
-    expect(srcset()).toBe('images/equipment/kitchen-800w.webp 800w');
+    expect(srcset()).toBe('/images/equipment/kitchen-800w.webp 800w');
 
     gallery.next();
     await fixture.whenStable();
 
-    expect(srcset()).toBe('images/about/living-room-800w.webp 800w, images/about/living-room-1200w.webp 1200w');
+    expect(srcset()).toBe('/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w');
   });
 
   it('should move between photos with the arrow keys', async () => {
