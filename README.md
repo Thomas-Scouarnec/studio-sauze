@@ -31,7 +31,15 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-The dev server runs one language at a time: `npm start` serves French, `npm run start:en` serves English. A flag click in the dev server therefore stays in French; to try the switch itself, build and serve `dist/` (see *Localization*).
+`ng serve` builds one language at a time, so there are three ways to run the site:
+
+| Command | Serves | Flags |
+|---|---|---|
+| `npm start` | French at `http://localhost:4200/` | The British flag leads nowhere |
+| `npm run start:en` | English at `http://localhost:4201/en/` | The French flag leads nowhere |
+| `npm run start:all` | Both: French at `http://localhost:4200/`, which forwards `/en/*` to the English server | **Work, as in production** |
+
+`start:all` runs two dev servers (`scripts/start-all.mjs`); Ctrl+C stops both. Browse port 4200. `proxy.conf.json` forwards `/en` from the French server to the English one; `proxy.en.conf.json` lets the English server answer the absolute `/images/…` photo URLs.
 
 ## Localization
 

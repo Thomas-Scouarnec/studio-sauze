@@ -63,8 +63,12 @@
               "sourceMap": true,
               "localize": ["fr"]
             },
-            "en": {
-              "localize": ["en"]
+            "development-en": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "localize": ["en"],
+              "baseHref": "/en/"
             }
           },
           "defaultConfiguration": "production"
@@ -79,7 +83,14 @@
               "buildTarget": "studio-sauze:build:development"
             },
             "development-en": {
-              "buildTarget": "studio-sauze:build:development,en"
+              "buildTarget": "studio-sauze:build:development-en",
+              "port": 4201,
+              "servePath": "/en/",
+              "proxyConfig": "proxy.en.conf.json"
+            },
+            "development-all": {
+              "buildTarget": "studio-sauze:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

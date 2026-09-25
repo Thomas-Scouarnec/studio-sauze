@@ -4,7 +4,7 @@
     {
       "name": "studio-sauze",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": ["run", "start:all"],
       "port": 4200
     }
   ]

@@ -158,4 +158,5 @@
 ## Noted during verification
 
 - `/stay` and unknown `/en/…` paths are still served by the French `404.html` with status 404, as before this bolt. Only `/en/stay` has its own file
+- **Follow-up (Thomas: « npm run start:en does not work »):** the English dev server served English at `/` on port 4200 — `ng serve` ignores `subPath` — so `/en/…` fell through to the home page, the French flag pointed back at itself, and it collided with `npm start`. Fixed: `start:en` serves English at `http://localhost:4201/en/` (`servePath`, `baseHref`), and the new `npm run start:all` runs both servers with `/en/*` forwarded from 4200 to 4201, so the flags, the saved choice and the photos work locally as in production. `.claude/launch.json` now starts `start:all`. Checked in Chromium: flag both ways, saved-choice redirect, no broken image, no console error, Ctrl+C stops both servers
 - Links to sauze.com are not marked « (in French) »: the check against the live site could not be made from the sandbox, so D4 is applied only to the two sites known to be French-only

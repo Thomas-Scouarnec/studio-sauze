@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:en": "ng serve --configuration=development-en",
+    "start:all": "node scripts/start-all.mjs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
