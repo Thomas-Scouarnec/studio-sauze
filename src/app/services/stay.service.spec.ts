@@ -50,6 +50,13 @@ describe('StayService', () => {
     ]);
   });
 
+  it('should list the tennis courts, the pétanque court and the wooden games', () => {
+    const activities = service().sections().find((s) => s.id === 'activities');
+    const titles = activities?.groups.map((g) => g.items.map((item) => item.title));
+    expect(titles?.[1]).toEqual(['Randonnées', 'Sentiers et trails', 'Tennis', 'Pétanque']);
+    expect(titles?.[2]).toEqual(['Jeux en bois', 'Activités avec les enfants']);
+  });
+
   it('should list the restaurants among the shops and services, not the activities (FR-15)', () => {
     const sections = service().sections();
     const shops = sections.find((s) => s.id === 'shops');

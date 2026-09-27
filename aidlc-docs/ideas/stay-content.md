@@ -94,6 +94,11 @@
 - **Coffee:** coffee and filters are provided
 - **Welcome signature:** « Thomas et sa famille » — validated
 
+## Added on 2026-09-27
+
+- **Summer:** two free tennis courts at 300 m; a pétanque court at the residence
+- **With children:** wooden games at 300 m
+
 ## Still to settle
 
 1. **Hike and trail "tracks":** Thomas wants to handle this part himself — form still to be decided (links, GPX, a map). The placeholder stays meanwhile

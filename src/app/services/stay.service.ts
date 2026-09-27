@@ -180,11 +180,23 @@ export class StayService {
                 title: $localize`:@@stay.activities.trails.title:Sentiers et trails`,
                 pending: true,
               },
+              {
+                title: $localize`:@@stay.activities.tennis.title:Tennis`,
+                text: $localize`:@@stay.activities.tennis.text:Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.`,
+              },
+              {
+                title: $localize`:@@stay.activities.petanque.title:Pétanque`,
+                text: $localize`:@@stay.activities.petanque.text:Un terrain de pétanque vous attend au pied de la résidence.`,
+              },
             ],
           },
           {
             title: $localize`:@@stay.activities.family.title:En famille`,
             items: [
+              {
+                title: $localize`:@@stay.activities.woodenGames.title:Jeux en bois`,
+                text: $localize`:@@stay.activities.woodenGames.text:Des jeux en bois pour les enfants, à 300 m de la résidence.`,
+              },
               {
                 title: $localize`:@@stay.activities.children.title:Activités avec les enfants`,
                 pending: true,

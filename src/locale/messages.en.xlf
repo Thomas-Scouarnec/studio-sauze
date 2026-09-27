@@ -558,9 +558,33 @@
         <source>Sentiers et trails</source>
         <target>Trails and trail running</target>
       </trans-unit>
+      <trans-unit id="stay.activities.tennis.title" datatype="html">
+        <source>Tennis</source>
+        <target>Tennis</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.tennis.text" datatype="html">
+        <source>Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.</source>
+        <target>Two tennis courts, free and open to all, 300 m from the residence.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.petanque.title" datatype="html">
+        <source>Pétanque</source>
+        <target>Pétanque</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.petanque.text" datatype="html">
+        <source>Un terrain de pétanque vous attend au pied de la résidence.</source>
+        <target>A pétanque court awaits you right by the residence.</target>
+      </trans-unit>
       <trans-unit id="stay.activities.family.title" datatype="html">
         <source>En famille</source>
         <target>With children</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.title" datatype="html">
+        <source>Jeux en bois</source>
+        <target>Wooden games</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.text" datatype="html">
+        <source>Des jeux en bois pour les enfants, à 300 m de la résidence.</source>
+        <target>Wooden games for children, 300 m from the residence.</target>
       </trans-unit>
       <trans-unit id="stay.activities.children.title" datatype="html">
         <source>Activités avec les enfants</source>
