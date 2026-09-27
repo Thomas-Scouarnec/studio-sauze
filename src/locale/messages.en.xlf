@@ -106,6 +106,14 @@
         <source>Découvrir</source>
         <target>Explore</target>
       </trans-unit>
+      <trans-unit id="lang.label" datatype="html">
+        <source>Langue</source>
+        <target>Language</target>
+      </trans-unit>
+      <trans-unit id="lang.current" datatype="html">
+        <source> (langue actuelle)</source>
+        <target> (current language)</target>
+      </trans-unit>
       <trans-unit id="nav.label" datatype="html">
         <source>Navigation principale</source>
         <target>Main navigation</target>
@@ -129,14 +137,6 @@
       <trans-unit id="nav.stay" datatype="html">
         <source>Mon séjour</source>
         <target>My stay</target>
-      </trans-unit>
-      <trans-unit id="lang.current" datatype="html">
-        <source> (langue actuelle)</source>
-        <target> (current language)</target>
-      </trans-unit>
-      <trans-unit id="lang.label" datatype="html">
-        <source>Langue</source>
-        <target>Language</target>
       </trans-unit>
       <trans-unit id="gallery.label" datatype="html">
         <source>Galerie photos du studio</source>
@@ -185,6 +185,10 @@
       <trans-unit id="stay.newTab" datatype="html">
         <source> (nouvel onglet)</source>
         <target> (new tab)</target>
+      </trans-unit>
+      <trans-unit id="stay.photoPending" datatype="html">
+        <source>Photo à venir : <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></source>
+        <target>Photo coming soon: <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></target>
       </trans-unit>
       <trans-unit id="contact.checklist.dates" datatype="html">
         <source>Vos dates d&apos;arrivée et de départ</source>
@@ -399,8 +403,8 @@
         <target>Ubaye tourist offices (in French)</target>
       </trans-unit>
       <trans-unit id="stay.groceries.link" datatype="html">
-        <source>Intermarché de Barcelonnette sur Google Maps</source>
-        <target>Intermarché Barcelonnette on Google Maps</target>
+        <source>Intermarché de Saint-Pons sur Google Maps</source>
+        <target>Intermarché Saint-Pons on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.welcome.title" datatype="html">
         <source>Bienvenue</source>
@@ -422,22 +426,6 @@
         <source>Draps, housses de couette, taies d&apos;oreiller et serviettes ne sont pas fournis : pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l&apos;appartement.</source>
         <target>Sheets, duvet covers, pillowcases and towels are not provided: please bring your own. Pillows and blankets, however, are in the flat.</target>
       </trans-unit>
-      <trans-unit id="stay.beforeArrival.times.title" datatype="html">
-        <source>Horaires</source>
-        <target>Times</target>
-      </trans-unit>
-      <trans-unit id="stay.beforeArrival.times.text" datatype="html">
-        <source>Arrivée à partir de 16 h, départ avant 11 h.</source>
-        <target>Arrival from 4 pm, departure by 11 am.</target>
-      </trans-unit>
-      <trans-unit id="stay.beforeArrival.keys.title" datatype="html">
-        <source>Remise des clés</source>
-        <target>Key handover</target>
-      </trans-unit>
-      <trans-unit id="stay.beforeArrival.keys.text" datatype="html">
-        <source>Une personne sur place vous accueille directement à la résidence et vous remet les clés. Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution.</source>
-        <target>Someone local will meet you at the residence and hand you the keys. Their contact details are in your confirmation email. Arriving later than planned? Let us know and we will find a solution.</target>
-      </trans-unit>
       <trans-unit id="stay.beforeArrival.winterDriving.title" datatype="html">
         <source>En voiture l&apos;hiver</source>
         <target>Driving in winter</target>
@@ -455,32 +443,68 @@
         <target>Groceries</target>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.groceries.text" datatype="html">
-        <source>Faites vos courses avant de monter : nous vous recommandons l&apos;Intermarché de Barcelonnette.</source>
-        <target>Do your shopping before driving up: we recommend the Intermarché in Barcelonnette.</target>
+        <source>Faites vos courses avant de monter : nous vous recommandons l&apos;Intermarché de Saint-Pons, juste à côté de Barcelonnette.</source>
+        <target>Do your shopping before driving up: we recommend the Intermarché in Saint-Pons, right next to Barcelonnette.</target>
       </trans-unit>
       <trans-unit id="stay.arrival.title" datatype="html">
         <source>À l&apos;arrivée</source>
         <target>On arrival</target>
       </trans-unit>
+      <trans-unit id="stay.arrival.keys.title" datatype="html">
+        <source>Arrivée et remise des clés</source>
+        <target>Arrival and key handover</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.keys.text" datatype="html">
+        <source>Arrivée à partir de 16 h. Une personne sur place vous accueille directement à la résidence et vous remet les clés ; ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution.</source>
+        <target>Arrival from 4 pm. Someone local will meet you at the residence and hand you the keys; their contact details are in your confirmation email. Running later than planned? Let us know and we will sort something out.</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.address.title" datatype="html">
+        <source>L&apos;adresse</source>
+        <target>The address</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.address.text" datatype="html">
+        <source>Résidence <x id="residence" equiv-text="residenceName"/>, bâtiment <x id="building" equiv-text="buildingName"/> — <x id="street" equiv-text="street"/>, <x id="postalCode" equiv-text="postalCode"/> <x id="commune" equiv-text="commune"/>.</source>
+        <target><x id="residence" equiv-text="residenceName"/> residence, <x id="building" equiv-text="buildingName"/> building — <x id="street" equiv-text="street"/>, <x id="postalCode" equiv-text="postalCode"/> <x id="commune" equiv-text="commune"/>.</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.address.link" datatype="html">
+        <source>Voir sur Google Maps</source>
+        <target>View on Google Maps</target>
+      </trans-unit>
       <trans-unit id="stay.arrival.parking.title" datatype="html">
         <source>Accéder au parking</source>
         <target>Getting to the car park</target>
       </trans-unit>
+      <trans-unit id="stay.arrival.parking.text" datatype="html">
+        <source>Attention : vous passez d&apos;abord devant la résidence Le Soleil du Sauze — ce n&apos;est pas la bonne. La nôtre est la résidence <x id="residence" equiv-text="residenceName"/>. Prenez la route à gauche, qui monte : allez jusqu&apos;en haut, vous arrivez au parking du bâtiment <x id="building" equiv-text="buildingName"/>.</source>
+        <target>Careful: you first drive past the Le Soleil du Sauze residence — that is not the one. Ours is the <x id="residence" equiv-text="residenceName"/> residence. Take the road on the left, going uphill: follow it to the top and you reach the car park of the <x id="building" equiv-text="buildingName"/> building.</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parking.photo.road" datatype="html">
+        <source>La route à gauche à prendre pour monter à la résidence</source>
+        <target>The road on the left that climbs up to the residence</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parking.photo.carPark" datatype="html">
+        <source>Le parking du bâtiment <x id="building" equiv-text="buildingName"/></source>
+        <target>The car park of the <x id="building" equiv-text="buildingName"/> building</target>
+      </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.title" datatype="html">
         <source>Si le parking est complet</source>
         <target>If the car park is full</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.text" datatype="html">
+        <source>Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c&apos;est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c&apos;est l&apos;échauffement avant les pistes 😉</source>
+        <target>You may park in the other car parks you pass on the way up: it is allowed. Otherwise, drive back down and park on the route de la Grande Ourse: the walk up is your warm-up before the slopes 😉</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.link" datatype="html">
+        <source>Le stationnement route de la Grande Ourse sur Google Maps</source>
+        <target>Parking on the route de la Grande Ourse on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.arrival.flat.title" datatype="html">
         <source>Jusqu&apos;à l&apos;appartement</source>
         <target>Finding the flat</target>
       </trans-unit>
       <trans-unit id="stay.arrival.flat.text" datatype="html">
-        <source>Résidence <x id="residence" equiv-text="residenceName"/>, bâtiment <x id="building" equiv-text="buildingName"/>. Prenez l&apos;ascenseur jusqu&apos;au 1er étage : l&apos;appartement n° 10 est à gauche en sortant.</source>
-        <target><x id="residence" equiv-text="residenceName"/> residence, <x id="building" equiv-text="buildingName"/> building. Take the lift to the first floor: flat no. 10 is on your left as you step out.</target>
-      </trans-unit>
-      <trans-unit id="stay.arrival.flat.link" datatype="html">
-        <source>Voir sur Google Maps</source>
-        <target>See on Google Maps</target>
+        <source>Prenez l&apos;ascenseur jusqu&apos;au 1er étage : l&apos;appartement n° 10 est à gauche en sortant.</source>
+        <target>Take the lift to the first floor: flat no. 10 is on your left as you step out.</target>
       </trans-unit>
       <trans-unit id="stay.arrival.skiLocker.title" datatype="html">
         <source>Le casier à skis</source>
@@ -506,6 +530,10 @@
         <source>Inventaire</source>
         <target>Inventory</target>
       </trans-unit>
+      <trans-unit id="stay.flat.inventory.text" datatype="html">
+        <source>Cette liste est là pour que vous sachiez ce qui vous attend et ce qu&apos;il reste à prévoir. Rien à recompter au départ : prenez simplement soin des lieux, comme chez vous.</source>
+        <target>This list is here so you know what is waiting for you and what to bring. Nothing to count on departure: just look after the place as if it were your own.</target>
+      </trans-unit>
       <trans-unit id="stay.flat.cooking.title" datatype="html">
         <source>Plaques et four</source>
         <target>Hob and oven</target>
@@ -517,6 +545,14 @@
       <trans-unit id="stay.flat.washingMachine.title" datatype="html">
         <source>Lave-linge</source>
         <target>Washing machine</target>
+      </trans-unit>
+      <trans-unit id="stay.flat.games.title" datatype="html">
+        <source>Jeux et livres</source>
+        <target>Games and books</target>
+      </trans-unit>
+      <trans-unit id="stay.flat.games.text" datatype="html">
+        <source>Des jeux de société et des livres, pour les grands comme pour les enfants, vous attendent sur place.</source>
+        <target>Board games and books, for adults and children alike, are waiting for you in the flat.</target>
       </trans-unit>
       <trans-unit id="stay.flat.provided.title" datatype="html">
         <source>Déjà sur place</source>
@@ -538,25 +574,49 @@
         <source>Activités</source>
         <target>Activities</target>
       </trans-unit>
+      <trans-unit id="stay.activities.tourismOffice.title" datatype="html">
+        <source>Office de tourisme de l&apos;Ubaye</source>
+        <target>Ubaye tourist office</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.tourismOffice.text" datatype="html">
+        <source>Horaires, événements et idées de sorties, tenus à jour par la vallée.</source>
+        <target>Opening hours, events and outing ideas, kept up to date by the valley.</target>
+      </trans-unit>
       <trans-unit id="stay.activities.winter.title" datatype="html">
         <source>Hiver</source>
         <target>Winter</target>
       </trans-unit>
+      <trans-unit id="stay.activities.skiDomain.title" datatype="html">
+        <source>Le domaine skiable</source>
+        <target>The ski area</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.skiDomain.text" datatype="html">
+        <source>Les pistes du Sauze – Super-Sauze, pour tous les niveaux. Skiez à votre rythme et gardez un œil sur les autres : on vous préfère au bar des pistes qu&apos;au cabinet du médecin 🙂</source>
+        <target>The slopes of Le Sauze – Super-Sauze, for every level. Ski at your own pace and keep an eye out for others: we would rather see you at the slope-side bar than at the doctor’s 🙂</target>
+      </trans-unit>
       <trans-unit id="stay.activities.snowshoes.title" datatype="html">
         <source>Randonnées en raquettes</source>
         <target>Snowshoe walks</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.iceRink.title" datatype="html">
+        <source>Patinoire de Pra-Loup</source>
+        <target>Pra-Loup ice rink</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.iceRink.text" datatype="html">
+        <source>Patinoire en plein air au cœur de Pra-Loup 1600, patins à louer sur place.</source>
+        <target>Open-air ice rink in the heart of Pra-Loup 1600, with skates for hire on site.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.iceRink.link" datatype="html">
+        <source>La patinoire sur le site de l&apos;Ubaye</source>
+        <target>The ice rink on the Ubaye website (in French)</target>
       </trans-unit>
       <trans-unit id="stay.activities.summer.title" datatype="html">
         <source>Été</source>
         <target>Summer</target>
       </trans-unit>
       <trans-unit id="stay.activities.hikes.title" datatype="html">
-        <source>Randonnées</source>
-        <target>Hikes</target>
-      </trans-unit>
-      <trans-unit id="stay.activities.trails.title" datatype="html">
-        <source>Sentiers et trails</source>
-        <target>Trails and trail running</target>
+        <source>Randonnées, sentiers et trails</source>
+        <target>Hikes, paths and trails</target>
       </trans-unit>
       <trans-unit id="stay.activities.tennis.title" datatype="html">
         <source>Tennis</source>
@@ -574,9 +634,21 @@
         <source>Un terrain de pétanque vous attend au pied de la résidence.</source>
         <target>A pétanque court awaits you right by the residence.</target>
       </trans-unit>
-      <trans-unit id="stay.activities.family.title" datatype="html">
-        <source>En famille</source>
-        <target>With children</target>
+      <trans-unit id="stay.activities.lake.title" datatype="html">
+        <source>La base nautique de Jausiers</source>
+        <target>Jausiers lake and water sports centre</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.lake.text" datatype="html">
+        <source>Baignade, paddle, tennis et coin pique-nique autour du plan d&apos;eau, à environ 15 minutes en voiture par Barcelonnette.</source>
+        <target>Swimming, paddleboarding, tennis and a picnic area around the lake, about 15 minutes’ drive via Barcelonnette.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.lake.link" datatype="html">
+        <source>La base nautique de Jausiers sur Google Maps</source>
+        <target>Jausiers water sports centre on Google Maps</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.yearRound.title" datatype="html">
+        <source>Toute l&apos;année</source>
+        <target>All year round</target>
       </trans-unit>
       <trans-unit id="stay.activities.woodenGames.title" datatype="html">
         <source>Jeux en bois</source>
@@ -590,13 +662,17 @@
         <source>Activités avec les enfants</source>
         <target>Activities for children</target>
       </trans-unit>
-      <trans-unit id="stay.activities.rain.title" datatype="html">
-        <source>Par temps de pluie</source>
-        <target>On rainy days</target>
+      <trans-unit id="stay.activities.cinema.title" datatype="html">
+        <source>Cinéma</source>
+        <target>Cinema</target>
       </trans-unit>
-      <trans-unit id="stay.activities.rain.text" datatype="html">
-        <source>Des jeux de société vous attendent dans l&apos;appartement.</source>
-        <target>Board games are waiting for you in the flat.</target>
+      <trans-unit id="stay.activities.cinema.text" datatype="html">
+        <source>Le cinéma de Barcelonnette programme les sorties du moment.</source>
+        <target>The Barcelonnette cinema shows the latest releases.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.cinema.link" datatype="html">
+        <source>Le cinéma de Barcelonnette sur Google Maps</source>
+        <target>Barcelonnette cinema on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.shops.title" datatype="html">
         <source>Commerces et services</source>
@@ -607,12 +683,20 @@
         <target>Supermarket</target>
       </trans-unit>
       <trans-unit id="stay.shops.supermarket.text" datatype="html">
-        <source>Intermarché de Barcelonnette.</source>
-        <target>Intermarché in Barcelonnette.</target>
+        <source>Intermarché de Saint-Pons, juste à côté de Barcelonnette.</source>
+        <target>Intermarché in Saint-Pons, right next to Barcelonnette.</target>
       </trans-unit>
       <trans-unit id="stay.shops.bakery.title" datatype="html">
         <source>Boulangerie</source>
         <target>Bakery</target>
+      </trans-unit>
+      <trans-unit id="stay.shops.bakery.text" datatype="html">
+        <source>Boulangerie Reynet, au Sauze.</source>
+        <target>Boulangerie Reynet, in Le Sauze.</target>
+      </trans-unit>
+      <trans-unit id="stay.shops.bakery.link" datatype="html">
+        <source>Boulangerie Reynet sur Google Maps</source>
+        <target>Boulangerie Reynet on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.shops.restaurants.title" datatype="html">
         <source>Restaurants</source>
@@ -621,6 +705,14 @@
       <trans-unit id="stay.shops.pharmacy.title" datatype="html">
         <source>Pharmacie</source>
         <target>Pharmacy</target>
+      </trans-unit>
+      <trans-unit id="stay.shops.pharmacy.text" datatype="html">
+        <source>Pharmacie Damery.</source>
+        <target>Pharmacie Damery.</target>
+      </trans-unit>
+      <trans-unit id="stay.shops.pharmacy.link" datatype="html">
+        <source>Pharmacie Damery sur Google Maps</source>
+        <target>Pharmacie Damery on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.shops.doctor.title" datatype="html">
         <source>Médecin</source>
@@ -637,6 +729,14 @@
       <trans-unit id="stay.practical.rubbish.title" datatype="html">
         <source>Les poubelles</source>
         <target>Rubbish</target>
+      </trans-unit>
+      <trans-unit id="stay.practical.rubbish.text" datatype="html">
+        <source>Tous les conteneurs sont au même endroit : ordures ménagères et tri sélectif (plastique, verre…).</source>
+        <target>All the bins are in one place: household waste and recycling (plastic, glass…).</target>
+      </trans-unit>
+      <trans-unit id="stay.practical.rubbish.link" datatype="html">
+        <source>Le point de collecte sur Google Maps</source>
+        <target>The collection point on Google Maps</target>
       </trans-unit>
       <trans-unit id="stay.practical.rules.title" datatype="html">
         <source>Règles de la résidence</source>

@@ -103,40 +103,55 @@ A `computed()` rather than a plain `signal()`, because four pieces of text embed
 
 ### 2. Avant d'arriver — `before-arrival`
 - **Linge de maison** — « Draps, housses de couette, taies d'oreiller et serviettes ne sont pas fournis : pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l'appartement. »
-- **Horaires** — « Arrivée à partir de 16 h, départ avant 11 h. »
-- **Remise des clés** — « Une personne sur place vous accueille directement à la résidence et vous remet les clés. Ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution. »
 - **En voiture l'hiver** — « Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ou chaînes / chaussettes à neige dans le coffre. » Link: « Les règles sur le site de la Sécurité Routière » → `https://www.securite-routiere.gouv.fr/equipements-hivernaux-departements-et-communes`
-- **Les courses** — « Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Barcelonnette. » Link: « Intermarché de Barcelonnette sur Google Maps » → `https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Barcelonnette`
+- **Les courses** — « Faites vos courses avant de monter : nous vous recommandons l'Intermarché de Saint-Pons, juste à côté de Barcelonnette. » Link: « Intermarché de Saint-Pons sur Google Maps » → `https://www.google.com/maps/search/?api=1&query=Intermarch%C3%A9+Saint-Pons+04400` (corrected on 2026-09-22: the shop is in Saint-Pons, not Barcelonnette)
 
 ### 3. À l'arrivée — `arrival`
-- **Accéder au parking** ⏳ (the tricky climb, the similar residence next door)
-- **Si le parking est complet** ⏳
-- **Jusqu'à l'appartement** — « Résidence {residence}, bâtiment {building}. Prenez l'ascenseur jusqu'au 1er étage : l'appartement n° 10 est à gauche en sortant. » Link: « Voir sur Google Maps » → `{maps}`
+> **Change requested 2026-09-22, after implementation:** the arrival time and the key handover moved here from « Avant d'arriver » — they describe arrival day. They are merged into one entry, since they are the same appointment. The departure time stays in the « Avant de partir » checklist. The section opens with the appointment — arrival time and keys — then the address, parking, flat, locker and network.
+
+- **Arrivée et remise des clés** — « Arrivée à partir de 16 h. Une personne sur place vous accueille directement à la résidence et vous remet les clés ; ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution. »
+- **L'adresse** — « Résidence {residence}, bâtiment {building} — {street}, {postalCode} {commune}. » Link: « Voir sur Google Maps » → `{maps}` (address supplied 2026-09-22; `street`, `postalCode` and `commune` added to `FlatInfoService`, read only here under BR-2)
+- **Accéder au parking** — « Attention : vous passez d'abord devant la résidence Le Soleil du Sauze — ce n'est pas la bonne. La nôtre est la résidence {residence}. Prenez la route à gauche, qui monte : allez jusqu'en haut, vous arrivez au parking du bâtiment {building}. » (supplied 2026-09-22) Two photo slots, still to shoot: « La route à gauche à prendre pour monter à la résidence » and « Le parking du bâtiment {building} »
+- **Si le parking est complet** — « Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c'est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c'est l'échauffement avant les pistes 😉 » (the wink is Thomas's idea — the fallback car park means walking back up) Link → `https://maps.app.goo.gl/WXZBYDgAtsWy799L8` (supplied 2026-09-22; Thomas wrote « Grande Ours », spelled « Grande Ourse » here — to confirm)
+- **Jusqu'à l'appartement** — « Prenez l'ascenseur jusqu'au 1er étage : l'appartement n° 10 est à gauche en sortant. »
 - **Le casier à skis** — « Au rez-de-chaussée, il s'ouvre avec la même clé que la porte d'entrée. »
 - **Connexion** — « Pas de Wi-Fi, mais un très bon réseau 4G/5G. »
 
 ### 4. L'appartement — `flat`
-- **Inventaire** ⏳
+- **Inventaire** — « Cette liste est là pour que vous sachiez ce qui vous attend et ce qu'il reste à prévoir. Rien à recompter au départ : prenez simplement soin des lieux, comme chez vous. » + ⏳ for the list itself (an item may carry an introduction *and* a placeholder; the placeholder then follows the text)
 - **Plaques et four** ⏳
 - **Ouvrir le canapé-lit** ⏳
 - **Lave-linge** ⏳
+- **Jeux et livres** — « Des jeux de société et des livres, pour les grands comme pour les enfants, vous attendent sur place. » (moved here from the rainy-day group on 2026-09-22: they describe the flat, not the weather)
 - **Déjà sur place** — « Café et filtres, sel, huile, tablettes pour le lave-vaisselle et produits d'entretien. »
 - **Un souci ?** — « Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à {email}. »
 
 ### 5. Activités — `activities`
-- **Hiver:** Randonnées en raquettes ⏳
-- **Été:** Randonnées ⏳ · Sentiers et trails ⏳
-- **En famille:** Activités avec les enfants ⏳
-- **Par temps de pluie:** « Des jeux de société vous attendent dans l'appartement. »
+
+> **Enriched, then rationalised 2026-09-22 (second pass).** Five groups were too many for ten items. The section now opens with one **untitled** lead item — the valley's own site, which covers both seasons — then keeps only **Hiver**, **Été** and **Toute l'année**. « En famille » and « Par temps de pluie » folded into the last one: the same handful of ideas, none of them seasonal; « Par temps de pluie » survives as an item title. The ski domain and tourism office links are **read from `SeasonsService`** (BR-5), not copied.
+
+- **(lead, no heading):** « Office de tourisme de l'Ubaye » — « Horaires, événements et idées de sorties, tenus à jour par la vallée. » Link from `SeasonsService` (summer season)
+- **Hiver:**
+  - « Le domaine skiable » — « Les pistes du Sauze – Super-Sauze, pour tous les niveaux. Skiez à votre rythme et gardez un œil sur les autres : on vous préfère au bar des pistes qu'au cabinet du médecin 🙂 » Link from `SeasonsService` (winter season). The safety nudge is Thomas's idea, kept light rather than a warning
+  - Randonnées en raquettes ⏳
+  - « Patinoire de Pra-Loup » — « Patinoire en plein air au cœur de Pra-Loup 1600, patins à louer sur place. » Link → `https://www.ubaye.com/activites/activites-hiver/patinoire/` (the `patinoires.html` URL redirects here)
+- **Été:**
+  - Randonnées, sentiers et trails ⏳ (one item, merged at Thomas's request)
+  - « La base nautique de Jausiers » — « Baignade, paddle, tennis et coin pique-nique autour du plan d'eau, à environ 15 minutes en voiture par Barcelonnette. » Link → Maps search. Travel time given by Thomas on 2026-09-22, correcting Claude's estimate of twenty minutes
+- **Toute l'année:**
+  - Activités avec les enfants ⏳
+  - « Cinéma » — « Le cinéma de Barcelonnette programme les sorties du moment. » Link → Maps search (no cinema name stated: the valley has several and names change)
 
 > **Change requested 2026-09-22, after implementation:** Restaurants moved from « Activités » to « Commerces et services ».
 
 ### 6. Commerces et services — `shops`
-- **Supermarché** — « Intermarché de Barcelonnette. » + the same Maps link
-- **Boulangerie** ⏳ · **Restaurants** ⏳ · **Pharmacie** ⏳ · **Médecin** ⏳ · **Hôpital le plus proche** ⏳
+- **Supermarché** — « Intermarché de Saint-Pons, juste à côté de Barcelonnette. » + the same Maps link
+- **Boulangerie** — « Boulangerie Reynet, au Sauze. » Link → `https://maps.app.goo.gl/dgTDuVboWhTcPjUq8` (supplied 2026-09-22)
+- **Pharmacie** — « Pharmacie Damery. » Link: « Pharmacie Damery sur Google Maps » → `https://maps.app.goo.gl/YTtH7UnrXWrw8qur7` (supplied 2026-09-22; sits about 100 m from the boulangerie, so it looks like it is at the resort too — to confirm)
+- **Restaurants** ⏳ · **Médecin** ⏳ · **Hôpital le plus proche** ⏳
 
 ### 7. Infos pratiques — `practical`
-- **Les poubelles** ⏳
+- **Les poubelles** — « Tous les conteneurs sont au même endroit : ordures ménagères et tri sélectif (plastique, verre…). » Link: « Le point de collecte sur Google Maps » → `https://maps.app.goo.gl/k2WmAZeY1MsF18go9` (supplied 2026-09-22; resolves to Av. du Sauze, 04400 Enchastrayes)
 - **Règles de la résidence** — « Les skis restent au casier : ils ne montent pas dans les étages. On ne circule pas en chaussures de ski dans la résidence. »
 
 ### 8. Avant de partir — `before-leaving`

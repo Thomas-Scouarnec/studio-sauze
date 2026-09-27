@@ -27,6 +27,13 @@ export interface FlatInfo {
   region: string;
   residenceName: string;
   buildingName: string;
+  /**
+   * Postal address. Guest page only (BR-2 of `flat-info.md`): the public
+   * sections show the residence, the building and `mapsUrl`, never the street.
+   */
+  street: string;
+  postalCode: string;
+  commune: string;
   mapsUrl: string;
   surface: number;
   minGuests: number;
@@ -42,6 +49,9 @@ export class FlatInfoService {
     region: 'Alpes de Haute-Provence',
     residenceName: 'Le Roi Soleil',
     buildingName: 'Crépuscule',
+    street: '276 Imp. du Roi Soleil',
+    postalCode: '04400',
+    commune: 'Enchastrayes',
     mapsUrl: 'https://maps.app.goo.gl/ujDrvDNVL2vmLQ488',
     surface: 32,
     minGuests: 2,

@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AboutComponent } from './about';
+import { FlatInfoService } from '../../services/flat-info.service';
 
 describe('AboutComponent', () => {
   beforeEach(async () => {
@@ -11,6 +12,15 @@ describe('AboutComponent', () => {
   it('should create', () => {
     const fixture = TestBed.createComponent(AboutComponent);
     expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('should never print the street address on the public page (BR-2)', async () => {
+    const fixture = TestBed.createComponent(AboutComponent);
+    await fixture.whenStable();
+    const { street, postalCode } = TestBed.inject(FlatInfoService).info();
+    const host: HTMLElement = fixture.nativeElement;
+    expect(host.textContent).not.toContain(street);
+    expect(host.textContent).not.toContain(postalCode);
   });
 
   it('should have the correct ARIA attributes on the host element', () => {

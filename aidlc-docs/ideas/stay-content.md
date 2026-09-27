@@ -18,7 +18,7 @@
 - **Arrival from 4 pm**, departure **before 11 am**
 - **Key handover:** a local person hands over the keys at arrival time
 - **Winter driving:** loi Montagne reminder — winter tyres, or chains/socks carried in the car, compulsory from 1 November to 31 March
-- **Groceries:** recommend doing the shopping at the **Intermarché in Barcelonnette** on the way up, with a Google Maps link
+- **Groceries:** recommend doing the shopping at the **Intermarché in Saint-Pons**, next to Barcelonnette, on the way up, with a Google Maps link
 
 ### 3. Arrival
 - Address and precise access to the public parking (you need to go up; a residence with a similar name is next to it)
@@ -82,11 +82,11 @@
 
 | Section | Missing |
 |---|---|
-| À l'arrivée | Access to the public parking; fallback parking |
+| ~~À l'arrivée~~ | ~~Parking access and fallback~~ — both supplied 2026-09-22; two photos still to take: the left turn, the car park |
 | L'appartement | Inventory; hot plates and oven; opening the sofa bed; washing machine |
-| Activités | Snowshoe routes; summer hikes; trails; activities with kids |
-| Commerces | Boulangerie; restaurants; pharmacy; doctor; nearest hospital |
-| Infos pratiques | Where the rubbish goes |
+| Activités | Snowshoe routes; summer hikes; trails; activities with kids (added 2026-09-22: tourism office, ski domain, Pra-Loup rink, Jausiers water base, Barcelonnette cinema, books) |
+| Commerces | Restaurants; doctor; nearest hospital (supplied 2026-09-22: Pharmacie Damery, Boulangerie Reynet) |
+| ~~Infos pratiques~~ | ~~Where the rubbish goes~~ — supplied 2026-09-22: one collection point, household waste and sorting together |
 
 ## Settled on 2026-09-22 (second round)
 
@@ -97,12 +97,12 @@
 ## Added on 2026-09-27
 
 - **Summer:** two free tennis courts at 300 m; a pétanque court at the residence
-- **With children:** wooden games at 300 m
+- **All year round:** wooden games for children at 300 m
 
 ## Still to settle
 
 1. **Hike and trail "tracks":** Thomas wants to handle this part himself — form still to be decided (links, GPX, a map). The placeholder stays meanwhile
-2. **Photos on the stay page:** parking access, the sofa bed, the appliances?
+2. **Photos on the stay page:** the two parking photos are declared as slots; the sofa bed and the appliances could get the same treatment when their text is written
 
 ---
 
