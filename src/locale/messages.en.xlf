@@ -626,6 +626,10 @@
         <source>Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.</source>
         <target>Two tennis courts, free and open to all, 300 m from the residence.</target>
       </trans-unit>
+      <trans-unit id="stay.activities.tennis.photo" datatype="html">
+        <source>Les deux courts de tennis</source>
+        <target>The two tennis courts</target>
+      </trans-unit>
       <trans-unit id="stay.activities.petanque.title" datatype="html">
         <source>Pétanque</source>
         <target>Pétanque</target>
@@ -633,6 +637,10 @@
       <trans-unit id="stay.activities.petanque.text" datatype="html">
         <source>Un terrain de pétanque vous attend au pied de la résidence.</source>
         <target>A pétanque court awaits you right by the residence.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.petanque.photo" datatype="html">
+        <source>Le terrain de pétanque de la résidence</source>
+        <target>The residence’s pétanque court</target>
       </trans-unit>
       <trans-unit id="stay.activities.lake.title" datatype="html">
         <source>La base nautique de Jausiers</source>

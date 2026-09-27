@@ -254,10 +254,18 @@ export class StayService {
               {
                 title: $localize`:@@stay.activities.tennis.title:Tennis`,
                 text: $localize`:@@stay.activities.tennis.text:Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.`,
+                photos: [
+                  { description: $localize`:@@stay.activities.tennis.photo:Les deux courts de tennis` },
+                ],
               },
               {
                 title: $localize`:@@stay.activities.petanque.title:Pétanque`,
                 text: $localize`:@@stay.activities.petanque.text:Un terrain de pétanque vous attend au pied de la résidence.`,
+                photos: [
+                  {
+                    description: $localize`:@@stay.activities.petanque.photo:Le terrain de pétanque de la résidence`,
+                  },
+                ],
               },
               {
                 title: $localize`:@@stay.activities.lake.title:La base nautique de Jausiers`,
