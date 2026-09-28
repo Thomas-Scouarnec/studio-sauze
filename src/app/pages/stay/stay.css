@@ -53,6 +53,17 @@
   outline: none;
 }
 
+/*
+ * FR-25: when keyboard focus lands on a link under the sticky menu, the
+ * browser scrolls it clear of the menu. On the content, not as
+ * `scroll-padding-top` on the page: that would also count the menu's own
+ * area as hidden, and focusing the menu would scroll the page away.
+ * The router's own scrolling uses `ViewportScroller.setOffset()` (see StayComponent).
+ */
+.stay-section :is(a, button, [tabindex]) {
+  scroll-margin-top: 5rem;
+}
+
 .stay-section-title {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   margin-bottom: 1.6rem;

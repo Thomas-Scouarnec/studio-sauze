@@ -39,7 +39,7 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | FR-11 | A direct visit to `/stay`, or a reload on it, shows the stay page | The email link must work first time |
 | FR-12 | An unknown path redirects to the home page | No dead end |
 | FR-13 | The page presents nine sections, in trip order: Bienvenue, Avant d'arriver, À l'arrivée, L'appartement, Activités, Commerces et services, Infos pratiques, Avant de partir, Après votre séjour | A guest reads it in the order they live it |
-| FR-14 | A section menu links to each section. It stays at the top of the screen while the guest scrolls through the sections, as one row of chips at every screen width, scrolling sideways when the chips don't fit | The page is long, and read on a phone; a menu that scrolls away leaves the guest lost (Session 13) |
+| FR-14 | A section menu links to each section. It stays at the top of the screen while the guest scrolls through the sections. Where all the chips fit (80em, 1280px at the default font size), it is one row of chips; below that, a compact bar (FR-27) | The page is long, and read on a phone; a menu that scrolls away leaves the guest lost (Session 13). A sideways row of chips hides most sections on a phone (Session 14) |
 | FR-15 | Activities open with an untitled lead item (the valley's tourism office), then three groups: Hiver, Été, Toute l'année. Restaurants sit in Commerces et services | The page is read in both seasons; a restaurant is an address, like a shop (moved at Thomas's request) |
 | FR-16 | A fact not yet supplied shows its title with « Information à venir ». An item may carry an introduction as well, which is shown before the placeholder | The structure is complete, every gap is visible, and an item can explain its purpose before its content exists |
 | FR-17 | Arrival from 16 h and the key handover by a local person at the residence sit in « À l'arrivée », as one entry; departure before 11 h and the key return sit in the « Avant de partir » checklist | Session 11 answers; each fact sits where it is used, stated once |
@@ -47,11 +47,13 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | FR-19 | The page reminds guests of the loi Montagne winter equipment rule, with a link to the official page | Compulsory in Enchastrayes from 1 November to 31 March |
 | FR-20 | The page shows the full postal address (residence, building, street, postal code, commune), then the flat number (n° 10), floor and way from the lift | Thomas's decision; exception to BR-2 of `flat-info.md`, scoped to `/stay`. A guest types the address into a GPS |
 | FR-21 | An item may carry photo slots. A slot with no file yet renders « Photo à venir : <what it must show> »; the description becomes the alt text once the photo exists | Some directions are clearer in a picture; the slot states what to shoot |
-| FR-22 | The menu highlights the section on screen, marks it `aria-current="location"`, and keeps its chip visible in the row. Above the first section, nothing is highlighted; at the page bottom, the last section is | The guest always knows where they are, including with a screen reader |
+| FR-22 | The menu highlights the section on screen and marks it `aria-current="location"`: in the row, whose chip is kept visible, or in the compact bar's label and list. Above the first section, nothing is highlighted; at the page bottom, the last section is | The guest always knows where they are, including with a screen reader |
 | FR-23 | Sections are numbered 1 to 9, in the menu and in the headings. The number follows the section's position; screen readers do not hear it in the heading | Shows the trip order; reordering the data keeps it right |
 | FR-24 | Following a menu link leaves the section heading fully visible below the menu | A sticky menu must not cover what it points to |
 | FR-25 | No element receiving keyboard focus is hidden under the menu | WCAG 2.4.11 |
 | FR-26 | A « Haut de page » button appears once the banner is out of view; it scrolls to the top and moves focus to « Votre séjour » | Reaches the site navbar from deep in the page on a phone |
+| FR-27 | The compact bar is one button reading « 5/9 · Activités » (« Sommaire » above the first section; « Section 5 sur 9 : Activités » for screen readers). It opens the numbered list of all sections below it. The list closes on choosing a section, on tapping the bar or outside, on Escape (focus back on the bar) and when focus leaves it | Every section two taps away, with nothing hidden sideways (Session 14) |
+| FR-28 | A progress line under the compact bar fills in proportion to the section's position (5 of 9: 5/9 of the width), empty above the first section; hidden from screen readers; animated only without reduced motion | Where the guest is, at a glance (Session 14) |
 
 ## 5. Business Rules / Constraints
 
@@ -88,3 +90,4 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | 2026-09-22 | Content structure: FR-13 to FR-20, BR-4, BR-5; flat number question resolved | Session 11 |
 | 2026-09-22 | FR-17 reworked (arrival time and keys moved to « À l'arrivée »); FR-20 extended to the postal address; FR-21 added for photo slots | Session 11 |
 | 2026-09-28 | In-page navigation: FR-14 reworded (sticky menu), FR-22 to FR-26 | Session 13 |
+| 2026-09-28 | Compact bar on narrow screens: FR-14 and FR-22 reworded, FR-27 and FR-28 | Session 14 |

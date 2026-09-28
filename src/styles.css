@@ -28,15 +28,6 @@
 }
 
 /*
- * The stay page's sticky menu (FR-25): when keyboard focus lands on an element
- * under it, the browser scrolls that element clear of the menu. The router's
- * own scrolling uses `ViewportScroller.setOffset()` instead (see StayComponent).
- */
-html:has(app-stay-nav) {
-  scroll-padding-top: 5rem;
-}
-
-/*
  * `showModal()` makes the page behind inert but does not stop it scrolling.
  * Doing this here keeps the gallery component out of `document.body`.
  */

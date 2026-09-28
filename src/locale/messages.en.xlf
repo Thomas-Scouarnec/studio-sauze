@@ -190,6 +190,14 @@
         <source>Photo à venir : <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></source>
         <target>Photo coming soon: <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></target>
       </trans-unit>
+      <trans-unit id="stay.nav.position" datatype="html">
+        <source>Section <x id="INTERPOLATION" equiv-text="{{ p.number }}"/> sur <x id="INTERPOLATION_1" equiv-text="{{ p.total }}"/> :</source>
+        <target>Section <x id="INTERPOLATION" equiv-text="{{ p.number }}"/> of <x id="INTERPOLATION_1" equiv-text="{{ p.total }}"/>:</target>
+      </trans-unit>
+      <trans-unit id="stay.nav.toggle" datatype="html">
+        <source>Sommaire</source>
+        <target>Contents</target>
+      </trans-unit>
       <trans-unit id="stay.backToTop" datatype="html">
         <source>Haut de page</source>
         <target>Back to top</target>

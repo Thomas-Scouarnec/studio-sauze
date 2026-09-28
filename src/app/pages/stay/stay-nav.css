@@ -2,6 +2,7 @@
  * Sticky within `main`: it follows the guest through the sections and never
  * covers the banner or the footer. The negative margins reach the edges of
  * `main`'s 5vw padding, so the text scrolling underneath never shows beside it.
+ * Sticky also makes it the containing block of the open list and the progress line.
  */
 :host {
   position: sticky;
@@ -14,7 +15,15 @@
   border-bottom: 1px solid var(--mist);
 }
 
-/* One row at every width; the row scrolls sideways, the page never does. */
+/* ---- Wide screens: one row of chips (Bolt 13) ---- */
+
+/* The compact bar's parts; shown only on narrow screens, below. */
+.stay-nav-toggle,
+.stay-nav-progress {
+  display: none;
+}
+
+/* One row; the row scrolls sideways if it must, the page never does. */
 ol {
   position: relative; /* the chips' offsetLeft is measured from here */
   list-style: none;
@@ -56,7 +65,8 @@ a:hover {
   border-color: var(--rust);
 }
 
-a:focus-visible {
+a:focus-visible,
+.stay-nav-toggle:focus-visible {
   outline: 2px solid var(--rust);
   outline-offset: 2px;
 }
@@ -71,4 +81,117 @@ a[aria-current] {
 
 a[aria-current] .stay-nav-number {
   color: var(--cream);
+}
+
+/*
+ * ---- Narrow screens: the compact bar (FR-27, FR-28) ----
+ * 80em is 1280px at the default font size, where all nine chips fit. In em,
+ * so a larger default font switches sooner, when the chips would no longer fit.
+ */
+@media (max-width: 79.99em) {
+  .stay-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0 0.2rem;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .stay-nav-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .stay-nav-fraction {
+    color: var(--rust);
+  }
+
+  /* A chevron drawn with two borders; turned up while the list is open. */
+  .stay-nav-chevron {
+    flex: none;
+    width: 0.55rem;
+    height: 0.55rem;
+    margin-right: 0.3rem;
+    border-right: 2px solid var(--rust);
+    border-bottom: 2px solid var(--rust);
+    transform: translateY(-25%) rotate(45deg);
+  }
+
+  .stay-nav-toggle[aria-expanded='true'] .stay-nav-chevron {
+    transform: translateY(25%) rotate(-135deg);
+  }
+
+  /* Over the bar's bottom border; `transform` animates without a new layout. */
+  .stay-nav-progress {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: var(--rust);
+    transform-origin: left;
+  }
+
+  /* The list: hidden until opened, then hanging below the bar, over the page. */
+  ol {
+    display: none;
+  }
+
+  ol.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - 3.5rem);
+    overflow-y: auto;
+    padding: 0.4rem 5vw 0.8rem;
+    background: var(--snow);
+    border-bottom: 1px solid var(--mist);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 0.12);
+  }
+
+  ol.is-open a {
+    gap: 0.8rem;
+    min-height: 2.75rem;
+    padding: 0 0.8rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  ol.is-open a:hover {
+    background: var(--cream);
+  }
+
+  ol.is-open a[aria-current] {
+    background: var(--rust);
+  }
+
+  .stay-nav-number {
+    min-width: 1ch;
+  }
+}
+
+@media (max-width: 79.99em) and (prefers-reduced-motion: no-preference) {
+  .stay-nav-progress {
+    transition: transform 0.3s ease-out;
+  }
+
+  .stay-nav-chevron {
+    transition: transform 0.2s ease-out;
+  }
 }

@@ -423,3 +423,22 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Stay Navigation"), 4 stories, 1 Bolt (6 steps). `functional-specs/stay.md` extended (FR-14 reworded, FR-22 to FR-26) — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 13 implemented on 2026-09-28.** All 6 steps done, 194 tests passing, verified in headless Chromium at 1280px, 375px and 320px in both languages; AXE unchanged. Six issues were found and fixed during the build, among them a `linkedSignal` that lost the current section between renders and a site-wide smooth scroll that ignored reduced motion. Details in [bolt-13-stay-navigation.md](plans/bolt-13-stay-navigation.md).
+
+---
+
+## Session 14 — 2026-09-28
+
+**Intent:** On a phone, the `/stay` section bar's sideways-scrolling row of chips is not ideal: only two or three chips show, nothing says the row scrolls, and reaching a far section means swiping to hunt for it.
+
+**Options proposed by Claude:** (1) a compact bar « 5/9 · Activités » that opens the full list of sections; (2) a floating « Sommaire » button at the bottom; (3) previous and next arrows; (4) keep the chips with faded edges and arrows. Recommended: option 1 on phones and tablets, keeping the chips on desktop, where all nine fit from 1280px.
+
+**Decisions from Thomas:**
+- **Option 1**, the compact bar that opens the full list
+- **At the top** of the screen, not at the bottom
+- **Progress line:** included, after Claude explained it: a thin line under the compact bar that fills as the guest goes down the page, repeating « 5/9 » for a glance
+
+**Reverses a Session 13 decision:** « one layout at every width ». The chips stay where they fit; the compact bar takes over where they don't.
+
+**Plan drafted:** 1 Unit ("Stay Compact Navigation"), 4 stories, 1 Bolt (6 steps). `functional-specs/stay.md`: FR-14 and FR-22 reworded, FR-27 and FR-28 added — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 14 implemented on 2026-09-28.** All 6 steps done, 204 tests passing, verified in headless Chromium at 375, 320, 1024 and 1280px, in both languages; AXE unchanged with the list closed and open. A Bolt 13 defect was found and fixed: focusing the sticky bar made the page jump about 410px up (`scroll-padding-top` replaced by `scroll-margin-top` on the content). Noticed, not fixed: `npm run start:all` crashes when the English build fails. Details in [bolt-14-stay-compact-nav.md](plans/bolt-14-stay-compact-nav.md).
