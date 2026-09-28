@@ -35,40 +35,12 @@
 
 .stay-content {
   background: var(--snow);
-  padding: 3rem 5vw 6rem;
+  padding: 0 5vw 6rem; /* the sticky menu sits right under the banner */
   flex: 1;
 }
 
 .stay-content:focus {
   outline: none;
-}
-
-/* Sommaire */
-.stay-toc ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 0.6rem 2rem;
-  max-width: 900px;
-  margin-bottom: 4rem;
-  padding: 1.6rem 1.8rem;
-  border: 1px solid var(--mist);
-  border-radius: 4px;
-}
-
-.stay-toc a {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid var(--mist);
-  padding-bottom: 2px;
-}
-
-.stay-toc a:hover,
-.stay-toc a:focus-visible {
-  color: var(--rust);
-  border-bottom-color: var(--rust);
 }
 
 /* Sections */
@@ -84,6 +56,14 @@
 .stay-section-title {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   margin-bottom: 1.6rem;
+}
+
+/* FR-23: the trip order, shown before each heading; hidden from screen readers. */
+.stay-section-number {
+  margin-right: 0.15em;
+  color: var(--rust);
+  font-weight: 400;
+  font-variant-numeric: lining-nums; /* Playfair's default figures drop below the line */
 }
 
 .stay-group-title {
@@ -155,8 +135,7 @@
   text-underline-offset: 3px;
 }
 
-.stay-item-link:focus-visible,
-.stay-toc a:focus-visible {
+.stay-item-link:focus-visible {
   outline: 2px solid var(--rust);
   outline-offset: 3px;
 }
@@ -165,9 +144,40 @@
   .stay-banner {
     padding-top: 7rem;
   }
+}
 
-  .stay-toc ul {
-    grid-template-columns: 1fr;
-    margin-bottom: 3rem;
-  }
+/* FR-26: shown once the banner has scrolled away. */
+.stay-back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--rust);
+  color: var(--cream);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+}
+
+.stay-back-to-top:hover {
+  background: var(--bark);
+}
+
+/* Two rings, so it shows on the button's rust and on whatever page is behind it. */
+.stay-back-to-top:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--snow);
+}
+
+/* A margin, not a space: Angular drops whitespace-only text between two elements. */
+.stay-back-to-top-arrow {
+  margin-right: 0.4em;
 }

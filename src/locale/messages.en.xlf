@@ -190,6 +190,10 @@
         <source>Photo à venir : <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></source>
         <target>Photo coming soon: <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></target>
       </trans-unit>
+      <trans-unit id="stay.backToTop" datatype="html">
+        <source>Haut de page</source>
+        <target>Back to top</target>
+      </trans-unit>
       <trans-unit id="contact.checklist.dates" datatype="html">
         <source>Vos dates d&apos;arrivée et de départ</source>
         <target>Your arrival and departure dates</target>

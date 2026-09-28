@@ -1,21 +1,19 @@
-<header class="stay-banner">
+<header #banner class="stay-banner">
   <div class="stay-banner-bg" aria-hidden="true"></div>
   <app-navbar />
-  <h1 class="stay-title" tabindex="-1" i18n="@@stay.title">Votre séjour</h1>
+  <h1 #title class="stay-title" tabindex="-1" i18n="@@stay.title">Votre séjour</h1>
 </header>
 
 <main id="main-content" class="stay-content" tabindex="-1">
-  <nav class="stay-toc" aria-label="Sommaire" i18n-aria-label="@@stay.toc.label">
-    <ul>
-      @for (section of stay.sections(); track section.id) {
-        <li><a routerLink="/stay" [fragment]="section.id">{{ section.title }}</a></li>
-      }
-    </ul>
-  </nav>
+  <app-stay-nav [sections]="stay.sections()" [activeId]="activeSectionId()" />
 
   @for (section of stay.sections(); track section.id) {
-    <section class="stay-section" [id]="section.id" [attr.aria-labelledby]="section.id + '-heading'">
-      <h2 [id]="section.id + '-heading'" class="section-title stay-section-title">{{ section.title }}</h2>
+    <section #sectionElement class="stay-section" [id]="section.id" [attr.aria-labelledby]="section.id + '-heading'">
+      <!-- The number is hidden from screen readers: the heading, and the region it labels, stay « Activités » (FR-23). -->
+      <h2 [id]="section.id + '-heading'" class="section-title stay-section-title">
+        <span class="stay-section-number" aria-hidden="true">{{ $index + 1 }}</span>
+        {{ section.title }}
+      </h2>
 
       @for (group of section.groups; track $index) {
         @if (group.title) {
@@ -62,5 +60,11 @@
         </ul>
       }
     </section>
+  }
+
+  @if (!bannerVisible()) {
+    <button type="button" class="stay-back-to-top" (click)="backToTop()">
+      <span class="stay-back-to-top-arrow" aria-hidden="true">↑</span><span i18n="@@stay.backToTop">Haut de page</span>
+    </button>
   }
 </main>
