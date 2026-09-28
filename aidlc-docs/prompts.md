@@ -404,3 +404,22 @@ All prompts in session order.
 **Plan approved by Thomas — Bolt 12 implemented on 2026-09-25.** All 9 steps done, 161 tests passing, 165 translation units, verified in Chromium against a static server mimicking GitHub Pages, at 1280px, 375px and 320px; AXE unchanged in both languages. Four defects were found and fixed in the browser: the current flag not announced as current (`aria-current` on a `<span>` is dropped), the navbar wrapping at 320px, a faint current-language underline, and a lost space in « Français (langue actuelle) ». The live check of `/en/` and `/en/stay` after `npm run deploy` is left to Thomas. Details in [bolt-12-localization.md](plans/bolt-12-localization.md).
 
 **Follow-up from Thomas:** he could not find the language option, then « npm run start:en does not work ». The flags were in the navbar, but only on the branch (nothing merged or deployed yet). `start:en` served English at `/` rather than `/en/`, on the same port as `npm start`, so it could not show the switch. Fixed with a dedicated English dev server at `http://localhost:4201/en/` and `npm run start:all`, which runs both languages with the flags working locally.
+
+---
+
+## Session 13 — 2026-09-28
+
+**Intent:** Improve the navigation of the `/stay` page. In the middle of the page, the guest gets lost: nothing says which section they are in, and the « Sommaire » at the top has scrolled away (the navbar is `position: absolute` too).
+
+**Options proposed by Claude:** a sticky section bar highlighting the current section (a sidebar on desktop and a chip bar on mobile, or the chip bar everywhere), numbered sections, a gap above headings for the sticky bar, a back-to-top button, `aria-current` and reduced motion.
+
+**Clarifications provided by Thomas:**
+- **Layout:** asked for a clear recommendation, then chose **the sticky chip bar on every screen size** — one layout to build and test; a desktop sidebar can reuse the same signal later
+- **Numbered sections:** yes
+- **A « Départ » section:** « keep it for later ». Claude then found that the page already has « Avant de partir » (the checkout checklist) and « Après votre séjour »; Claude had only read the first seven sections when proposing. Nothing is left for later
+
+**Checked by Claude:** Angular's `ViewportScroller.scrollToAnchor` computes the scroll position itself (`window.scrollTo`, minus its own `offset`), so CSS `scroll-margin-top` does not apply to router anchor scrolling. The sticky bar needs `ViewportScroller.setOffset()` for that, and `scroll-padding-top` for everything the browser scrolls itself (keyboard focus).
+
+**Plan drafted:** 1 Unit ("Stay Navigation"), 4 stories, 1 Bolt (6 steps). `functional-specs/stay.md` extended (FR-14 reworded, FR-22 to FR-26) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 13 implemented on 2026-09-28.** All 6 steps done, 194 tests passing, verified in headless Chromium at 1280px, 375px and 320px in both languages; AXE unchanged. Six issues were found and fixed during the build, among them a `linkedSignal` that lost the current section between renders and a site-wide smooth scroll that ignored reduced motion. Details in [bolt-13-stay-navigation.md](plans/bolt-13-stay-navigation.md).

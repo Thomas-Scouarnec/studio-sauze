@@ -20,8 +20,20 @@
   --text: #2A1F18;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Only for visitors who have not asked their device for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
+ * The stay page's sticky menu (FR-25): when keyboard focus lands on an element
+ * under it, the browser scrolls that element clear of the menu. The router's
+ * own scrolling uses `ViewportScroller.setOffset()` instead (see StayComponent).
+ */
+html:has(app-stay-nav) {
+  scroll-padding-top: 5rem;
 }
 
 /*

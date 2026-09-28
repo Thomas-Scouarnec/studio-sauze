@@ -1,0 +1,74 @@
+/*
+ * Sticky within `main`: it follows the guest through the sections and never
+ * covers the banner or the footer. The negative margins reach the edges of
+ * `main`'s 5vw padding, so the text scrolling underneath never shows beside it.
+ */
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: block;
+  margin: 0 -5vw 3rem;
+  padding: 0 5vw;
+  background: var(--snow);
+  border-bottom: 1px solid var(--mist);
+}
+
+/* One row at every width; the row scrolls sideways, the page never does. */
+ol {
+  position: relative; /* the chips' offsetLeft is measured from here */
+  list-style: none;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  /* Room for the focus ring, which the scrolling row would otherwise clip. */
+  padding: 0.6rem 0.3rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ol {
+    scroll-behavior: smooth;
+  }
+}
+
+a {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--mist);
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.stay-nav-number {
+  font-weight: 500;
+  color: var(--rust);
+}
+
+a:hover {
+  border-color: var(--rust);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+}
+
+/* The section being read. Bold as well as colour, so it is not shown by colour alone (WCAG 1.4.1). */
+a[aria-current] {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--cream);
+  font-weight: 500;
+}
+
+a[aria-current] .stay-nav-number {
+  color: var(--cream);
+}

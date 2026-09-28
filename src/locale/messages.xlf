@@ -300,6 +300,13 @@
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="stay.toc.label" datatype="html">
+        <source>Sommaire</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/stay/stay-nav.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="stay.title" datatype="html">
         <source>Votre séjour</source>
         <context-group purpose="location">
@@ -307,32 +314,32 @@
           <context context-type="linenumber">4,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="stay.toc.label" datatype="html">
-        <source>Sommaire</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/stay/stay.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="stay.pending" datatype="html">
         <source>Information à venir</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay.html</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.newTab" datatype="html">
         <source> (nouvel onglet)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay.html</context>
-          <context context-type="linenumber">38,39</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.photoPending" datatype="html">
         <source>Photo à venir : <x id="INTERPOLATION" equiv-text="{{ slot.description }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay.html</context>
-          <context context-type="linenumber">54,55</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stay.backToTop" datatype="html">
+        <source>Haut de page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/stay/stay.html</context>
+          <context context-type="linenumber">67,70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.checklist.dates" datatype="html">

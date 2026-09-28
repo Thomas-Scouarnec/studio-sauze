@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { ViewportScroller } from '@angular/common';
 import { provideRouter } from '@angular/router';
+import { FakeIntersectionObserver } from '../../testing/fake-intersection-observer';
 import { StayComponent } from './stay';
 import { GuestAccessService } from '../../services/guest-access.service';
 import { StayService } from '../../services/stay.service';
@@ -22,6 +24,13 @@ describe('StayComponent', () => {
     const fixture = TestBed.createComponent(StayComponent);
     await fixture.whenStable();
     return fixture.nativeElement;
+  }
+
+  /** What a screen reader reads: the text outside `aria-hidden`. */
+  function spokenText(element: Element): string {
+    const clone = element.cloneNode(true) as Element;
+    clone.querySelectorAll('[aria-hidden="true"]').forEach((hidden) => hidden.remove());
+    return clone.textContent?.trim() ?? '';
   }
 
   it('should render a banner with the navbar and the « Votre séjour » heading', async () => {
@@ -58,16 +67,82 @@ describe('StayComponent', () => {
   it('should list every section in a « Sommaire » menu (FR-14)', async () => {
     const host = await render();
     const sections = TestBed.inject(StayService).sections();
-    const toc = host.querySelector('nav[aria-label="Sommaire"]');
+    const toc = host.querySelector('main app-stay-nav nav[aria-label="Sommaire"]');
     const links = toc!.querySelectorAll<HTMLAnchorElement>('a');
 
     expect(links.length).toBe(sections.length);
     expect(Array.from(links).map((a) => a.getAttribute('href'))).toEqual(
       sections.map((section) => `/stay#${section.id}`),
     );
-    expect(Array.from(links).map((a) => a.textContent?.trim())).toEqual(
-      sections.map((section) => section.title),
+    expect(Array.from(links).map(spokenText)).toEqual(sections.map((section) => section.title));
+  });
+
+  it('should number the section headings in page order, hidden from screen readers (FR-23)', async () => {
+    const host = await render();
+    const numbers = Array.from(host.querySelectorAll('section.stay-section h2 .stay-section-number'));
+    expect(numbers.map((n) => n.textContent?.trim())).toEqual(
+      TestBed.inject(StayService).sections().map((_, index) => String(index + 1)),
     );
+    numbers.forEach((n) => expect(n.getAttribute('aria-hidden')).toBe('true'));
+  });
+
+  it('should tell the router what the sticky menu covers, and reset it when left (FR-24)', async () => {
+    const scroller = TestBed.inject(ViewportScroller);
+    const setOffset = vi.spyOn(scroller, 'setOffset');
+    const fixture = TestBed.createComponent(StayComponent);
+    await fixture.whenStable();
+
+    const offset = setOffset.mock.calls[0][0];
+    expect(typeof offset).toBe('function');
+    // jsdom has no layout: the menu measures 0, leaving only the gap under it.
+    expect((offset as () => [number, number])()).toEqual([0, 16]);
+
+    fixture.destroy();
+    expect(setOffset).toHaveBeenLastCalledWith([0, 0]);
+  });
+
+  describe('« Haut de page » (FR-26)', () => {
+    beforeEach(() => {
+      FakeIntersectionObserver.reset();
+      vi.stubGlobal('IntersectionObserver', FakeIntersectionObserver);
+    });
+
+    afterEach(() => {
+      vi.unstubAllGlobals();
+    });
+
+    it('should appear only once the banner has scrolled away', async () => {
+      const fixture = TestBed.createComponent(StayComponent);
+      await fixture.whenStable();
+      const host: HTMLElement = fixture.nativeElement;
+      const banner = host.querySelector('header.stay-banner')!;
+      expect(host.querySelector('.stay-back-to-top')).toBeNull();
+
+      FakeIntersectionObserver.watching(banner).report([{ target: banner, isIntersecting: false }]);
+      await fixture.whenStable();
+      const button = host.querySelector<HTMLButtonElement>('button.stay-back-to-top');
+      expect(button?.type).toBe('button');
+      expect(spokenText(button!)).toBe('Haut de page');
+
+      FakeIntersectionObserver.watching(banner).report([{ target: banner, isIntersecting: true }]);
+      await fixture.whenStable();
+      expect(host.querySelector('.stay-back-to-top')).toBeNull();
+    });
+
+    it('should scroll to the top and focus « Votre séjour »', async () => {
+      const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+      const fixture = TestBed.createComponent(StayComponent);
+      await fixture.whenStable();
+      const host: HTMLElement = fixture.nativeElement;
+      const banner = host.querySelector('header.stay-banner')!;
+      FakeIntersectionObserver.watching(banner).report([{ target: banner, isIntersecting: false }]);
+      await fixture.whenStable();
+
+      host.querySelector<HTMLButtonElement>('.stay-back-to-top')!.click();
+      expect(scrollTo).toHaveBeenCalledWith({ top: 0 });
+      expect(document.activeElement).toBe(host.querySelector('h1'));
+      scrollTo.mockRestore();
+    });
   });
 
   it('should render each section as a region labelled by its heading (FR-13)', async () => {
@@ -82,7 +157,7 @@ describe('StayComponent', () => {
       const heading = element.querySelector('h2');
       expect(heading?.id).toBe(`${id}-heading`);
       expect(element.getAttribute('aria-labelledby')).toBe(heading?.id);
-      expect(heading?.textContent?.trim()).toBe(title);
+      expect(spokenText(heading!)).toBe(title);
     });
   });
 
