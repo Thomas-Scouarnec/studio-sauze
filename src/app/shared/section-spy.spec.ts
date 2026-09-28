@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, viewChild, viewChildren } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FakeIntersectionObserver } from '../../testing/fake-intersection-observer';
+import { FakeIntersectionObserver } from '../testing/fake-intersection-observer';
 import { spyOnSections, spyOnVisibility } from './section-spy';
 
 @Component({
@@ -46,10 +46,10 @@ describe('spyOnSections', () => {
     return { fixture, component: fixture.componentInstance, section, observer };
   }
 
-  it('should observe every section, with a band starting below the menu', async () => {
+  it('should observe every section, with a band starting 1px below the menu', async () => {
     const { observer, section } = await render();
     expect(observer.observed).toEqual([section('spy-first'), section('spy-second'), section('spy-third')]);
-    expect(observer.options?.rootMargin).toBe('-64px 0px -60% 0px');
+    expect(observer.options?.rootMargin).toBe('-65px 0px -60% 0px');
   });
 
   it('should be null above the first section', async () => {

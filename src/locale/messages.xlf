@@ -188,6 +188,49 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="homeNav.label" datatype="html">
+        <source>Navigation de la page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home-nav/home-nav.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="homeNav.current" datatype="html">
+        <source>Menu, section actuelle :</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home-nav/home-nav.ts</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="homeNav.menu" datatype="html">
+        <source>Menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home-nav/home-nav.ts</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.contact" datatype="html">
+        <source>Contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home-nav/home-nav.ts</context>
+          <context context-type="linenumber">41,43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/home-sections.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.stay" datatype="html">
+        <source>Mon séjour</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home-nav/home-nav.ts</context>
+          <context context-type="linenumber">61,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
+          <context context-type="linenumber">23,25</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="lang.label" datatype="html">
         <source>Langue</source>
         <context-group purpose="location">
@@ -206,42 +249,7 @@
         <source>Navigation principale</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="nav.about" datatype="html">
-        <source>L&apos;appartement</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">17,18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="nav.equipment" datatype="html">
-        <source>Équipements</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="nav.activities" datatype="html">
-        <source>Activités</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="nav.contact" datatype="html">
-        <source>Contact</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="nav.stay" datatype="html">
-        <source>Mon séjour</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/navbar.ts</context>
-          <context context-type="linenumber">23,24</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="gallery.label" datatype="html">
@@ -304,21 +312,21 @@
         <source>Sommaire</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay-nav.ts</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.nav.position" datatype="html">
         <source>Section <x id="INTERPOLATION" equiv-text="{{ p.number }}"/> sur <x id="INTERPOLATION_1" equiv-text="{{ p.total }}"/> :</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay-nav.ts</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.nav.toggle" datatype="html">
         <source>Sommaire</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/stay/stay-nav.ts</context>
-          <context context-type="linenumber">53,55</context>
+          <context context-type="linenumber">36,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.title" datatype="html">
@@ -1411,6 +1419,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
           <context context-type="linenumber">392</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.about" datatype="html">
+        <source>L&apos;appartement</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/home-sections.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.equipment" datatype="html">
+        <source>Équipements</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/home-sections.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.activities" datatype="html">
+        <source>Activités</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/home-sections.ts</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
     </body>

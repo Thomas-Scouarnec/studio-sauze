@@ -442,3 +442,21 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Stay Compact Navigation"), 4 stories, 1 Bolt (6 steps). `functional-specs/stay.md`: FR-14 and FR-22 reworded, FR-27 and FR-28 added — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 14 implemented on 2026-09-28.** All 6 steps done, 204 tests passing, verified in headless Chromium at 375, 320, 1024 and 1280px, in both languages; AXE unchanged with the list closed and open. A Bolt 13 defect was found and fixed: focusing the sticky bar made the page jump about 410px up (`scroll-padding-top` replaced by `scroll-margin-top` on the content). Noticed, not fixed: `npm run start:all` crashes when the English build fails. Details in [bolt-14-stay-compact-nav.md](plans/bolt-14-stay-compact-nav.md).
+
+---
+
+## Session 15 — 2026-09-28
+
+**Intent:** Handle navigation on the home page on phones. Below 768px the navbar hides its four section links, and it scrolls away with the hero, so past the first screen a visitor on a phone has no navigation at all.
+
+**Proposed by Claude:** a compact sticky bar on the home page, built on Bolt 14's pattern (current section, a menu listing the sections, the same ways to close it), without numbers or progress line (the home sections are not steps). The menu also holds « Mon séjour » and the language. The site navbar keeps scrolling away on `/stay`, where the section bar already sits at the top. Desktop left for later.
+
+**Decisions from Thomas:**
+- **Always visible**, rather than hidden while scrolling down and shown on scrolling up
+- **A permanent « Contact » shortcut** in the bar
+
+**Working agreement (same session):** changes are made directly on `main`, without feature branches or pull requests.
+
+**Plan drafted:** 1 Unit ("Home Mobile Navigation"), 4 stories, 1 Bolt (8 steps). New `functional-specs/navigation.md` (FR-1 to FR-9, BR-1 to BR-3) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 15 implemented on 2026-09-28.** All 8 steps done, 222 tests passing, verified in headless Chromium at 320, 375, 768, 769 and 1280px, in both languages, on the home page and again on `/stay` after the refactor; AXE unchanged. Found and fixed: the bar named the previous section after a jump (the reading band now starts 1px below the bar), and a focus-clearance rule that emulated encapsulation kept from matching. Details in [bolt-15-home-mobile-nav.md](plans/bolt-15-home-mobile-nav.md).

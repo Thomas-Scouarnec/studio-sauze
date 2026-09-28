@@ -6,7 +6,7 @@ import { NavbarComponent } from '../../components/navbar/navbar';
 import { GuestAccessService } from '../../services/guest-access.service';
 import { StayService } from '../../services/stay.service';
 import { StayNavComponent } from './stay-nav';
-import { spyOnSections, spyOnVisibility } from './section-spy';
+import { spyOnSections, spyOnVisibility } from '../../shared/section-spy';
 
 /** Space kept between the sticky menu and a section heading after a jump. */
 const HEADING_GAP = 16;

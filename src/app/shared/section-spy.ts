@@ -66,7 +66,9 @@ export function spyOnSections(sections: () => readonly Element[], topOffset: () 
         }
         update();
       },
-      { rootMargin: `-${Math.round(topOffset())}px 0px -60% 0px` }
+      // 1px below the menu: a section that merely touches its edge (the one just
+      // scrolled past, when a jump lands the next one flush) does not count.
+      { rootMargin: `-${Math.round(topOffset()) + 1}px 0px -60% 0px` }
     );
     elements.forEach((element) => observer.observe(element));
 

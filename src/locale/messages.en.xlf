@@ -198,6 +198,18 @@
         <source>Sommaire</source>
         <target>Contents</target>
       </trans-unit>
+      <trans-unit id="homeNav.label" datatype="html">
+        <source>Navigation de la page</source>
+        <target>Page navigation</target>
+      </trans-unit>
+      <trans-unit id="homeNav.current" datatype="html">
+        <source>Menu, section actuelle :</source>
+        <target>Menu, current section:</target>
+      </trans-unit>
+      <trans-unit id="homeNav.menu" datatype="html">
+        <source>Menu</source>
+        <target>Menu</target>
+      </trans-unit>
       <trans-unit id="stay.backToTop" datatype="html">
         <source>Haut de page</source>
         <target>Back to top</target>

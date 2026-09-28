@@ -1,3 +1,8 @@
+/*
+ * Drawn for the dark hero. A parent on a light background sets
+ * --lang-flag-edge, --lang-focus and --lang-current-mark (custom properties
+ * cross Angular's style encapsulation; the defaults are the hero's colours).
+ */
 .lang-switcher {
   display: flex;
   gap: 0.25rem;
@@ -19,7 +24,7 @@
   height: 16px;
   border-radius: 2px;
   /* Keeps the flag's white parts from melting into a light photo. */
-  box-shadow: 0 0 0 1px rgba(245, 240, 232, 0.35);
+  box-shadow: 0 0 0 1px var(--lang-flag-edge, rgba(245, 240, 232, 0.35));
 }
 
 a.lang-flag .flag {
@@ -33,7 +38,7 @@ a.lang-flag:focus-visible .flag {
 }
 
 a.lang-flag:focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--lang-focus, var(--amber));
   outline-offset: -2px;
 }
 
@@ -50,7 +55,7 @@ a.lang-flag:focus-visible {
   width: 24px;
   height: 2px;
   margin-left: -12px;
-  background: var(--cream);
+  background: var(--lang-current-mark, var(--cream));
 }
 
 /* On the narrowest phones the logo, « Mon séjour » and both flags must share

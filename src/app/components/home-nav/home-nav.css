@@ -1,0 +1,167 @@
+/*
+ * Phones only (FR-1): 768px, in px like the navbar, so the two switch
+ * together — this bar shows exactly where the navbar hides its section links.
+ */
+:host {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Sticky within `main`: under the hero at first, then at the top to the end, never over the footer. */
+  :host {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--snow);
+    border-bottom: 1px solid var(--mist);
+  }
+}
+
+nav {
+  position: relative; /* the panel hangs from here */
+}
+
+.home-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 5vw;
+}
+
+.home-nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0 0.2rem;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.home-nav-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Same chevron as the stay bar: two borders, turned up while open. */
+.home-nav-chevron {
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--rust);
+  border-bottom: 2px solid var(--rust);
+  transform: translateY(-25%) rotate(45deg);
+}
+
+.home-nav-toggle[aria-expanded='true'] .home-nav-chevron {
+  transform: translateY(25%) rotate(-135deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-nav-chevron {
+    transition: transform 0.2s ease-out;
+  }
+}
+
+/* FR-5: the renter's next step, always in view. */
+.home-nav-contact {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  background: var(--rust);
+  color: var(--cream);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.home-nav-contact:hover {
+  background: var(--bark);
+}
+
+.home-nav-toggle:focus-visible,
+.home-nav-contact:focus-visible,
+.home-nav-panel a:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+}
+
+/* The panel: hidden until opened, then hanging below the bar, over the page. */
+.home-nav-panel {
+  display: none;
+}
+
+.home-nav-panel.is-open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - 3.5rem);
+  overflow-y: auto;
+  padding: 0.4rem 5vw 0.8rem;
+  background: var(--snow);
+  border-bottom: 1px solid var(--mist);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 0.12);
+}
+
+.home-nav-sections {
+  list-style: none;
+}
+
+.home-nav-sections a,
+.home-nav-stay {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.8rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.home-nav-sections a:hover,
+.home-nav-stay:hover {
+  background: var(--cream);
+}
+
+/* The section being read. Bold as well as colour (WCAG 1.4.1). */
+.home-nav-sections a[aria-current] {
+  background: var(--rust);
+  color: var(--cream);
+  font-weight: 500;
+}
+
+/* Below a separator: the site, not the page (FR-4). */
+.home-nav-site {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--mist);
+  /* The switcher is drawn for the dark hero: its light-background colours. */
+  --lang-flag-edge: rgb(0 0 0 / 0.15);
+  --lang-focus: var(--rust);
+  --lang-current-mark: var(--rust);
+}
+
+.home-nav-stay {
+  color: var(--rust);
+  font-weight: 500;
+}

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { GuestAccessService } from '../../services/guest-access.service';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher';
+import { HOME_SECTIONS } from '../../shared/home-sections';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,9 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
       <div class="nav-end">
         <ul class="nav-links">
           <!-- routerLink + fragment, so the links also work from /stay (FR-8). -->
-          <li><a routerLink="/" fragment="about" i18n="@@nav.about">L'appartement</a></li>
-          <li><a routerLink="/" fragment="equipment" i18n="@@nav.equipment">Équipements</a></li>
-          <li><a routerLink="/" fragment="activities" i18n="@@nav.activities">Activités</a></li>
-          <li><a routerLink="/" fragment="contact" i18n="@@nav.contact">Contact</a></li>
+          @for (section of sections; track section.id) {
+            <li><a routerLink="/" [fragment]="section.id">{{ section.title }}</a></li>
+          }
           @if (guestAccess.isGuest()) {
             <li class="nav-guest">
               <a routerLink="/stay" routerLinkActive="is-active" ariaCurrentWhenActive="page" i18n="@@nav.stay">Mon séjour</a>
@@ -33,4 +33,5 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
 })
 export class NavbarComponent {
   protected readonly guestAccess = inject(GuestAccessService);
+  protected readonly sections = HOME_SECTIONS;
 }
