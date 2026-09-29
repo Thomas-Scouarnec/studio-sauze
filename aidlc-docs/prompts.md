@@ -472,3 +472,11 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("E2E and Accessibility Tests"), 4 stories, 1 Bolt (6 steps). No functional spec (tooling, like Bolt 1) — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 16 implemented on 2026-09-29.** All 6 steps done: 26 browser tests (16 AXE scans, 10 flow tests) passing, stable over three runs in CI mode, 24 s locally. AXE 4.13 found nothing beyond the known contrast backlog, now the baseline in `e2e/known-violations.ts`. Breaking each behaviour on purpose showed three tests too weak; they were tightened. Vitest unchanged (222). The CI job is checked after Thomas pushes. Details in [bolt-16-e2e-accessibility-tests.md](plans/bolt-16-e2e-accessibility-tests.md).
+
+---
+
+## Session 17 — 2026-09-29
+
+**Intent:** « Please now fix all existing Axe violations »: the 10 `color-contrast` nodes baselined in Bolt 16.
+
+**Done directly, as a fix (no separate approval round):** same hues with adjusted lightness. Two new tokens for amber small text (`--amber-on-light`, `--amber-on-dark`), `--stone` darkened, the footer copyright more opaque; `--amber` unchanged where it already passed. The AXE baseline is now empty: 0 violations on every page, in both languages, at both widths. Details in [bolt-17-contrast-fixes.md](plans/bolt-17-contrast-fixes.md).

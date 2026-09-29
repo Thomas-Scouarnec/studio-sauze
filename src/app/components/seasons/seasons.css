@@ -5,6 +5,11 @@
   padding: 6rem 5vw;
 }
 
+/* The global label colour is for light sections; this one is dark. */
+.section-label {
+  color: var(--amber-on-dark);
+}
+
 .section-title {
   color: var(--cream);
 }

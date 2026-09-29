@@ -11,7 +11,6 @@ https://refugedusauze.com/
 ## TO DO
 - More languages (ES, IT...): see *Localization* below
 - Add unit tests
-- Fix the known AXE `color-contrast` backlog listed in `e2e/known-violations.ts` (an accessibility Bolt)
 - Update content
     - Photos
     - Description
@@ -96,7 +95,7 @@ The first time, install the browser with `npx playwright install chromium`.
 - **What it does:** `ng build`, `scripts/i18n-deep-links.mjs`, then `scripts/serve-dist.mjs` serves `dist/` on `http://localhost:4300/` the way GitHub Pages does, and the tests in `e2e/` run against it.
 - **Watching the tests:** `npm run e2e:ui` opens Playwright's UI mode, to run one test and step through it.
 - **After a failure:** `npx playwright show-report` opens the report, with a screenshot of the failing step and, for AXE, the rule and HTML of each unexpected violation.
-- **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. Known violations are listed in `e2e/known-violations.ts`; any other one fails, and so does a listed one that no longer fails. After fixing one, delete its line.
+- **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
 - **CI:** the `e2e` job of `.github/workflows/test.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
 
 # Deployment
