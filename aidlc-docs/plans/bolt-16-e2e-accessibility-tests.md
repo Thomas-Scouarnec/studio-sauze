@@ -2,7 +2,7 @@
 
 **Intent:** Add Playwright tests and AXE scans that run the built site in Chromium, locally and in CI.
 **Date:** 2026-09-29
-**Status:** Implemented on 2026-09-29 (CI check pending the push)
+**Status:** Implemented on 2026-09-29
 **Stories:** [e2e-accessibility-tests.md](../story-artifacts/e2e-accessibility-tests.md) · **Design:** [design-artifacts/e2e-accessibility-tests.md](../design-artifacts/e2e-accessibility-tests.md)
 
 ---
@@ -37,7 +37,7 @@
   - Landmarks and links by role and accessible name (`getByRole`), so the tests also check what assistive technology sees; the menu buttons by `aria-controls`, the same in both languages
   - Gate: each test fails when the behaviour it covers is broken on purpose (checked once per test, then reverted)
 
-- [ ] **Step 5 — CI**
+- [x] **Step 5 — CI**
   - `e2e` job in `.github/workflows/test.yml`: Node 22, `npm ci`, `npx playwright install --with-deps chromium`, `npm run e2e`, report uploaded on failure
   - Gate: after Thomas pushes, both jobs green on GitHub
 
@@ -91,6 +91,7 @@
 | Mutation gate (each behaviour broken on purpose, then reverted) | Home offset set to 0, Escape not returning focus, focus after navigation removed, `/stay` offset set to 0, chips without `aria-current`, no `en/stay.html`, the English flag's `href` wrong: each caught by its test |
 | Unit tests | `npm test`: 222 passing, unchanged; Vitest does not pick up `e2e/` |
 | Types | `tsc -p e2e/tsconfig.json`: no error |
+| CI (GitHub Actions) | Runs #23 (Bolt 16) and #24 (Bolt 17): `test` and `e2e` both green; `e2e` 1m 7s |
 
 ## Found and fixed during the build
 
@@ -106,5 +107,5 @@
 
 ## Left to Thomas
 
-- Push, then check that both jobs (`test` and `e2e`) are green in GitHub Actions
+- ~~Push, then check both jobs~~ Done: runs #23 and #24 green, `e2e` in about 1 min on GitHub
 - Try `npm run e2e:ui` to watch the tests run
