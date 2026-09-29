@@ -460,3 +460,15 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Home Mobile Navigation"), 4 stories, 1 Bolt (8 steps). New `functional-specs/navigation.md` (FR-1 to FR-9, BR-1 to BR-3) — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 15 implemented on 2026-09-28.** All 8 steps done, 222 tests passing, verified in headless Chromium at 320, 375, 768, 769 and 1280px, in both languages, on the home page and again on `/stay` after the refactor; AXE unchanged. Found and fixed: the bar named the previous section after a jump (the reading band now starts 1px below the bar), and a focus-clearance rule that emulated encapsulation kept from matching. Details in [bolt-15-home-mobile-nav.md](plans/bolt-15-home-mobile-nav.md).
+
+---
+
+## Session 16 — 2026-09-29
+
+**Intent:** Thomas asked whether Claude uses Playwright to test UI changes. It does not: every Bolt was checked by hand in Chromium, with AXE run from throwaway scripts, and nothing stays in the repo. Thomas chose a new Bolt to add Playwright tests and AXE scans.
+
+**Proposed by Claude (D1 to D7 in the design):** test the production build served like GitHub Pages; Chromium only, at 1280px and 375px; the known `color-contrast` nodes as an explicit baseline that can only shrink; tests in `e2e/`; a separate CI job; smoke tests of the Bolt 12 to 15 navigation rather than a copy of the unit tests.
+
+**Plan drafted:** 1 Unit ("E2E and Accessibility Tests"), 4 stories, 1 Bolt (6 steps). No functional spec (tooling, like Bolt 1) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 16 implemented on 2026-09-29.** All 6 steps done: 26 browser tests (16 AXE scans, 10 flow tests) passing, stable over three runs in CI mode, 24 s locally. AXE 4.13 found nothing beyond the known contrast backlog, now the baseline in `e2e/known-violations.ts`. Breaking each behaviour on purpose showed three tests too weak; they were tightened. Vitest unchanged (222). The CI job is checked after Thomas pushes. Details in [bolt-16-e2e-accessibility-tests.md](plans/bolt-16-e2e-accessibility-tests.md).
