@@ -103,7 +103,7 @@
 
 ## Noticed, not fixed here
 
-- **`npm audit`** reports 34 vulnerabilities in the dependency tree, the same count as before the install; not investigated
+- **`npm audit`** reported 34 vulnerabilities in the dependency tree, the same count as before the install. Fixed on 2026-09-29 (Angular 21.2.24 and `npm audit fix`): 0 left
 
 ## Left to Thomas
 
