@@ -15,9 +15,12 @@ import '@angular/localize/init';
  * pointer so a swipe that ends off the photo still reports its release, so the
  * calls have to exist for the swipe tests to run at all.
  */
-const elementPrototype = globalThis.Element?.prototype as
-  | (Element & { setPointerCapture?: unknown; releasePointerCapture?: unknown })
-  | undefined;
+type PointerCaptureElement = Element & {
+  setPointerCapture?: unknown;
+  releasePointerCapture?: unknown;
+};
+
+const elementPrototype = globalThis.Element?.prototype as PointerCaptureElement | undefined;
 
 if (elementPrototype && typeof elementPrototype.setPointerCapture !== 'function') {
   elementPrototype.setPointerCapture = () => {};
