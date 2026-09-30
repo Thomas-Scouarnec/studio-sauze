@@ -480,3 +480,17 @@ All prompts in session order.
 **Intent:** « Please now fix all existing Axe violations »: the 10 `color-contrast` nodes baselined in Bolt 16.
 
 **Done directly, as a fix (no separate approval round):** same hues with adjusted lightness. Two new tokens for amber small text (`--amber-on-light`, `--amber-on-dark`), `--stone` darkened, the footer copyright more opaque; `--amber` unchanged where it already passed. The AXE baseline is now empty: 0 violations on every page, in both languages, at both widths. Details in [bolt-17-contrast-fixes.md](plans/bolt-17-contrast-fixes.md).
+
+---
+
+## Session 18 — 2026-09-30
+
+**Context:** after updating Angular to 21.2.24 and clearing `npm audit` (34 → 0), Thomas asked for technical improvement ideas. Claude listed eight, most valuable first: prerendering, search and preview tags, self-hosted fonts, Dependabot, deploying from CI, ESLint, a « page not found » page, Lighthouse CI.
+
+**Intent:** a Bolt for idea 1, prerendering: serve every page as finished HTML written at build time, then hydrate it in the browser, while staying static on GitHub Pages.
+
+**Checked by Claude (throwaway worktree, since deleted):** static prerendering works with the two language builds (4 routes), hydration is complete with no mismatch, and all browser and unit tests pass unchanged. Three things must change: the language redirect (French would paint before `main.js` redirects), the `stay/` folders (GitHub Pages would redirect `/stay` → `/stay/`), and `404.html` (would be the prerendered home page).
+
+**Plan drafted:** 1 Unit ("Prerendering"), 4 stories, 1 Bolt (6 steps), decisions D1 to D7 in the design. `localization.md` FR-9 reworded at implementation — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 18 implemented on 2026-09-30.** All 6 steps done: every page prerendered in both languages and fully hydrated; same URLs (`stay.html`), `404.html` from the client-only shell, the saved-English redirect moved into `index.html`. 54 browser tests (28 new) and 214 unit tests passing; AXE and `npm audit` clean. The dev servers stay browser-rendered: server rendering in `ng serve` used the wrong locale. Details in [bolt-18-prerendering.md](plans/bolt-18-prerendering.md).

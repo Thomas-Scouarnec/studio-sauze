@@ -37,7 +37,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run build && node scripts/i18n-deep-links.mjs && node scripts/serve-dist.mjs',
+    command: 'npm run build && node scripts/finish-static-build.mjs && node scripts/serve-dist.mjs',
     url: `http://localhost:${port}/`,
     // Locally, a server left running is reused and the build skipped.
     reuseExistingServer: !inCi,

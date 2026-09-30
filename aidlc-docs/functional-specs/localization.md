@@ -46,7 +46,7 @@ Changing the language loads the other app: it is a page load, not an in-page swa
 | FR-6 | The navbar shows a small flag for each language — French flag and British flag — on every page and at every screen width | Thomas's request; visitors on a phone must find it too |
 | FR-7 | The current language's flag is announced as current (« (langue actuelle) » / « (current language) ») and is not a link; the other flag links to the same page in the other language, keeping the section (`#fragment`) | The visitor stays where they were |
 | FR-8 | Choosing a language by its flag saves it in the browser (`localStorage`) | Thomas's request: no need to choose again |
-| FR-9 | A visitor whose saved language is English and who opens a French URL is sent to the same page under `/en/`, before the app renders | The saved choice replaces the default |
+| FR-9 | A visitor whose saved language is English and who opens a French URL is sent to the same page under `/en/`, before the page is shown (Bolt 18: an inline script, since the page is prerendered) | The saved choice replaces the default |
 | FR-10 | An `/en/` URL always shows English, whatever the saved choice; it does not change the saved choice | A shared English link shows what the sender meant; only a flag click saves a choice |
 | FR-11 | A direct visit to `/en/` or `/en/stay`, and a reload on them, show the English page | An English link sent to a guest must work first time |
 | FR-12 | The guest flag (« Mon séjour » / « My stay ») is shared by both languages | Same browser, same guest |

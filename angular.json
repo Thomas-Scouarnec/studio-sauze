@@ -39,7 +39,9 @@
             ],
             "styles": ["src/styles.css"],
             "localize": true,
-            "i18nMissingTranslation": "error"
+            "i18nMissingTranslation": "error",
+            "server": "src/main.server.ts",
+            "outputMode": "static"
           },
           "configurations": {
             "production": {
@@ -61,14 +63,28 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "localize": ["fr"]
+              "localize": ["fr"],
+              "server": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/hydration.ts",
+                  "with": "src/app/hydration.development.ts"
+                }
+              ]
             },
             "development-en": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
               "localize": ["en"],
-              "baseHref": "/en/"
+              "baseHref": "/en/",
+              "server": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/hydration.ts",
+                  "with": "src/app/hydration.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -107,7 +123,8 @@
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "/",
-            "cname": "refugedusauze.com"
+            "cname": "refugedusauze.com",
+            "noNotfound": true
           }
         },
         "extract-i18n": {

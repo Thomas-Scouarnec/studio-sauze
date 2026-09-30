@@ -48,7 +48,7 @@ The site is in French (the source language, served at `/`) and English (served a
 - **Extracting:** `npm run extract-i18n` rewrites `src/locale/messages.xlf` (XLIFF 1.2), the list of every French text. After changing French copy, `git diff src/locale/messages.xlf` shows which ids changed.
 - **Translating:** add or update the matching `<trans-unit>` in `src/locale/messages.en.xlf`, with a `<target>`. Keep every `<x id="…"/>` placeholder of the source in the target.
 - **Missing translations fail the build** (`i18nMissingTranslation: "error"`), naming the id.
-- **The visitor's choice** of language is saved in `localStorage` (`refuge.lang`). A visitor who chose English and opens a French URL is sent to `/en/…` before the app starts (`src/app/language-redirect.ts`).
+- **The visitor's choice** of language is saved in `localStorage` (`refuge.lang`). A visitor who chose English and opens a French URL is sent to `/en/…` by a small inline script in `src/index.html`, before the prerendered French page can paint.
 
 ## Code scaffolding
 
@@ -74,6 +74,15 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Prerendering
+
+`ng build` does not only compile the app: it also **runs** it once per page and language, on Node, and saves the resulting HTML (`outputMode: "static"`, every route `RenderMode.Prerender` in `src/app/app.routes.server.ts`). Visitors, search engines and link previews get the finished page at once. In the browser, the app then **hydrates**: it adopts the HTML already on screen instead of drawing it again (`src/app/hydration.ts`).
+
+- **Code that runs while prerendering has no `window`, `document`, `localStorage` or `IntersectionObserver`.** Put browser-only work in `afterNextRender()` / `afterRenderEffect()` (never run on the server), or behind `isPlatformBrowser()`; keep storage in `try`/`catch`. Breaking this fails the build, which is the point.
+- **The first render must be the same on the server and in the browser**, or hydration reports a mismatch (NG0500). Something that depends on the visitor (a stored flag, the screen size) must not change the page's structure before hydration; it can change it afterwards.
+- **After `ng build`, run `node scripts/finish-static-build.mjs`** (`npm run deploy` and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, and writes `404.html` from the empty client-side shell.
+- **The dev servers do not prerender** (`"server": false` in the development configurations, and `hydration.development.ts` replaces `hydration.ts`): they render in the browser, as before. `npm run e2e` is where prerendering is tested.
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
@@ -92,7 +101,7 @@ npm run e2e
 
 The first time, install the browser with `npx playwright install chromium`.
 
-- **What it does:** `ng build`, `scripts/i18n-deep-links.mjs`, then `scripts/serve-dist.mjs` serves `dist/` on `http://localhost:4300/` the way GitHub Pages does, and the tests in `e2e/` run against it.
+- **What it does:** `ng build`, `scripts/finish-static-build.mjs`, then `scripts/serve-dist.mjs` serves `dist/` on `http://localhost:4300/` the way GitHub Pages does, and the tests in `e2e/` run against it.
 - **Watching the tests:** `npm run e2e:ui` opens Playwright's UI mode, to run one test and step through it.
 - **After a failure:** `npx playwright show-report` opens the report, with a screenshot of the failing step and, for AXE, the rule and HTML of each unexpected violation.
 - **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
@@ -104,12 +113,12 @@ The site is published to [GitHub Pages](https://github.com/Thomas-Scouarnec/stud
 
 There is no CI workflow that deploys automatically on push to `main` — deployment is a manual step.
 
-**Deploy with `npm run deploy`, not `ng deploy`.** The script builds both languages, then writes `en/stay.html` (`scripts/i18n-deep-links.mjs`) so that a direct link to `/en/stay` opens in English (GitHub Pages otherwise falls back to the French `404.html`), then runs `ng deploy --no-build`. A plain `ng deploy` rebuilds and drops that file.
+**Deploy with `npm run deploy`, not `ng deploy`.** The script builds and prerenders both languages, then runs `scripts/finish-static-build.mjs` (`stay.html`, `en/stay.html`, `404.html`: see *Prerendering*), then `ng deploy --no-build`. A plain `ng deploy` rebuilds and skips that step. The deploy target has `noNotfound: true`, so `angular-cli-ghpages` does not replace `404.html` with a copy of the home page.
 
 ## Trigger a deployment
 
 ```bash
-ng deploy
+npm run deploy
 ```
 
 ## Monitor deployment status on GitHub
