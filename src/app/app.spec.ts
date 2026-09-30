@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<main id="main-content" tabindex="-1">Contenu</main>`,
 })
 class StubPageComponent {}

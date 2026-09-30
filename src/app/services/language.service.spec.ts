@@ -1,10 +1,10 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { ChangeDetectionStrategy, Component, LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { LanguageService } from './language.service';
 
-@Component({ template: '' })
+@Component({ changeDetection: ChangeDetectionStrategy.OnPush, template: '' })
 class BlankPage {}
 
 describe('LanguageService', () => {

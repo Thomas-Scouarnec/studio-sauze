@@ -1,0 +1,14 @@
+# Build output and reports
+dist/
+.angular/
+coverage/
+playwright-report/
+test-results/
+
+# Generated or managed by tools
+package-lock.json
+src/locale/
+
+# Prose: reflowing it would only add noise
+*.md
+aidlc-docs/

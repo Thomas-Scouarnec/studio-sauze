@@ -1,10 +1,14 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { ChangeDetectionStrategy, Component, LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { LanguageSwitcherComponent } from './language-switcher';
 
-@Component({ imports: [LanguageSwitcherComponent], template: '<app-language-switcher />' })
+@Component({
+  imports: [LanguageSwitcherComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<app-language-switcher />',
+})
 class StayStub {}
 
 describe('LanguageSwitcherComponent', () => {
