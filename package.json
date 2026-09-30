@@ -34,6 +34,8 @@
     "@angular/compiler-cli": "^21.2.24",
     "@angular/localize": "^21.2.24",
     "@axe-core/playwright": "^4.13.0",
+    "@fontsource/jost": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^24.13.5",
     "angular-cli-ghpages": "^3.0.3",

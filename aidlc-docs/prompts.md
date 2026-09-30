@@ -494,3 +494,13 @@ All prompts in session order.
 **Plan drafted:** 1 Unit ("Prerendering"), 4 stories, 1 Bolt (6 steps), decisions D1 to D7 in the design. `localization.md` FR-9 reworded at implementation — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 18 implemented on 2026-09-30.** All 6 steps done: every page prerendered in both languages and fully hydrated; same URLs (`stay.html`), `404.html` from the client-only shell, the saved-English redirect moved into `index.html`. 54 browser tests (28 new) and 214 unit tests passing; AXE and `npm audit` clean. The dev servers stay browser-rendered: server rendering in `ng serve` used the wrong locale. Details in [bolt-18-prerendering.md](plans/bolt-18-prerendering.md).
+
+---
+
+## Session 19 — 2026-09-30
+
+**Intent:** « Please go with the font hosting » — idea 3 of Session 18: serve the fonts from the site instead of Google Fonts.
+
+**Done directly, as a small technical Bolt (no separate approval round, as for Bolt 17):** decisions D1 to D5 in [bolt-19-self-hosted-fonts.md](plans/bolt-19-self-hosted-fonts.md); the main one keeps the static faces, because a variable font would make the headings heavier (they ask for bold, 700, and render at 600 today).
+
+**Bolt 19 implemented on 2026-09-30:** the six faces from `@fontsource`, latin only; no request to Google left, checked by 8 new browser tests; screenshots before and after identical to the eye. Details in [bolt-19-self-hosted-fonts.md](plans/bolt-19-self-hosted-fonts.md).

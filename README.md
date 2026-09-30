@@ -50,6 +50,13 @@ The site is in French (the source language, served at `/`) and English (served a
 - **Missing translations fail the build** (`i18nMissingTranslation: "error"`), naming the id.
 - **The visitor's choice** of language is saved in `localStorage` (`refuge.lang`). A visitor who chose English and opens a French URL is sent to `/en/…` by a small inline script in `src/index.html`, before the prerendered French page can paint.
 
+## Fonts
+
+Playfair Display (headings) and Jost (text) are served from the site itself, not from Google Fonts: the `@fontsource/playfair-display` and `@fontsource/jost` packages, listed in `angular.json` `styles`. Only the faces used, latin subset only: Playfair Display 400, 400 italic, 600; Jost 300, 400, 500. The build copies them to `media/` with hashed names.
+
+- **Adding a weight or style:** add its `latin-<weight>[-italic].css` file to `styles` in `angular.json`, and to `FACES` in `e2e/fonts.spec.ts`, which checks that nothing else loads and that no page calls Google.
+- **Headings ask for bold (700) and get 600,** the heaviest Playfair face loaded. Adding 700 would make every heading heavier.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
