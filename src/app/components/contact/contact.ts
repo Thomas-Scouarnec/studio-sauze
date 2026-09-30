@@ -9,8 +9,8 @@ import { ContactService } from '../../services/contact.service';
   host: {
     id: 'contact',
     role: 'region',
-    'aria-labelledby': 'contact-heading'
-  }
+    'aria-labelledby': 'contact-heading',
+  },
 })
 export class ContactComponent {
   protected readonly contact = inject(ContactService);

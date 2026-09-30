@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, afterRenderEffect, computed, input, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  afterRenderEffect,
+  computed,
+  input,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { StaySection } from '../../services/stay.service';
 import { DisclosureDirective } from '../../shared/disclosure';
@@ -17,7 +25,13 @@ import { DisclosureDirective } from '../../shared/disclosure';
   imports: [RouterLink, DisclosureDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <nav class="stay-nav" aria-label="Sommaire" i18n-aria-label="@@stay.toc.label" appDisclosure #menu="disclosure">
+    <nav
+      class="stay-nav"
+      aria-label="Sommaire"
+      i18n-aria-label="@@stay.toc.label"
+      appDisclosure
+      #menu="disclosure"
+    >
       <!-- Narrow screens only: hidden with display: none where the chips fit. -->
       <button
         #disclosureToggle
@@ -29,7 +43,9 @@ import { DisclosureDirective } from '../../shared/disclosure';
       >
         <span class="stay-nav-label">
           @if (position(); as p) {
-            <span class="visually-hidden" i18n="@@stay.nav.position">Section {{ p.number }} sur {{ p.total }} :</span>
+            <span class="visually-hidden" i18n="@@stay.nav.position"
+              >Section {{ p.number }} sur {{ p.total }} :</span
+            >
             <span class="stay-nav-fraction" aria-hidden="true">{{ p.number }}/{{ p.total }} ·</span>
             {{ p.title }}
           } @else {
@@ -38,7 +54,11 @@ import { DisclosureDirective } from '../../shared/disclosure';
         </span>
         <span class="stay-nav-chevron" aria-hidden="true"></span>
       </button>
-      <span class="stay-nav-progress" aria-hidden="true" [style.transform]="'scaleX(' + progress() + ')'"></span>
+      <span
+        class="stay-nav-progress"
+        aria-hidden="true"
+        [style.transform]="'scaleX(' + progress() + ')'"
+      ></span>
 
       <!-- An ordered list: screen readers announce « 5 of 9 », so the visible number is hidden from them. -->
       <ol #list id="stay-nav-list" [class.is-open]="menu.open()">
@@ -58,7 +78,7 @@ import { DisclosureDirective } from '../../shared/disclosure';
       </ol>
     </nav>
   `,
-  styleUrl: './stay-nav.css'
+  styleUrl: './stay-nav.css',
 })
 export class StayNavComponent {
   readonly sections = input.required<readonly StaySection[]>();
@@ -69,7 +89,9 @@ export class StayNavComponent {
   protected readonly position = computed(() => {
     const sections = this.sections();
     const index = sections.findIndex((section) => section.id === this.activeId());
-    return index < 0 ? null : { number: index + 1, total: sections.length, title: sections[index].title };
+    return index < 0
+      ? null
+      : { number: index + 1, total: sections.length, title: sections[index].title };
   });
 
   /** The share of the progress line filled, from 0 to 1 (FR-28). */

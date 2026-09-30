@@ -14,5 +14,5 @@ export const HOME_SECTIONS: readonly HomeSection[] = [
   { id: 'about', title: $localize`:@@nav.about:L'appartement` },
   { id: 'equipment', title: $localize`:@@nav.equipment:Équipements` },
   { id: 'activities', title: $localize`:@@nav.activities:Activités` },
-  { id: 'contact', title: $localize`:@@nav.contact:Contact` }
+  { id: 'contact', title: $localize`:@@nav.contact:Contact` },
 ];

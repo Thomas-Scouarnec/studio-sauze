@@ -7,14 +7,14 @@ describe('StayNavComponent', () => {
   const sections: StaySection[] = [
     { id: 'welcome', title: 'Bienvenue', groups: [] },
     { id: 'arrival', title: "À l'arrivée", groups: [] },
-    { id: 'activities', title: 'Activités', groups: [] }
+    { id: 'activities', title: 'Activités', groups: [] },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StayNavComponent],
       // A `stay` route, so choosing a section in a test can navigate.
-      providers: [provideRouter([{ path: 'stay', children: [] }])]
+      providers: [provideRouter([{ path: 'stay', children: [] }])],
     }).compileComponents();
   });
 
@@ -44,7 +44,11 @@ describe('StayNavComponent', () => {
 
   it('should link each chip to its section', async () => {
     const { links } = await render();
-    expect(links().map((a) => a.getAttribute('href'))).toEqual(['/stay#welcome', '/stay#arrival', '/stay#activities']);
+    expect(links().map((a) => a.getAttribute('href'))).toEqual([
+      '/stay#welcome',
+      '/stay#arrival',
+      '/stay#activities',
+    ]);
     expect(links().map(spokenText)).toEqual(['Bienvenue', "À l'arrivée", 'Activités']);
   });
 
@@ -91,9 +95,11 @@ describe('StayNavComponent', () => {
       expect(spokenText(button())).toBe('Sommaire');
     });
 
-    it('should show « 2/3 · À l\'arrivée », and say « Section 2 sur 3 : » to screen readers', async () => {
+    it("should show « 2/3 · À l'arrivée », and say « Section 2 sur 3 : » to screen readers", async () => {
       const { button } = await renderBar('arrival');
-      expect(button().textContent?.replace(/\s+/g, ' ').trim()).toBe("Section 2 sur 3 :2/3 · À l'arrivée");
+      expect(button().textContent?.replace(/\s+/g, ' ').trim()).toBe(
+        "Section 2 sur 3 :2/3 · À l'arrivée",
+      );
       expect(spokenText(button()).replace(/\s+/g, ' ')).toBe("Section 2 sur 3 : À l'arrivée");
       expect(button().querySelector('.visually-hidden')?.textContent).toBe('Section 2 sur 3 :');
     });
@@ -162,7 +168,9 @@ describe('StayNavComponent', () => {
       const outside = document.createElement('button');
       document.body.appendChild(outside);
 
-      links()[0].dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: links()[1] }));
+      links()[0].dispatchEvent(
+        new FocusEvent('focusout', { bubbles: true, relatedTarget: links()[1] }),
+      );
       await fixture.whenStable();
       expect(button().getAttribute('aria-expanded')).toBe('true');
 
@@ -171,7 +179,9 @@ describe('StayNavComponent', () => {
       await fixture.whenStable();
       expect(button().getAttribute('aria-expanded')).toBe('true');
 
-      links()[2].dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: outside }));
+      links()[2].dispatchEvent(
+        new FocusEvent('focusout', { bubbles: true, relatedTarget: outside }),
+      );
       await fixture.whenStable();
       expect(button().getAttribute('aria-expanded')).toBe('false');
       outside.remove();

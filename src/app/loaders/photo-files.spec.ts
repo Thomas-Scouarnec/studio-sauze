@@ -12,9 +12,7 @@ function allPhotos(): ResponsivePhoto[] {
     livingRoom,
     forestView,
     mountain,
-    ...flatInfo
-      .equipmentBlocks()
-      .flatMap((block) => (block.photo ? [block.photo] : [])),
+    ...flatInfo.equipmentBlocks().flatMap((block) => (block.photo ? [block.photo] : [])),
     ...TestBed.inject(SeasonsService)
       .seasons()
       .map((season) => season.photo),

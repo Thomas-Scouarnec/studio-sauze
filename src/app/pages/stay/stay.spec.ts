@@ -58,7 +58,9 @@ describe('StayComponent', () => {
   it('should add noindex while shown and remove it when left (FR-3)', async () => {
     const fixture = TestBed.createComponent(StayComponent);
     await fixture.whenStable();
-    expect(document.head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex');
+    expect(document.head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+      'noindex',
+    );
 
     fixture.destroy();
     expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
@@ -79,9 +81,13 @@ describe('StayComponent', () => {
 
   it('should number the section headings in page order, hidden from screen readers (FR-23)', async () => {
     const host = await render();
-    const numbers = Array.from(host.querySelectorAll('section.stay-section h2 .stay-section-number'));
+    const numbers = Array.from(
+      host.querySelectorAll('section.stay-section h2 .stay-section-number'),
+    );
     expect(numbers.map((n) => n.textContent?.trim())).toEqual(
-      TestBed.inject(StayService).sections().map((_, index) => String(index + 1)),
+      TestBed.inject(StayService)
+        .sections()
+        .map((_, index) => String(index + 1)),
     );
     numbers.forEach((n) => expect(n.getAttribute('aria-hidden')).toBe('true'));
   });
@@ -163,7 +169,9 @@ describe('StayComponent', () => {
 
   it('should render the activity group titles as h3 (FR-15)', async () => {
     const host = await render();
-    const titles = Array.from(host.querySelectorAll('#activities h3')).map((h) => h.textContent?.trim());
+    const titles = Array.from(host.querySelectorAll('#activities h3')).map((h) =>
+      h.textContent?.trim(),
+    );
     expect(titles).toEqual(['Hiver', 'Été', "Toute l'année"]);
   });
 

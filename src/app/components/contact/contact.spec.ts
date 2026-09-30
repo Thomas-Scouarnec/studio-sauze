@@ -60,7 +60,7 @@ describe('ContactComponent', () => {
   it('should state that no booking is recorded on the site (FR-8)', async () => {
     const host = await render();
     expect(host.querySelector('.contact-request-note')?.textContent).toContain(
-      "aucune réservation n'est enregistrée sur ce site"
+      "aucune réservation n'est enregistrée sur ce site",
     );
   });
 

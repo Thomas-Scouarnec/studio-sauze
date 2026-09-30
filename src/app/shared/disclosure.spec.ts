@@ -8,14 +8,21 @@ import { DisclosureDirective } from './disclosure';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div appDisclosure #menu="disclosure">
-      <button #disclosureToggle type="button" [attr.aria-expanded]="menu.open()" (click)="menu.toggle()">Menu</button>
+      <button
+        #disclosureToggle
+        type="button"
+        [attr.aria-expanded]="menu.open()"
+        (click)="menu.toggle()"
+      >
+        Menu
+      </button>
       <ul [hidden]="!menu.open()">
         <li><a href="#one" (click)="$event.preventDefault(); menu.close(false)">One</a></li>
         <li><a href="#two">Two</a></li>
       </ul>
     </div>
     <button type="button" class="outside">Outside</button>
-  `
+  `,
 })
 class DisclosureHostComponent {}
 

@@ -7,7 +7,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeComponent],
-      providers: [provideRouter([])]
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
       'app-about',
       'app-equipment',
       'app-seasons',
-      'app-contact'
+      'app-contact',
     ]);
   });
 

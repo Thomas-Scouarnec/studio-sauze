@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <p class="footer-copy" i18n="@@footer.copyright">© {{ year }} · Tous droits réservés</p>
     </footer>
   `,
-  styleUrl: './footer.css'
+  styleUrl: './footer.css',
 })
 export class FooterComponent {
   protected readonly year = new Date().getFullYear();

@@ -26,7 +26,11 @@ export async function scan(page: Page, testInfo: TestInfo, name: string): Promis
       helpUrl: violation.helpUrl,
       nodes: violation.nodes
         .filter((node) => !expected.includes(key(violation.id, node.target)))
-        .map((node) => ({ target: key(violation.id, node.target), html: node.html, summary: node.failureSummary })),
+        .map((node) => ({
+          target: key(violation.id, node.target),
+          html: node.html,
+          summary: node.failureSummary,
+        })),
     }))
     .filter((violation) => violation.nodes.length > 0);
   if (unexpected.length > 0) {
@@ -57,7 +61,9 @@ async function settle(page: Page): Promise<void> {
     await Promise.all(
       Array.from(document.images)
         .filter((image) => !image.complete && image.loading !== 'lazy')
-        .map((image) => new Promise((done) => image.addEventListener('loadend', done, { once: true }))),
+        .map(
+          (image) => new Promise((done) => image.addEventListener('loadend', done, { once: true })),
+        ),
     );
   });
 }

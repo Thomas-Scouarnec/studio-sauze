@@ -42,7 +42,9 @@ describe('StayService', () => {
   });
 
   it('should keep the activities to a lead item and three groups (FR-15)', () => {
-    const activities = service().sections().find((s) => s.id === 'activities');
+    const activities = service()
+      .sections()
+      .find((s) => s.id === 'activities');
     expect(activities?.groups.map((g) => g.title)).toEqual([
       undefined,
       'Hiver',
@@ -83,7 +85,9 @@ describe('StayService', () => {
   });
 
   it('should list the tennis courts, the pétanque court and the wooden games', () => {
-    const activities = service().sections().find((s) => s.id === 'activities');
+    const activities = service()
+      .sections()
+      .find((s) => s.id === 'activities');
     const titlesOf = (group: string) =>
       activities?.groups.find((g) => g.title === group)?.items.map((item) => item.title);
     expect(titlesOf('Été')).toEqual(expect.arrayContaining(['Tennis', 'Pétanque']));
@@ -107,8 +111,13 @@ describe('StayService', () => {
   });
 
   it('should state the linen rule before arriving (FR-18)', () => {
-    const before = service().sections().find((s) => s.id === 'before-arrival');
-    const texts = before!.groups.flatMap((g) => g.items).map((i) => i.text ?? '').join(' ');
+    const before = service()
+      .sections()
+      .find((s) => s.id === 'before-arrival');
+    const texts = before!.groups
+      .flatMap((g) => g.items)
+      .map((i) => i.text ?? '')
+      .join(' ');
     expect(texts).toContain('ne sont pas fournis');
   });
 
@@ -130,7 +139,9 @@ describe('StayService', () => {
   });
 
   it('should keep the departure time in the checkout checklist (FR-17)', () => {
-    const leaving = service().sections().find((s) => s.id === 'before-leaving');
+    const leaving = service()
+      .sections()
+      .find((s) => s.id === 'before-leaving');
     const texts = leaving!.groups.flatMap((g) => g.items).map((i) => i.text ?? '');
     expect(texts).toContain('Départ avant 11 h.');
   });

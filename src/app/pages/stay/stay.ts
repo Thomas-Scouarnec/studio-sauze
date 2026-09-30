@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, viewChild, viewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  viewChild,
+  viewChildren,
+} from '@angular/core';
 import { IMAGE_LOADER, NgOptimizedImage, ViewportScroller } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
@@ -23,16 +31,19 @@ const HEADING_GAP = 16;
   providers: [{ provide: IMAGE_LOADER, useValue: responsiveImageLoader }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './stay.html',
-  styleUrl: './stay.css'
+  styleUrl: './stay.css',
 })
 export class StayComponent {
   protected readonly stay = inject(StayService);
 
   private readonly banner = viewChild.required<ElementRef<HTMLElement>>('banner');
   private readonly title = viewChild.required<ElementRef<HTMLElement>>('title');
-  private readonly menu = viewChild.required<StayNavComponent, ElementRef<HTMLElement>>(StayNavComponent, {
-    read: ElementRef
-  });
+  private readonly menu = viewChild.required<StayNavComponent, ElementRef<HTMLElement>>(
+    StayNavComponent,
+    {
+      read: ElementRef,
+    },
+  );
   private readonly sectionElements = viewChildren<ElementRef<HTMLElement>>('sectionElement');
 
   /** The height the sticky menu hides at the top of the window. */
@@ -40,7 +51,7 @@ export class StayComponent {
 
   protected readonly activeSectionId = spyOnSections(
     () => this.sectionElements().map((ref) => ref.nativeElement),
-    this.menuHeight
+    this.menuHeight,
   );
   protected readonly bannerVisible = spyOnVisibility(() => this.banner().nativeElement);
 

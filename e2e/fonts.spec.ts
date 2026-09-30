@@ -16,7 +16,10 @@ for (const path of ['/', '/stay', '/en/', '/en/stay']) {
   test(`${path} loads its fonts from the site only`, async ({ page, baseURL }) => {
     const fontRequests: string[] = [];
     page.on('request', (request) => {
-      if (request.resourceType() === 'font' || /fonts\.(googleapis|gstatic)\.com/.test(request.url())) {
+      if (
+        request.resourceType() === 'font' ||
+        /fonts\.(googleapis|gstatic)\.com/.test(request.url())
+      ) {
         fontRequests.push(request.url());
       }
     });

@@ -7,18 +7,18 @@
 }
 
 :root {
-  --cream: #F5F0E8;
-  --bark: #3D2B1F;
-  --pine: #2E4A35;
-  --snow: #FAF8F4;
-  --stone: #70665D;
-  --amber: #C8854A;
+  --cream: #f5f0e8;
+  --bark: #3d2b1f;
+  --pine: #2e4a35;
+  --snow: #faf8f4;
+  --stone: #70665d;
+  --amber: #c8854a;
   /* Amber for small text, where plain amber falls short of 4.5:1 (WCAG 1.4.3). */
-  --amber-on-light: #8C5D34;
-  --amber-on-dark: #CE915C;
-  --rust: #9B4E2A;
-  --mist: #D6CFC4;
-  --text: #2A1F18;
+  --amber-on-light: #8c5d34;
+  --amber-on-dark: #ce915c;
+  --rust: #9b4e2a;
+  --mist: #d6cfc4;
+  --text: #2a1f18;
 }
 
 /* Only for visitors who have not asked their device for less motion. */

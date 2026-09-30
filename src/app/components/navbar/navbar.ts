@@ -16,11 +16,19 @@ import { HOME_SECTIONS } from '../../shared/home-sections';
         <ul class="nav-links">
           <!-- routerLink + fragment, so the links also work from /stay (FR-8). -->
           @for (section of sections; track section.id) {
-            <li><a routerLink="/" [fragment]="section.id">{{ section.title }}</a></li>
+            <li>
+              <a routerLink="/" [fragment]="section.id">{{ section.title }}</a>
+            </li>
           }
           @if (guestAccess.isGuest()) {
             <li class="nav-guest">
-              <a routerLink="/stay" routerLinkActive="is-active" ariaCurrentWhenActive="page" i18n="@@nav.stay">Mon séjour</a>
+              <a
+                routerLink="/stay"
+                routerLinkActive="is-active"
+                ariaCurrentWhenActive="page"
+                i18n="@@nav.stay"
+                >Mon séjour</a
+              >
             </li>
           }
         </ul>
@@ -29,7 +37,7 @@ import { HOME_SECTIONS } from '../../shared/home-sections';
       </div>
     </nav>
   `,
-  styleUrl: './navbar.css'
+  styleUrl: './navbar.css',
 })
 export class NavbarComponent {
   protected readonly guestAccess = inject(GuestAccessService);

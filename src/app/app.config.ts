@@ -13,8 +13,8 @@ export const appConfig: ApplicationConfig = {
       // to the top on a new page, and back to where it was on back/forward.
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
       // Without this, a second click on the same section link is ignored.
-      withRouterConfig({ onSameUrlNavigation: 'reload' })
+      withRouterConfig({ onSameUrlNavigation: 'reload' }),
     ),
-    ...hydrationProviders
-  ]
+    ...hydrationProviders,
+  ],
 };

@@ -67,7 +67,9 @@ describe('EquipmentComponent', () => {
       kitchen: '/images/equipment/kitchen-800w.webp 800w',
     };
     for (const [id, srcset] of Object.entries(expected)) {
-      const frame: HTMLElement = fixture.nativeElement.querySelector(`.equipment-block.${id} .equipment-photo`);
+      const frame: HTMLElement = fixture.nativeElement.querySelector(
+        `.equipment-block.${id} .equipment-photo`,
+      );
       const img = frame.querySelector('img')!;
       expect(frame.getAttribute('aria-hidden')).toBeNull();
       expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
@@ -94,7 +96,9 @@ describe('EquipmentComponent', () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
 
-    const frame: HTMLElement = fixture.nativeElement.querySelector('.equipment-block.kitchen .equipment-photo');
+    const frame: HTMLElement = fixture.nativeElement.querySelector(
+      '.equipment-block.kitchen .equipment-photo',
+    );
     const alt = frame.querySelector('img')!.getAttribute('alt')!;
     const name = [alt, frame.textContent].join(' ').replace(/\s+/g, ' ').trim();
 
@@ -106,7 +110,9 @@ describe('EquipmentComponent', () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
 
-    const badges = [...fixture.nativeElement.querySelectorAll('.equipment-photo-badge')] as HTMLElement[];
+    const badges = [
+      ...fixture.nativeElement.querySelectorAll('.equipment-photo-badge'),
+    ] as HTMLElement[];
     expect(badges.length).toBe(3);
     badges.forEach((badge) => {
       expect(badge.querySelector('svg')).not.toBeNull();

@@ -16,7 +16,12 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
   imports: [RouterLink, DisclosureDirective, LanguageSwitcherComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <nav aria-label="Navigation de la page" i18n-aria-label="@@homeNav.label" appDisclosure #menu="disclosure">
+    <nav
+      aria-label="Navigation de la page"
+      i18n-aria-label="@@homeNav.label"
+      appDisclosure
+      #menu="disclosure"
+    >
       <div class="home-nav-bar">
         <button
           #disclosureToggle
@@ -37,7 +42,12 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
           <span class="home-nav-chevron" aria-hidden="true"></span>
         </button>
         <!-- A link, not part of the menu: always in view (FR-5). -->
-        <a class="home-nav-contact" routerLink="/" fragment="contact" (click)="menu.close(false)" i18n="@@nav.contact"
+        <a
+          class="home-nav-contact"
+          routerLink="/"
+          fragment="contact"
+          (click)="menu.close(false)"
+          i18n="@@nav.contact"
           >Contact</a
         >
       </div>
@@ -65,7 +75,7 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
       </div>
     </nav>
   `,
-  styleUrl: './home-nav.css'
+  styleUrl: './home-nav.css',
 })
 export class HomeNavComponent {
   /** The section being read; owned by the page, which observes the scroll. */
@@ -76,6 +86,6 @@ export class HomeNavComponent {
 
   /** The title the button shows, or `null` above the first section (FR-2). */
   protected readonly current = computed(
-    () => this.sections.find((section) => section.id === this.activeId())?.title ?? null
+    () => this.sections.find((section) => section.id === this.activeId())?.title ?? null,
   );
 }

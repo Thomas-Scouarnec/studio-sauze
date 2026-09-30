@@ -27,7 +27,9 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const host: HTMLElement = fixture.nativeElement;
-    expect(host.querySelector('a.skip-link')?.textContent?.trim()).toBe('Aller au contenu principal');
+    expect(host.querySelector('a.skip-link')?.textContent?.trim()).toBe(
+      'Aller au contenu principal',
+    );
     expect(host.querySelector('router-outlet')).not.toBeNull();
     expect(host.querySelector('app-footer')).not.toBeNull();
   });

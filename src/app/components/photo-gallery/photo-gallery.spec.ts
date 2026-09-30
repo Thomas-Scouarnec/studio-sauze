@@ -61,8 +61,8 @@ describe('PhotoGalleryComponent', () => {
   it('should label every control in French', async () => {
     const fixture = await open();
 
-    const labels = [...fixture.nativeElement.querySelectorAll('.gallery-control')].map(
-      (button) => (button as HTMLElement).textContent?.replace(/\s+/g, ' ').trim()
+    const labels = [...fixture.nativeElement.querySelectorAll('.gallery-control')].map((button) =>
+      (button as HTMLElement).textContent?.replace(/\s+/g, ' ').trim(),
     );
     expect(labels).toContain('✕Fermer la galerie');
     expect(labels).toContain('‹Photo précédente');
@@ -96,14 +96,16 @@ describe('PhotoGalleryComponent', () => {
     const fixture = await open('equipment/kitchen');
     const srcset = () =>
       (fixture.nativeElement.querySelector('.gallery-stage img') as HTMLImageElement).getAttribute(
-        'srcset'
+        'srcset',
       );
     expect(srcset()).toBe('/images/equipment/kitchen-800w.webp 800w');
 
     gallery.next();
     await fixture.whenStable();
 
-    expect(srcset()).toBe('/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w');
+    expect(srcset()).toBe(
+      '/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w',
+    );
   });
 
   it('should move between photos with the arrow keys', async () => {

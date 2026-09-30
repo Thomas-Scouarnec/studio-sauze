@@ -12,7 +12,7 @@ export class FakeIntersectionObserver {
 
   constructor(
     private readonly callback: IntersectionObserverCallback,
-    readonly options?: IntersectionObserverInit
+    readonly options?: IntersectionObserverInit,
   ) {
     FakeIntersectionObserver.instances.push(this);
   }
@@ -23,7 +23,9 @@ export class FakeIntersectionObserver {
 
   /** The observer watching this element. */
   static watching(element: Element): FakeIntersectionObserver {
-    const observer = FakeIntersectionObserver.instances.find((instance) => instance.observed.includes(element));
+    const observer = FakeIntersectionObserver.instances.find((instance) =>
+      instance.observed.includes(element),
+    );
     if (!observer) {
       throw new Error(`No observer watches <${element.tagName.toLowerCase()} id="${element.id}">`);
     }
@@ -48,15 +50,18 @@ export class FakeIntersectionObserver {
    * Delivers entries as the browser would. `top` is the element's top edge,
    * and the band (the root after `rootMargin`) runs from 0 to `bandBottom`.
    */
-  report(changes: { target: Element; isIntersecting: boolean; top?: number }[], bandBottom = 300): void {
+  report(
+    changes: { target: Element; isIntersecting: boolean; top?: number }[],
+    bandBottom = 300,
+  ): void {
     const entries = changes.map(
       ({ target, isIntersecting, top = 0 }) =>
         ({
           target,
           isIntersecting,
           boundingClientRect: { top } as DOMRectReadOnly,
-          rootBounds: { bottom: bandBottom } as DOMRectReadOnly
-        }) as IntersectionObserverEntry
+          rootBounds: { bottom: bandBottom } as DOMRectReadOnly,
+        }) as IntersectionObserverEntry,
     );
     this.callback(entries, this as unknown as IntersectionObserver);
   }

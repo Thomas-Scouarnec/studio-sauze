@@ -68,7 +68,9 @@ describe('AboutComponent', () => {
     const fixture = TestBed.createComponent(AboutComponent);
     await fixture.whenStable();
     const wide: HTMLImageElement = fixture.nativeElement.querySelector('.about-photo-wide img');
-    expect(wide.getAttribute('alt')).toBe('Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu');
+    expect(wide.getAttribute('alt')).toBe(
+      'Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu',
+    );
     expect(wide.getAttribute('srcset')).toBe('/images/about/mountain-800w.webp 800w');
     expect(wide.getAttribute('loading')).toBe('lazy');
   });

@@ -8,7 +8,7 @@ import { FlatInfoService } from '../../services/flat-info.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './hero.html',
   styleUrl: './hero.css',
-  host: { role: 'banner' }
+  host: { role: 'banner' },
 })
 export class HeroComponent {
   protected readonly flatInfo = inject(FlatInfoService);

@@ -20,7 +20,9 @@ test('desktop: a chip jumps to its section and is marked current', async ({ page
   await expect(menu.locator('[aria-current]')).toHaveCount(1);
 });
 
-test('phone: the compact bar opens the list and names the section reached', async ({ page }, testInfo) => {
+test('phone: the compact bar opens the list and names the section reached', async ({
+  page,
+}, testInfo) => {
   test.skip(testInfo.project.name !== 'phone', 'The compact bar shows on narrow screens');
   const menu = page.getByRole('navigation', { name: 'Sommaire' });
   const toggle = menu.locator('[aria-controls="stay-nav-list"]');

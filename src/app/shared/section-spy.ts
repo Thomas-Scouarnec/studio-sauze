@@ -16,7 +16,10 @@ import { DestroyRef, Signal, afterNextRender, inject, signal } from '@angular/co
  * @param topOffset the height hidden by the sticky menu, read when observing starts
  * @returns the `id` of the section being read, or `null` above the first one
  */
-export function spyOnSections(sections: () => readonly Element[], topOffset: () => number): Signal<string | null> {
+export function spyOnSections(
+  sections: () => readonly Element[],
+  topOffset: () => number,
+): Signal<string | null> {
   const active = signal<string | null>(null);
   const destroyRef = inject(DestroyRef);
 
@@ -68,7 +71,7 @@ export function spyOnSections(sections: () => readonly Element[], topOffset: () 
       },
       // 1px below the menu: a section that merely touches its edge (the one just
       // scrolled past, when a jump lands the next one flush) does not count.
-      { rootMargin: `-${Math.round(topOffset()) + 1}px 0px -60% 0px` }
+      { rootMargin: `-${Math.round(topOffset()) + 1}px 0px -60% 0px` },
     );
     elements.forEach((element) => observer.observe(element));
 

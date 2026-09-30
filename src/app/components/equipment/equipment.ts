@@ -15,8 +15,8 @@ import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
   host: {
     id: 'equipment',
     role: 'region',
-    'aria-labelledby': 'equipment-heading'
-  }
+    'aria-labelledby': 'equipment-heading',
+  },
 })
 export class EquipmentComponent {
   protected readonly flatInfo = inject(FlatInfoService);

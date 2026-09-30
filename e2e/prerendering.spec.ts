@@ -5,9 +5,19 @@ import { expect, test, type Page } from '@playwright/test';
 
 const pages = [
   { path: '/', lang: 'fr', title: 'Notre Refuge au Sauze', heading: '#about-heading' },
-  { path: '/stay', lang: 'fr', title: 'Votre séjour — Notre Refuge au Sauze', heading: '#welcome-heading' },
+  {
+    path: '/stay',
+    lang: 'fr',
+    title: 'Votre séjour — Notre Refuge au Sauze',
+    heading: '#welcome-heading',
+  },
   { path: '/en/', lang: 'en', title: 'Notre Refuge au Sauze', heading: '#about-heading' },
-  { path: '/en/stay', lang: 'en', title: 'Your stay — Notre Refuge au Sauze', heading: '#welcome-heading' },
+  {
+    path: '/en/stay',
+    lang: 'en',
+    title: 'Your stay — Notre Refuge au Sauze',
+    heading: '#welcome-heading',
+  },
 ];
 
 test.describe('with JavaScript disabled', () => {
@@ -41,7 +51,8 @@ test.describe('hydration', () => {
       await page.addInitScript(() => {
         document.addEventListener('readystatechange', () => {
           if (document.readyState === 'interactive') {
-            (window as unknown as { prerenderedH1: Element | null }).prerenderedH1 = document.querySelector('h1');
+            (window as unknown as { prerenderedH1: Element | null }).prerenderedH1 =
+              document.querySelector('h1');
           }
         });
       });
@@ -50,7 +61,9 @@ test.describe('hydration', () => {
 
       // Hydration keeps the same DOM nodes; rendering again would replace them.
       const sameNode = await page.evaluate(
-        () => (window as unknown as { prerenderedH1: Element | null }).prerenderedH1 === document.querySelector('h1'),
+        () =>
+          (window as unknown as { prerenderedH1: Element | null }).prerenderedH1 ===
+          document.querySelector('h1'),
       );
       expect(sameNode, 'the h1 parsed from the HTML is still the one on the page').toBe(true);
       expect(errors).toEqual([]);
@@ -88,7 +101,9 @@ test.describe('a saved « English » (FR-9)', () => {
     await expect(page).toHaveURL(/:\d+\/stay$/);
   });
 
-  test('storage that throws leaves the visitor in French, without error (BR-6)', async ({ page }) => {
+  test('storage that throws leaves the visitor in French, without error (BR-6)', async ({
+    page,
+  }) => {
     const errors = collectErrors(page);
     await page.addInitScript(() => {
       Object.defineProperty(window, 'localStorage', {

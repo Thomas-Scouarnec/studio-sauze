@@ -22,9 +22,7 @@ export class GalleryService {
   readonly photos = computed<ResponsivePhoto[]>(() => {
     const { livingRoom, forestView } = this.flatInfo.aboutPhotos();
     return [
-      ...this.flatInfo
-        .equipmentBlocks()
-        .flatMap((block) => (block.photo ? [block.photo] : [])),
+      ...this.flatInfo.equipmentBlocks().flatMap((block) => (block.photo ? [block.photo] : [])),
       livingRoom,
       forestView,
     ];
@@ -70,8 +68,6 @@ export class GalleryService {
   /** Moves by `offset`, wrapping around at both ends. */
   private step(offset: number): void {
     const total = this.count();
-    this._openIndex.update((index) =>
-      index === null ? null : (index + offset + total) % total
-    );
+    this._openIndex.update((index) => (index === null ? null : (index + offset + total) % total));
   }
 }

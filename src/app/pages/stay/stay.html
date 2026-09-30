@@ -8,7 +8,12 @@
   <app-stay-nav [sections]="stay.sections()" [activeId]="activeSectionId()" />
 
   @for (section of stay.sections(); track section.id) {
-    <section #sectionElement class="stay-section" [id]="section.id" [attr.aria-labelledby]="section.id + '-heading'">
+    <section
+      #sectionElement
+      class="stay-section"
+      [id]="section.id"
+      [attr.aria-labelledby]="section.id + '-heading'"
+    >
       <!-- The number is hidden from screen readers: the heading, and the region it labels, stay « Activités » (FR-23). -->
       <h2 [id]="section.id + '-heading'" class="section-title stay-section-title">
         <span class="stay-section-number" aria-hidden="true">{{ $index + 1 }}</span>
@@ -33,7 +38,8 @@
               } @else {
                 @if (item.link) {
                   <a class="stay-item-link" [href]="item.link.url" target="_blank" rel="noopener">
-                    {{ item.link.label }}<span class="visually-hidden" i18n="@@stay.newTab"> (nouvel onglet)</span>
+                    {{ item.link.label
+                    }}<span class="visually-hidden" i18n="@@stay.newTab"> (nouvel onglet)</span>
                   </a>
                 }
                 @if (item.photos) {
@@ -49,7 +55,9 @@
                           height="600"
                         />
                       } @else {
-                        <p class="stay-photo-pending" i18n="@@stay.photoPending">Photo à venir : {{ slot.description }}</p>
+                        <p class="stay-photo-pending" i18n="@@stay.photoPending">
+                          Photo à venir : {{ slot.description }}
+                        </p>
                       }
                     }
                   </div>
@@ -64,7 +72,8 @@
 
   @if (!bannerVisible()) {
     <button type="button" class="stay-back-to-top" (click)="backToTop()">
-      <span class="stay-back-to-top-arrow" aria-hidden="true">↑</span><span i18n="@@stay.backToTop">Haut de page</span>
+      <span class="stay-back-to-top-arrow" aria-hidden="true">↑</span
+      ><span i18n="@@stay.backToTop">Haut de page</span>
     </button>
   }
 </main>

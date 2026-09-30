@@ -36,9 +36,9 @@ describe('NavbarComponent', () => {
 
   it('should point the four section links at the home page with a fragment (FR-8)', async () => {
     const host = await render();
-    const hrefs = Array.from(host.querySelectorAll<HTMLAnchorElement>('.nav-links li:not(.nav-guest) a')).map(
-      (link) => link.getAttribute('href'),
-    );
+    const hrefs = Array.from(
+      host.querySelectorAll<HTMLAnchorElement>('.nav-links li:not(.nav-guest) a'),
+    ).map((link) => link.getAttribute('href'));
     expect(hrefs).toEqual(['/#about', '/#equipment', '/#activities', '/#contact']);
   });
 

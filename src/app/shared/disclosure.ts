@@ -26,8 +26,8 @@ import { Directive, ElementRef, contentChild, inject, signal } from '@angular/co
   host: {
     '(keydown.escape)': 'close(true)',
     '(focusout)': 'onFocusOut($event)',
-    '(document:click)': 'onDocumentClick($event)'
-  }
+    '(document:click)': 'onDocumentClick($event)',
+  },
 })
 export class DisclosureDirective {
   private readonly isOpen = signal(false);

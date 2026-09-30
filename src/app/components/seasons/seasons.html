@@ -1,5 +1,7 @@
 <span class="section-label" i18n="@@seasons.label">Toute l'année</span>
-<h2 id="activities-heading" class="section-title" i18n="@@seasons.title">Deux saisons,<br>mille plaisirs</h2>
+<h2 id="activities-heading" class="section-title" i18n="@@seasons.title">
+  Deux saisons,<br />mille plaisirs
+</h2>
 
 <div class="seasons-grid">
   @for (season of seasonsService.seasons(); track season.id) {
@@ -32,12 +34,7 @@
         }
       </ul>
 
-      <a
-        class="season-link"
-        [href]="season.link.url"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="season-link" [href]="season.link.url" target="_blank" rel="noopener noreferrer">
         {{ season.link.label }}
         <span class="visually-hidden" i18n="@@common.newTab">(nouvel onglet)</span>
       </a>

@@ -34,7 +34,9 @@ describe('routes', () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/stay', StayComponent);
     const root: HTMLElement = harness.routeNativeElement!;
-    expect(root.querySelector('app-hero, app-about, app-equipment, app-seasons, app-contact')).toBeNull();
+    expect(
+      root.querySelector('app-hero, app-about, app-equipment, app-seasons, app-contact'),
+    ).toBeNull();
   });
 
   it('should redirect an unknown path to the home page (FR-12)', async () => {

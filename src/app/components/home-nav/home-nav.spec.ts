@@ -10,7 +10,7 @@ describe('HomeNavComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HomeNavComponent],
       // An empty-path route, so choosing a section in a test can navigate to `/`.
-      providers: [provideRouter([{ path: '', children: [] }])]
+      providers: [provideRouter([{ path: '', children: [] }])],
     }).compileComponents();
   });
 
@@ -25,7 +25,8 @@ describe('HomeNavComponent', () => {
     const host: HTMLElement = fixture.nativeElement;
     const button = () => host.querySelector<HTMLButtonElement>('button.home-nav-toggle')!;
     const panel = () => host.querySelector<HTMLElement>('.home-nav-panel')!;
-    const sectionLinks = () => Array.from(host.querySelectorAll<HTMLAnchorElement>('.home-nav-sections a'));
+    const sectionLinks = () =>
+      Array.from(host.querySelectorAll<HTMLAnchorElement>('.home-nav-sections a'));
     const click = async (element: HTMLElement) => {
       element.click();
       await fixture.whenStable();
@@ -53,7 +54,9 @@ describe('HomeNavComponent', () => {
   it('should name the section being read, and say « Menu, section actuelle : » to screen readers (FR-2)', async () => {
     const { fixture, button } = await render('equipment');
     expect(spokenText(button())).toBe('Menu, section actuelle : Équipements');
-    expect(button().querySelector('.visually-hidden')?.textContent).toBe('Menu, section actuelle :');
+    expect(button().querySelector('.visually-hidden')?.textContent).toBe(
+      'Menu, section actuelle :',
+    );
 
     fixture.componentRef.setInput('activeId', 'contact');
     await fixture.whenStable();
@@ -70,18 +73,25 @@ describe('HomeNavComponent', () => {
 
   it('should list the four home sections in page order, linked by fragment (FR-3)', async () => {
     const { sectionLinks } = await render();
-    expect(sectionLinks().map((a) => a.getAttribute('href'))).toEqual(HOME_SECTIONS.map((s) => `/#${s.id}`));
+    expect(sectionLinks().map((a) => a.getAttribute('href'))).toEqual(
+      HOME_SECTIONS.map((s) => `/#${s.id}`),
+    );
     expect(sectionLinks().map((a) => a.textContent?.trim())).toEqual([
       "L'appartement",
       'Équipements',
       'Activités',
-      'Contact'
+      'Contact',
     ]);
   });
 
   it('should mark the section being read as the current location (FR-3)', async () => {
     const { sectionLinks } = await render('activities');
-    expect(sectionLinks().map((a) => a.getAttribute('aria-current'))).toEqual([null, null, 'location', null]);
+    expect(sectionLinks().map((a) => a.getAttribute('aria-current'))).toEqual([
+      null,
+      null,
+      'location',
+      null,
+    ]);
   });
 
   it('should open the panel, and close it when a section is chosen (FR-6)', async () => {

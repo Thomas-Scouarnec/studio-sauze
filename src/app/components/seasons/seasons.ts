@@ -14,8 +14,8 @@ import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
   host: {
     id: 'activities',
     role: 'region',
-    'aria-labelledby': 'activities-heading'
-  }
+    'aria-labelledby': 'activities-heading',
+  },
 })
 export class SeasonsComponent {
   protected readonly seasonsService = inject(SeasonsService);

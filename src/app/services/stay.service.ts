@@ -255,7 +255,9 @@ export class StayService {
                 title: $localize`:@@stay.activities.tennis.title:Tennis`,
                 text: $localize`:@@stay.activities.tennis.text:Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.`,
                 photos: [
-                  { description: $localize`:@@stay.activities.tennis.photo:Les deux courts de tennis` },
+                  {
+                    description: $localize`:@@stay.activities.tennis.photo:Les deux courts de tennis`,
+                  },
                 ],
               },
               {

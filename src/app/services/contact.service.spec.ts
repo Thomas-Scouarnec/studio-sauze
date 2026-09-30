@@ -42,7 +42,11 @@ describe('ContactService', () => {
   });
 
   it('should not mention pets while the policy is undecided (BR-3)', () => {
-    const copy = service.requestChecklist().map((item) => item.label).join(' ').toLowerCase();
+    const copy = service
+      .requestChecklist()
+      .map((item) => item.label)
+      .join(' ')
+      .toLowerCase();
     for (const word of ['animal', 'animaux', 'chien', 'chat']) {
       expect(copy).not.toContain(word);
     }

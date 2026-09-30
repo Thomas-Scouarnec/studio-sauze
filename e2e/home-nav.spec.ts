@@ -19,7 +19,10 @@ test.describe('home sticky bar', () => {
     await expect(page.locator('#activities')).toBeFocused();
     await expect(toggle).toContainText('Activités');
     // The closed panel is out of the accessibility tree: found by its fragment instead.
-    await expect(bar.locator('.home-nav-sections a[href$="#activities"]')).toHaveAttribute('aria-current', 'location');
+    await expect(bar.locator('.home-nav-sections a[href$="#activities"]')).toHaveAttribute(
+      'aria-current',
+      'location',
+    );
 
     // Stuck to the top, and the section's top edge flush with the bar's bottom (FR-6).
     // The sticky element is the host: 1px taller than the nav, for its bottom border.

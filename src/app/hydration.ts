@@ -1,5 +1,9 @@
 import { EnvironmentProviders } from '@angular/core';
-import { provideClientHydration, withEventReplay, withI18nSupport } from '@angular/platform-browser';
+import {
+  provideClientHydration,
+  withEventReplay,
+  withI18nSupport,
+} from '@angular/platform-browser';
 
 /**
  * Every page is prerendered at build time: the app adopts that HTML instead of
@@ -10,5 +14,5 @@ import { provideClientHydration, withEventReplay, withI18nSupport } from '@angul
  * this file for `hydration.development.ts` (`fileReplacements` in angular.json).
  */
 export const hydrationProviders: EnvironmentProviders[] = [
-  provideClientHydration(withEventReplay(), withI18nSupport())
+  provideClientHydration(withEventReplay(), withI18nSupport()),
 ];

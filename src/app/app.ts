@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, Injector, afterNextRender, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  Injector,
+  afterNextRender,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, skip } from 'rxjs';
@@ -10,7 +17,9 @@ import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery'
   imports: [RouterOutlet, FooterComponent, PhotoGalleryComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a class="skip-link" href="#main-content" (click)="skipToMain($event)" i18n="@@app.skipLink">Aller au contenu principal</a>
+    <a class="skip-link" href="#main-content" (click)="skipToMain($event)" i18n="@@app.skipLink"
+      >Aller au contenu principal</a
+    >
     <router-outlet />
     <app-footer />
     <!-- Mounted once for the whole site: one dialog, one focus trap. -->
@@ -18,7 +27,7 @@ import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery'
   `,
   // A column filling the window, so a short page (the stay page) still keeps
   // the footer at the bottom; the routed page takes the remaining height.
-  styles: [':host { display: flex; flex-direction: column; min-height: 100vh; }']
+  styles: [':host { display: flex; flex-direction: column; min-height: 100vh; }'],
 })
 export class App {
   private readonly document = inject(DOCUMENT);
@@ -34,7 +43,7 @@ export class App {
       .events.pipe(
         filter((event) => event instanceof NavigationEnd),
         skip(1),
-        takeUntilDestroyed()
+        takeUntilDestroyed(),
       )
       .subscribe(() => {
         afterNextRender(() => this.focusAfterNavigation(), { injector });

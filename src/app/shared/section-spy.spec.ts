@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, viewChild, viewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  viewChild,
+  viewChildren,
+} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FakeIntersectionObserver } from '../testing/fake-intersection-observer';
 import { spyOnSections, spyOnVisibility } from './section-spy';
@@ -11,7 +17,7 @@ import { spyOnSections, spyOnVisibility } from './section-spy';
     @for (id of ids; track id) {
       <section #section [id]="id">{{ id }}</section>
     }
-  `
+  `,
 })
 class SpyHostComponent {
   // Ids used nowhere else: jsdom resolves a scoped `#id` query through the whole
@@ -22,7 +28,7 @@ class SpyHostComponent {
 
   readonly active = spyOnSections(
     () => this.sectionRefs().map((ref) => ref.nativeElement),
-    () => 64
+    () => 64,
   );
   readonly bannerVisible = spyOnVisibility(() => this.banner().nativeElement);
 }
@@ -48,7 +54,11 @@ describe('spyOnSections', () => {
 
   it('should observe every section, with a band starting 1px below the menu', async () => {
     const { observer, section } = await render();
-    expect(observer.observed).toEqual([section('spy-first'), section('spy-second'), section('spy-third')]);
+    expect(observer.observed).toEqual([
+      section('spy-first'),
+      section('spy-second'),
+      section('spy-third'),
+    ]);
     expect(observer.options?.rootMargin).toBe('-65px 0px -60% 0px');
   });
 
@@ -68,7 +78,7 @@ describe('spyOnSections', () => {
     const { component, observer, section } = await render();
     observer.report([
       { target: section('spy-third'), isIntersecting: true },
-      { target: section('spy-second'), isIntersecting: true }
+      { target: section('spy-second'), isIntersecting: true },
     ]);
     expect(component.active()).toBe('spy-second');
   });
