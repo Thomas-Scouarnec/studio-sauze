@@ -114,6 +114,22 @@ The first time, install the browser with `npx playwright install chromium`.
 - **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
 - **CI:** the `e2e` job of `.github/workflows/test.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
 
+## Linting and formatting
+
+```bash
+npm run lint
+```
+
+```bash
+npm run format
+```
+
+- **ESLint** (`eslint.config.js`, [angular-eslint](https://github.com/angular-eslint/angular-eslint)) checks `src/` and `e2e/`: TypeScript and Angular recommended rules, template accessibility, and the project's conventions from `.claude/CLAUDE.md` (`OnPush`, `input()` / `output()`, `host: {}` rather than `@HostListener`, `@if` / `@for`, class bindings rather than `ngClass`, `NgOptimizedImage`). Some rules use type information (`no-uncalled-signals` catches `if (open)` for `if (open())`).
+- **Prettier** (`.prettierrc`: 100 columns, single quotes) formats code, templates, styles, JSON and YAML; `.prettierignore` leaves out build output, generated files and Markdown. `npm run format:check` only reports.
+- **CI:** the `lint` job of `.github/workflows/test.yml` runs both on every push and pull request.
+- **In VS Code,** install the recommended ESLint and Prettier extensions (`.vscode/extensions.json`), and turn on *Format on Save*.
+- **`git blame`** skips the commit that formatted everything (`.git-blame-ignore-revs`; GitHub reads it; locally: `git config blame.ignoreRevsFile .git-blame-ignore-revs`).
+
 ## Dependency updates
 
 [Dependabot](https://docs.github.com/code-security/dependabot) (`.github/dependabot.yml`) opens grouped pull requests every Monday: `angular` (all `@angular/*` together: they must share one version), `testing`, `fonts`, and `tooling` (the rest, minor and patch only); GitHub Actions monthly. The Tests workflow runs on each one: merge it on GitHub when both jobs are green, then `git pull`.

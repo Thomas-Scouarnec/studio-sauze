@@ -504,3 +504,13 @@ All prompts in session order.
 **Done directly, as a small technical Bolt (no separate approval round, as for Bolt 17):** decisions D1 to D5 in [bolt-19-self-hosted-fonts.md](plans/bolt-19-self-hosted-fonts.md); the main one keeps the static faces, because a variable font would make the headings heavier (they ask for bold, 700, and render at 600 today).
 
 **Bolt 19 implemented on 2026-09-30:** the six faces from `@fontsource`, latin only; no request to Google left, checked by 8 new browser tests; screenshots before and after identical to the eye. Details in [bolt-19-self-hosted-fonts.md](plans/bolt-19-self-hosted-fonts.md).
+
+---
+
+## Session 20 — 2026-09-30
+
+**Context:** after Bolt 19, Thomas asked for Dependabot (set up directly: weekly grouped npm updates, monthly GitHub Actions; Angular majors left to `ng update`).
+
+**Intent:** « Can you add ESLint/prettier in the CI of the project? » — idea 6 of Session 18.
+
+**Done directly, as a tooling Bolt:** angular-eslint with rules for CLAUDE.md's conventions, the codebase formatted once in its own commit (checked to change no visible text and no pixel), and a `lint` CI job. Details in [bolt-20-lint-format-ci.md](plans/bolt-20-lint-format-ci.md).

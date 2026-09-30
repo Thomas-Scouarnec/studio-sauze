@@ -44,7 +44,7 @@
 | Check | Result |
 |---|---|
 | Build | Both languages, no warning; 6 `.woff2` files (plus `.woff` fallbacks, never used by current browsers) in `media/` and `en/media/`; no reference to Google left |
-| Browser tests | 64 passing: 8 new (`fonts.spec.ts`, 4 pages × 2 widths): font requests only to the site, `.woff2` only, only the six faces, all six on the home page. AXE: 0 violations |
+| Browser tests | 62 passing, 10 skipped by design (first recorded as 64, which counted two temporary screenshot tests): 8 new (`fonts.spec.ts`, 4 pages × 2 widths): font requests only to the site, `.woff2` only, only the six faces, all six on the home page. AXE: 0 violations |
 | Mutation gate | The Google `@import` put back: the new tests fail (« a font from somewhere else ») |
 | Unit tests | 214 passing |
 | Before / after screenshots (8: home and `/stay`, two scroll positions, 1280px and 375px) | Same size, no layout change; 9 to 2,231 pixels differ out of about a million: single glyphs (an « i » dot, an accent) drawn from a slightly different build of the same fonts. Enlarged side by side, the headings and subheadings look identical |
