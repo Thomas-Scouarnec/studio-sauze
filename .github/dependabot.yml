@@ -1,0 +1,65 @@
+# Dependabot version updates: grouped pull requests, checked every Monday.
+# The Tests workflow (unit + browser/AXE) runs on each one; merge when green.
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Paris
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      # Angular's packages require each other at the exact same version:
+      # one pull request for all of them, or npm cannot install any.
+      angular:
+        patterns:
+          - '@angular/*'
+      # Browser tests and AXE scans (Bolt 16), unit tests (Bolt 1).
+      testing:
+        patterns:
+          - '@playwright/test'
+          - '@axe-core/playwright'
+          - 'vitest'
+          - 'jsdom'
+      fonts:
+        patterns:
+          - '@fontsource/*'
+      # Everything else, patch and minor only (majors come one by one).
+      tooling:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # A new Angular major needs `ng update` and its code migrations, not a
+      # version bump: done by hand, as its own piece of work.
+      - dependency-name: '@angular/*'
+        update-types: ['version-update:semver-major']
+      # Its range is set by Angular (peer dependency of @angular/compiler-cli).
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      # Follows the Node version, not the other way round.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'rxjs'
+        update-types: ['version-update:semver-major']
+
+  # actions/checkout, actions/setup-node, actions/upload-artifact in test.yml.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      timezone: Europe/Paris
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      actions:
+        patterns:
+          - '*'

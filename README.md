@@ -114,6 +114,13 @@ The first time, install the browser with `npx playwright install chromium`.
 - **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
 - **CI:** the `e2e` job of `.github/workflows/test.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
 
+## Dependency updates
+
+[Dependabot](https://docs.github.com/code-security/dependabot) (`.github/dependabot.yml`) opens grouped pull requests every Monday: `angular` (all `@angular/*` together: they must share one version), `testing`, `fonts`, and `tooling` (the rest, minor and patch only); GitHub Actions monthly. The Tests workflow runs on each one: merge it on GitHub when both jobs are green, then `git pull`.
+
+- **Angular majors are not proposed:** run `ng update @angular/core @angular/cli` by hand, which also migrates the code.
+- **Security fixes** come as separate pull requests when *Dependabot alerts* and *Dependabot security updates* are on (repository Settings → Code security).
+
 # Deployment
 
 The site is published to [GitHub Pages](https://github.com/Thomas-Scouarnec/studio-sauze) using [`angular-cli-ghpages`](https://github.com/angular-schule/angular-cli-ghpages), wired into `angular.json` as the `deploy` builder target. It builds the app and pushes the output to the `gh-pages` branch, which GitHub Pages serves from, behind the custom domain `refugedusauze.com` (set via a `CNAME` file on the `gh-pages` branch and configured in the DNS provider). Because the custom domain serves the site from the root (not from a `/studio-sauze/` sub-path like the default `github.io` URL would), the deploy target uses `baseHref: "/"`.
