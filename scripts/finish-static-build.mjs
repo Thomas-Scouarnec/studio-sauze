@@ -1,5 +1,5 @@
 // Shapes the prerendered build for GitHub Pages. Run after `ng build`;
-// `npm run deploy` and `npm run e2e` do it for you.
+// `npm run e2e` does it for you, and CI deploys the result.
 //
 // 1. Same URLs as before prerendering. Angular writes /stay as stay/index.html.
 //    GitHub Pages would then answer /stay with a redirect to /stay/, on every
@@ -9,8 +9,7 @@
 //
 // 2. A 404.html that is the empty client-side shell (index.csr.html), not a
 //    prerendered page. GitHub Pages answers unknown URLs with it, and the
-//    router takes over from there, as before prerendering. `ng deploy` must run
-//    with --no-notfound, or it would overwrite it with a copy of the home page.
+//    router takes over from there, as before prerendering.
 import { copyFileSync, existsSync, readFileSync, renameSync, rmSync, rmdirSync } from 'node:fs';
 import { join } from 'node:path';
 

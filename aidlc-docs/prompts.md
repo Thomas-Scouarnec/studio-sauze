@@ -514,3 +514,11 @@ All prompts in session order.
 **Intent:** « Can you add ESLint/prettier in the CI of the project? » — idea 6 of Session 18.
 
 **Done directly, as a tooling Bolt:** angular-eslint with rules for CLAUDE.md's conventions, the codebase formatted once in its own commit (checked to change no visible text and no pixel), and a `lint` CI job. Details in [bolt-20-lint-format-ci.md](plans/bolt-20-lint-format-ci.md).
+
+---
+
+## Session 21 — 2026-09-30
+
+**Intent:** « Please implement the Deploy from CI instead of by hand. It is too risky to be able to deploy the site whereas CI has not run. »
+
+**Done directly, as an infrastructure Bolt:** GitHub Pages' Actions deployment, gated on the three CI jobs, publishing the build the browser tests ran against; every manual deploy path removed. The switch of the Pages source is Thomas's (a repository setting). Details in [bolt-21-deploy-from-ci.md](plans/bolt-21-deploy-from-ci.md).

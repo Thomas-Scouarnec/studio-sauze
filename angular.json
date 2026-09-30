@@ -128,14 +128,6 @@
             "setupFiles": ["src/test-setup.ts"]
           }
         },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "baseHref": "/",
-            "cname": "refugedusauze.com",
-            "noNotfound": true
-          }
-        },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {

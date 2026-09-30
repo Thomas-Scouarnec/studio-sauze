@@ -1,5 +1,6 @@
 # Dependabot version updates: grouped pull requests, checked every Monday.
-# The Tests workflow (unit + browser/AXE) runs on each one; merge when green.
+# The CI workflow (lint, unit, browser/AXE) runs on each one; merge when green,
+# which deploys the site.
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 version: 2
 
@@ -51,7 +52,7 @@ updates:
       - dependency-name: 'rxjs'
         update-types: ['version-update:semver-major']
 
-  # actions/checkout, actions/setup-node, actions/upload-artifact in test.yml.
+  # actions/checkout, actions/setup-node, actions/upload-artifact in ci.yml.
   - package-ecosystem: github-actions
     directory: /
     schedule:

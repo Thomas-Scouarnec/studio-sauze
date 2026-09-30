@@ -87,7 +87,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 
 - **Code that runs while prerendering has no `window`, `document`, `localStorage` or `IntersectionObserver`.** Put browser-only work in `afterNextRender()` / `afterRenderEffect()` (never run on the server), or behind `isPlatformBrowser()`; keep storage in `try`/`catch`. Breaking this fails the build, which is the point.
 - **The first render must be the same on the server and in the browser**, or hydration reports a mismatch (NG0500). Something that depends on the visitor (a stored flag, the screen size) must not change the page's structure before hydration; it can change it afterwards.
-- **After `ng build`, run `node scripts/finish-static-build.mjs`** (`npm run deploy` and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, and writes `404.html` from the empty client-side shell.
+- **After `ng build`, run `node scripts/finish-static-build.mjs`** (CI's `e2e` job and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, and writes `404.html` from the empty client-side shell.
 - **The dev servers do not prerender** (`"server": false` in the development configurations, and `hydration.development.ts` replaces `hydration.ts`): they render in the browser, as before. `npm run e2e` is where prerendering is tested.
 
 ## Running unit tests
@@ -112,7 +112,7 @@ The first time, install the browser with `npx playwright install chromium`.
 - **Watching the tests:** `npm run e2e:ui` opens Playwright's UI mode, to run one test and step through it.
 - **After a failure:** `npx playwright show-report` opens the report, with a screenshot of the failing step and, for AXE, the rule and HTML of each unexpected violation.
 - **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
-- **CI:** the `e2e` job of `.github/workflows/test.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
+- **CI:** the `e2e` job of `.github/workflows/ci.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
 
 ## Linting and formatting
 
@@ -126,33 +126,27 @@ npm run format
 
 - **ESLint** (`eslint.config.js`, [angular-eslint](https://github.com/angular-eslint/angular-eslint)) checks `src/` and `e2e/`: TypeScript and Angular recommended rules, template accessibility, and the project's conventions from `.claude/CLAUDE.md` (`OnPush`, `input()` / `output()`, `host: {}` rather than `@HostListener`, `@if` / `@for`, class bindings rather than `ngClass`, `NgOptimizedImage`). Some rules use type information (`no-uncalled-signals` catches `if (open)` for `if (open())`).
 - **Prettier** (`.prettierrc`: 100 columns, single quotes) formats code, templates, styles, JSON and YAML; `.prettierignore` leaves out build output, generated files and Markdown. `npm run format:check` only reports.
-- **CI:** the `lint` job of `.github/workflows/test.yml` runs both on every push and pull request.
+- **CI:** the `lint` job of `.github/workflows/ci.yml` runs both on every push and pull request.
 - **In VS Code,** install the recommended ESLint and Prettier extensions (`.vscode/extensions.json`), and turn on *Format on Save*.
 - **`git blame`** skips the commit that formatted everything (`.git-blame-ignore-revs`; GitHub reads it; locally: `git config blame.ignoreRevsFile .git-blame-ignore-revs`).
 
 ## Dependency updates
 
-[Dependabot](https://docs.github.com/code-security/dependabot) (`.github/dependabot.yml`) opens grouped pull requests every Monday: `angular` (all `@angular/*` together: they must share one version), `testing`, `fonts`, and `tooling` (the rest, minor and patch only); GitHub Actions monthly. The Tests workflow runs on each one: merge it on GitHub when both jobs are green, then `git pull`.
+[Dependabot](https://docs.github.com/code-security/dependabot) (`.github/dependabot.yml`) opens grouped pull requests every Monday: `angular` (all `@angular/*` together: they must share one version), `testing`, `fonts`, and `tooling` (the rest, minor and patch only); GitHub Actions monthly. The CI workflow runs on each one: merge it on GitHub when its checks are green (merging deploys the site), then `git pull`.
 
 - **Angular majors are not proposed:** run `ng update @angular/core @angular/cli` by hand, which also migrates the code.
 - **Security fixes** come as separate pull requests when *Dependabot alerts* and *Dependabot security updates* are on (repository Settings → Code security).
 
 # Deployment
 
-The site is published to [GitHub Pages](https://github.com/Thomas-Scouarnec/studio-sauze) using [`angular-cli-ghpages`](https://github.com/angular-schule/angular-cli-ghpages), wired into `angular.json` as the `deploy` builder target. It builds the app and pushes the output to the `gh-pages` branch, which GitHub Pages serves from, behind the custom domain `refugedusauze.com` (set via a `CNAME` file on the `gh-pages` branch and configured in the DNS provider). Because the custom domain serves the site from the root (not from a `/studio-sauze/` sub-path like the default `github.io` URL would), the deploy target uses `baseHref: "/"`.
+The site is deployed **only by CI**, never from a developer's machine. The `deploy` job of `.github/workflows/ci.yml` publishes to [GitHub Pages](https://docs.github.com/pages) (custom domain `refugedusauze.com`) when:
 
-There is no CI workflow that deploys automatically on push to `main` — deployment is a manual step.
+1. a commit reaches `main` (a push, or a merged pull request), and
+2. the `lint`, `test` and `e2e` jobs have all passed on that commit.
 
-**Deploy with `npm run deploy`, not `ng deploy`.** The script builds and prerenders both languages, then runs `scripts/finish-static-build.mjs` (`stay.html`, `en/stay.html`, `404.html`: see *Prerendering*), then `ng deploy --no-build`. A plain `ng deploy` rebuilds and skips that step. The deploy target has `noNotfound: true`, so `angular-cli-ghpages` does not replace `404.html` with a copy of the home page.
+It publishes the very build the browser tests ran against (`dist/studio-sauze/browser`, prerendered and finished by `scripts/finish-static-build.mjs`), not a rebuild. Pages is set to publish from GitHub Actions (Settings → Pages → Source), so a manual push cannot publish anything.
 
-## Trigger a deployment
-
-```bash
-npm run deploy
-```
-
-## Monitor deployment status on GitHub
-
-- **Actions tab** — pushing to `gh-pages` automatically triggers a built-in "pages build and deployment" run; check its status there.
-- **Environments** (repo homepage sidebar, or `Settings → Environments`) — shows the `github-pages` environment with deployment history and a link to the live site.
-- **Settings → Pages** — shows "Your site is live at [URL]" with the timestamp of the last successful deployment.
+- **Redeploy without a new commit:** Actions tab → *CI* → *Run workflow* on `main`. It still runs every check first.
+- **Follow a deployment:** the Actions tab (the *CI* run, its `deploy` job), or the `github-pages` environment (repository home page sidebar), which lists every deployment with its commit and a link to the site.
+- **Roll back:** revert the faulty commit on `main` and push: CI checks and deploys the reverted state.
+- **A pull request never deploys;** its checks run, and the site changes once it is merged.
