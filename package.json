@@ -43,10 +43,13 @@
     "@types/node": "^24.13.5",
     "angular-eslint": "21.4.0",
     "eslint": "^10.3.0",
-    "jsdom": "^28.0.0",
+    "jsdom": "^30.1.1",
     "prettier": "^3.9.9",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.70.1",
-    "vitest": "^4.0.8"
+    "vitest": "^5.0.2"
+  },
+  "overrides": {
+    "vitest": "$vitest"
   }
 }

@@ -1,7 +1,7 @@
 import '@angular/localize/init';
 
 /**
- * jsdom 28 renders `<dialog>` markup and reflects its `open` attribute, but
+ * jsdom 30 renders `<dialog>` markup and reflects its `open` attribute, but
  * implements none of the modal behaviour: `showModal()` and `close()` simply
  * do not exist. `PhotoGalleryComponent` drives a real dialog, so the tests
  * need enough of one to observe `open` and to receive the `close` event.
