@@ -522,3 +522,17 @@ All prompts in session order.
 **Intent:** « Please implement the Deploy from CI instead of by hand. It is too risky to be able to deploy the site whereas CI has not run. »
 
 **Done directly, as an infrastructure Bolt:** GitHub Pages' Actions deployment, gated on the three CI jobs, publishing the build the browser tests ran against; every manual deploy path removed. The switch of the Pages source is Thomas's (a repository setting). Details in [bolt-21-deploy-from-ci.md](plans/bolt-21-deploy-from-ci.md).
+
+---
+
+## Session 22 — 2026-10-01
+
+**Context:** jsdom updated to 30 and Vitest to 5 (commit `372fd28`). `@angular/build` 21 only accepts Vitest 4, so an npm `overrides` entry bridges the gap until Angular 22.
+
+**Intent:** « Can you create a bolt to migrate to the latest version of Angular? I think it is Angular 22. » It is: 22.2.1.
+
+**Checked by Claude (throwaway worktree, since deleted):** `ng update` with angular-eslint 22 and TypeScript 6.0 installs cleanly; the migrations change only `hydration.ts` and the two tsconfigs. Build, 214 unit tests, 62 browser tests and AXE all pass, and `npm audit` goes from 2 critical to 0. The Vitest override and the migrations' extra settings can all go.
+
+**Plan drafted:** 1 Bolt (4 steps), decisions D1 to D6. Details in [bolt-22-angular-22.md](plans/bolt-22-angular-22.md) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas — Bolt 22 implemented on 2026-10-01.** Steps 1 to 3 done: Angular 22.2.1, TypeScript 6.0, angular-eslint 22.5; the migrations' extra settings and the Vitest override removed, so only `package.json` and the lockfile change. 214 unit and 62 browser tests passing, AXE clean, `npm audit` 0; the 4 pages at both widths pixel-identical to the live site. CI runs once Thomas pushes. Details in [bolt-22-angular-22.md](plans/bolt-22-angular-22.md).
