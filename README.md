@@ -124,6 +124,21 @@ The first time, install the browser with `npx playwright install chromium`.
 - **AXE:** WCAG 2.0 to 2.2, A and AA, plus best practices. The site has no known violation: any violation fails the test. `e2e/known-violations.ts` can list accepted ones temporarily; a listed one that no longer fails also fails the test.
 - **CI:** the `e2e` job of `.github/workflows/ci.yml` runs them on every push to `main` and on pull requests, and uploads the report when they fail.
 
+## Lighthouse
+
+[Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) audits every page (`/`, `/stay`, `/en/`, `/en/stay`, and the not-found page at `/404`) on a phone profile, 3 times each, and keeps the median:
+
+```bash
+npm run lighthouse
+```
+
+It builds the site, serves it on `http://localhost:4301/` (`serve-dist.mjs`, compressed as GitHub Pages does), prints a score table and checks the floors in `lighthouserc.cjs`. Reports land in `lighthouse-report/`: open a `.report.html` to see each audit. `@lhci/cli` runs through `npx`, pinned, not as a dependency (its own dependencies carry `npm audit` findings).
+
+- **Floors:** accessibility, best practices and SEO 100; performance 80 (medians on GitHub's runners were 86 to 97); at most 1 MiB per page (pages weigh 222 to 590 KiB; one unresized phone photo is 2 to 5 MB). The guest and not-found pages fail « is-crawlable » on purpose (`noindex`), so their other SEO audits are checked one by one.
+- **CI:** the `lighthouse` job runs it on every push; a score under its floor fails CI, and the site is not deployed. The scores are on the run's summary page (signed in to GitHub); the reports are the `lighthouse-report` artifact.
+- **When a floor fails:** open the page's report and look at the failing audit. If the site really got slower or heavier, fix that; lower a floor only if GitHub's runners moved, and say why in `lighthouserc.cjs`.
+- **Locally, performance depends on the machine:** a laptop on battery can run its processor ten times slower, and scores drop by 10 to 15 points (the report's « benchmarkIndex » shows it). Measure on mains power; CI's runners are what count.
+
 ## Linting and formatting
 
 ```bash

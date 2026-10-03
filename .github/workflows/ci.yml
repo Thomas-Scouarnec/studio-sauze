@@ -89,7 +89,7 @@ jobs:
           path: dist/studio-sauze/browser
 
   # Lighthouse scores of every page (Bolt 25), shown on the run's summary page.
-  # Report-only while its floors are measured on GitHub's runners.
+  # A score under its floor (lighthouserc.cjs) fails the job, so no deploy.
   lighthouse:
     runs-on: ubuntu-latest
     steps:
@@ -104,7 +104,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Builds, serves the site like GitHub Pages, audits each page 3 times.
+      # Builds, serves the site like GitHub Pages, audits each page 3 times,
+      # then checks the floors.
       - name: Run Lighthouse
         run: npm run lighthouse
 
@@ -117,9 +118,9 @@ jobs:
           retention-days: 14
 
   deploy:
-    # Only from main, and only when lint, unit tests and browser tests all passed.
+    # Only from main, and only when lint, unit tests, browser tests and Lighthouse all passed.
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    needs: [lint, test, e2e]
+    needs: [lint, test, e2e, lighthouse]
     runs-on: ubuntu-latest
     permissions:
       pages: write

@@ -582,3 +582,7 @@ All prompts in session order.
 **Plan drafted:** a tooling Bolt (4 steps, decisions D1 to D9): a `lighthouse` CI job that `deploy` needs; gzip in `serve-dist.mjs` so local scores match production; floors of 100 for accessibility, best practices and SEO, the performance floor set from GitHub's own runners. Details in [bolt-25-lighthouse-ci.md](plans/bolt-25-lighthouse-ci.md) — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas** (2026-10-03): a score under its floor fails CI, so the deploy does not run (D2); the performance floor is measured on GitHub's runners first, in a report-only push, then set in a second one.
+
+**Measured on GitHub:** runs #14 (push), #15 and #16 (started by Thomas, who read the scores, since GitHub shows them only when signed in). Performance medians 86 to 97, the lowest on `/en/`; accessibility and best practices 100 every time.
+
+**Bolt 25 implemented on 2026-10-03.** All 4 steps done: performance floor at 80; accessibility, best practices and SEO at 100 (the unlisted pages' SEO checked audit by audit); added at implementation, at most 1 MiB per page, because the performance score ignored a 27 MB image below the first screen. `deploy` needs the `lighthouse` job. `@lhci/cli` runs through `npx` (as a dependency, it brought 14 `npm audit` findings). CI now takes about 3.5 minutes instead of 2. Details in [bolt-25-lighthouse-ci.md](plans/bolt-25-lighthouse-ci.md).
