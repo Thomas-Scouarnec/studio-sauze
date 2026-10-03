@@ -17,7 +17,6 @@ describe('StayComponent', () => {
 
   afterEach(() => {
     localStorage.clear();
-    document.head.querySelector('meta[name="robots"]')?.remove();
   });
 
   async function render(): Promise<HTMLElement> {
@@ -53,17 +52,6 @@ describe('StayComponent', () => {
   it('should record the visitor as a guest (FR-4)', async () => {
     await render();
     expect(TestBed.inject(GuestAccessService).isGuest()).toBe(true);
-  });
-
-  it('should add noindex while shown and remove it when left (FR-3)', async () => {
-    const fixture = TestBed.createComponent(StayComponent);
-    await fixture.whenStable();
-    expect(document.head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
-      'noindex',
-    );
-
-    fixture.destroy();
-    expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
   });
 
   it('should list every section in a « Sommaire » menu (FR-14)', async () => {

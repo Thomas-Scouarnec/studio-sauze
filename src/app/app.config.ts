@@ -1,8 +1,14 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';
+import {
+  TitleStrategy,
+  provideRouter,
+  withInMemoryScrolling,
+  withRouterConfig,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { hydrationProviders } from './hydration';
+import { PageTagsStrategy } from './page-tags.strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +21,8 @@ export const appConfig: ApplicationConfig = {
       // Without this, a second click on the same section link is ignored.
       withRouterConfig({ onSameUrlNavigation: 'reload' }),
     ),
+    // The title, plus the description and link-preview tags (search-and-sharing.md).
+    { provide: TitleStrategy, useClass: PageTagsStrategy },
     ...hydrationProviders,
   ],
 };

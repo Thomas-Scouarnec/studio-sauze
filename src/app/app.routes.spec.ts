@@ -30,6 +30,15 @@ describe('routes', () => {
     expect(TestBed.inject(Title).getTitle()).toBe('Votre séjour — Notre Refuge au Sauze');
   });
 
+  it('should give each page a description of at most 160 characters (search-and-sharing.md FR-1)', () => {
+    const tags = routes.flatMap((route) => (route.data?.['tags'] ? [route.data['tags']] : []));
+    expect(tags.map((t) => t.indexed)).toEqual([true, false]);
+    for (const { description } of tags) {
+      expect(description.length).toBeGreaterThan(50);
+      expect(description.length).toBeLessThanOrEqual(160);
+    }
+  });
+
   it('should not render any home section on the stay page (FR-1)', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/stay', StayComponent);

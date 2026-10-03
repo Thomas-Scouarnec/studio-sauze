@@ -6,14 +6,28 @@
         <source>Notre Refuge au Sauze</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.home.description" datatype="html">
+        <source>Studio de montagne pour 5 personnes au Sauze, à 10 min de Barcelonnette : accès direct aux pistes l&apos;hiver, aux sentiers de randonnée l&apos;été.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.stay.title" datatype="html">
         <source>Votre séjour — Notre Refuge au Sauze</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.stay.description" datatype="html">
+        <source>Le guide de votre séjour à Notre Refuge au Sauze : avant d&apos;arriver, à l&apos;arrivée, sur place et aux alentours.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="app.skipLink" datatype="html">
@@ -310,6 +324,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/seasons/seasons.html</context>
           <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.image.alt" datatype="html">
+        <source>La station du Sauze sous la neige, au pied des sommets enneigés de la vallée de l&apos;Ubaye</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page-tags.strategy.ts</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.toc.label" datatype="html">

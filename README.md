@@ -57,6 +57,15 @@ Playfair Display (headings) and Jost (text) are served from the site itself, not
 - **Adding a weight or style:** add its `latin-<weight>[-italic].css` file to `styles` in `angular.json`, and to `FACES` in `e2e/fonts.spec.ts`, which checks that nothing else loads and that no page calls Google.
 - **Headings ask for bold (700) and get 600,** the heaviest Playfair face loaded. Adding 700 would make every heading heavier.
 
+## Search and link previews
+
+Each page's `<head>` (title, description, Open Graph preview tags, canonical link, `hreflang` alternates, `noindex`) is written by `PageTagsStrategy` (`src/app/page-tags.strategy.ts`), after every navigation and while prerendering, from the route's `data.tags` in `src/app/app.routes.ts`. Rules in `aidlc-docs/functional-specs/search-and-sharing.md`.
+
+- **Adding a page:** give its route a `title` and `data.tags` (`description` of at most 160 characters, `indexed`). An indexed page also belongs in `public/sitemap.xml`.
+- **The preview image** is `public/images/share/preview-1200x630.jpg`, for every page. If it changes, give it a new file name: WhatsApp and Facebook keep old previews for weeks.
+- **`robots.txt` and `sitemap.xml`** live in `public/`, and are kept at the root only by `finish-static-build.mjs`. Neither names `/stay`, which must stay unlisted.
+- **Checking a preview after deploying:** share the link in a WhatsApp chat, or use Facebook's Sharing Debugger, which also refreshes its cache.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
@@ -87,7 +96,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 
 - **Code that runs while prerendering has no `window`, `document`, `localStorage` or `IntersectionObserver`.** Put browser-only work in `afterNextRender()` / `afterRenderEffect()` (never run on the server), or behind `isPlatformBrowser()`; keep storage in `try`/`catch`. Breaking this fails the build, which is the point.
 - **The first render must be the same on the server and in the browser**, or hydration reports a mismatch (NG0500). Something that depends on the visitor (a stored flag, the screen size) must not change the page's structure before hydration; it can change it afterwards.
-- **After `ng build`, run `node scripts/finish-static-build.mjs`** (CI's `e2e` job and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, and writes `404.html` from the empty client-side shell.
+- **After `ng build`, run `node scripts/finish-static-build.mjs`** (CI's `e2e` job and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, writes `404.html` from the empty client-side shell, and removes the `en/` copies of `robots.txt` and `sitemap.xml`.
 - **The dev servers do not prerender** (`"server": false` in the development configurations, and `hydration.development.ts` replaces `hydration.ts`): they render in the browser, as before. `npm run e2e` is where prerendering is tested.
 
 ## Running unit tests

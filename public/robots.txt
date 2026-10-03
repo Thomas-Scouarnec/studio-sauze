@@ -1,0 +1,6 @@
+# Everything may be crawled. The guest page is not named here on purpose
+# (stay.md FR-2): its own noindex tag keeps it out of search results.
+User-agent: *
+Allow: /
+
+Sitemap: https://refugedusauze.com/sitemap.xml

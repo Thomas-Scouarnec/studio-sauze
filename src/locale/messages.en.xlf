@@ -10,6 +10,18 @@
         <source>Votre séjour — Notre Refuge au Sauze</source>
         <target>Your stay — Notre Refuge au Sauze</target>
       </trans-unit>
+      <trans-unit id="seo.home.description" datatype="html">
+        <source>Studio de montagne pour 5 personnes au Sauze, à 10 min de Barcelonnette : accès direct aux pistes l&apos;hiver, aux sentiers de randonnée l&apos;été.</source>
+        <target>Mountain studio flat for 5 at Le Sauze, 10 minutes from Barcelonnette: direct access to the slopes in winter and hiking paths in summer.</target>
+      </trans-unit>
+      <trans-unit id="seo.stay.description" datatype="html">
+        <source>Le guide de votre séjour à Notre Refuge au Sauze : avant d&apos;arriver, à l&apos;arrivée, sur place et aux alentours.</source>
+        <target>Your guide to staying at Notre Refuge au Sauze: before you come, on arrival, during your stay and around.</target>
+      </trans-unit>
+      <trans-unit id="seo.image.alt" datatype="html">
+        <source>La station du Sauze sous la neige, au pied des sommets enneigés de la vallée de l&apos;Ubaye</source>
+        <target>Le Sauze ski resort under snow, below the snowy peaks of the Ubaye valley</target>
+      </trans-unit>
       <trans-unit id="app.skipLink" datatype="html">
         <source>Aller au contenu principal</source>
         <target>Skip to main content</target>

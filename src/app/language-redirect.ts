@@ -19,3 +19,8 @@ const PATH_PREFIX: Record<Language, string> = { fr: '', en: '/en' };
 export function languageUrl(language: Language, appUrl: string): string {
   return PATH_PREFIX[language] + appUrl;
 }
+
+/** The language of this compiled app, from its `LOCALE_ID` (`fr`, or `en-…` in the English build). */
+export function languageOf(localeId: string): Language {
+  return localeId.startsWith('en') ? 'en' : 'fr';
+}

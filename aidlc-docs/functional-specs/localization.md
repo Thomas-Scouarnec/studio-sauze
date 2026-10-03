@@ -50,7 +50,7 @@ Changing the language loads the other app: it is a page load, not an in-page swa
 | FR-10 | An `/en/` URL always shows English, whatever the saved choice; it does not change the saved choice | A shared English link shows what the sender meant; only a flag click saves a choice |
 | FR-11 | A direct visit to `/en/` or `/en/stay`, and a reload on them, show the English page | An English link sent to a guest must work first time |
 | FR-12 | The guest flag (« Mon séjour » / « My stay ») is shared by both languages | Same browser, same guest |
-| FR-13 | The home page declares its two language versions to search engines (`hreflang` alternates, French as `x-default`) | Lets Google show the English home page to English speakers |
+| FR-13 | The home page declares its two language versions to search engines (`hreflang` alternates, French as `x-default`); since Bolt 23, on the home pages only ([search-and-sharing.md](search-and-sharing.md) FR-8) | Lets Google show the English home page to English speakers |
 | FR-14 | A link to an external site available in French only says so in English (« (in French) ») | English readers are not surprised by a French page |
 
 ## 6. Business Rules / Constraints

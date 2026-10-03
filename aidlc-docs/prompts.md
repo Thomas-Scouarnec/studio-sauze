@@ -536,3 +536,19 @@ All prompts in session order.
 **Plan drafted:** 1 Bolt (4 steps), decisions D1 to D6. Details in [bolt-22-angular-22.md](plans/bolt-22-angular-22.md) — pending Thomas's approval of the plan.
 
 **Plan approved by Thomas — Bolt 22 implemented on 2026-10-01.** Steps 1 to 3 done: Angular 22.2.1, TypeScript 6.0, angular-eslint 22.5; the migrations' extra settings and the Vitest override removed, so only `package.json` and the lockfile change. 214 unit and 62 browser tests passing, AXE clean, `npm audit` 0; the 4 pages at both widths pixel-identical to the live site. CI runs once Thomas pushes. Details in [bolt-22-angular-22.md](plans/bolt-22-angular-22.md).
+
+---
+
+## Session 23 — 2026-10-01
+
+**Context:** Thomas asked for the technical improvements still open from Session 18: search and preview tags (idea 2), a « page not found » page (idea 7) and Lighthouse CI (idea 8). The other five are done (Bolts 18 to 21, Dependabot).
+
+**Intent:** « Please create a new bolt to address point 1 »: idea 2, search and preview tags.
+
+**Found by Claude:** titles are already per page; `hreflang` sits statically in `index.html`, so the stay page declares the home page's alternates; `noindex` is set by `StayComponent`; there is no description, Open Graph tag, canonical link, `robots.txt` or `sitemap.xml`. stay.md FR-2 forbids naming `/stay` in either file.
+
+**Plan drafted:** 1 Unit ("Search and Sharing"), 4 stories, a new functional spec, 1 Bolt (5 steps), decisions D1 to D10 in the design: a custom `TitleStrategy` writes every head tag from the route's `data`; the preview image is cropped from the winter photo. Copy drafted for Thomas to validate. Details in [bolt-23-search-and-sharing.md](plans/bolt-23-search-and-sharing.md) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas, with the copy and the winter photo as drafted** (« Approved - please go with the implementation », 2026-10-03).
+
+**Bolt 23 implemented on 2026-10-03.** All 5 steps done: `PageTagsStrategy` writes every page's head tags, prerendered in both languages; the stay pages keep `noindex` with a preview of their own; `robots.txt`, `sitemap.xml` and the 1200×630 preview image added. 224 unit and 88 browser tests (26 new) passing, AXE clean, `npm audit` 0; initial JavaScript +1.2 kB. Details in [bolt-23-search-and-sharing.md](plans/bolt-23-search-and-sharing.md).

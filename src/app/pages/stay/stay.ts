@@ -8,7 +8,6 @@ import {
   viewChildren,
 } from '@angular/core';
 import { IMAGE_LOADER, NgOptimizedImage, ViewportScroller } from '@angular/common';
-import { Meta } from '@angular/platform-browser';
 import { responsiveImageLoader } from '../../loaders/responsive-image-loader';
 import { NavbarComponent } from '../../components/navbar/navbar';
 import { GuestAccessService } from '../../services/guest-access.service';
@@ -58,10 +57,6 @@ export class StayComponent {
   constructor() {
     inject(GuestAccessService).markAsGuest();
 
-    // FR-3: noindex on this page only, so it must not outlive it.
-    const meta = inject(Meta);
-    meta.updateTag({ name: 'robots', content: 'noindex' });
-
     // FR-24: the router computes where to scroll itself and ignores CSS
     // `scroll-margin-top`, so it is told what the sticky menu covers. A
     // function, so the real height is read at each jump (zoom, font size).
@@ -69,10 +64,7 @@ export class StayComponent {
     const scroller = inject(ViewportScroller);
     scroller.setOffset(() => [0, this.menuHeight() + HEADING_GAP]);
 
-    inject(DestroyRef).onDestroy(() => {
-      meta.removeTag('name="robots"');
-      scroller.setOffset([0, 0]);
-    });
+    inject(DestroyRef).onDestroy(() => scroller.setOffset([0, 0]));
   }
 
   /** FR-26: back to the top, with focus on the page heading rather than left on a button that disappears. */

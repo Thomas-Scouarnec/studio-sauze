@@ -10,6 +10,9 @@
 // 2. A 404.html that is the empty client-side shell (index.csr.html), not a
 //    prerendered page. GitHub Pages answers unknown URLs with it, and the
 //    router takes over from there, as before prerendering.
+//
+// 3. robots.txt and sitemap.xml at the root only. Angular copies public/ into
+//    each language's folder, but crawlers only read them at the root.
 import { copyFileSync, existsSync, readFileSync, renameSync, rmSync, rmdirSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -46,6 +49,14 @@ for (const route of routes) {
 
 copyFileSync(join(browser, 'index.csr.html'), join(browser, '404.html'));
 console.log('index.csr.html -> 404.html');
+
+for (const file of ['robots.txt', 'sitemap.xml']) {
+  if (!existsSync(join(browser, file))) {
+    console.error(`${file} missing from the build: it belongs in public/.`);
+    process.exit(1);
+  }
+  rmSync(join(browser, 'en', file), { force: true });
+}
 
 // The shells are not pages of their own: nothing links to them.
 for (const route of routes) {
