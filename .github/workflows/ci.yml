@@ -88,6 +88,34 @@ jobs:
         with:
           path: dist/studio-sauze/browser
 
+  # Lighthouse scores of every page (Bolt 25), shown on the run's summary page.
+  # Report-only while its floors are measured on GitHub's runners.
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Builds, serves the site like GitHub Pages, audits each page 3 times.
+      - name: Run Lighthouse
+        run: npm run lighthouse
+
+      - name: Upload the reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-report
+          path: lighthouse-report/
+          retention-days: 14
+
   deploy:
     # Only from main, and only when lint, unit tests and browser tests all passed.
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'

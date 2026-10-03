@@ -4,15 +4,20 @@
 //   A folder (/, /en/)                      -> its index.html; without its trailing
 //                                              slash (/en), a 301 to it first
 //   An extensionless path with a .html file -> that file (/stay, /en/stay: stay.html)
-//   Anything else                           -> 404.html (the client-side shell), status 404
+//   Anything else                           -> 404.html (the not-found page), status 404
+//
+// Text is gzipped when the browser accepts it, as GitHub Pages does: speed
+// measurements (Lighthouse CI) would otherwise measure this server.
 //
 // Run after `ng build` and `node scripts/finish-static-build.mjs`; `npm run e2e` does it for you.
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, sep } from 'node:path';
+import { createGzip } from 'node:zlib';
 
 const root = join('dist', 'studio-sauze', 'browser');
-const port = Number(process.env['PORT'] ?? 4300);
+// The port: PORT, or the first argument (Lighthouse CI uses 4301), or 4300.
+const port = Number(process.env['PORT'] ?? process.argv[2] ?? 4300);
 
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -30,6 +35,9 @@ const contentTypes = {
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml',
 };
+
+/** Images and fonts are compressed already; gzip only helps text. */
+const compressible = /^(text\/|application\/(json|xml)|image\/svg\+xml)/;
 
 if (!existsSync(join(root, '404.html'))) {
   console.error(`${root}/404.html not found: run ng build, then scripts/finish-static-build.mjs.`);
@@ -59,8 +67,14 @@ createServer((request, response) => {
     response.writeHead(301, { Location: file + url.search }).end();
     return;
   }
+  const contentType = contentTypes[extname(file)] ?? 'application/octet-stream';
+  const gzip =
+    compressible.test(contentType) && /\bgzip\b/.test(request.headers['accept-encoding'] ?? '');
   response.writeHead(status, {
-    'Content-Type': contentTypes[extname(file)] ?? 'application/octet-stream',
+    'Content-Type': contentType,
+    Vary: 'Accept-Encoding',
+    ...(gzip && { 'Content-Encoding': 'gzip' }),
   });
-  createReadStream(file).pipe(response);
+  const body = createReadStream(file);
+  (gzip ? body.pipe(createGzip()) : body).pipe(response);
 }).listen(port, () => console.log(`Serving ${root} on http://localhost:${port}/`));

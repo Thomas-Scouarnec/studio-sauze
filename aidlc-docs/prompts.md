@@ -568,3 +568,17 @@ All prompts in session order.
 **Plan approved by Thomas, with the copy as drafted and D3 as recommended** (redirect to `/en/404`), 2026-10-03.
 
 **Bolt 24 implemented on 2026-10-03.** All 5 steps done: unknown addresses show the « page not found » page with status 404 and the address kept, prerendered from a `404` route; `/en/…` and a saved « English » end on the English page at `/en/404`; the banner shared with the stay page (pixel-identical). 232 unit and 108 browser tests (20 new) passing, AXE clean, `npm audit` 0; initial JavaScript +0.5 kB. Details in [bolt-24-not-found.md](plans/bolt-24-not-found.md).
+
+---
+
+## Session 25 — 2026-10-03
+
+**Context:** Thomas asked what remains (Lighthouse CI, plus small items noted in earlier plans), what SEO is, and what Lighthouse CI would do.
+
+**Intent:** « Please create a bolt for Lighthouse CI » — idea 8 of Session 18, the last one.
+
+**Measured by Claude (`@lhci/cli` in the scratchpad, not the project):** accessibility and best practices 100 on every page, SEO 100 on the indexed pages (the others lose only to their deliberate `noindex` and missing description). Performance 68–79 locally against 87–99 on the live site: the local server does not compress files. Lighthouse refuses pages served with status 404, so the not-found page is audited at `/404`.
+
+**Plan drafted:** a tooling Bolt (4 steps, decisions D1 to D9): a `lighthouse` CI job that `deploy` needs; gzip in `serve-dist.mjs` so local scores match production; floors of 100 for accessibility, best practices and SEO, the performance floor set from GitHub's own runners. Details in [bolt-25-lighthouse-ci.md](plans/bolt-25-lighthouse-ci.md) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas** (2026-10-03): a score under its floor fails CI, so the deploy does not run (D2); the performance floor is measured on GitHub's runners first, in a report-only push, then set in a second one.
