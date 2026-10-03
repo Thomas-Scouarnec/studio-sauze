@@ -552,3 +552,19 @@ All prompts in session order.
 **Plan approved by Thomas, with the copy and the winter photo as drafted** (« Approved - please go with the implementation », 2026-10-03).
 
 **Bolt 23 implemented on 2026-10-03.** All 5 steps done: `PageTagsStrategy` writes every page's head tags, prerendered in both languages; the stay pages keep `noindex` with a preview of their own; `robots.txt`, `sitemap.xml` and the 1200×630 preview image added. 224 unit and 88 browser tests (26 new) passing, AXE clean, `npm audit` 0; initial JavaScript +1.2 kB. Details in [bolt-23-search-and-sharing.md](plans/bolt-23-search-and-sharing.md).
+
+---
+
+## Session 24 — 2026-10-03
+
+**Context:** Bolt 23 pushed. Thomas asked why its browser tests pass before deploying although they name the production address: they only compare tag text; the pages come from the local build.
+
+**Intent:** « Can you create now a bolt to cover "page not found" page (idea 7)? »
+
+**Checked by Claude (throwaway worktree, since deleted):** the `**` route cannot be prerendered; a `404` route rendering the same component can, and its HTML, used as `404.html`, hydrates cleanly at any unknown address with status 404 and the address kept. GitHub Pages only serves the root (French) `404.html`, so English needs a choice. A slip during the spike: one command ran its edit in the main checkout instead of the worktree; `app.routes.ts` was restored at once, nothing else was touched.
+
+**Plan drafted:** 1 Unit ("Page Not Found"), 4 stories, a new functional spec, 1 Bolt (5 steps), decisions D1 to D7 in the design; D3 (English) offered as a choice: redirect to `/en/404` (recommended) or a bilingual page. Copy drafted for Thomas. Details in [bolt-24-not-found.md](plans/bolt-24-not-found.md) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas, with the copy as drafted and D3 as recommended** (redirect to `/en/404`), 2026-10-03.
+
+**Bolt 24 implemented on 2026-10-03.** All 5 steps done: unknown addresses show the « page not found » page with status 404 and the address kept, prerendered from a `404` route; `/en/…` and a saved « English » end on the English page at `/en/404`; the banner shared with the stay page (pixel-identical). 232 unit and 108 browser tests (20 new) passing, AXE clean, `npm audit` 0; initial JavaScript +0.5 kB. Details in [bolt-24-not-found.md](plans/bolt-24-not-found.md).

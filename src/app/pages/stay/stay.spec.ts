@@ -34,7 +34,7 @@ describe('StayComponent', () => {
 
   it('should render a banner with the navbar and the « Votre séjour » heading', async () => {
     const host = await render();
-    const banner = host.querySelector('header.stay-banner');
+    const banner = host.querySelector('header.page-banner');
     expect(banner?.querySelector('nav[aria-label="Navigation principale"]')).not.toBeNull();
     const heading = banner?.querySelector('h1');
     expect(heading?.textContent?.trim()).toBe('Votre séjour');
@@ -109,7 +109,7 @@ describe('StayComponent', () => {
       const fixture = TestBed.createComponent(StayComponent);
       await fixture.whenStable();
       const host: HTMLElement = fixture.nativeElement;
-      const banner = host.querySelector('header.stay-banner')!;
+      const banner = host.querySelector('header.page-banner')!;
       expect(host.querySelector('.stay-back-to-top')).toBeNull();
 
       FakeIntersectionObserver.watching(banner).report([{ target: banner, isIntersecting: false }]);
@@ -128,7 +128,7 @@ describe('StayComponent', () => {
       const fixture = TestBed.createComponent(StayComponent);
       await fixture.whenStable();
       const host: HTMLElement = fixture.nativeElement;
-      const banner = host.querySelector('header.stay-banner')!;
+      const banner = host.querySelector('header.page-banner')!;
       FakeIntersectionObserver.watching(banner).report([{ target: banner, isIntersecting: false }]);
       await fixture.whenStable();
 

@@ -7,13 +7,15 @@
 //    there: stay/index.html -> stay.html, en/stay/index.html -> en/stay.html.
 //    Each language's home page (/, /en/) stays an index.html.
 //
-// 2. A 404.html that is the empty client-side shell (index.csr.html), not a
-//    prerendered page. GitHub Pages answers unknown URLs with it, and the
-//    router takes over from there, as before prerendering.
+// 2. The « page not found » page (not-found.md) as 404.html: step 1 makes it
+//    from the prerendered `404` route, in both languages. GitHub Pages
+//    answers every unknown URL with the root one, the French page, so a
+//    script written first in its <head> sends /en/… to the English one at
+//    /en/404 before anything paints (FR-5).
 //
 // 3. robots.txt and sitemap.xml at the root only. Angular copies public/ into
 //    each language's folder, but crawlers only read them at the root.
-import { copyFileSync, existsSync, readFileSync, renameSync, rmSync, rmdirSync } from 'node:fs';
+import { existsSync, readFileSync, renameSync, rmSync, rmdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dist = join('dist', 'studio-sauze');
@@ -47,8 +49,15 @@ for (const route of routes) {
   console.log(`${route}/index.html -> ${route}.html`);
 }
 
-copyFileSync(join(browser, 'index.csr.html'), join(browser, '404.html'));
-console.log('index.csr.html -> 404.html');
+const notFound = join(browser, '404.html');
+if (!existsSync(notFound) || !existsSync(join(browser, 'en', '404.html'))) {
+  console.error('404.html not prerendered: check the `404` route in src/app/app.routes.ts.');
+  process.exit(1);
+}
+const toEnglish =
+  "<script>if (location.pathname.indexOf('/en/') === 0) location.replace('/en/404');</script>";
+writeFileSync(notFound, readFileSync(notFound, 'utf8').replace('<head>', `<head>${toEnglish}`));
+console.log('404.html: /en/… -> /en/404');
 
 for (const file of ['robots.txt', 'sitemap.xml']) {
   if (!existsSync(join(browser, file))) {

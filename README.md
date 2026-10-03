@@ -96,8 +96,9 @@ This will compile your project and store the build artifacts in the `dist/` dire
 
 - **Code that runs while prerendering has no `window`, `document`, `localStorage` or `IntersectionObserver`.** Put browser-only work in `afterNextRender()` / `afterRenderEffect()` (never run on the server), or behind `isPlatformBrowser()`; keep storage in `try`/`catch`. Breaking this fails the build, which is the point.
 - **The first render must be the same on the server and in the browser**, or hydration reports a mismatch (NG0500). Something that depends on the visitor (a stored flag, the screen size) must not change the page's structure before hydration; it can change it afterwards.
-- **After `ng build`, run `node scripts/finish-static-build.mjs`** (CI's `e2e` job and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, writes `404.html` from the empty client-side shell, and removes the `en/` copies of `robots.txt` and `sitemap.xml`.
+- **After `ng build`, run `node scripts/finish-static-build.mjs`** (CI's `e2e` job and `npm run e2e` do): it moves `stay/index.html` to `stay.html` so GitHub Pages serves `/stay` without a redirect, turns the prerendered `404` route into `404.html` (see below), and removes the `en/` copies of `robots.txt` and `sitemap.xml`.
 - **The dev servers do not prerender** (`"server": false` in the development configurations, and `hydration.development.ts` replaces `hydration.ts`): they render in the browser, as before. `npm run e2e` is where prerendering is tested.
+- **Unknown addresses** get the « page not found » page (`src/app/pages/not-found/`), with status 404 and the address kept. Angular cannot prerender the `**` route, so a `404` route renders the same page and becomes `404.html`. GitHub Pages only serves the root one, the French page: a script that `finish-static-build.mjs` writes first in its `<head>` sends `/en/…` addresses to the English page at `/en/404`. The page must not show anything that depends on the address, or hydrating it elsewhere would not match.
 
 ## Running unit tests
 

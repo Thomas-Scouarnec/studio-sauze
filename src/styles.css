@@ -90,6 +90,44 @@ body {
 }
 
 /*
+ * The banner of the inner pages (stay, not found): the same dark ground as the
+ * hero, so the shared navbar keeps its light-on-dark look.
+ */
+.page-banner {
+  position: relative;
+  background: var(--bark);
+  padding: 9rem 5vw 3.5rem;
+  overflow: hidden;
+}
+
+.page-banner-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 60% 30%, #1a2e22 0%, transparent 60%),
+    linear-gradient(170deg, #0d1a10 0%, #2e4a35 35%, #3d2b1f 65%, #1a0f08 100%);
+  opacity: 0.92;
+}
+
+.page-title {
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1;
+  color: var(--cream);
+}
+
+.page-title:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .page-banner {
+    padding-top: 7rem;
+  }
+}
+
+/*
  * navigation.md FR-7: on phones, where the home page's bar sticks, focus
  * landing on content under it scrolls clear. On the content, never
  * scroll-padding on the page, which would also scroll the page when the bar

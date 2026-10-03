@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { Router, provideRouter } from '@angular/router';
+import { Router, TitleStrategy, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { Title } from '@angular/platform-browser';
 import { routes } from './app.routes';
+import { PageTagsStrategy } from './page-tags.strategy';
 import { HomeComponent } from './pages/home/home';
+import { NotFoundComponent } from './pages/not-found/not-found';
 import { StayComponent } from './pages/stay/stay';
 
 describe('routes', () => {
@@ -48,9 +50,35 @@ describe('routes', () => {
     ).toBeNull();
   });
 
-  it('should redirect an unknown path to the home page (FR-12)', async () => {
-    const harness = await RouterTestingHarness.create();
-    await harness.navigateByUrl('/nowhere', HomeComponent);
-    expect(TestBed.inject(Router).url).toBe('/');
+  describe('an unknown path (not-found.md)', () => {
+    for (const url of ['/nowhere', '/a/b/c', '/stay/oops']) {
+      it(`should show the not-found page at ${url}, keeping the address (FR-1, FR-4)`, async () => {
+        const harness = await RouterTestingHarness.create();
+        await harness.navigateByUrl(url, NotFoundComponent);
+        expect(TestBed.inject(Router).url).toBe(url);
+        expect(TestBed.inject(Title).getTitle()).toBe('Page introuvable — Notre Refuge au Sauze');
+      });
+    }
+
+    it('should show the same page at /404, the route prerendered into 404.html', async () => {
+      const harness = await RouterTestingHarness.create();
+      const page = await harness.navigateByUrl('/404', NotFoundComponent);
+      expect(page).toBeInstanceOf(NotFoundComponent);
+    });
+
+    it('should mark it noindex, with no description or canonical link (FR-7)', async () => {
+      TestBed.overrideProvider(TitleStrategy, {
+        useFactory: () => new PageTagsStrategy(),
+        deps: [],
+      });
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/nowhere', NotFoundComponent);
+      const head = document.head;
+      expect(head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex');
+      expect(head.querySelector('meta[name="description"], link[rel="canonical"]')).toBeNull();
+      head
+        .querySelectorAll('meta[name], meta[property], link[hreflang]')
+        .forEach((element) => element.remove());
+    });
   });
 });

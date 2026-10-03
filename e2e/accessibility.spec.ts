@@ -48,3 +48,12 @@ for (const path of ['/stay', '/en/stay']) {
     });
   });
 }
+
+// The « page not found » page (Bolt 24): /en/nowhere ends on /en/404.
+for (const path of ['/nowhere', '/en/nowhere']) {
+  test(`not found ${path} passes AXE`, async ({ page }, testInfo) => {
+    await page.goto(path);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await scan(page, testInfo, 'not found');
+  });
+}

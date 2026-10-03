@@ -37,7 +37,7 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | FR-9 | The logo links to the home page | The expected way home |
 | FR-10 | Each page has its own title: « Notre Refuge au Sauze » and « Votre séjour — Notre Refuge au Sauze » | WCAG 2.4.2; the tab tells the guest where they are |
 | FR-11 | A direct visit to `/stay`, or a reload on it, shows the stay page | The email link must work first time |
-| FR-12 | An unknown path redirects to the home page | No dead end |
+| FR-12 | An unknown path shows the « page not found » page, keeping its address (since Bolt 24: [not-found.md](not-found.md); before, it redirected to the home page) | No dead end, and no confusion |
 | FR-13 | The page presents nine sections, in trip order: Bienvenue, Avant d'arriver, À l'arrivée, L'appartement, Activités, Commerces et services, Infos pratiques, Avant de partir, Après votre séjour | A guest reads it in the order they live it |
 | FR-14 | A section menu links to each section. It stays at the top of the screen while the guest scrolls through the sections. Where all the chips fit (80em, 1280px at the default font size), it is one row of chips; below that, a compact bar (FR-27) | The page is long, and read on a phone; a menu that scrolls away leaves the guest lost (Session 13). A sideways row of chips hides most sections on a phone (Session 14) |
 | FR-15 | Activities open with an untitled lead item (the valley's tourism office), then three groups: Hiver, Été, Toute l'année. Restaurants sit in Commerces et services | The page is read in both seasons; a restaurant is an address, like a shop (moved at Thomas's request) |

@@ -2,32 +2,39 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="fr" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="route.notFound.title" datatype="html">
+        <source>Page introuvable — Notre Refuge au Sauze</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="route.home.title" datatype="html">
         <source>Notre Refuge au Sauze</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="seo.home.description" datatype="html">
         <source>Studio de montagne pour 5 personnes au Sauze, à 10 min de Barcelonnette : accès direct aux pistes l&apos;hiver, aux sentiers de randonnée l&apos;été.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.stay.title" datatype="html">
         <source>Votre séjour — Notre Refuge au Sauze</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="seo.stay.description" datatype="html">
         <source>Le guide de votre séjour à Notre Refuge au Sauze : avant d&apos;arriver, à l&apos;arrivée, sur place et aux alentours.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="app.skipLink" datatype="html">
@@ -331,6 +338,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-tags.strategy.ts</context>
           <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFound.title" datatype="html">
+        <source>Page introuvable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
+          <context context-type="linenumber">19,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFound.text" datatype="html">
+        <source> Cette adresse ne mène à aucune page du site : le lien est peut-être ancien, ou mal recopié. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
+          <context context-type="linenumber">24,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notFound.home" datatype="html">
+        <source>Retour à l&apos;accueil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
+          <context context-type="linenumber">26,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.toc.label" datatype="html">

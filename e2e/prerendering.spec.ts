@@ -119,13 +119,6 @@ test.describe('a saved « English » (FR-9)', () => {
   });
 });
 
-test('an unknown address gets a 404, then the home page', async ({ page }) => {
-  const response = await page.goto('/no-such-page');
-  expect(response?.status()).toBe(404);
-  await expect(page).toHaveURL(/:\d+\/$/);
-  await expect(page.locator('#about-heading')).toBeVisible();
-});
-
 /** Uncaught errors and `console.error` calls on the page, as text. */
 function collectErrors(page: Page): string[] {
   const errors: string[] = [];

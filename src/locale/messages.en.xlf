@@ -10,6 +10,22 @@
         <source>Votre séjour — Notre Refuge au Sauze</source>
         <target>Your stay — Notre Refuge au Sauze</target>
       </trans-unit>
+      <trans-unit id="route.notFound.title" datatype="html">
+        <source>Page introuvable — Notre Refuge au Sauze</source>
+        <target>Page not found — Notre Refuge au Sauze</target>
+      </trans-unit>
+      <trans-unit id="notFound.title" datatype="html">
+        <source>Page introuvable</source>
+        <target>Page not found</target>
+      </trans-unit>
+      <trans-unit id="notFound.text" datatype="html">
+        <source> Cette adresse ne mène à aucune page du site : le lien est peut-être ancien, ou mal recopié. </source>
+        <target> This address does not lead to any page of the site: the link may be old, or mistyped. </target>
+      </trans-unit>
+      <trans-unit id="notFound.home" datatype="html">
+        <source>Retour à l&apos;accueil</source>
+        <target>Back to the home page</target>
+      </trans-unit>
       <trans-unit id="seo.home.description" datatype="html">
         <source>Studio de montagne pour 5 personnes au Sauze, à 10 min de Barcelonnette : accès direct aux pistes l&apos;hiver, aux sentiers de randonnée l&apos;été.</source>
         <target>Mountain studio flat for 5 at Le Sauze, 10 minutes from Barcelonnette: direct access to the slopes in winter and hiking paths in summer.</target>

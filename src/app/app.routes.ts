@@ -2,6 +2,16 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home';
 import { PageTags } from './page-tags.strategy';
 
+/**
+ * The « page not found » page (not-found.md), for two routes: `404` is the
+ * one prerendered into 404.html, `**` the one that shows it at any unknown
+ * address, which stays in the address bar. No `data.tags`: noindex.
+ */
+const notFound = {
+  loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFoundComponent),
+  title: $localize`:@@route.notFound.title:Page introuvable — Notre Refuge au Sauze`,
+};
+
 // `data.tags` is written into each page's <head> by PageTagsStrategy
 // (search-and-sharing.md).
 export const routes: Routes = [
@@ -29,5 +39,6 @@ export const routes: Routes = [
       } satisfies PageTags,
     },
   },
-  { path: '**', redirectTo: '' },
+  { path: '404', ...notFound },
+  { path: '**', ...notFound },
 ];
