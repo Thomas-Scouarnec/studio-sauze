@@ -108,6 +108,21 @@ To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use th
 ng test
 ```
 
+### Coverage
+
+```bash
+npm run test:coverage
+```
+
+Runs the unit tests once with coverage: which share of the site's code ran during them. It prints the four figures, writes a report to `coverage/studio-sauze/` (open its `index.html` to see each file, line by line), and fails under the floors set in `angular.json` (`coverageThresholds`). `npm test` stays without coverage, for the fast loop while coding.
+
+- **Floors:** lines and statements 95 %, branches 90 %, functions 85 %, for the whole code (October 2026: 97.5, 97.7, 92.7, 89.5). A component arriving without tests fails them; a small untested helper does not (about 18 untested lines or 8 untested functions trip one).
+- **Not counted:** the spec files, `src/app/testing/`, and the configuration files that only declare providers (`app.config*.ts`, `app.routes.server.ts`, `hydration*.ts`), which the build and the browser tests exercise.
+- **Only unit tests count,** not the browser tests: `home.ts` shows 72 % of lines, but its scrolling and menu are tested in `e2e/`.
+- **Coverage shows which code ran, not that the tests checked the right result.** Breaking the code on purpose and watching a test fail remains the stronger proof.
+- **CI:** the `test` job runs it; the figures are on the run's summary page (signed in to GitHub), the report is the `coverage-report` artifact. Under a floor, CI fails and the site is not deployed.
+- **When a floor fails:** add the missing tests. Lower a floor only for a reason, and write it next to the value.
+
 ## Running end-to-end tests
 
 Browser tests use [Playwright](https://playwright.dev/) in Chromium, with [AXE](https://github.com/dequelabs/axe-core) scans of every page. They run against the production build, in both languages, at 1280px (« desktop ») and 375px (« phone »):

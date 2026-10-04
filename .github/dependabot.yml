@@ -21,12 +21,14 @@ updates:
       angular:
         patterns:
           - '@angular/*'
-      # Browser tests and AXE scans (Bolt 16), unit tests (Bolt 1).
+      # Browser tests and AXE scans (Bolt 16), unit tests (Bolt 1) and their coverage.
       testing:
         patterns:
           - '@playwright/test'
           - '@axe-core/playwright'
           - 'vitest'
+          # The coverage package must match Vitest's exact version (Bolt 26).
+          - '@vitest/*'
           - 'jsdom'
       fonts:
         patterns:

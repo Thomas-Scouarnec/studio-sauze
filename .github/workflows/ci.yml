@@ -49,8 +49,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      # Unit tests with coverage (Bolt 26): under a floor (angular.json,
+      # coverageThresholds), the job fails, so no deploy.
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Coverage on the summary page
+        if: always()
+        run: node scripts/coverage-summary.mjs
+
+      - name: Upload the coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: coverage/studio-sauze/
+          retention-days: 14
 
   e2e:
     runs-on: ubuntu-latest

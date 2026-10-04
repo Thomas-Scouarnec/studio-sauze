@@ -586,3 +586,17 @@ All prompts in session order.
 **Measured on GitHub:** runs #14 (push), #15 and #16 (started by Thomas, who read the scores, since GitHub shows them only when signed in). Performance medians 86 to 97, the lowest on `/en/`; accessibility and best practices 100 every time.
 
 **Bolt 25 implemented on 2026-10-03.** All 4 steps done: performance floor at 80; accessibility, best practices and SEO at 100 (the unlisted pages' SEO checked audit by audit); added at implementation, at most 1 MiB per page, because the performance score ignored a 27 MB image below the first screen. `deploy` needs the `lighthouse` job. `@lhci/cli` runs through `npx` (as a dependency, it brought 14 `npm audit` findings). CI now takes about 3.5 minutes instead of 2. Details in [bolt-25-lighthouse-ci.md](plans/bolt-25-lighthouse-ci.md).
+
+---
+
+## Session 26 — 2026-10-04
+
+**Context:** Thomas asked whether CI computes code coverage. It does not. Measured once by Claude (temporary install, since removed): lines 97.3 %, statements 97.6 %, branches 92.5 %, functions 88.9 %; unit tests only.
+
+**Intent:** « Please create a bolt for code coverage »
+
+**Plan drafted:** a tooling Bolt (4 steps, decisions D1 to D7): `@vitest/coverage-v8` with Angular's built-in coverage options; `npm run test:coverage` for CI, `npm test` unchanged; global floors a few points under the measured figures; the figures on each CI run's summary page and the HTML report as an artifact; no external service. Details in [bolt-26-code-coverage.md](plans/bolt-26-code-coverage.md) — pending Thomas's approval of the plan.
+
+**Plan approved by Thomas** (2026-10-04), including D2 (`npm test` unchanged) and D4 (the floors).
+
+**Bolt 26 implemented on 2026-10-04.** `npm run test:coverage` with floors of 95 % (lines, statements), 90 % (branches), 85 % (functions), against 97.5, 97.7, 92.7 and 89.5 today; the CI `test` job runs it, shows the figures on the summary page and keeps the HTML report. Configuration files that only declare providers are not counted; two empty leftover files deleted. A removed spec file fails the floors; a small untested helper does not, as expected from global floors. Details in [bolt-26-code-coverage.md](plans/bolt-26-code-coverage.md).

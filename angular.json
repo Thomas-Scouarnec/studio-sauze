@@ -125,7 +125,19 @@
           "options": {
             "tsConfig": "tsconfig.spec.json",
             "runner": "vitest",
-            "setupFiles": ["src/test-setup.ts"]
+            "setupFiles": ["src/test-setup.ts"],
+            "coverageInclude": ["src/app/**/*.ts", "src/app/**/*.html"],
+            "coverageExclude": [
+              "**/*.spec.ts",
+              "src/app/testing/**",
+              "src/app/app.config.ts",
+              "src/app/app.config.server.ts",
+              "src/app/app.routes.server.ts",
+              "src/app/hydration.ts",
+              "src/app/hydration.development.ts"
+            ],
+            "coverageReporters": ["text-summary", "html", "json-summary"],
+            "coverageThresholds": { "statements": 95, "lines": 95, "branches": 90, "functions": 85 }
           }
         },
         "extract-i18n": {
