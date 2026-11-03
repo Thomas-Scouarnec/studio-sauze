@@ -63,11 +63,11 @@ describe('EquipmentComponent', () => {
     await fixture.whenStable();
     const expected: Record<string, string> = {
       arrival:
-        '/images/equipment/arrival-800w.webp 800w, /images/equipment/arrival-1200w.webp 1200w',
+        '/images/equipment/residence-entrance-800w.webp 800w, /images/equipment/residence-entrance-1200w.webp 1200w',
       sleeping:
-        '/images/equipment/sleeping-800w.webp 800w, /images/equipment/sleeping-1200w.webp 1200w',
+        '/images/equipment/mountain-corner-800w.webp 800w, /images/equipment/mountain-corner-1200w.webp 1200w',
       kitchen:
-        '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
+        '/images/equipment/kitchen-corner-800w.webp 800w, /images/equipment/kitchen-corner-1200w.webp 1200w',
     };
     for (const [id, srcset] of Object.entries(expected)) {
       const frame: HTMLElement = fixture.nativeElement.querySelector(
@@ -92,7 +92,7 @@ describe('EquipmentComponent', () => {
 
     (frames[2] as HTMLButtonElement).click();
     await fixture.whenStable();
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   it('should name the photo and the action in the button (FR-24, FR-28)', async () => {
@@ -140,7 +140,7 @@ describe('EquipmentComponent with a block that has no photo yet (FR-22)', () => 
       id: 'sleeping',
       title: 'Titre',
       body: 'Texte',
-      photo: { src: 'equipment/sleeping', srcset: '800w', alt: 'Description' },
+      photo: { src: 'equipment/mountain-corner', srcset: '800w', alt: 'Description' },
     },
   ];
 
@@ -155,9 +155,9 @@ describe('EquipmentComponent with a block that has no photo yet (FR-22)', () => 
             equipmentItems: signal([]),
             // `GalleryService` derives its list from these too (BR-8).
             aboutPhotos: signal({
-              livingRoom: { src: 'about/living-room', srcset: '800w', alt: 'Description' },
-              forestView: { src: 'about/forest-view', srcset: '800w', alt: 'Description' },
-              mountain: { src: 'about/mountain', srcset: '800w', alt: 'Description' },
+              livingRoom: { src: 'about/living-room-red-sofa', srcset: '800w', alt: 'Description' },
+              forestView: { src: 'about/living-room-window', srcset: '800w', alt: 'Description' },
+              mountain: { src: 'about/ubaye-peaks-autumn', srcset: '800w', alt: 'Description' },
             }),
             galleryPhotos: signal({
               mountainCornerClosed: { src: 'gallery/a', srcset: '800w', alt: 'Description' },

@@ -13,14 +13,14 @@ describe('GalleryService', () => {
 
   it('should list the flat photos in walk-through order (FR-25)', () => {
     expect(gallery.photos().map((photo) => photo.src)).toEqual([
-      'equipment/arrival',
-      'equipment/sleeping',
+      'equipment/residence-entrance',
+      'equipment/mountain-corner',
       'gallery/mountain-corner-closed',
-      'equipment/kitchen',
+      'equipment/kitchen-corner',
       'gallery/dining-table',
-      'about/living-room',
+      'about/living-room-red-sofa',
       'gallery/living-room-window-side',
-      'about/forest-view',
+      'about/living-room-window',
     ]);
     expect(gallery.count()).toBe(8);
   });
@@ -55,21 +55,21 @@ describe('GalleryService', () => {
   });
 
   it('should open at the photo it is given (FR-27)', () => {
-    gallery.openAt('equipment/kitchen');
+    gallery.openAt('equipment/kitchen-corner');
 
     expect(gallery.isOpen()).toBe(true);
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
     expect(gallery.position()).toBe(4);
   });
 
   it('should ignore a photo that is not in the gallery', () => {
-    gallery.openAt('about/mountain');
+    gallery.openAt('about/ubaye-peaks-autumn');
 
     expect(gallery.isOpen()).toBe(false);
   });
 
   it('should close', () => {
-    gallery.openAt('equipment/arrival');
+    gallery.openAt('equipment/residence-entrance');
     gallery.close();
 
     expect(gallery.isOpen()).toBe(false);
@@ -77,28 +77,28 @@ describe('GalleryService', () => {
   });
 
   it('should move to the next and previous photo', () => {
-    gallery.openAt('equipment/sleeping');
+    gallery.openAt('equipment/mountain-corner');
 
     gallery.next();
     expect(gallery.currentPhoto()?.src).toBe('gallery/mountain-corner-closed');
 
     gallery.previous();
-    expect(gallery.currentPhoto()?.src).toBe('equipment/sleeping');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/mountain-corner');
   });
 
   it('should wrap around at the end', () => {
-    gallery.openAt('about/forest-view');
+    gallery.openAt('about/living-room-window');
     gallery.next();
 
-    expect(gallery.currentPhoto()?.src).toBe('equipment/arrival');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/residence-entrance');
     expect(gallery.position()).toBe(1);
   });
 
   it('should wrap around at the start', () => {
-    gallery.openAt('equipment/arrival');
+    gallery.openAt('equipment/residence-entrance');
     gallery.previous();
 
-    expect(gallery.currentPhoto()?.src).toBe('about/forest-view');
+    expect(gallery.currentPhoto()?.src).toBe('about/living-room-window');
     expect(gallery.position()).toBe(8);
   });
 

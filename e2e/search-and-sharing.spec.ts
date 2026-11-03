@@ -53,7 +53,7 @@ test.describe('with JavaScript disabled', () => {
       await expect(meta(page, 'property="og:url"')).toHaveAttribute('content', url);
       await expect(meta(page, 'property="og:image"')).toHaveAttribute(
         'content',
-        `${origin}/images/share/preview-1200x630.jpg`,
+        `${origin}/images/share/living-room-1200x630.jpg`,
       );
       await expect(meta(page, 'property="og:locale"')).toHaveAttribute('content', locale);
       await expect(meta(page, 'name="twitter:card"')).toHaveAttribute(
@@ -133,7 +133,7 @@ test.describe('files for crawlers', () => {
   });
 
   test('the preview image is a JPEG (FR-6)', async ({ request }) => {
-    const response = await request.get('/images/share/preview-1200x630.jpg');
+    const response = await request.get('/images/share/living-room-1200x630.jpg');
     expect(response.status()).toBe(200);
     expect(response.headers()['content-type']).toBe('image/jpeg');
     expect((await response.body()).length).toBeLessThan(300 * 1024);

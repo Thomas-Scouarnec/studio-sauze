@@ -16,7 +16,7 @@ describe('PhotoGalleryComponent', () => {
     gallery = TestBed.inject(GalleryService);
   });
 
-  async function open(src = 'equipment/kitchen') {
+  async function open(src = 'equipment/kitchen-corner') {
     const fixture = TestBed.createComponent(PhotoGalleryComponent);
     await fixture.whenStable();
     gallery.openAt(src);
@@ -34,13 +34,13 @@ describe('PhotoGalleryComponent', () => {
   });
 
   it('should open the dialog at the requested photo', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
 
     const dialog: HTMLDialogElement = fixture.nativeElement.querySelector('dialog');
     const img: HTMLImageElement = fixture.nativeElement.querySelector('.gallery-stage img');
     expect(dialog.open).toBe(true);
     expect(img.getAttribute('srcset')).toBe(
-      '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
+      '/images/equipment/kitchen-corner-800w.webp 800w, /images/equipment/kitchen-corner-1200w.webp 1200w',
     );
     expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
   });
@@ -53,7 +53,7 @@ describe('PhotoGalleryComponent', () => {
   });
 
   it('should announce the position in a live region (FR-29)', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
 
     const counter: HTMLElement = fixture.nativeElement.querySelector('.gallery-counter');
     expect(counter.getAttribute('aria-live')).toBe('polite');
@@ -79,7 +79,7 @@ describe('PhotoGalleryComponent', () => {
   });
 
   it('should move between photos with the previous and next buttons', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const [close, previous, next] = [
       ...fixture.nativeElement.querySelectorAll('.gallery-control'),
     ] as HTMLButtonElement[];
@@ -91,17 +91,17 @@ describe('PhotoGalleryComponent', () => {
 
     previous.click();
     await fixture.whenStable();
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   it('should actually swap the rendered image, not just the state (NG02953)', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const srcset = () =>
       (fixture.nativeElement.querySelector('.gallery-stage img') as HTMLImageElement).getAttribute(
         'srcset',
       );
     expect(srcset()).toBe(
-      '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
+      '/images/equipment/kitchen-corner-800w.webp 800w, /images/equipment/kitchen-corner-1200w.webp 1200w',
     );
 
     gallery.next();
@@ -113,7 +113,7 @@ describe('PhotoGalleryComponent', () => {
   });
 
   it('should move between photos with the arrow keys', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const dialog: HTMLDialogElement = fixture.nativeElement.querySelector('dialog');
 
     dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
@@ -122,7 +122,7 @@ describe('PhotoGalleryComponent', () => {
 
     dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
     await fixture.whenStable();
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   /**
@@ -137,7 +137,7 @@ describe('PhotoGalleryComponent', () => {
   });
 
   it('should move between photos on a swipe', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const stage: HTMLElement = fixture.nativeElement.querySelector('.gallery-stage');
     const swipe = async (from: number, to: number) => {
       stage.dispatchEvent(new PointerEvent('pointerdown', { clientX: from, bubbles: true }));
@@ -149,22 +149,22 @@ describe('PhotoGalleryComponent', () => {
     expect(gallery.currentPhoto()?.src).toBe('gallery/dining-table');
 
     await swipe(100, 300);
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   it('should treat a short drag as a tap, not a swipe', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const stage: HTMLElement = fixture.nativeElement.querySelector('.gallery-stage');
 
     stage.dispatchEvent(new PointerEvent('pointerdown', { clientX: 200, bubbles: true }));
     stage.dispatchEvent(new PointerEvent('pointerup', { clientX: 180, bubbles: true }));
     await fixture.whenStable();
 
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   it('should forget a cancelled gesture', async () => {
-    const fixture = await open('equipment/kitchen');
+    const fixture = await open('equipment/kitchen-corner');
     const stage: HTMLElement = fixture.nativeElement.querySelector('.gallery-stage');
 
     stage.dispatchEvent(new PointerEvent('pointerdown', { clientX: 300, bubbles: true }));
@@ -172,7 +172,7 @@ describe('PhotoGalleryComponent', () => {
     stage.dispatchEvent(new PointerEvent('pointerup', { clientX: 100, bubbles: true }));
     await fixture.whenStable();
 
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen-corner');
   });
 
   it('should close on Escape', async () => {

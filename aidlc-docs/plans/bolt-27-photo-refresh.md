@@ -24,7 +24,7 @@
 | D1 | Replace every flat photo; keep the two Seasons photos | Thomas: « replace all existing photos »; no winter or summer photo in an autumn batch (his answer) | Autumn landscapes in Seasons: contradicts « L'hiver » / « L'été » |
 | D2 | Ski-locker block shows the residence entrance | Thomas's choice; no locker photo in the batch | Text only; keep the old locker photo |
 | D3 | All 50 originals in git-ignored `photos/originals/2026-11/` | Public repo: parking keys and screenshots with other people's names must not reach GitHub (Thomas's answer); originals allow re-encoding later | Commit them outside `public/` |
-| D4 | Same file names for the six home photos | `src` paths and tests stay; only pictures, widths and alt texts change | New names, more churn |
+| D4 | ~~Same file names for the six home photos~~ — reversed after deploy: new names (see the end of this plan) | Browsers kept their cached copies of the old photos | Same names |
 | D5 | Flat photos at `800w, 1200w`; guide photos at `800w` | Originals exist again (FR-30's limit goes away); guide photos are small | 800w only |
 | D6 | Gallery extras declared in `FlatInfoService.galleryPhotos`; `GalleryService` orders explicitly | BR-8 (declared once) holds; the walk-through order mixes sections and extras | Add the extras to a section |
 | D7 | Encoding tools in the scratchpad, not `package.json` | Same as Bolt 23 (D6); a one-off per photo session | Devdependencies + a project script |
@@ -119,3 +119,5 @@ The alt texts and the « Jeux en bois » sentence in the [design artifact](../de
 **Guide photos at WebP quality 62.** At 80, the eight outdoor photos totalled about 1 MB, close to the 1 MiB page limit; at 62 they total about 720 KB and still look sharp at 320px.
 
 **The Browser pane could not draw** (Claude's window hidden), so pages were checked with a headless Playwright script from the scratchpad instead. A `studio-sauze-dist` entry was added to `.claude/launch.json`: the preview's `PORT=4200` breaks `start:all`, which starts two servers.
+
+**New file names after deploy (D4 reversed).** Keeping the old names meant browsers that had visited before kept showing their cached copies of the old photos: Thomas still saw them in Chrome after the deploy, while a cache-free browser got the new ones. The seven replaced files now have new names that describe the new photos (`about/living-room-red-sofa`, `about/living-room-window`, `about/ubaye-peaks-autumn`, `equipment/residence-entrance`, `equipment/mountain-corner`, `equipment/kitchen-corner`, `share/living-room-1200x630.jpg`), so every browser downloads them. Rule for next time: a new picture gets a new file name.

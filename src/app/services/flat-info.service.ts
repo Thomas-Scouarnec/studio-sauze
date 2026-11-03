@@ -71,7 +71,7 @@ export class FlatInfoService {
       body: $localize`:@@equipment.arrival.body:Parking gratuit au pied du bâtiment et casier à skis sécurisé au rez-de-chaussée : vous y déposez le matériel en arrivant, puis vous montez au 1er étage en ascenseur.`,
       // No ski locker photo yet: the residence entrance stands in (Bolt 27, D2).
       photo: {
-        src: 'equipment/arrival',
+        src: 'equipment/residence-entrance',
         srcset: '800w, 1200w',
         alt: $localize`:@@equipment.arrival.alt:L'entrée du bâtiment ${this._info().buildingName}:building:, résidence ${this._info().residenceName}:residence:`,
       },
@@ -81,7 +81,7 @@ export class FlatInfoService {
       title: $localize`:@@equipment.sleeping.title:Cinq vrais couchages, et de l'intimité`,
       body: $localize`:@@equipment.sleeping.body:Le coin montagne accueille 3 personnes sur de véritables couchages de 80 cm adaptés aux adultes, isolables par un rideau. Dans le séjour, un canapé-lit 160 cm de très bonne qualité pour deux personnes de plus.`,
       photo: {
-        src: 'equipment/sleeping',
+        src: 'equipment/mountain-corner',
         srcset: '800w, 1200w',
         alt: $localize`:@@equipment.sleeping.alt:Le coin montagne : les lits superposés et le lit gigogne tiré`,
       },
@@ -91,7 +91,7 @@ export class FlatInfoService {
       title: $localize`:@@equipment.kitchen.title:Une cuisine où l'on cuisine vraiment`,
       body: $localize`:@@equipment.kitchen.body:Grand réfrigérateur de 140 cm, four, lave-vaisselle, plaques, micro-ondes, bouilloire et cafetière filtre — sans oublier l'appareil à raclette. Autour de la grande table en bois, vous tenez à cinq : trois chaises et un banc.`,
       photo: {
-        src: 'equipment/kitchen',
+        src: 'equipment/kitchen-corner',
         srcset: '800w, 1200w',
         alt: $localize`:@@equipment.kitchen.alt:Le coin cuisine : réfrigérateur, plan de travail et meubles en pin`,
       },
@@ -117,17 +117,17 @@ export class FlatInfoService {
 
   private readonly _aboutPhotos = signal<AboutPhotos>({
     livingRoom: {
-      src: 'about/living-room',
+      src: 'about/living-room-red-sofa',
       srcset: '800w, 1200w',
       alt: $localize`:@@about.photo.livingRoom.alt:Le séjour : le canapé-lit rouge, la table et la grande fenêtre`,
     },
     forestView: {
-      src: 'about/forest-view',
+      src: 'about/living-room-window',
       srcset: '800w, 1200w',
       alt: $localize`:@@about.photo.forestView.alt:La fenêtre du séjour, ouverte sur la forêt`,
     },
     mountain: {
-      src: 'about/mountain',
+      src: 'about/ubaye-peaks-autumn',
       srcset: '800w, 1200w',
       alt: $localize`:@@about.photo.mountain.alt:Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne`,
     },

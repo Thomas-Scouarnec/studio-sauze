@@ -17,7 +17,7 @@ export const SITE_ORIGIN = 'https://refugedusauze.com';
 const SITE_NAME = 'Notre Refuge au Sauze';
 
 /** One preview image for the whole site (FR-6). */
-const IMAGE = { path: '/images/share/preview-1200x630.jpg', width: 1200, height: 630 };
+const IMAGE = { path: '/images/share/living-room-1200x630.jpg', width: 1200, height: 630 };
 
 const OG_LOCALE: Record<Language, string> = { fr: 'fr_FR', en: 'en_GB' };
 

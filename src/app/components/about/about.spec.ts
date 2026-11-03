@@ -40,11 +40,11 @@ describe('AboutComponent', () => {
       'Le séjour : le canapé-lit rouge, la table et la grande fenêtre',
     );
     expect(main.getAttribute('srcset')).toBe(
-      '/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w',
+      '/images/about/living-room-red-sofa-800w.webp 800w, /images/about/living-room-red-sofa-1200w.webp 1200w',
     );
     expect(side.getAttribute('alt')).toBe('La fenêtre du séjour, ouverte sur la forêt');
     expect(side.getAttribute('srcset')).toBe(
-      '/images/about/forest-view-800w.webp 800w, /images/about/forest-view-1200w.webp 1200w',
+      '/images/about/living-room-window-800w.webp 800w, /images/about/living-room-window-1200w.webp 1200w',
     );
     for (const img of [main, side]) {
       expect(img.getAttribute('loading')).toBe('lazy');
@@ -76,7 +76,7 @@ describe('AboutComponent', () => {
       "Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne",
     );
     expect(wide.getAttribute('srcset')).toBe(
-      '/images/about/mountain-800w.webp 800w, /images/about/mountain-1200w.webp 1200w',
+      '/images/about/ubaye-peaks-autumn-800w.webp 800w, /images/about/ubaye-peaks-autumn-1200w.webp 1200w',
     );
     expect(wide.getAttribute('loading')).toBe('lazy');
   });

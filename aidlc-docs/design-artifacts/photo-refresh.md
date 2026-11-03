@@ -32,12 +32,12 @@ Each file keeps its name, so `src` and `srcset` paths stay; only the pictures, t
 
 | `src` | Source | Crop | `srcset` | Alt (FR) | Alt (EN) |
 |---|---|---|---|---|---|
-| `about/living-room` | `living_room_1` | 4:3 | 800w, 1200w | Le séjour : le canapé-lit rouge, la table et la grande fenêtre | The living room: the red sofa bed, the table and the large window |
-| `about/forest-view` | `living_room_2` | 3:4, on the window | 800w, 1200w | La fenêtre du séjour, ouverte sur la forêt *(unchanged)* | *(unchanged)* |
-| `about/mountain` | `landscape_2` | 16:9 | 800w, 1200w | Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne | The Ubaye peaks above Le Sauze, in autumn colours |
-| `equipment/arrival` | `residence_entrance` | 4:3 | 800w, 1200w | L'entrée du bâtiment Crépuscule, résidence Le Roi Soleil | The entrance of the Crépuscule building, Le Roi Soleil residence |
-| `equipment/sleeping` | `coin_montagne_open_drawer_open` | 4:3 | 800w, 1200w | Le coin montagne : les lits superposés et le lit gigogne tiré | The mountain corner: the bunk beds and the pulled-out trundle bed |
-| `equipment/kitchen` | `kitchen_2` | 4:3 | 800w, 1200w | Le coin cuisine : réfrigérateur, plan de travail et meubles en pin | The kitchen corner: fridge, worktop and pine furniture |
+| `about/living-room-red-sofa` | `living_room_1` | 4:3 | 800w, 1200w | Le séjour : le canapé-lit rouge, la table et la grande fenêtre | The living room: the red sofa bed, the table and the large window |
+| `about/living-room-window` | `living_room_2` | 3:4, on the window | 800w, 1200w | La fenêtre du séjour, ouverte sur la forêt *(unchanged)* | *(unchanged)* |
+| `about/ubaye-peaks-autumn` | `landscape_2` | 16:9 | 800w, 1200w | Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne | The Ubaye peaks above Le Sauze, in autumn colours |
+| `equipment/residence-entrance` | `residence_entrance` | 4:3 | 800w, 1200w | L'entrée du bâtiment Crépuscule, résidence Le Roi Soleil | The entrance of the Crépuscule building, Le Roi Soleil residence |
+| `equipment/mountain-corner` | `coin_montagne_open_drawer_open` | 4:3 | 800w, 1200w | Le coin montagne : les lits superposés et le lit gigogne tiré | The mountain corner: the bunk beds and the pulled-out trundle bed |
+| `equipment/kitchen-corner` | `kitchen_2` | 4:3 | 800w, 1200w | Le coin cuisine : réfrigérateur, plan de travail et meubles en pin | The kitchen corner: fridge, worktop and pine furniture |
 
 The `arrival` alt reads the residence and building names from `FlatInfoService.info()` rather than restating them (BR-5).
 
@@ -45,14 +45,14 @@ The `arrival` alt reads the residence and building names from `FlatInfoService.i
 
 Declared once, in a new readonly signal `FlatInfoService.galleryPhotos` (flat photos shown only in the gallery). `GalleryService` still declares nothing (BR-8); it gives up the generic `flatMap` over the Équipements blocks for an explicit walk-through order:
 
-1. `equipment/arrival` — the entrance
-2. `equipment/sleeping` — the mountain corner, open
+1. `equipment/residence-entrance` — the entrance
+2. `equipment/mountain-corner` — the mountain corner, open
 3. `gallery/mountain-corner-closed` — the same, curtain drawn
-4. `equipment/kitchen`
+4. `equipment/kitchen-corner`
 5. `gallery/dining-table` — set for a raclette
-6. `about/living-room`
+6. `about/living-room-red-sofa`
 7. `gallery/living-room-window-side`
-8. `about/forest-view`
+8. `about/living-room-window`
 
 | `src` | Source | Crop | Alt (FR) | Alt (EN) |
 |---|---|---|---|---|
@@ -69,7 +69,7 @@ All three at `800w, 1200w`. Landscapes stay out of the gallery (FR-26).
 | Accéder au parking — road | `stay/access-road` | `acces_residence_indication_take_left_2` | La route à gauche à prendre pour monter à la résidence *(existing)* | *(existing)* |
 | Accéder au parking — car park | `stay/car-park` | `parking_slots` | Le parking du bâtiment Crépuscule *(existing)* | *(existing)* |
 | Si le parking est complet *(new slot)* | `stay/overflow-parking` | `additional_parking_slots` | Un des autres parkings, le long de la montée | One of the other car parks, on the way up |
-| Jusqu'à l'appartement *(new slot)* | `equipment/arrival` | *reused* | its alt, read from `FlatInfoService` | — |
+| Jusqu'à l'appartement *(new slot)* | `equipment/residence-entrance` | *reused* | its alt, read from `FlatInfoService` | — |
 | Tennis | `stay/tennis` | `tennis_court_1` | Les deux courts de tennis *(existing)* | *(existing)* |
 | Pétanque | `stay/petanque` | `petanque_field_2` | Le terrain de pétanque de la résidence *(existing)* | *(existing)* |
 | Jeux en bois *(new slots)* | `stay/outdoor-games` | `outside_games_3` | L'aire de jeux en bois, avec son toboggan | The wooden play area and its slide |
@@ -80,7 +80,7 @@ Since a ping-pong table now shows, the « Jeux en bois » text gains it: « Des 
 
 ## Share image
 
-`share/preview-1200x630.jpg` regenerated from `living_room_1` (1200×630 crop, JPEG). `og:image:alt` becomes « Le séjour de notre appartement au Sauze : canapé-lit rouge, table et grande fenêtre » / "The living room of our flat in Le Sauze: red sofa bed, table and large window" (the test requires « Sauze »).
+`share/living-room-1200x630.jpg` regenerated from `living_room_1` (1200×630 crop, JPEG). `og:image:alt` becomes « Le séjour de notre appartement au Sauze : canapé-lit rouge, table et grande fenêtre » / "The living room of our flat in Le Sauze: red sofa bed, table and large window" (the test requires « Sauze »).
 
 ## Privacy check (BR-7)
 

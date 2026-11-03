@@ -63,7 +63,7 @@ describe('PageTagsStrategy', () => {
 
       expect(head.meta('property="og:url"')).toBe('https://refugedusauze.com/');
       expect(head.meta('property="og:image"')).toBe(
-        'https://refugedusauze.com/images/share/preview-1200x630.jpg',
+        'https://refugedusauze.com/images/share/living-room-1200x630.jpg',
       );
       expect(head.meta('property="og:image:width"')).toBe('1200');
       expect(head.meta('property="og:image:height"')).toBe('630');
