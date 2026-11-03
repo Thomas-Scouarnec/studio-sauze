@@ -197,6 +197,7 @@ describe('StayService', () => {
     expect(illustrated).toEqual([
       ['Accéder au parking', 2],
       ['Si le parking est complet', 1],
+      [undefined, 1],
       ["Jusqu'à l'appartement", 1],
       ['Tennis', 1],
       ['Pétanque', 1],
@@ -207,6 +208,20 @@ describe('StayService', () => {
       expect(slot.photo, slot.description).toBeDefined();
       expect(slot.photo?.alt).toBe(slot.description);
     }
+  });
+
+  it('should show each parking option next to its own photo', () => {
+    const items = allItems();
+    const index = items.findIndex((item) => item.title === 'Si le parking est complet');
+    const [nearby, grandeOurse] = items.slice(index, index + 2);
+
+    expect(nearby.text).toContain('autres parkings');
+    expect(nearby.text).not.toContain('Grande Ourse');
+    expect(nearby.photos?.[0].photo?.src).toBe('stay/overflow-parking');
+    expect(grandeOurse.title).toBeUndefined();
+    expect(grandeOurse.text).toContain('route de la Grande Ourse');
+    expect(grandeOurse.link?.url).toBe('https://maps.app.goo.gl/WXZBYDgAtsWy799L8');
+    expect(grandeOurse.photos?.[0].photo?.src).toBe('stay/grande-ourse-road');
   });
 
   it('should reuse the entrance photo the Équipements block publishes (BR-5)', () => {

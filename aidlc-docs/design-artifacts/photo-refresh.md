@@ -69,6 +69,7 @@ All three at `800w, 1200w`. Landscapes stay out of the gallery (FR-26).
 | Accéder au parking — road | `stay/access-road` | `acces_residence_indication_take_left_2` | La route à gauche à prendre pour monter à la résidence *(existing)* | *(existing)* |
 | Accéder au parking — car park | `stay/car-park` | `parking_slots` | Le parking du bâtiment Crépuscule *(existing)* | *(existing)* |
 | Si le parking est complet *(new slot)* | `stay/overflow-parking` | `additional_parking_slots` | Un des autres parkings, le long de la montée | One of the other car parks, on the way up |
+| Si le parking est complet — Grande Ourse *(new slot, after review)* | `stay/grande-ourse-road` | `additional_parking_slots_3` | La route de la Grande Ourse, où se garer si le parking est complet | The route de la Grande Ourse, where to park if the car park is full |
 | Jusqu'à l'appartement *(new slot)* | `equipment/residence-entrance` | *reused* | its alt, read from `FlatInfoService` | — |
 | Tennis | `stay/tennis` | `tennis_court_1` | Les deux courts de tennis *(existing)* | *(existing)* |
 | Pétanque | `stay/petanque` | `petanque_field_2` | Le terrain de pétanque de la résidence *(existing)* | *(existing)* |

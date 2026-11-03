@@ -555,8 +555,8 @@
         <target>If the car park is full</target>
       </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.text" datatype="html">
-        <source>Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c&apos;est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c&apos;est l&apos;échauffement avant les pistes 😉</source>
-        <target>You may park in the other car parks you pass on the way up: it is allowed. Otherwise, drive back down and park on the route de la Grande Ourse: the walk up is your warm-up before the slopes 😉</target>
+        <source>Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c&apos;est autorisé.</source>
+        <target>You may park in the other car parks you pass on the way up: it is allowed.</target>
       </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.link" datatype="html">
         <source>Le stationnement route de la Grande Ourse sur Google Maps</source>
@@ -565,6 +565,14 @@
       <trans-unit id="stay.arrival.parkingFull.photo" datatype="html">
         <source>Un des autres parkings, le long de la montée</source>
         <target>One of the other car parks, on the way up</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.grandeOurse.text" datatype="html">
+        <source>Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c&apos;est l&apos;échauffement avant les pistes 😉</source>
+        <target>Otherwise, drive back down and park on the route de la Grande Ourse: the walk up is your warm-up before the slopes 😉</target>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.grandeOurse.photo" datatype="html">
+        <source>La route de la Grande Ourse, où se garer si le parking est complet</source>
+        <target>The route de la Grande Ourse, where to park if the car park is full</target>
       </trans-unit>
       <trans-unit id="stay.arrival.flat.title" datatype="html">
         <source>Jusqu&apos;à l&apos;appartement</source>

@@ -166,15 +166,26 @@ export class StayService {
               },
               {
                 title: $localize`:@@stay.arrival.parkingFull.title:Si le parking est complet`,
-                text: $localize`:@@stay.arrival.parkingFull.text:Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c'est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c'est l'échauffement avant les pistes 😉`,
+                text: $localize`:@@stay.arrival.parkingFull.text:Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c'est autorisé.`,
+                photos: [
+                  guidePhoto(
+                    'overflow-parking',
+                    $localize`:@@stay.arrival.parkingFull.photo:Un des autres parkings, le long de la montée`,
+                  ),
+                ],
+              },
+              // Untitled, so it reads as the second half of « Si le parking est complet »:
+              // an item renders its photos after its text, and each half has its own photo.
+              {
+                text: $localize`:@@stay.arrival.parkingFull.grandeOurse.text:Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c'est l'échauffement avant les pistes 😉`,
                 link: {
                   label: $localize`:@@stay.arrival.parkingFull.link:Le stationnement route de la Grande Ourse sur Google Maps`,
                   url: 'https://maps.app.goo.gl/WXZBYDgAtsWy799L8',
                 },
                 photos: [
                   guidePhoto(
-                    'overflow-parking',
-                    $localize`:@@stay.arrival.parkingFull.photo:Un des autres parkings, le long de la montée`,
+                    'grande-ourse-road',
+                    $localize`:@@stay.arrival.parkingFull.grandeOurse.photo:La route de la Grande Ourse, où se garer si le parking est complet`,
                   ),
                 ],
               },
