@@ -5,12 +5,11 @@ import { FlatInfoService } from './flat-info.service';
 /**
  * The one gallery of the flat's photos (FR-25).
  *
- * The list is derived from the photos the sections already publish, never
- * restated (BR-8): a photo added to an Équipements block reaches the gallery
- * with no second edit. Inclusion therefore follows from *where* a photo is
- * used — which is why the About photos are picked by name below, keeping the
- * `mountain` landscape out, and why `SeasonsService` is not read at all
- * (FR-26).
+ * The list is derived from the photos `FlatInfoService` already declares,
+ * never restated (BR-8): the section photos, plus the few flat photos shown
+ * only here. Each is picked by name so the walk-through order can interleave
+ * them — which also keeps the `mountain` landscape out, and is why
+ * `SeasonsService` is not read at all (FR-26).
  */
 @Injectable({ providedIn: 'root' })
 export class GalleryService {
@@ -18,14 +17,25 @@ export class GalleryService {
 
   private readonly _openIndex = signal<number | null>(null);
 
-  /** Walk-through order: arrive, sleep, cook, live, look out. */
+  /** Walk-through order: arrive, sleep, cook, eat, live, look out. */
   readonly photos = computed<ResponsivePhoto[]>(() => {
     const { livingRoom, forestView } = this.flatInfo.aboutPhotos();
-    return [
-      ...this.flatInfo.equipmentBlocks().flatMap((block) => (block.photo ? [block.photo] : [])),
+    const { mountainCornerClosed, diningTable, livingRoomWindowSide } =
+      this.flatInfo.galleryPhotos();
+    const blockPhoto = (id: string) =>
+      this.flatInfo.equipmentBlocks().find((block) => block.id === id)?.photo;
+    const ordered = [
+      blockPhoto('arrival'),
+      blockPhoto('sleeping'),
+      mountainCornerClosed,
+      blockPhoto('kitchen'),
+      diningTable,
       livingRoom,
+      livingRoomWindowSide,
       forestView,
     ];
+    // A block may lose its photo (BR-7): the gallery then skips it.
+    return ordered.filter((photo): photo is ResponsivePhoto => photo !== undefined);
   });
 
   readonly count = computed(() => this.photos().length);

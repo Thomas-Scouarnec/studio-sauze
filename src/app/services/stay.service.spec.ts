@@ -190,13 +190,31 @@ describe('StayService', () => {
     expect(parking?.text).toContain(flatInfo.buildingName);
   });
 
-  it('should declare the two parking photos still to take, each described (FR-21)', () => {
-    const parking = allItems().find((item) => item.title === 'Accéder au parking');
-    expect(parking?.photos?.length).toBe(2);
-    for (const slot of parking!.photos!) {
-      expect(slot.description.length).toBeGreaterThan(0);
-      expect(slot.photo).toBeUndefined();
+  it('should illustrate the directions and the surroundings, with no photo left to take (FR-21)', () => {
+    const illustrated = allItems()
+      .filter((item) => item.photos)
+      .map((item) => [item.title, item.photos!.length]);
+    expect(illustrated).toEqual([
+      ['Accéder au parking', 2],
+      ['Si le parking est complet', 1],
+      ["Jusqu'à l'appartement", 1],
+      ['Tennis', 1],
+      ['Pétanque', 1],
+      ['Jeux en bois', 2],
+      ['Les poubelles', 1],
+    ]);
+    for (const slot of allItems().flatMap((item) => item.photos ?? [])) {
+      expect(slot.photo, slot.description).toBeDefined();
+      expect(slot.photo?.alt).toBe(slot.description);
     }
+  });
+
+  it('should reuse the entrance photo the Équipements block publishes (BR-5)', () => {
+    const entrance = TestBed.inject(FlatInfoService)
+      .equipmentBlocks()
+      .find((block) => block.id === 'arrival')?.photo;
+    const flat = allItems().find((item) => item.title === "Jusqu'à l'appartement");
+    expect(flat?.photos?.[0].photo).toBe(entrance);
   });
 
   it('should mark the facts still missing as pending, with a title to fill (FR-16)', () => {

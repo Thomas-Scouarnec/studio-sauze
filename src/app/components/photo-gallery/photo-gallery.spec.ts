@@ -39,7 +39,9 @@ describe('PhotoGalleryComponent', () => {
     const dialog: HTMLDialogElement = fixture.nativeElement.querySelector('dialog');
     const img: HTMLImageElement = fixture.nativeElement.querySelector('.gallery-stage img');
     expect(dialog.open).toBe(true);
-    expect(img.getAttribute('srcset')).toBe('/images/equipment/kitchen-800w.webp 800w');
+    expect(img.getAttribute('srcset')).toBe(
+      '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
+    );
     expect(img.getAttribute('alt')?.trim().length).toBeGreaterThan(0);
   });
 
@@ -55,7 +57,7 @@ describe('PhotoGalleryComponent', () => {
 
     const counter: HTMLElement = fixture.nativeElement.querySelector('.gallery-counter');
     expect(counter.getAttribute('aria-live')).toBe('polite');
-    expect(counter.textContent?.replace(/\s+/g, ' ').trim()).toBe('Photo 3 sur 5');
+    expect(counter.textContent?.replace(/\s+/g, ' ').trim()).toBe('Photo 4 sur 8');
   });
 
   it('should label every control in French', async () => {
@@ -85,7 +87,7 @@ describe('PhotoGalleryComponent', () => {
 
     next.click();
     await fixture.whenStable();
-    expect(gallery.currentPhoto()?.src).toBe('about/living-room');
+    expect(gallery.currentPhoto()?.src).toBe('gallery/dining-table');
 
     previous.click();
     await fixture.whenStable();
@@ -98,13 +100,15 @@ describe('PhotoGalleryComponent', () => {
       (fixture.nativeElement.querySelector('.gallery-stage img') as HTMLImageElement).getAttribute(
         'srcset',
       );
-    expect(srcset()).toBe('/images/equipment/kitchen-800w.webp 800w');
+    expect(srcset()).toBe(
+      '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
+    );
 
     gallery.next();
     await fixture.whenStable();
 
     expect(srcset()).toBe(
-      '/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w',
+      '/images/gallery/dining-table-800w.webp 800w, /images/gallery/dining-table-1200w.webp 1200w',
     );
   });
 
@@ -114,7 +118,7 @@ describe('PhotoGalleryComponent', () => {
 
     dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
     await fixture.whenStable();
-    expect(gallery.currentPhoto()?.src).toBe('about/living-room');
+    expect(gallery.currentPhoto()?.src).toBe('gallery/dining-table');
 
     dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
     await fixture.whenStable();
@@ -142,7 +146,7 @@ describe('PhotoGalleryComponent', () => {
     };
 
     await swipe(300, 100);
-    expect(gallery.currentPhoto()?.src).toBe('about/living-room');
+    expect(gallery.currentPhoto()?.src).toBe('gallery/dining-table');
 
     await swipe(100, 300);
     expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');

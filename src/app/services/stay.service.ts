@@ -43,6 +43,11 @@ export interface StaySection {
   groups: StayGroup[];
 }
 
+/** A guest-guide photo: shown at most 320px wide, so one 800w file is enough (Bolt 27, D5). */
+function guidePhoto(src: string, alt: string): StayPhoto {
+  return { description: alt, photo: { src: `stay/${src}`, srcset: '800w', alt } };
+}
+
 const WINTER_TYRES_URL =
   'https://www.securite-routiere.gouv.fr/equipements-hivernaux-departements-et-communes';
 
@@ -75,6 +80,10 @@ export class StayService {
     const { residenceName, buildingName, street, postalCode, commune, mapsUrl } =
       this.flatInfo.info();
     const email = this.contact.email;
+    // Reused, not restated (BR-5): the Équipements block already publishes it.
+    const entrancePhoto = this.flatInfo
+      .equipmentBlocks()
+      .find((block) => block.id === 'arrival')?.photo;
     const skiDomainLink = this.seasonLink('winter');
     const tourismOfficeLink = this.seasonLink('summer');
     const groceriesLink: StayLink = {
@@ -145,12 +154,14 @@ export class StayService {
                 title: $localize`:@@stay.arrival.parking.title:Accéder au parking`,
                 text: $localize`:@@stay.arrival.parking.text:Attention : vous passez d'abord devant la résidence Le Soleil du Sauze — ce n'est pas la bonne. La nôtre est la résidence ${residenceName}:residence:. Prenez la route à gauche, qui monte : allez jusqu'en haut, vous arrivez au parking du bâtiment ${buildingName}:building:.`,
                 photos: [
-                  {
-                    description: $localize`:@@stay.arrival.parking.photo.road:La route à gauche à prendre pour monter à la résidence`,
-                  },
-                  {
-                    description: $localize`:@@stay.arrival.parking.photo.carPark:Le parking du bâtiment ${buildingName}:building:`,
-                  },
+                  guidePhoto(
+                    'access-road',
+                    $localize`:@@stay.arrival.parking.photo.road:La route à gauche à prendre pour monter à la résidence`,
+                  ),
+                  guidePhoto(
+                    'car-park',
+                    $localize`:@@stay.arrival.parking.photo.carPark:Le parking du bâtiment ${buildingName}:building:`,
+                  ),
                 ],
               },
               {
@@ -160,10 +171,19 @@ export class StayService {
                   label: $localize`:@@stay.arrival.parkingFull.link:Le stationnement route de la Grande Ourse sur Google Maps`,
                   url: 'https://maps.app.goo.gl/WXZBYDgAtsWy799L8',
                 },
+                photos: [
+                  guidePhoto(
+                    'overflow-parking',
+                    $localize`:@@stay.arrival.parkingFull.photo:Un des autres parkings, le long de la montée`,
+                  ),
+                ],
               },
               {
                 title: $localize`:@@stay.arrival.flat.title:Jusqu'à l'appartement`,
                 text: $localize`:@@stay.arrival.flat.text:Prenez l'ascenseur jusqu'au 1er étage : l'appartement n° 10 est à gauche en sortant.`,
+                ...(entrancePhoto
+                  ? { photos: [{ description: entrancePhoto.alt, photo: entrancePhoto }] }
+                  : {}),
               },
               {
                 title: $localize`:@@stay.arrival.skiLocker.title:Le casier à skis`,
@@ -255,18 +275,20 @@ export class StayService {
                 title: $localize`:@@stay.activities.tennis.title:Tennis`,
                 text: $localize`:@@stay.activities.tennis.text:Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.`,
                 photos: [
-                  {
-                    description: $localize`:@@stay.activities.tennis.photo:Les deux courts de tennis`,
-                  },
+                  guidePhoto(
+                    'tennis',
+                    $localize`:@@stay.activities.tennis.photo:Les deux courts de tennis`,
+                  ),
                 ],
               },
               {
                 title: $localize`:@@stay.activities.petanque.title:Pétanque`,
                 text: $localize`:@@stay.activities.petanque.text:Un terrain de pétanque vous attend au pied de la résidence.`,
                 photos: [
-                  {
-                    description: $localize`:@@stay.activities.petanque.photo:Le terrain de pétanque de la résidence`,
-                  },
+                  guidePhoto(
+                    'petanque',
+                    $localize`:@@stay.activities.petanque.photo:Le terrain de pétanque de la résidence`,
+                  ),
                 ],
               },
               {
@@ -286,7 +308,17 @@ export class StayService {
             items: [
               {
                 title: $localize`:@@stay.activities.woodenGames.title:Jeux en bois`,
-                text: $localize`:@@stay.activities.woodenGames.text:Des jeux en bois pour les enfants, à 300 m de la résidence.`,
+                text: $localize`:@@stay.activities.woodenGames.text:Des jeux en bois pour les enfants et une table de ping-pong, à 300 m de la résidence.`,
+                photos: [
+                  guidePhoto(
+                    'outdoor-games',
+                    $localize`:@@stay.activities.woodenGames.photo.playArea:L'aire de jeux en bois, avec son toboggan`,
+                  ),
+                  guidePhoto(
+                    'table-tennis',
+                    $localize`:@@stay.activities.woodenGames.photo.tableTennis:La table de ping-pong, à côté de l'aire de jeux`,
+                  ),
+                ],
               },
               {
                 title: $localize`:@@stay.activities.children.title:Activités avec les enfants`,
@@ -354,6 +386,12 @@ export class StayService {
                   label: $localize`:@@stay.practical.rubbish.link:Le point de collecte sur Google Maps`,
                   url: 'https://maps.app.goo.gl/k2WmAZeY1MsF18go9',
                 },
+                photos: [
+                  guidePhoto(
+                    'rubbish',
+                    $localize`:@@stay.practical.rubbish.photo:Les conteneurs à ordures ménagères et de tri sélectif`,
+                  ),
+                ],
               },
               {
                 title: $localize`:@@stay.practical.rules.title:Règles de la résidence`,

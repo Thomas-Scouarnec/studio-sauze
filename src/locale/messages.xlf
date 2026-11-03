@@ -334,7 +334,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="seo.image.alt" datatype="html">
-        <source>La station du Sauze sous la neige, au pied des sommets enneigés de la vallée de l&apos;Ubaye</source>
+        <source>Le séjour de notre appartement au Sauze : canapé-lit rouge, table et grande fenêtre</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/page-tags.strategy.ts</context>
           <context context-type="linenumber">62</context>
@@ -442,147 +442,168 @@
         <source>Station du Sauze</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.arrival.title" datatype="html">
         <source>Vos skis restent en bas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.arrival.body" datatype="html">
         <source>Parking gratuit au pied du bâtiment et casier à skis sécurisé au rez-de-chaussée : vous y déposez le matériel en arrivant, puis vous montez au 1er étage en ascenseur.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.arrival.alt" datatype="html">
-        <source>Les casiers à skis sécurisés du rez-de-chaussée</source>
+        <source>L&apos;entrée du bâtiment <x id="building" equiv-text="this._info().buildingName"/>, résidence <x id="residence" equiv-text="this._info().residenceName"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.sleeping.title" datatype="html">
         <source>Cinq vrais couchages, et de l&apos;intimité</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.sleeping.body" datatype="html">
         <source>Le coin montagne accueille 3 personnes sur de véritables couchages de 80 cm adaptés aux adultes, isolables par un rideau. Dans le séjour, un canapé-lit 160 cm de très bonne qualité pour deux personnes de plus.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.sleeping.alt" datatype="html">
-        <source>Deux enfants blottis dans les couchages du coin montagne</source>
+        <source>Le coin montagne : les lits superposés et le lit gigogne tiré</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.kitchen.title" datatype="html">
         <source>Une cuisine où l&apos;on cuisine vraiment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.kitchen.body" datatype="html">
         <source>Grand réfrigérateur de 140 cm, four, lave-vaisselle, plaques, micro-ondes, bouilloire et cafetière filtre — sans oublier l&apos;appareil à raclette. Autour de la grande table en bois, vous tenez à cinq : trois chaises et un banc.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.kitchen.alt" datatype="html">
-        <source>Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision</source>
+        <source>Le coin cuisine : réfrigérateur, plan de travail et meubles en pin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.bath" datatype="html">
         <source>Baignoire et douche</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.toilet" datatype="html">
         <source>WC séparés</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.washingMachine" datatype="html">
         <source>Lave-linge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.tv" datatype="html">
         <source>TV (TNT)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.storage" datatype="html">
         <source>Plusieurs espaces de rangement</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.drying" datatype="html">
         <source>Emplacement pour sécher chaussures et gants</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.network" datatype="html">
         <source>Très bon réseau 4G/5G — pas de Wi-Fi</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="equipment.item.forestView" datatype="html">
         <source>Vue sur la forêt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="about.photo.livingRoom.alt" datatype="html">
-        <source>Le séjour, avec son canapé-lit et sa commode en pin</source>
+        <source>Le séjour : le canapé-lit rouge, la table et la grande fenêtre</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="about.photo.forestView.alt" datatype="html">
         <source>La fenêtre du séjour, ouverte sur la forêt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="about.photo.mountain.alt" datatype="html">
-        <source>Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu</source>
+        <source>Les sommets de l&apos;Ubaye au-dessus du Sauze, aux couleurs de l&apos;automne</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gallery.photo.mountainCornerClosed.alt" datatype="html">
+        <source>Le coin montagne, rideau tiré pour l&apos;intimité</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gallery.photo.diningTable.alt" datatype="html">
+        <source>La table du séjour dressée pour une raclette</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gallery.photo.livingRoomWindowSide.alt" datatype="html">
+        <source>Le séjour côté fenêtre : fauteuil en rotin, étagère et commode en pin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/flat-info.service.ts</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="seasons.winter.marker" datatype="html">
@@ -792,686 +813,714 @@
         <source>Intermarché de Saint-Pons sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.welcome.title" datatype="html">
         <source>Bienvenue</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.welcome.message.text" datatype="html">
         <source>Bienvenue au Refuge ! Nous sommes heureux de vous accueillir au Sauze. Vous trouverez ici tout ce qu&apos;il faut savoir pour votre séjour, de l&apos;arrivée au départ. Une question ? Écrivez-nous à <x id="email" equiv-text="email"/>. — Thomas et sa famille</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.title" datatype="html">
         <source>Avant d&apos;arriver</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.linen.title" datatype="html">
         <source>Linge de maison</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.linen.text" datatype="html">
         <source>Draps, housses de couette, taies d&apos;oreiller et serviettes ne sont pas fournis : pensez à les apporter. Les oreillers et les couvertures, eux, restent dans l&apos;appartement.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.winterDriving.title" datatype="html">
         <source>En voiture l&apos;hiver</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.winterDriving.text" datatype="html">
         <source>Du 1er novembre au 31 mars, la station est soumise à la loi Montagne : pneus hiver obligatoires, ou chaînes / chaussettes à neige dans le coffre.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.winterDriving.link" datatype="html">
         <source>Les règles sur le site de la Sécurité Routière</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.groceries.title" datatype="html">
         <source>Les courses</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeArrival.groceries.text" datatype="html">
         <source>Faites vos courses avant de monter : nous vous recommandons l&apos;Intermarché de Saint-Pons, juste à côté de Barcelonnette.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.title" datatype="html">
         <source>À l&apos;arrivée</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.keys.title" datatype="html">
         <source>Arrivée et remise des clés</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.keys.text" datatype="html">
         <source>Arrivée à partir de 16 h. Une personne sur place vous accueille directement à la résidence et vous remet les clés ; ses coordonnées figurent dans votre email de confirmation. Vous arriverez plus tard que prévu ? Prévenez-nous, nous trouverons une solution.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.address.title" datatype="html">
         <source>L&apos;adresse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.address.text" datatype="html">
         <source>Résidence <x id="residence" equiv-text="residenceName"/>, bâtiment <x id="building" equiv-text="buildingName"/> — <x id="street" equiv-text="street"/>, <x id="postalCode" equiv-text="postalCode"/> <x id="commune" equiv-text="commune"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.address.link" datatype="html">
         <source>Voir sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parking.title" datatype="html">
         <source>Accéder au parking</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parking.text" datatype="html">
         <source>Attention : vous passez d&apos;abord devant la résidence Le Soleil du Sauze — ce n&apos;est pas la bonne. La nôtre est la résidence <x id="residence" equiv-text="residenceName"/>. Prenez la route à gauche, qui monte : allez jusqu&apos;en haut, vous arrivez au parking du bâtiment <x id="building" equiv-text="buildingName"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parking.photo.road" datatype="html">
         <source>La route à gauche à prendre pour monter à la résidence</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parking.photo.carPark" datatype="html">
         <source>Le parking du bâtiment <x id="building" equiv-text="buildingName"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.title" datatype="html">
         <source>Si le parking est complet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.text" datatype="html">
         <source>Vous pouvez vous garer sur les autres parkings que vous croisez en montant : c&apos;est autorisé. Sinon, redescendez et garez-vous route de la Grande Ourse : la montée à pied, c&apos;est l&apos;échauffement avant les pistes 😉</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.parkingFull.link" datatype="html">
         <source>Le stationnement route de la Grande Ourse sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">171</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.photo" datatype="html">
+        <source>Un des autres parkings, le long de la montée</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/stay.service.ts</context>
+          <context context-type="linenumber">177</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.flat.title" datatype="html">
         <source>Jusqu&apos;à l&apos;appartement</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.flat.text" datatype="html">
         <source>Prenez l&apos;ascenseur jusqu&apos;au 1er étage : l&apos;appartement n° 10 est à gauche en sortant.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">166</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.skiLocker.title" datatype="html">
         <source>Le casier à skis</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.skiLocker.text" datatype="html">
         <source>Au rez-de-chaussée, il s&apos;ouvre avec la même clé que la porte d&apos;entrée.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">170</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.network.title" datatype="html">
         <source>Connexion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.arrival.network.text" datatype="html">
         <source>Pas de Wi-Fi, mais un très bon réseau 4G/5G.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">194</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.title" datatype="html">
         <source>L&apos;appartement</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">182</context>
+          <context context-type="linenumber">202</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.inventory.title" datatype="html">
         <source>Inventaire</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">187</context>
+          <context context-type="linenumber">207</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.inventory.text" datatype="html">
         <source>Cette liste est là pour que vous sachiez ce qui vous attend et ce qu&apos;il reste à prévoir. Rien à recompter au départ : prenez simplement soin des lieux, comme chez vous.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.cooking.title" datatype="html">
         <source>Plaques et four</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.sofaBed.title" datatype="html">
         <source>Ouvrir le canapé-lit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">192</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.washingMachine.title" datatype="html">
         <source>Lave-linge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">193</context>
+          <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.games.title" datatype="html">
         <source>Jeux et livres</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.games.text" datatype="html">
         <source>Des jeux de société et des livres, pour les grands comme pour les enfants, vous attendent sur place.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">216</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.provided.title" datatype="html">
         <source>Déjà sur place</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">199</context>
+          <context context-type="linenumber">219</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.provided.text" datatype="html">
         <source>Café et filtres, sel, huile, tablettes pour le lave-vaisselle et produits d&apos;entretien.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">220</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.problem.title" datatype="html">
         <source>Un souci ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">203</context>
+          <context context-type="linenumber">223</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.flat.problem.text" datatype="html">
         <source>Appelez-nous (numéro dans votre email de confirmation) ou écrivez-nous à <x id="email" equiv-text="email"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">204</context>
+          <context context-type="linenumber">224</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.title" datatype="html">
         <source>Activités</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">212</context>
+          <context context-type="linenumber">232</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.tourismOffice.title" datatype="html">
         <source>Office de tourisme de l&apos;Ubaye</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">239</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.tourismOffice.text" datatype="html">
         <source>Horaires, événements et idées de sorties, tenus à jour par la vallée.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">220</context>
+          <context context-type="linenumber">240</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.winter.title" datatype="html">
         <source>Hiver</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">226</context>
+          <context context-type="linenumber">246</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.skiDomain.title" datatype="html">
         <source>Le domaine skiable</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">229</context>
+          <context context-type="linenumber">249</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.skiDomain.text" datatype="html">
         <source>Les pistes du Sauze – Super-Sauze, pour tous les niveaux. Skiez à votre rythme et gardez un œil sur les autres : on vous préfère au bar des pistes qu&apos;au cabinet du médecin 🙂</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">230</context>
+          <context context-type="linenumber">250</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.snowshoes.title" datatype="html">
         <source>Randonnées en raquettes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">234</context>
+          <context context-type="linenumber">254</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.iceRink.title" datatype="html">
         <source>Patinoire de Pra-Loup</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">238</context>
+          <context context-type="linenumber">258</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.iceRink.text" datatype="html">
         <source>Patinoire en plein air au cœur de Pra-Loup 1600, patins à louer sur place.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">239</context>
+          <context context-type="linenumber">259</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.iceRink.link" datatype="html">
         <source>La patinoire sur le site de l&apos;Ubaye</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">241</context>
+          <context context-type="linenumber">261</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.summer.title" datatype="html">
         <source>Été</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">248</context>
+          <context context-type="linenumber">268</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.hikes.title" datatype="html">
         <source>Randonnées, sentiers et trails</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">251</context>
+          <context context-type="linenumber">271</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.tennis.title" datatype="html">
         <source>Tennis</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">255</context>
+          <context context-type="linenumber">275</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.tennis.text" datatype="html">
         <source>Deux courts de tennis en accès libre et gratuit, à 300 m de la résidence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">256</context>
+          <context context-type="linenumber">276</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.tennis.photo" datatype="html">
         <source>Les deux courts de tennis</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">259</context>
+          <context context-type="linenumber">280</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.petanque.title" datatype="html">
         <source>Pétanque</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">264</context>
+          <context context-type="linenumber">285</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.petanque.text" datatype="html">
         <source>Un terrain de pétanque vous attend au pied de la résidence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">265</context>
+          <context context-type="linenumber">286</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.petanque.photo" datatype="html">
         <source>Le terrain de pétanque de la résidence</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">268</context>
+          <context context-type="linenumber">290</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.lake.title" datatype="html">
         <source>La base nautique de Jausiers</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">273</context>
+          <context context-type="linenumber">295</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.lake.text" datatype="html">
         <source>Baignade, paddle, tennis et coin pique-nique autour du plan d&apos;eau, à environ 15 minutes en voiture par Barcelonnette.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">274</context>
+          <context context-type="linenumber">296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.lake.link" datatype="html">
         <source>La base nautique de Jausiers sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">276</context>
+          <context context-type="linenumber">298</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.yearRound.title" datatype="html">
         <source>Toute l&apos;année</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">285</context>
+          <context context-type="linenumber">307</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.woodenGames.title" datatype="html">
         <source>Jeux en bois</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">288</context>
+          <context context-type="linenumber">310</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.woodenGames.text" datatype="html">
-        <source>Des jeux en bois pour les enfants, à 300 m de la résidence.</source>
+        <source>Des jeux en bois pour les enfants et une table de ping-pong, à 300 m de la résidence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">289</context>
+          <context context-type="linenumber">311</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.photo.playArea" datatype="html">
+        <source>L&apos;aire de jeux en bois, avec son toboggan</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/stay.service.ts</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.photo.tableTennis" datatype="html">
+        <source>La table de ping-pong, à côté de l&apos;aire de jeux</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/stay.service.ts</context>
+          <context context-type="linenumber">319</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.children.title" datatype="html">
         <source>Activités avec les enfants</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">292</context>
+          <context context-type="linenumber">324</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.cinema.title" datatype="html">
         <source>Cinéma</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">296</context>
+          <context context-type="linenumber">328</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.cinema.text" datatype="html">
         <source>Le cinéma de Barcelonnette programme les sorties du moment.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">297</context>
+          <context context-type="linenumber">329</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.activities.cinema.link" datatype="html">
         <source>Le cinéma de Barcelonnette sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">299</context>
+          <context context-type="linenumber">331</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.title" datatype="html">
         <source>Commerces et services</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">309</context>
+          <context context-type="linenumber">341</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.supermarket.title" datatype="html">
         <source>Supermarché</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">314</context>
+          <context context-type="linenumber">346</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.supermarket.text" datatype="html">
         <source>Intermarché de Saint-Pons, juste à côté de Barcelonnette.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">315</context>
+          <context context-type="linenumber">347</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.bakery.title" datatype="html">
         <source>Boulangerie</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">319</context>
+          <context context-type="linenumber">351</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.bakery.text" datatype="html">
         <source>Boulangerie Reynet, au Sauze.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">320</context>
+          <context context-type="linenumber">352</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.bakery.link" datatype="html">
         <source>Boulangerie Reynet sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">322</context>
+          <context context-type="linenumber">354</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.restaurants.title" datatype="html">
         <source>Restaurants</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">326</context>
+          <context context-type="linenumber">358</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.pharmacy.title" datatype="html">
         <source>Pharmacie</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">328</context>
+          <context context-type="linenumber">360</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.pharmacy.text" datatype="html">
         <source>Pharmacie Damery.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">361</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.pharmacy.link" datatype="html">
         <source>Pharmacie Damery sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">331</context>
+          <context context-type="linenumber">363</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.doctor.title" datatype="html">
         <source>Médecin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">335</context>
+          <context context-type="linenumber">367</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.shops.hospital.title" datatype="html">
         <source>Hôpital le plus proche</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">369</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.title" datatype="html">
         <source>Infos pratiques</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">346</context>
+          <context context-type="linenumber">378</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.rubbish.title" datatype="html">
         <source>Les poubelles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">351</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.rubbish.text" datatype="html">
         <source>Tous les conteneurs sont au même endroit : ordures ménagères et tri sélectif (plastique, verre…).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">352</context>
+          <context context-type="linenumber">384</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.rubbish.link" datatype="html">
         <source>Le point de collecte sur Google Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">354</context>
+          <context context-type="linenumber">386</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stay.practical.rubbish.photo" datatype="html">
+        <source>Les conteneurs à ordures ménagères et de tri sélectif</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/stay.service.ts</context>
+          <context context-type="linenumber">392</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.rules.title" datatype="html">
         <source>Règles de la résidence</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">359</context>
+          <context context-type="linenumber">397</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.practical.rules.text" datatype="html">
         <source>Les skis restent au casier : ils ne montent pas dans les étages. On ne circule pas en chaussures de ski dans la résidence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">360</context>
+          <context context-type="linenumber">398</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.title" datatype="html">
         <source>Avant de partir</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">368</context>
+          <context context-type="linenumber">406</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.time.text" datatype="html">
         <source>Départ avant 11 h.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">372</context>
+          <context context-type="linenumber">410</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.dishes.text" datatype="html">
         <source>Vaisselle faite et rangée.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">373</context>
+          <context context-type="linenumber">411</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.fridge.text" datatype="html">
         <source>Réfrigérateur vidé.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">374</context>
+          <context context-type="linenumber">412</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.rubbish.text" datatype="html">
         <source>Poubelles descendues.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">375</context>
+          <context context-type="linenumber">413</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.windows.text" datatype="html">
         <source>Fenêtres fermées, lumières éteintes.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">377</context>
+          <context context-type="linenumber">415</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.skiLocker.text" datatype="html">
         <source>Casier à skis vidé.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">379</context>
+          <context context-type="linenumber">417</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.beforeLeaving.keys.text" datatype="html">
         <source>Clés remises à la personne qui vous a accueillis.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">381</context>
+          <context context-type="linenumber">419</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.afterLeaving.title" datatype="html">
         <source>Après votre séjour</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">389</context>
+          <context context-type="linenumber">427</context>
         </context-group>
       </trans-unit>
       <trans-unit id="stay.afterLeaving.message.text" datatype="html">
         <source>Merci d&apos;avoir séjourné au Refuge ! Un avis, une suggestion ? Écrivez-nous à <x id="email" equiv-text="email"/>. Et si vous avez aimé, parlez-en autour de vous : le bouche-à-oreille est notre meilleure publicité.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/stay.service.ts</context>
-          <context context-type="linenumber">394</context>
+          <context context-type="linenumber">432</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nav.about" datatype="html">

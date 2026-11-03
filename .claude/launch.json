@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "start:all"],
       "port": 4200
+    },
+    {
+      "name": "studio-sauze-dist",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve-dist.mjs"],
+      "port": 4300
     }
   ]
 }

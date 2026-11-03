@@ -35,8 +35,8 @@
         <target>Your guide to staying at Notre Refuge au Sauze: before you come, on arrival, during your stay and around.</target>
       </trans-unit>
       <trans-unit id="seo.image.alt" datatype="html">
-        <source>La station du Sauze sous la neige, au pied des sommets enneigés de la vallée de l&apos;Ubaye</source>
-        <target>Le Sauze ski resort under snow, below the snowy peaks of the Ubaye valley</target>
+        <source>Le séjour de notre appartement au Sauze : canapé-lit rouge, table et grande fenêtre</source>
+        <target>The living room of our flat in Le Sauze: red sofa bed, table and large window</target>
       </trans-unit>
       <trans-unit id="app.skipLink" datatype="html">
         <source>Aller au contenu principal</source>
@@ -267,8 +267,8 @@
         <target>Free parking at the foot of the building and a secure ski locker on the ground floor: drop your gear off as you arrive, then take the lift up to the first floor.</target>
       </trans-unit>
       <trans-unit id="equipment.arrival.alt" datatype="html">
-        <source>Les casiers à skis sécurisés du rez-de-chaussée</source>
-        <target>The secure ski lockers on the ground floor</target>
+        <source>L&apos;entrée du bâtiment <x id="building" equiv-text="this._info().buildingName"/>, résidence <x id="residence" equiv-text="this._info().residenceName"/></source>
+        <target>The entrance of the <x id="building" equiv-text="this._info().buildingName"/> building, <x id="residence" equiv-text="this._info().residenceName"/> residence</target>
       </trans-unit>
       <trans-unit id="equipment.sleeping.title" datatype="html">
         <source>Cinq vrais couchages, et de l&apos;intimité</source>
@@ -279,8 +279,8 @@
         <target>The mountain nook sleeps 3 in real 80 cm beds suited to adults, which a curtain can close off. In the living room, a very good-quality 160 cm sofa bed sleeps two more.</target>
       </trans-unit>
       <trans-unit id="equipment.sleeping.alt" datatype="html">
-        <source>Deux enfants blottis dans les couchages du coin montagne</source>
-        <target>Two children snuggled up in the beds of the mountain nook</target>
+        <source>Le coin montagne : les lits superposés et le lit gigogne tiré</source>
+        <target>The mountain corner: the bunk beds and the pulled-out trundle bed</target>
       </trans-unit>
       <trans-unit id="equipment.kitchen.title" datatype="html">
         <source>Une cuisine où l&apos;on cuisine vraiment</source>
@@ -291,8 +291,8 @@
         <target>A large 140 cm fridge, oven, dishwasher, hob, microwave, kettle and filter coffee maker — not forgetting the raclette machine. The big wooden table seats five: three chairs and a bench.</target>
       </trans-unit>
       <trans-unit id="equipment.kitchen.alt" datatype="html">
-        <source>Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision</source>
-        <target>The kitchen corner: microwave and pine units, next to the TV</target>
+        <source>Le coin cuisine : réfrigérateur, plan de travail et meubles en pin</source>
+        <target>The kitchen corner: fridge, worktop and pine furniture</target>
       </trans-unit>
       <trans-unit id="equipment.item.bath" datatype="html">
         <source>Baignoire et douche</source>
@@ -327,16 +327,28 @@
         <target>Forest view</target>
       </trans-unit>
       <trans-unit id="about.photo.livingRoom.alt" datatype="html">
-        <source>Le séjour, avec son canapé-lit et sa commode en pin</source>
-        <target>The living room, with its sofa bed and pine chest of drawers</target>
+        <source>Le séjour : le canapé-lit rouge, la table et la grande fenêtre</source>
+        <target>The living room: the red sofa bed, the table and the large window</target>
       </trans-unit>
       <trans-unit id="about.photo.forestView.alt" datatype="html">
         <source>La fenêtre du séjour, ouverte sur la forêt</source>
         <target>The living-room window, looking out onto the forest</target>
       </trans-unit>
       <trans-unit id="about.photo.mountain.alt" datatype="html">
-        <source>Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu</source>
-        <target>The Chapeau du Gendarme, a limestone peak under a blue sky</target>
+        <source>Les sommets de l&apos;Ubaye au-dessus du Sauze, aux couleurs de l&apos;automne</source>
+        <target>The Ubaye peaks above Le Sauze, in autumn colours</target>
+      </trans-unit>
+      <trans-unit id="gallery.photo.mountainCornerClosed.alt" datatype="html">
+        <source>Le coin montagne, rideau tiré pour l&apos;intimité</source>
+        <target>The mountain corner, its curtain drawn for privacy</target>
+      </trans-unit>
+      <trans-unit id="gallery.photo.diningTable.alt" datatype="html">
+        <source>La table du séjour dressée pour une raclette</source>
+        <target>The living-room table set for a raclette</target>
+      </trans-unit>
+      <trans-unit id="gallery.photo.livingRoomWindowSide.alt" datatype="html">
+        <source>Le séjour côté fenêtre : fauteuil en rotin, étagère et commode en pin</source>
+        <target>The living room by the window: wicker armchair, shelves and pine chest of drawers</target>
       </trans-unit>
       <trans-unit id="seasons.winter.marker" datatype="html">
         <source>Décembre – Avril</source>
@@ -550,6 +562,10 @@
         <source>Le stationnement route de la Grande Ourse sur Google Maps</source>
         <target>Parking on the route de la Grande Ourse on Google Maps</target>
       </trans-unit>
+      <trans-unit id="stay.arrival.parkingFull.photo" datatype="html">
+        <source>Un des autres parkings, le long de la montée</source>
+        <target>One of the other car parks, on the way up</target>
+      </trans-unit>
       <trans-unit id="stay.arrival.flat.title" datatype="html">
         <source>Jusqu&apos;à l&apos;appartement</source>
         <target>Finding the flat</target>
@@ -715,8 +731,16 @@
         <target>Wooden games</target>
       </trans-unit>
       <trans-unit id="stay.activities.woodenGames.text" datatype="html">
-        <source>Des jeux en bois pour les enfants, à 300 m de la résidence.</source>
-        <target>Wooden games for children, 300 m from the residence.</target>
+        <source>Des jeux en bois pour les enfants et une table de ping-pong, à 300 m de la résidence.</source>
+        <target>Wooden games for children and a table-tennis table, 300 m from the residence.</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.photo.playArea" datatype="html">
+        <source>L&apos;aire de jeux en bois, avec son toboggan</source>
+        <target>The wooden play area and its slide</target>
+      </trans-unit>
+      <trans-unit id="stay.activities.woodenGames.photo.tableTennis" datatype="html">
+        <source>La table de ping-pong, à côté de l&apos;aire de jeux</source>
+        <target>The table-tennis table, next to the play area</target>
       </trans-unit>
       <trans-unit id="stay.activities.children.title" datatype="html">
         <source>Activités avec les enfants</source>
@@ -797,6 +821,10 @@
       <trans-unit id="stay.practical.rubbish.link" datatype="html">
         <source>Le point de collecte sur Google Maps</source>
         <target>The collection point on Google Maps</target>
+      </trans-unit>
+      <trans-unit id="stay.practical.rubbish.photo" datatype="html">
+        <source>Les conteneurs à ordures ménagères et de tri sélectif</source>
+        <target>The household waste and recycling containers</target>
       </trans-unit>
       <trans-unit id="stay.practical.rules.title" datatype="html">
         <source>Règles de la résidence</source>

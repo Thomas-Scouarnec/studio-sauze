@@ -1,10 +1,11 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ViewportScroller } from '@angular/common';
 import { provideRouter } from '@angular/router';
 import { FakeIntersectionObserver } from '../../testing/fake-intersection-observer';
 import { StayComponent } from './stay';
 import { GuestAccessService } from '../../services/guest-access.service';
-import { StayService } from '../../services/stay.service';
+import { StaySection, StayService } from '../../services/stay.service';
 
 describe('StayComponent', () => {
   beforeEach(async () => {
@@ -184,17 +185,17 @@ describe('StayComponent', () => {
     expect(rendered[0].textContent?.trim()).toBe('Information à venir');
   });
 
-  it('should announce a photo still to take, naming what it must show (FR-21)', async () => {
+  it('should render every photo the guide declares, described (FR-21)', async () => {
     const host = await render();
-    const slots = TestBed.inject(StayService)
+    const photos = TestBed.inject(StayService)
       .sections()
       .flatMap((s) => s.groups.flatMap((g) => g.items))
-      .flatMap((item) => item.photos ?? []);
+      .flatMap((item) => item.photos ?? [])
+      .flatMap((slot) => (slot.photo ? [slot.photo] : []));
 
-    const rendered = host.querySelectorAll('.stay-photo-pending');
-    expect(rendered.length).toBe(slots.filter((slot) => !slot.photo).length);
-    expect(rendered[0].textContent).toContain('Photo à venir');
-    expect(rendered[0].textContent).toContain(slots[0].description);
+    const rendered = host.querySelectorAll<HTMLImageElement>('img.stay-photo');
+    expect(rendered.length).toBe(photos.length);
+    expect(Array.from(rendered).map((img) => img.alt)).toEqual(photos.map((photo) => photo.alt));
   });
 
   it('should open external links in a new tab, and say so to screen readers', async () => {
@@ -206,5 +207,57 @@ describe('StayComponent', () => {
       expect(link.rel).toContain('noopener');
       expect(link.querySelector('.visually-hidden')?.textContent).toContain('nouvel onglet');
     }
+  });
+});
+
+describe('StayComponent, with a photo still to take', () => {
+  const sections: StaySection[] = [
+    {
+      id: 'arrival',
+      title: "À l'arrivée",
+      groups: [
+        {
+          items: [
+            {
+              title: 'Accéder au parking',
+              photos: [
+                {
+                  description: 'La route à prendre',
+                  photo: { src: 'stay/access-road', srcset: '800w', alt: 'La route à prendre' },
+                },
+                { description: 'Le parking du bâtiment' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  beforeEach(async () => {
+    localStorage.clear();
+    await TestBed.configureTestingModule({
+      imports: [StayComponent],
+      providers: [
+        provideRouter([]),
+        { provide: StayService, useValue: { sections: signal(sections) } },
+      ],
+    }).compileComponents();
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+  });
+
+  it('should announce it, naming what it must show, next to the photos that exist', async () => {
+    const fixture = TestBed.createComponent(StayComponent);
+    await fixture.whenStable();
+    const host: HTMLElement = fixture.nativeElement;
+
+    expect(host.querySelectorAll('img.stay-photo').length).toBe(1);
+    const pending = host.querySelectorAll('.stay-photo-pending');
+    expect(pending.length).toBe(1);
+    expect(pending[0].textContent).toContain('Photo à venir');
+    expect(pending[0].textContent).toContain('Le parking du bâtiment');
   });
 });

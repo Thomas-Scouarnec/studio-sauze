@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FALLBACK_IMAGE_WIDTH, ResponsivePhoto } from './responsive-image-loader';
 import { FlatInfoService } from '../services/flat-info.service';
 import { SeasonsService } from '../services/seasons.service';
+import { StayService } from '../services/stay.service';
 
 /** Every photo declared anywhere on the site. Add new sources here. */
 function allPhotos(): ResponsivePhoto[] {
@@ -13,6 +14,12 @@ function allPhotos(): ResponsivePhoto[] {
     forestView,
     mountain,
     ...flatInfo.equipmentBlocks().flatMap((block) => (block.photo ? [block.photo] : [])),
+    ...Object.values(flatInfo.galleryPhotos()),
+    ...TestBed.inject(StayService)
+      .sections()
+      .flatMap((section) => section.groups.flatMap((group) => group.items))
+      .flatMap((item) => item.photos ?? [])
+      .flatMap((slot) => (slot.photo ? [slot.photo] : [])),
     ...TestBed.inject(SeasonsService)
       .seasons()
       .map((season) => season.photo),

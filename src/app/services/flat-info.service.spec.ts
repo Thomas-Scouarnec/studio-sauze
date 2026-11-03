@@ -89,21 +89,32 @@ describe('FlatInfoService', () => {
 
   it('should describe every About photo in French alt text (FR-20)', () => {
     const { livingRoom, forestView, mountain } = service.aboutPhotos();
-    expect(livingRoom.alt).toBe('Le séjour, avec son canapé-lit et sa commode en pin');
+    expect(livingRoom.alt).toBe('Le séjour : le canapé-lit rouge, la table et la grande fenêtre');
     expect(forestView.alt).toBe('La fenêtre du séjour, ouverte sur la forêt');
-    expect(mountain.alt).toBe('Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu');
+    expect(mountain.alt).toBe(
+      "Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne",
+    );
   });
 
   it('should give every equipment block its described photo (FR-23, FR-24)', () => {
     const photos = Object.fromEntries(
       service.equipmentBlocks().map((block) => [block.id, block.photo]),
     );
-    expect(photos['arrival']?.alt).toBe('Les casiers à skis sécurisés du rez-de-chaussée');
+    expect(photos['arrival']?.alt).toBe("L'entrée du bâtiment Crépuscule, résidence Le Roi Soleil");
     expect(photos['sleeping']?.alt).toBe(
-      'Deux enfants blottis dans les couchages du coin montagne',
+      'Le coin montagne : les lits superposés et le lit gigogne tiré',
     );
     expect(photos['kitchen']?.alt).toBe(
-      'Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision',
+      'Le coin cuisine : réfrigérateur, plan de travail et meubles en pin',
+    );
+  });
+
+  it('should describe every gallery-only photo in French alt text (FR-25)', () => {
+    const { mountainCornerClosed, diningTable, livingRoomWindowSide } = service.galleryPhotos();
+    expect(mountainCornerClosed.alt).toBe("Le coin montagne, rideau tiré pour l'intimité");
+    expect(diningTable.alt).toBe('La table du séjour dressée pour une raclette');
+    expect(livingRoomWindowSide.alt).toBe(
+      'Le séjour côté fenêtre : fauteuil en rotin, étagère et commode en pin',
     );
   });
 });

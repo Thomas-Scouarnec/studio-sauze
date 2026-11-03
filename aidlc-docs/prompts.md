@@ -600,3 +600,29 @@ All prompts in session order.
 **Plan approved by Thomas** (2026-10-04), including D2 (`npm test` unchanged) and D4 (the floors).
 
 **Bolt 26 implemented on 2026-10-04.** `npm run test:coverage` with floors of 95 % (lines, statements), 90 % (branches), 85 % (functions), against 97.5, 97.7, 92.7 and 89.5 today; the CI `test` job runs it, shows the figures on the summary page and keeps the HTML report. Configuration files that only declare providers are not counted; two empty leftover files deleted. A removed spec file fails the floors; a small untested helper does not, as expected from global floors. Details in [bolt-26-code-coverage.md](plans/bolt-26-code-coverage.md).
+
+---
+
+## Session 27 — 2026-11-03
+
+**Context:** Thomas took about fifty photos at the flat during the autumn holidays and shared them as a Google Drive folder, downloaded to `C:\Users\thoma\Downloads\Sauze-20261103T183906Z-1-001\Sauze` (no Drive connector in the session). 43 iPhone HEIC photos and 7 screenshots, named by subject. Not all must be used; some are redundant.
+
+**Intent:** « Update with latest images » — integrate the new photos into the website.
+
+**Clarifications from Thomas:**
+- Replace **all** existing photos; keep none of the old ones
+- Private parking photos: the parking is not part of the rental yet; keep the photos, do not publish them (maybe later)
+- `jeu_de_piste` screenshots: a later initiative; keep, do not publish
+- The `outside_games` play area is the « jeux en bois » 300 m from the residence
+
+**Found by Claude:** the repository is public, so « keep in the repository » would publish the keys photo and the screenshots (other people's names and live locations). Asked again, Thomas chose:
+- Unpublished photos in a **local, git-ignored** folder
+- The ski-locker block shows the **residence entrance** (no locker photo in the batch)
+- The **Seasons photos stay** (no winter or summer photo in an autumn batch)
+- The **share image** is regenerated from the new living-room photo
+
+**Plan drafted:** Bolt 27 (8 steps, decisions D1 to D9): 6 home photos replaced under the same names, 3 gallery-only photos, 8 guide photos filling `/stay` slots, all 50 originals in git-ignored `photos/originals/2026-11/`. Details in [bolt-27-photo-refresh.md](plans/bolt-27-photo-refresh.md) — pending Thomas's approval of the plan and the alt texts.
+
+**Plan approved by Thomas** (2026-11-03).
+
+**Bolt 27 implemented on 2026-11-03.** All 8 steps done: 17 photos published (26 WebP files), none with metadata; gallery of 8; no « Photo à venir » left on `/stay`; 235 unit tests pass; Lighthouse floors met, heaviest page 618 KB. A flaky Playwright test (`localization.spec.ts`) fails on the previous commit too. Details in [bolt-27-photo-refresh.md](plans/bolt-27-photo-refresh.md).

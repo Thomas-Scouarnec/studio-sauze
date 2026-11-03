@@ -59,7 +59,7 @@ export class PageTagsStrategy extends TitleStrategy {
       'og:image': SITE_ORIGIN + IMAGE.path,
       'og:image:width': String(IMAGE.width),
       'og:image:height': String(IMAGE.height),
-      'og:image:alt': $localize`:@@seo.image.alt:La station du Sauze sous la neige, au pied des sommets enneigés de la vallée de l'Ubaye`,
+      'og:image:alt': $localize`:@@seo.image.alt:Le séjour de notre appartement au Sauze : canapé-lit rouge, table et grande fenêtre`,
       'og:locale': OG_LOCALE[this.language],
       'og:locale:alternate': OG_LOCALE[other],
     };

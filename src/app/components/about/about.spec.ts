@@ -36,12 +36,16 @@ describe('AboutComponent', () => {
     const main: HTMLImageElement = fixture.nativeElement.querySelector('.about-photo-main img');
     const side: HTMLImageElement = fixture.nativeElement.querySelector('.about-photo-side img');
 
-    expect(main.getAttribute('alt')).toBe('Le séjour, avec son canapé-lit et sa commode en pin');
+    expect(main.getAttribute('alt')).toBe(
+      'Le séjour : le canapé-lit rouge, la table et la grande fenêtre',
+    );
     expect(main.getAttribute('srcset')).toBe(
       '/images/about/living-room-800w.webp 800w, /images/about/living-room-1200w.webp 1200w',
     );
     expect(side.getAttribute('alt')).toBe('La fenêtre du séjour, ouverte sur la forêt');
-    expect(side.getAttribute('srcset')).toBe('/images/about/forest-view-800w.webp 800w');
+    expect(side.getAttribute('srcset')).toBe(
+      '/images/about/forest-view-800w.webp 800w, /images/about/forest-view-1200w.webp 1200w',
+    );
     for (const img of [main, side]) {
       expect(img.getAttribute('loading')).toBe('lazy');
       expect(img.getAttribute('sizes')).toBeTruthy();
@@ -64,14 +68,16 @@ describe('AboutComponent', () => {
     expect(visual.querySelectorAll('.about-photo img').length).toBe(3);
   });
 
-  it('should render the Chapeau du Gendarme as the wide photo', async () => {
+  it('should render the mountain landscape as the wide photo', async () => {
     const fixture = TestBed.createComponent(AboutComponent);
     await fixture.whenStable();
     const wide: HTMLImageElement = fixture.nativeElement.querySelector('.about-photo-wide img');
     expect(wide.getAttribute('alt')).toBe(
-      'Le Chapeau du Gendarme, sommet calcaire sous un ciel bleu',
+      "Les sommets de l'Ubaye au-dessus du Sauze, aux couleurs de l'automne",
     );
-    expect(wide.getAttribute('srcset')).toBe('/images/about/mountain-800w.webp 800w');
+    expect(wide.getAttribute('srcset')).toBe(
+      '/images/about/mountain-800w.webp 800w, /images/about/mountain-1200w.webp 1200w',
+    );
     expect(wide.getAttribute('loading')).toBe('lazy');
   });
 

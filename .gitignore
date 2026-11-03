@@ -52,3 +52,6 @@ Thumbs.db
 /.lighthouseci
 /lighthouse-report
 /playwright/.cache
+
+# Photo originals (Bolt 27): local only, the repository is public
+/photos

@@ -15,11 +15,14 @@ describe('GalleryService', () => {
     expect(gallery.photos().map((photo) => photo.src)).toEqual([
       'equipment/arrival',
       'equipment/sleeping',
+      'gallery/mountain-corner-closed',
       'equipment/kitchen',
+      'gallery/dining-table',
       'about/living-room',
+      'gallery/living-room-window-side',
       'about/forest-view',
     ]);
-    expect(gallery.count()).toBe(5);
+    expect(gallery.count()).toBe(8);
   });
 
   it('should leave the landscape photos out (FR-26)', () => {
@@ -41,6 +44,7 @@ describe('GalleryService', () => {
 
     expect(gallery.photos()).toContain(kitchen);
     expect(gallery.photos()).toContain(flatInfo.aboutPhotos().livingRoom);
+    expect(gallery.photos()).toContain(flatInfo.galleryPhotos().diningTable);
   });
 
   it('should start closed', () => {
@@ -55,7 +59,7 @@ describe('GalleryService', () => {
 
     expect(gallery.isOpen()).toBe(true);
     expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
-    expect(gallery.position()).toBe(3);
+    expect(gallery.position()).toBe(4);
   });
 
   it('should ignore a photo that is not in the gallery', () => {
@@ -76,7 +80,7 @@ describe('GalleryService', () => {
     gallery.openAt('equipment/sleeping');
 
     gallery.next();
-    expect(gallery.currentPhoto()?.src).toBe('equipment/kitchen');
+    expect(gallery.currentPhoto()?.src).toBe('gallery/mountain-corner-closed');
 
     gallery.previous();
     expect(gallery.currentPhoto()?.src).toBe('equipment/sleeping');
@@ -95,7 +99,7 @@ describe('GalleryService', () => {
     gallery.previous();
 
     expect(gallery.currentPhoto()?.src).toBe('about/forest-view');
-    expect(gallery.position()).toBe(5);
+    expect(gallery.position()).toBe(8);
   });
 
   it('should do nothing when moving while closed', () => {

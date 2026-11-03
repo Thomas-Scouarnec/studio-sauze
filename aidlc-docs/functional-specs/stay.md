@@ -73,7 +73,8 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 
 - The missing facts themselves — added as data when Thomas supplies them
 - The parked topics: road and weather, ski passes and hire, heating and hot water, baby equipment, emergency numbers, tourist tax, avalanche safety
-- The photo files themselves — the slots exist (FR-21); the photos are Thomas's to take
+- Photos for the items still without one (sofa bed, cooking, washing machine, ski locker) — the slots exist (FR-21); the photos are Thomas's to take
+- The private garage — not part of the rental yet; its photos are kept locally only (Bolt 27)
 - Access codes, stay dates, expiry, encryption
 - A mobile menu for the four section links
 
@@ -91,3 +92,4 @@ Covers the page itself, how a guest reaches it and comes back to it, the site-wi
 | 2026-09-22 | FR-17 reworked (arrival time and keys moved to « À l'arrivée »); FR-20 extended to the postal address; FR-21 added for photo slots | Session 11 |
 | 2026-09-28 | In-page navigation: FR-14 reworded (sticky menu), FR-22 to FR-26 | Session 13 |
 | 2026-09-28 | Compact bar on narrow screens: FR-14 and FR-22 reworded, FR-27 and FR-28 | Session 14 |
+| 2026-11-03 | Photo refresh: the parking, entrance, tennis, pétanque, play area and rubbish items illustrated; out-of-scope narrowed | Session 27 |

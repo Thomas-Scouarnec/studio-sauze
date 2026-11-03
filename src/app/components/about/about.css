@@ -57,11 +57,6 @@
   border: 6px solid var(--cream);
 }
 
-/* The mountain photo is 4:3: trim the scree at the bottom, keep the summit. */
-.about-photo-wide img {
-  object-position: 50% 10%;
-}
-
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

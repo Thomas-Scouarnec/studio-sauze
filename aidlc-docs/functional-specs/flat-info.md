@@ -52,12 +52,12 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | FR-22 | Each Équipements block shows a photo only when a compliant one exists; a block without a photo shows no empty frame | An empty, photo-shaped frame reads as a missing photo |
 | FR-23 | Photos in this version, all temporary: ski lockers (`arrival`), coin montagne (`sleeping`) and kitchen (`kitchen`) | Every block has a photo; FR-22 keeps a future block without one from showing an empty frame |
 | FR-24 | Équipements photo alt text: « Les casiers à skis sécurisés du rez-de-chaussée », « Deux enfants blottis dans les couchages du coin montagne » and « Le coin cuisine : micro-ondes et meubles en pin, à côté de la télévision » | Informative images, as elsewhere on the site |
-| FR-25 | A single site-wide photo gallery shows **the flat's photos only**, in one ordered list: `arrival`, `sleeping`, `kitchen`, `living-room`, `forest-view` | Visitors judge a rental on its photos; one gallery answers "show me the flat" better than per-section carousels |
+| FR-25 | A single site-wide photo gallery shows **the flat's photos only**, in one ordered list: `arrival`, `sleeping`, `mountain-corner-closed`, `kitchen`, `dining-table`, `living-room`, `living-room-window-side`, `forest-view`. The three gallery-only photos are declared once, in `FlatInfoService.galleryPhotos` | Visitors judge a rental on its photos; one gallery answers "show me the flat" better than per-section carousels |
 | FR-26 | Landscape and surroundings photos (`about/mountain`, the Seasons photos) are **not** in the gallery | The gallery makes one promise — the flat itself. Padding it with scenery weakens that promise |
 | FR-27 | Each Équipements photo opens the gallery **at that photo**. It is the only entry point in this version | Matches what the visitor clicked; the About photos appear in the gallery without opening it |
 | FR-28 | Each Équipements photo carries a permanently visible badge showing an expand icon — an affordance only, with no photo count | A photo that opens something must look like it does, including on touch devices where there is no hover. The count belongs to the gallery, so printing it on one block's photo reads as a claim about that block |
 | FR-29 | The gallery shows a position counter (« Photo N sur M ») and no caption | Position is what a visitor needs; alt text already describes each photo to screen reader users |
-| FR-30 | The gallery displays a photo at no more than its real pixel width, letterboxed rather than upscaled | The flat photos exist only at 800w and their originals are gone (BR-7, Bolt 8); stretching them would show visible softening |
+| FR-30 | The gallery displays a photo at no more than its real pixel width, letterboxed rather than upscaled | The flat photos exist at 800w and 1200w (originals kept locally since Bolt 27); stretching them would show visible softening |
 
 ## 5. Business Rules / Constraints
 
@@ -82,8 +82,8 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 - English (or other) localization of this content
 - A « Voir toutes les photos » button, the About photos as gallery entry points, and visible captions in the gallery — each offered in Session 9 and declined for now
 - Deep-linking the open gallery photo into the URL, a thumbnail strip, and zoom/pan on a photo
-- Photo widths above 800w for the flat photos — no original survives to re-encode from (BR-7, Bolt 8)
-- A residence exterior photo — the one provided shows readable licence plates (BR-7)
+- Photo widths above 1200w for the flat photos
+- A ski locker photo — the residence entrance stands in for now (Bolt 27)
 - Linen, towels and end-of-stay cleaning — destined for a future restricted, guest-only section
 - A dedicated location section (would take ownership of distances and travel times from About)
 
@@ -105,3 +105,4 @@ Covers the studio flat's identity, sleeping capacity, location/proximity, and am
 | 2026-09-20 | Photo gallery: FR-25 to FR-30 and BR-8 added; `GalleryService` added to consuming components; carousel/click-to-enlarge moved out of "Out of Scope" | Session 9 |
 | 2026-09-20 | FR-28: the thumbnail badge carries an expand icon instead of the photo count, at the owner's request | Session 9 |
 | 2026-09-22 | BR-2: exception recorded for the flat number on `/stay` | Session 11 |
+| 2026-11-03 | Photo refresh: every flat photo replaced; FR-25 lists eight photos, three of them gallery-only; FR-30 at 1200w; `arrival` shows the residence entrance, so its BR-7 exception (locker numbers) no longer applies | Session 27 |

@@ -62,9 +62,12 @@ describe('EquipmentComponent', () => {
     const fixture = TestBed.createComponent(EquipmentComponent);
     await fixture.whenStable();
     const expected: Record<string, string> = {
-      arrival: '/images/equipment/arrival-800w.webp 800w',
-      sleeping: '/images/equipment/sleeping-800w.webp 800w',
-      kitchen: '/images/equipment/kitchen-800w.webp 800w',
+      arrival:
+        '/images/equipment/arrival-800w.webp 800w, /images/equipment/arrival-1200w.webp 1200w',
+      sleeping:
+        '/images/equipment/sleeping-800w.webp 800w, /images/equipment/sleeping-1200w.webp 1200w',
+      kitchen:
+        '/images/equipment/kitchen-800w.webp 800w, /images/equipment/kitchen-1200w.webp 1200w',
     };
     for (const [id, srcset] of Object.entries(expected)) {
       const frame: HTMLElement = fixture.nativeElement.querySelector(
@@ -103,7 +106,7 @@ describe('EquipmentComponent', () => {
     const name = [alt, frame.textContent].join(' ').replace(/\s+/g, ' ').trim();
 
     expect(name).toContain('Le coin cuisine');
-    expect(name).toContain('ouvrir la galerie (5 photos)');
+    expect(name).toContain('ouvrir la galerie (8 photos)');
   });
 
   it('should mark every thumbnail with a decorative expand icon (FR-28)', async () => {
@@ -155,6 +158,11 @@ describe('EquipmentComponent with a block that has no photo yet (FR-22)', () => 
               livingRoom: { src: 'about/living-room', srcset: '800w', alt: 'Description' },
               forestView: { src: 'about/forest-view', srcset: '800w', alt: 'Description' },
               mountain: { src: 'about/mountain', srcset: '800w', alt: 'Description' },
+            }),
+            galleryPhotos: signal({
+              mountainCornerClosed: { src: 'gallery/a', srcset: '800w', alt: 'Description' },
+              diningTable: { src: 'gallery/b', srcset: '800w', alt: 'Description' },
+              livingRoomWindowSide: { src: 'gallery/c', srcset: '800w', alt: 'Description' },
             }),
           },
         },
